@@ -150,10 +150,6 @@ const DPKFlow: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleStartProcess = () => {
-    console.log('Starting DPK process simulation...');
-  };
-
   const handleSelectUnit = (unitId: string) => {
     setSelectedUnitId(unitId);
     setCurrentView('unit-detail');
@@ -235,13 +231,6 @@ const DPKFlow: React.FC = () => {
                   </p>
                 </div>
               </div>
-              <button
-                onClick={handleStartProcess}
-                className="px-6 py-3 bg-gradient-to-r from-accenture-purple to-accenture-azure hover:from-accenture-purple-dark hover:to-accenture-azure-dark text-white rounded-xl transition-all duration-200 flex items-center space-x-2 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
-              >
-                <Play className="h-5 w-5" />
-                <span>Start Simulation</span>
-              </button>
             </div>
           </div>
 
