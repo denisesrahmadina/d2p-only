@@ -11,6 +11,7 @@ import {
   GitMerge,
   ChevronDown,
   ChevronUp,
+  ChevronRight,
   Send
 } from 'lucide-react';
 import plnUnitsData from '../../../data/plnUnits.json';
@@ -415,35 +416,47 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
   }, [forecastData]);
 
   const categoryBreakdown = useMemo(() => {
-    const categories = new Map<string, {
-      category: string;
-      materials: typeof finalProcurementSummary;
-      totalQuantity: number;
-      totalValue: number;
-      unitCount: number;
-    }>();
+    try {
+      const categories = new Map<string, {
+        category: string;
+        materials: typeof finalProcurementSummary;
+        totalQuantity: number;
+        totalValue: number;
+        unitCount: number;
+      }>();
 
-    finalProcurementSummary.forEach(material => {
-      const category = materialCategories[material.materialName] || 'Uncategorized';
-
-      if (!categories.has(category)) {
-        categories.set(category, {
-          category,
-          materials: [],
-          totalQuantity: 0,
-          totalValue: 0,
-          unitCount: 0
-        });
+      if (!finalProcurementSummary || finalProcurementSummary.length === 0) {
+        console.log('No procurement summary data available');
+        return [];
       }
 
-      const cat = categories.get(category)!;
-      cat.materials.push(material);
-      cat.totalQuantity += material.totalQuantity;
-      cat.totalValue += material.totalQuantity * material.materialValue;
-      cat.unitCount = Math.max(cat.unitCount, material.unitRequestorsCount);
-    });
+      finalProcurementSummary.forEach(material => {
+        const category = materialCategories[material.materialName] || 'Uncategorized';
 
-    return Array.from(categories.values()).sort((a, b) => b.totalValue - a.totalValue);
+        if (!categories.has(category)) {
+          categories.set(category, {
+            category,
+            materials: [],
+            totalQuantity: 0,
+            totalValue: 0,
+            unitCount: 0
+          });
+        }
+
+        const cat = categories.get(category)!;
+        cat.materials.push(material);
+        cat.totalQuantity += material.totalQuantity;
+        cat.totalValue += material.totalQuantity * material.materialValue;
+        cat.unitCount = Math.max(cat.unitCount, material.unitRequestorsCount);
+      });
+
+      const result = Array.from(categories.values()).sort((a, b) => b.totalValue - a.totalValue);
+      console.log('Category breakdown created:', result.length, 'categories');
+      return result;
+    } catch (error) {
+      console.error('Error creating category breakdown:', error);
+      return [];
+    }
   }, [finalProcurementSummary]);
 
   const finalSummary = useMemo(() => {
@@ -778,7 +791,7 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
       )}
 
       {/* Category-Based Procurement Tables - Shown after all alerts are resolved */}
-      {allAlertsResolved && (
+      {allAlertsResolved && categoryBreakdown && categoryBreakdown.length > 0 && (
         <div className="space-y-6">
           {/* Header */}
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl border-2 border-green-200 dark:border-green-800 p-6">
@@ -972,6 +985,23 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
               <Send className="h-5 w-5" />
               <span>Confirm & Send to E-Budget</span>
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Fallback message if no categories */}
+      {allAlertsResolved && (!categoryBreakdown || categoryBreakdown.length === 0) && (
+        <div className="bg-yellow-50 dark:bg-yellow-900/20 border-2 border-yellow-200 dark:border-yellow-800 rounded-xl p-6">
+          <div className="flex items-center space-x-3">
+            <AlertCircle className="h-6 w-6 text-yellow-600" />
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                No Procurement Data Available
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Unable to generate category breakdown. Please check the console for errors.
+              </p>
+            </div>
           </div>
         </div>
       )}
