@@ -141,7 +141,6 @@ const DPKDemandAdjustment: React.FC = () => {
   const [demandAlerts] = useState<ConsolidatedDemandAlert[]>(CONSOLIDATED_DEMAND_ALERTS);
   const [resolvedAlerts, setResolvedAlerts] = useState<Set<string>>(new Set());
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const [adjustmentSelections, setAdjustmentSelections] = useState<AdjustmentSelectionsByMaterial>({});
   const [editingMonth, setEditingMonth] = useState<string | null>(null);
@@ -678,10 +677,6 @@ const DPKDemandAdjustment: React.FC = () => {
     });
   };
 
-  const handleConfirmAndSend = () => {
-    setShowConfirmModal(false);
-  };
-
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
@@ -1098,70 +1093,6 @@ const DPKDemandAdjustment: React.FC = () => {
             </div>
           </div>
 
-          {/* Confirm Button */}
-          <div className="flex justify-end">
-            <button
-              onClick={() => setShowConfirmModal(true)}
-              className="px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all flex items-center space-x-3"
-            >
-              <Send className="h-6 w-6" />
-              <span>Confirm</span>
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Confirmation Modal */}
-      {showConfirmModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full p-8 transform transition-all">
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle2 className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                Confirm Submission
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Are you sure you want to send the adjusted budget to the next stage?
-              </p>
-            </div>
-
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 mb-6">
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-sm text-gray-600 dark:text-gray-400">Total Categories:</span>
-                <span className="text-lg font-bold text-gray-900 dark:text-white">{categoryBreakdown.length}</span>
-              </div>
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-sm text-gray-600 dark:text-gray-400">Total Materials:</span>
-                <span className="text-lg font-bold text-gray-900 dark:text-white">{totalMaterialsCount}</span>
-              </div>
-              <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Grand Total:</span>
-                  <span className="text-xl font-bold text-green-600 dark:text-green-400">
-                    {formatCurrency(grandTotalValue)}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex space-x-3">
-              <button
-                onClick={() => setShowConfirmModal(false)}
-                className="flex-1 px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-all"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleConfirmAndSend}
-                className="flex-1 px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2"
-              >
-                <Send className="h-5 w-5" />
-                <span>Confirm & Send</span>
-              </button>
-            </div>
-          </div>
         </div>
       )}
 
