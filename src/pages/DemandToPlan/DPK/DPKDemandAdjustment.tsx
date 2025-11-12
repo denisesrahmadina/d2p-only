@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Download, Sliders, CheckCircle2, Sparkles, Edit3, Save, Factory, Filter, Package, Database, Loader2 } from 'lucide-react';
+import { Download, Sliders, CheckCircle2, Sparkles, Edit3, Save, Factory, Filter, Package, Database, Loader2, AlertCircle } from 'lucide-react';
 import plnUnitsData from '../../../data/plnUnits.json';
 import {
   BarChart,
@@ -51,15 +51,42 @@ type AdjustmentSelectionsByMaterial = {
 };
 
 // Define materials array outside component to prevent recreation on every render
-const MATERIALS = ['Filter air', 'Filter Udara Cartridge', 'Oil Filter', 'Filter Gas', 'Filter Udara Kassa'];
+const MATERIALS = ['Filter air', 'Filter Udara Cartridge', 'Oil Filter', 'Filter Gas', 'Filter Udara Kassa', 'Filtration Media', 'Bolts and Fasteners'];
 
 const MATERIAL_PRICES: { [key: string]: number } = {
   'Filter air': 450000,
   'Filter Udara Cartridge': 650000,
   'Oil Filter': 350000,
   'Filter Gas': 550000,
-  'Filter Udara Kassa': 280000
+  'Filter Udara Kassa': 280000,
+  'Filtration Media': 3200000,
+  'Bolts and Fasteners': 85000
 };
+
+interface ConsolidatedDemandAlert {
+  unit: string;
+  category: string;
+  material: string;
+  overBudgetPercent: number;
+  alertDescription: string;
+}
+
+const CONSOLIDATED_DEMAND_ALERTS: ConsolidatedDemandAlert[] = [
+  {
+    unit: 'UBP ADP',
+    category: 'Water Treatment System',
+    material: 'Filtration Media',
+    overBudgetPercent: 15.2,
+    alertDescription: 'Consolidated demand exceeds approved budget by 15.2%. Immediate adjustment required.'
+  },
+  {
+    unit: 'UBP ADP',
+    category: 'Spare Parts and Maintenance',
+    material: 'Bolts and Fasteners',
+    overBudgetPercent: 12.8,
+    alertDescription: 'Demand forecast significantly higher than budget allocation. Review and reduce quantities.'
+  }
+];
 
 const DPKDemandAdjustment: React.FC = () => {
   const [selectedUnit, setSelectedUnit] = useState<string>('UBP ADP');
@@ -70,13 +97,14 @@ const DPKDemandAdjustment: React.FC = () => {
   const [showFinalTable, setShowFinalTable] = useState(false);
   const [chartType, setChartType] = useState<'bar' | 'line'>('bar');
   const [isRetrievingBudget, setIsRetrievingBudget] = useState(false);
+  const [demandAlerts] = useState<ConsolidatedDemandAlert[]>(CONSOLIDATED_DEMAND_ALERTS);
 
   const [adjustmentSelections, setAdjustmentSelections] = useState<AdjustmentSelectionsByMaterial>({});
   const [editingMonth, setEditingMonth] = useState<string | null>(null);
   const [editingMaterial, setEditingMaterial] = useState<string | null>(null);
   const [customValues, setCustomValues] = useState<{ [key: string]: string }>({});
 
-  const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies'];
+  const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies', 'Water Treatment System', 'Spare Parts and Maintenance'];
   const materials = MATERIALS;
   const materialPrices = MATERIAL_PRICES;
 
@@ -395,6 +423,15 @@ const DPKDemandAdjustment: React.FC = () => {
     }, 2500);
   };
 
+  const handleAlertClick = (alert: ConsolidatedDemandAlert) => {
+    setSelectedUnit(alert.unit);
+    setSelectedCategory(alert.category);
+    setSelectedMaterial(alert.material);
+    setTimeout(() => {
+      document.getElementById('adjustments-table')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  };
+
   const handleExportFinalAdjustment = () => {
     const csvContent = [
       ['Month', 'Consolidated Demand', 'Budget Limit', 'Adjusted Demand', 'Source', 'Variance'].join(','),
@@ -580,6 +617,76 @@ const DPKDemandAdjustment: React.FC = () => {
         </div>
       )}
 
+      {/* Consolidated Demand Alerts */}
+      {hasBudgetData && demandAlerts.length > 0 && (
+        <div className="bg-white dark:bg-gray-900 rounded-xl border-2 border-orange-200 dark:border-orange-800 shadow-xl overflow-hidden">
+          <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 dark:from-orange-500/20 dark:to-red-500/20 border-b border-orange-200 dark:border-orange-800 px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
+                  <AlertCircle className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                    Consolidated Demand Alerts
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {demandAlerts.length} alert{demandAlerts.length !== 1 ? 's' : ''} - Click on each card to review and adjust
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {demandAlerts.map((alert, index) => (
+                <div
+                  key={`${alert.unit}-${alert.material}-${index}`}
+                  onClick={() => handleAlertClick(alert)}
+                  className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 border-2 border-orange-300 dark:border-orange-700 rounded-xl p-4 hover:shadow-lg hover:border-orange-500 dark:hover:border-orange-500 transition-all cursor-pointer"
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-2 mb-1">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-orange-500 text-white">
+                          {alert.overBudgetPercent.toFixed(1)}%
+                        </span>
+                      </div>
+                      <h4 className="text-base font-bold text-gray-900 dark:text-white">
+                        {alert.unit}
+                      </h4>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xs font-semibold text-gray-600 dark:text-gray-400">Category:</span>
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-blue-500/10 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300">
+                        {alert.category}
+                      </span>
+                    </div>
+
+                    <div className="flex items-start space-x-2">
+                      <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 flex-shrink-0">Material:</span>
+                      <span className="text-xs font-medium text-gray-900 dark:text-white">
+                        {alert.material}
+                      </span>
+                    </div>
+
+                    <div className="pt-2 border-t border-orange-200 dark:border-orange-800">
+                      <p className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed">
+                        {alert.alertDescription}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {hasBudgetData && (
         <>
           {/* <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
@@ -752,7 +859,7 @@ const DPKDemandAdjustment: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+          <div id="adjustments-table" className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center space-x-2">
