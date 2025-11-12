@@ -101,15 +101,7 @@ function generateMockData(): ForecastData[] {
         let finalUnitForecast;
 
         if (unit.name === 'UBP ADP' && material === 'Water filter') {
-          if (monthIndex === 0) {
-            finalUnitForecast = Math.round(aiForecast * 1.70);
-          } else if (monthIndex === 1) {
-            finalUnitForecast = Math.round(aiForecast * 1.60);
-          } else if (monthIndex === 2) {
-            finalUnitForecast = Math.round(aiForecast * 1.40);
-          } else {
-            finalUnitForecast = Math.round(aiForecast * 1.35);
-          }
+          finalUnitForecast = Math.round(aiForecast * 1.60);
         } else {
           const shouldHaveHighDeviation = Math.random() < 0.15;
 
@@ -527,7 +519,18 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
               {deviationAlerts.map((alert, index) => (
                 <div
                   key={`${alert.unitName}-${alert.materialName}`}
-                  className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 border-2 border-orange-300 dark:border-orange-700 rounded-xl p-4 hover:shadow-lg transition-all"
+                  onClick={() => {
+                    const unitData = plnUnitsData.find(u => u.name === alert.unitName);
+                    if (unitData) {
+                      setSelectedUnit(unitData.id);
+                      setSelectedCategory(alert.categoryName);
+                      setSelectedMaterial(alert.materialName);
+                      setTimeout(() => {
+                        document.getElementById('adjustments-table')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }, 100);
+                    }
+                  }}
+                  className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 border-2 border-orange-300 dark:border-orange-700 rounded-xl p-4 hover:shadow-lg hover:border-orange-500 dark:hover:border-orange-500 transition-all cursor-pointer"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
@@ -720,7 +723,7 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
       )}
 
       {/* Adjustments Table */}
-      <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+      <div id="adjustments-table" className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 dark:bg-gray-800 border-b-2 border-gray-200 dark:border-gray-700">
