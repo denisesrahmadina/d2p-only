@@ -81,6 +81,12 @@ const materialPrices: { [key: string]: number } = {
   'Spare Parts': 1200000
 };
 
+const INITIAL_HIGH_DEVIATION_ALERTS = [
+  { unitName: 'UBP ADP', material: 'Water filter', deviation: 1.60 },
+  { unitName: 'PLTU Suralaya', material: 'Air Filter', deviation: 1.45 },
+  { unitName: 'PLTU Paiton', material: 'Fuel Filter', deviation: 1.35 }
+];
+
 function generateMockData(): ForecastData[] {
   const data: ForecastData[] = [];
   const units = plnUnitsData.slice(0, 15);
@@ -100,18 +106,14 @@ function generateMockData(): ForecastData[] {
 
         let finalUnitForecast;
 
-        if (unit.name === 'UBP ADP' && material === 'Water filter') {
-          finalUnitForecast = Math.round(aiForecast * 1.60);
-        } else {
-          const shouldHaveHighDeviation = Math.random() < 0.15;
+        const highDeviationAlert = INITIAL_HIGH_DEVIATION_ALERTS.find(
+          alert => alert.unitName === unit.name && alert.material === material
+        );
 
-          if (shouldHaveHighDeviation) {
-            const deviationDirection = Math.random() < 0.5 ? 1 : -1;
-            const deviationPercent = 0.25 + (Math.random() * 0.20);
-            finalUnitForecast = Math.round(aiForecast * (1 + (deviationDirection * deviationPercent)));
-          } else {
-            finalUnitForecast = baseValue + Math.floor(Math.random() * 80) - 40;
-          }
+        if (highDeviationAlert) {
+          finalUnitForecast = Math.round(aiForecast * highDeviationAlert.deviation);
+        } else {
+          finalUnitForecast = baseValue + Math.floor(Math.random() * 80) - 40;
         }
 
         data.push({
@@ -236,47 +238,45 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
   }, [filteredData]);
 
   const deviationAlerts = useMemo(() => {
-    const alertMap = new Map<string, {
+    const alerts: Array<{
       unitName: string;
       categoryName: string;
       materialName: string;
       deviationPercent: number;
       alertDescription: string;
-    }>();
+    }> = [];
 
-    forecastData.forEach(item => {
-      if (item.aiForecast === 0) return;
+    INITIAL_HIGH_DEVIATION_ALERTS.forEach(initialAlert => {
+      const alertKey = `${initialAlert.unitName}-${initialAlert.material}`;
 
-      const deviation = ((item.finalUnitForecast - item.aiForecast) / item.aiForecast) * 100;
+      if (resolvedAlerts.has(alertKey)) {
+        return;
+      }
 
-      if (Math.abs(deviation) >= 25) {
-        const key = `${item.unitName}-${item.material}`;
+      const sampleItem = forecastData.find(
+        item => item.unitName === initialAlert.unitName && item.material === initialAlert.material
+      );
 
-        if (!alertMap.has(key)) {
-          const categoryName = materialCategories[item.material] || 'General';
-          const alertDesc = deviation > 0
-            ? `Final forecast exceeds AI forecast by ${deviation.toFixed(1)}%`
-            : `Final forecast is ${Math.abs(deviation).toFixed(1)}% below AI forecast`;
+      if (sampleItem && sampleItem.aiForecast !== 0) {
+        const deviation = ((sampleItem.finalUnitForecast - sampleItem.aiForecast) / sampleItem.aiForecast) * 100;
+        const categoryName = materialCategories[sampleItem.material] || 'General';
+        const alertDesc = deviation > 0
+          ? `Final forecast exceeds AI forecast by ${deviation.toFixed(1)}%`
+          : `Final forecast is ${Math.abs(deviation).toFixed(1)}% below AI forecast`;
 
-          alertMap.set(key, {
-            unitName: item.unitName,
-            categoryName,
-            materialName: item.material,
-            deviationPercent: Math.abs(deviation),
-            alertDescription: alertDesc
-          });
-        }
+        alerts.push({
+          unitName: sampleItem.unitName,
+          categoryName,
+          materialName: sampleItem.material,
+          deviationPercent: Math.abs(deviation),
+          alertDescription: alertDesc
+        });
       }
     });
 
-    let alerts = Array.from(alertMap.values());
-    alerts = alerts.filter(alert => {
-      const alertKey = `${alert.unitName}-${alert.materialName}`;
-      return !resolvedAlerts.has(alertKey);
-    });
     alerts.sort((a, b) => b.deviationPercent - a.deviationPercent);
 
-    return alerts.slice(0, 3);
+    return alerts;
   }, [forecastData, resolvedAlerts]);
 
   const finalSummary = useMemo(() => {
