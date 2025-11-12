@@ -109,6 +109,8 @@ interface ConsolidatedDemandAlert {
   material: string;
   overBudgetPercent: number;
   alertDescription: string;
+  consolidatedQty?: number;
+  aiRecommendedQty?: number;
 }
 
 const CONSOLIDATED_DEMAND_ALERTS: ConsolidatedDemandAlert[] = [
@@ -117,14 +119,18 @@ const CONSOLIDATED_DEMAND_ALERTS: ConsolidatedDemandAlert[] = [
     category: 'Water Treatment System',
     material: 'Filtration Media',
     overBudgetPercent: 15.2,
-    alertDescription: 'Consolidated demand exceeds approved budget by 15.2%. Immediate adjustment required.'
+    alertDescription: 'Consolidated demand exceeds approved budget by 15.2%. Immediate adjustment required.',
+    consolidatedQty: 11460,
+    aiRecommendedQty: 6390
   },
   {
     unit: 'UBP ADP',
     category: 'Spare Parts and Maintenance',
     material: 'Bolts and Fasteners',
     overBudgetPercent: 12.8,
-    alertDescription: 'Demand forecast significantly higher than budget allocation. Review and reduce quantities.'
+    alertDescription: 'Demand forecast significantly higher than budget allocation. Review and reduce quantities.',
+    consolidatedQty: 303000,
+    aiRecommendedQty: 177000
   }
 ];
 
@@ -889,7 +895,9 @@ const DPKDemandAdjustment: React.FC = () => {
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-1">
                         <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-orange-500 text-white">
-                          {alert.overBudgetPercent.toFixed(1)}%
+                          {alert.consolidatedQty && alert.aiRecommendedQty
+                            ? ((alert.aiRecommendedQty / alert.consolidatedQty) * 100).toFixed(1)
+                            : alert.overBudgetPercent.toFixed(1)}%
                         </span>
                       </div>
                       <h4 className="text-base font-bold text-gray-900 dark:text-white">
