@@ -255,15 +255,11 @@ function generateMockData(): ForecastData[] {
         );
 
         if (highDeviationAlert) {
-          const maxValue = Math.max(userForecast, aiForecast);
-          const minValue = Math.min(userForecast, aiForecast);
-          const range = maxValue - minValue;
-          finalUnitForecast = Math.round(minValue + range * (0.3 + Math.random() * 0.4));
+          const deviationPercent = 0.30 + Math.random() * 0.25;
+          finalUnitForecast = Math.round(aiForecast * (1 + deviationPercent));
         } else {
-          const maxValue = Math.max(userForecast, aiForecast);
-          const minValue = Math.min(userForecast, aiForecast);
-          const range = maxValue - minValue;
-          finalUnitForecast = Math.round(minValue + range * (0.3 + Math.random() * 0.4));
+          const deviationPercent = 0.25 + Math.random() * 0.30;
+          finalUnitForecast = Math.round(aiForecast * (1 + deviationPercent));
         }
 
         data.push({
@@ -1195,12 +1191,6 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
                 AI Forecast
               </button>
               <button
-                onClick={() => handleBulkAdjustment('user')}
-                className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors text-sm font-semibold"
-              >
-                User Forecast
-              </button>
-              <button
                 onClick={() => handleBulkAdjustment('final')}
                 className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm font-semibold"
               >
@@ -1339,16 +1329,6 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
                           className="w-4 h-4 text-cyan-600 focus:ring-cyan-500"
                         />
                         <span className="text-xs text-gray-700 dark:text-gray-300">AI</span>
-                      </label>
-                      <label className="flex items-center space-x-1.5 cursor-pointer">
-                        <input
-                          type="radio"
-                          name={`source-${row.id}`}
-                          checked={row.selectedSource === 'user'}
-                          onChange={() => handleSourceChange(row.id, 'user')}
-                          className="w-4 h-4 text-purple-600 focus:ring-purple-500"
-                        />
-                        <span className="text-xs text-gray-700 dark:text-gray-300">User</span>
                       </label>
                       <label className="flex items-center space-x-1.5 cursor-pointer">
                         <input
