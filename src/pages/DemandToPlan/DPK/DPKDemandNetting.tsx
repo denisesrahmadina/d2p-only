@@ -28,14 +28,14 @@ interface MaterialNettingData {
 
 const DPKDemandNetting: React.FC = () => {
   const [selectedUnit, setSelectedUnit] = useState<string>('');
-  const [selectedMaterial, setSelectedMaterial] = useState<string>('Filter air');
+  const [selectedMaterial, setSelectedMaterial] = useState<string>('All Material');
   const [selectedCategory, setSelectedCategory] = useState<string>('Filters');
   const [isProcessing, setIsProcessing] = useState(false);
   const [hasProcessed, setHasProcessed] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
 
   const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies'];
-  const materials = ['Filter air', 'Filter Udara Cartridge', 'Oil Filter', 'Filter Gas', 'Filter Udara Kassa'];
+  const materials = ['All Material', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
 
   const processingSteps = [
     'Analyzing adjusted demand forecasts...',

@@ -55,7 +55,7 @@ const DPKDemandConsolidation: React.FC<DPKDemandConsolidationProps> = ({ onSucce
   const [isDragging, setIsDragging] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [chartType, setChartType] = useState<'line' | 'bar'>('line');
-  const [selectedMaterial, setSelectedMaterial] = useState<string>('Coal');
+  const [selectedMaterial, setSelectedMaterial] = useState<string>('All Material');
   const [showFinalTable, setShowFinalTable] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isSendingToBudget, setIsSendingToBudget] = useState(false);
@@ -82,7 +82,7 @@ const DPKDemandConsolidation: React.FC<DPKDemandConsolidationProps> = ({ onSucce
   const [customValues, setCustomValues] = useState<{ [key: string]: string }>({});
 
   const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies'];
-  const materials = ['Filter air', 'Filter Udara Cartridge', 'Oil Filter', 'Filter Gas', 'Filter Udara Kassa'];
+  const materials = ['All Material', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
 
   const materialPrices: { [key: string]: number } = {
     'Coal': 850000,

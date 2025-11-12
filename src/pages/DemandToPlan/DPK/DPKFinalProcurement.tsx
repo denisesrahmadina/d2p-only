@@ -36,19 +36,23 @@ interface MaterialProcurementData {
 
 const DPKFinalProcurement: React.FC = () => {
   const [selectedUnit, setSelectedUnit] = useState<string>('');
-  const [selectedMaterial, setSelectedMaterial] = useState<string>('Filter air');
+  const [selectedMaterial, setSelectedMaterial] = useState<string>('All Material');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [chartType, setChartType] = useState<'bar' | 'line'>('bar');
   const [filteredMaterial, setFilteredMaterial] = useState<string | null>(null);
 
   const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies'];
-  const materials = ['Filter air', 'Filter Udara Cartridge', 'Oil Filter', 'Filter Gas', 'Filter Udara Kassa'];
+  const materials = ['All Material', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
   const allMaterialsList = [
-    'Filter air',
-    'Filter Udara Cartridge',
-    'Oil Filter',
-    'Filter Gas',
-    'Filter Udara Kassa',
+    'All Material',
+    'Air Filter',
+    'Fuel Filter',
+    'Chemical filter',
+    'Oil filter',
+    'Special filter',
+    'Multi function filter',
+    'Water filter',
+    'Gas Filter',
     'Bottom Ash Removal Systems',
     'Fly Ash Handling Equipment',
     'Ash Conveyors',
