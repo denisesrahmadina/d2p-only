@@ -680,7 +680,6 @@ const DPKDemandAdjustment: React.FC = () => {
 
   const handleConfirmAndSend = () => {
     setShowConfirmModal(false);
-    navigate('/demand-to-plan/dpk');
   };
 
   const CustomTooltip = ({ active, payload, label }: any) => {
