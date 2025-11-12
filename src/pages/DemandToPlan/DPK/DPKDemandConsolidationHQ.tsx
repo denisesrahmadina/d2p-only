@@ -142,35 +142,40 @@ const materialCategories: { [key: string]: string } = {
 };
 
 const materialPrices: { [key: string]: number } = {
-  'Air Filter': 850000,
-  'Fuel Filter': 920000,
-  'Chemical filter': 780000,
-  'Oil filter': 650000,
-  'Special filter': 1100000,
-  'Multi function filter': 1350000,
-  'Water filter': 890000,
-  'Gas filter': 970000,
-  'Coal': 2500000,
+  // Filter (8 materials) - Target: 26 billion
+  'Air Filter': 450000,
+  'Fuel Filter': 520000,
+  'Chemical filter': 680000,
+  'Oil filter': 350000,
+  'Special filter': 780000,
+  'Multi function filter': 920000,
+  'Water filter': 410000,
+  'Gas filter': 550000,
+  // Fuel and Combustion (5 materials) - Target: 44 billion
+  'Coal': 850000,
   'Diesel Fuel': 15000,
   'Natural Gas': 8500,
   'Fuel Oil': 12000,
-  'Biomass Pellets': 3200000,
-  'Turbine Blades': 45000000,
-  'Pump Components': 18000000,
-  'Valve Systems': 8500000,
-  'Bearing Units': 6200000,
-  'Coupling Systems': 5800000,
-  'Gear Box Parts': 12500000,
+  'Biomass Pellets': 650000,
+  // Mechanical Equipment (6 materials) - Target: 31 billion
+  'Turbine Blades': 16000000,
+  'Pump Components': 8500000,
+  'Valve Systems': 12000000,
+  'Bearing Units': 4500000,
+  'Coupling Systems': 6800000,
+  'Gear Box Parts': 9200000,
+  // Spare Parts and Maintenance (6 materials) - Target: 21 billion
   'Gaskets': 450000,
   'Seals': 380000,
-  'Bolts and Fasteners': 125000,
-  'Electrical Cables': 850000,
-  'Sensors': 2200000,
-  'Control Panels': 15000000,
-  'Reverse Osmosis Membranes': 35000000,
+  'Bolts and Fasteners': 85000,
+  'Electrical Cables': 1200000,
+  'Sensors': 2500000,
+  'Control Panels': 18000000,
+  // Water Treatment System (5 materials) - Target: 28 billion
+  'Reverse Osmosis Membranes': 15000000,
   'Ion Exchange Resins': 8500000,
-  'Chemical Dosing Pumps': 12000000,
-  'Water Quality Sensors': 4500000,
+  'Chemical Dosing Pumps': 7200000,
+  'Water Quality Sensors': 3800000,
   'Filtration Media': 3200000
 };
 
@@ -189,12 +194,59 @@ function generateMockData(): ForecastData[] {
 
   const allMaterials = materials;
 
-  units.forEach(unit => {
+  // Base monthly patterns for each material aligned with DPKDemandAdjustment
+  const basePatterns: { [key: string]: number[] } = {
+    // Mechanical Equipment
+    'Turbine Blades': [120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175],
+    'Pump Components': [360, 370, 380, 390, 400, 410, 420, 430, 440, 450, 460, 470],
+    'Valve Systems': [250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350, 360],
+    'Bearing Units': [680, 700, 720, 740, 760, 780, 800, 820, 840, 860, 880, 900],
+    'Coupling Systems': [450, 460, 470, 480, 490, 500, 510, 520, 530, 540, 550, 560],
+    'Gear Box Parts': [330, 340, 350, 360, 370, 380, 390, 400, 410, 420, 430, 440],
+    // Water Treatment System
+    'Reverse Osmosis Membranes': [180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290],
+    'Ion Exchange Resins': [320, 330, 340, 350, 360, 370, 380, 390, 400, 410, 420, 430],
+    'Chemical Dosing Pumps': [380, 390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490],
+    'Water Quality Sensors': [720, 740, 760, 780, 800, 820, 840, 860, 880, 900, 920, 940],
+    'Filtration Media': [850, 870, 890, 910, 930, 950, 970, 990, 1010, 1030, 1050, 1070],
+    // Spare Parts and Maintenance
+    'Gaskets': [4500, 4600, 4700, 4800, 4900, 5000, 5100, 5200, 5300, 5400, 5500, 5600],
+    'Seals': [5300, 5400, 5500, 5600, 5700, 5800, 5900, 6000, 6100, 6200, 6300, 6400],
+    'Bolts and Fasteners': [23000, 23500, 24000, 24500, 25000, 25500, 26000, 26500, 27000, 27500, 28000, 28500],
+    'Electrical Cables': [1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100, 2150, 2200, 2250],
+    'Sensors': [800, 820, 840, 860, 880, 900, 920, 940, 960, 980, 1000, 1020],
+    'Control Panels': [110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165],
+    // Filter
+    'Air Filter': [3200, 3250, 3300, 3350, 3400, 3450, 3500, 3550, 3600, 3650, 3700, 3750],
+    'Fuel Filter': [2900, 2950, 3000, 3050, 3100, 3150, 3200, 3250, 3300, 3350, 3400, 3450],
+    'Chemical filter': [2150, 2200, 2250, 2300, 2350, 2400, 2450, 2500, 2550, 2600, 2650, 2700],
+    'Oil filter': [4100, 4150, 4200, 4250, 4300, 4350, 4400, 4450, 4500, 4550, 4600, 4650],
+    'Special filter': [1900, 1950, 2000, 2050, 2100, 2150, 2200, 2250, 2300, 2350, 2400, 2450],
+    'Multi function filter': [1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100, 2150],
+    'Water filter': [3400, 3450, 3500, 3550, 3600, 3650, 3700, 3750, 3800, 3850, 3900, 3950],
+    'Gas filter': [2600, 2650, 2700, 2750, 2800, 2850, 2900, 2950, 3000, 3050, 3100, 3150],
+    // Fuel and Combustion
+    'Coal': [5000, 5200, 5400, 5600, 5800, 6000, 6200, 6400, 6600, 6800, 7000, 7200],
+    'Diesel Fuel': [280000, 285000, 290000, 295000, 300000, 305000, 310000, 315000, 320000, 325000, 330000, 335000],
+    'Natural Gas': [500000, 510000, 520000, 530000, 540000, 550000, 560000, 570000, 580000, 590000, 600000, 610000],
+    'Fuel Oil': [330000, 335000, 340000, 345000, 350000, 355000, 360000, 365000, 370000, 375000, 380000, 385000],
+    'Biomass Pellets': [1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100]
+  };
+
+  units.forEach((unit, unitIndex) => {
     allMaterials.forEach(material => {
+      const pattern = basePatterns[material];
+      if (!pattern) return;
+
       months.forEach((month, monthIndex) => {
-        const baseValue = Math.floor(Math.random() * 1000) + 500;
-        const userForecast = baseValue;
-        const aiForecast = baseValue + Math.floor(Math.random() * 100) - 50;
+        // Divide total quantities by number of units to get per-unit values
+        const basePerUnit = Math.round(pattern[monthIndex] / 15);
+        // Add slight variation per unit
+        const unitVariation = Math.round(basePerUnit * (0.05 * (unitIndex % 3)));
+        const baseValue = basePerUnit + unitVariation;
+
+        const userForecast = baseValue + Math.floor(Math.random() * 20) - 10;
+        const aiForecast = baseValue + Math.floor(Math.random() * 30) - 15;
 
         let finalUnitForecast;
 
@@ -205,7 +257,7 @@ function generateMockData(): ForecastData[] {
         if (highDeviationAlert) {
           finalUnitForecast = Math.round(aiForecast * highDeviationAlert.deviation);
         } else {
-          finalUnitForecast = baseValue + Math.floor(Math.random() * 80) - 40;
+          finalUnitForecast = aiForecast + Math.floor(Math.random() * 20) - 10;
         }
 
         data.push({
