@@ -153,6 +153,7 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
   const [currentPage, setCurrentPage] = useState(1);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [resolvedAlerts, setResolvedAlerts] = useState<Set<string>>(new Set());
   const rowsPerPage = 20;
 
   function getSelectedValue(item: ForecastData): number {
@@ -269,10 +270,14 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
     });
 
     let alerts = Array.from(alertMap.values());
+    alerts = alerts.filter(alert => {
+      const alertKey = `${alert.unitName}-${alert.materialName}`;
+      return !resolvedAlerts.has(alertKey);
+    });
     alerts.sort((a, b) => b.deviationPercent - a.deviationPercent);
 
     return alerts.slice(0, 3);
-  }, [forecastData]);
+  }, [forecastData, resolvedAlerts]);
 
   const finalSummary = useMemo(() => {
     const monthlyGroups: { [key: string]: { month: string; monthNumber: number; items: any[] } } = {};
@@ -428,6 +433,24 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
     setShowSuccessModal(true);
   };
 
+  const handleSaveAdjustments = () => {
+    if (selectedUnit && selectedMaterial) {
+      const unitData = plnUnitsData.find(u => u.id === selectedUnit);
+      if (unitData) {
+        const alertKey = `${unitData.name}-${selectedMaterial}`;
+        setResolvedAlerts(prev => new Set([...prev, alertKey]));
+
+        setSelectedUnit('');
+        setSelectedMaterial('');
+        setSelectedCategory('Filter');
+
+        setTimeout(() => {
+          document.getElementById('deviation-alerts')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  };
+
   const handleExport = () => {
     const csvContent = [
       ['Unit', 'Material', 'AI Forecast', 'User Forecast', 'Final Unit Forecast', 'Selected Source', 'Selected Value', 'Unit Price', 'Total Amount', 'Status'].join(','),
@@ -495,7 +518,7 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
 
       {/* Deviation Alerts - Top 3 */}
       {deviationAlerts.length > 0 && (
-        <div className="bg-white dark:bg-gray-900 rounded-xl border-2 border-orange-200 dark:border-orange-800 shadow-xl overflow-hidden">
+        <div id="deviation-alerts" className="bg-white dark:bg-gray-900 rounded-xl border-2 border-orange-200 dark:border-orange-800 shadow-xl overflow-hidden">
           <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 dark:from-orange-500/20 dark:to-red-500/20 border-b border-orange-200 dark:border-orange-800 px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
@@ -939,6 +962,27 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
             </tbody>
           </table>
         </div>
+
+        {/* Save Adjustments Button */}
+        {selectedUnit && selectedMaterial && (
+          <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="font-semibold">
+                  Filtered by: <span className="text-accenture-purple dark:text-accenture-purple-light">{plnUnitsData.find(u => u.id === selectedUnit)?.name}</span> - <span className="text-accenture-purple dark:text-accenture-purple-light">{selectedMaterial}</span>
+                </p>
+                <p className="text-xs mt-1">Click Save to mark this deviation alert as resolved</p>
+              </div>
+              <button
+                onClick={handleSaveAdjustments}
+                className="flex items-center space-x-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+              >
+                <CheckCircle2 className="h-5 w-5" />
+                <span>Save Adjustments</span>
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Pagination */}
         {totalPages > 1 && (
