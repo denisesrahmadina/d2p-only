@@ -560,6 +560,14 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
     setShowConfirmation(true);
   };
 
+  const handleSendToEBudget = () => {
+    setForecastData(prev => prev.map(item =>
+      item.status === 'adjusted' ? { ...item, status: 'approved' } : item
+    ));
+    setShowConfirmation(false);
+    setShowSuccessModal(true);
+  };
+
   const handleSaveAdjustments = () => {
     if (selectedUnit && selectedMaterial) {
       const unitData = plnUnitsData.find(u => u.id === selectedUnit);
