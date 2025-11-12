@@ -757,43 +757,43 @@ const DPKDemandAdjustment: React.FC = () => {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Total Approved Budget - Highlighted */}
-            <div className="relative p-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl border-2 border-blue-400 dark:border-blue-600 shadow-lg">
+            <div className="relative p-5 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl border-2 border-blue-400 dark:border-blue-600 shadow-lg">
               <div className="absolute top-3 right-3">
-                <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
               </div>
-              <p className="text-sm text-blue-600 dark:text-blue-400 uppercase font-semibold mb-2">Total Approved Budget</p>
-              <p className="text-4xl font-extrabold text-blue-700 dark:text-blue-300 mb-3">
+              <p className="text-xs text-blue-600 dark:text-blue-400 uppercase font-semibold mb-2">Total Approved Budget</p>
+              <p className="text-3xl font-extrabold text-blue-700 dark:text-blue-300 mb-3 break-words">
                 {formatCurrency(aggregatedOverview.totalBudgetAmt)}
               </p>
-              <div className="pt-3 border-t border-blue-200 dark:border-blue-800">
+              <div className="pt-2 border-t border-blue-200 dark:border-blue-800">
                 <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Consolidated Demand Request</p>
-                <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+                <p className="text-base font-semibold text-gray-700 dark:text-gray-300 break-words">
                   {formatCurrency(aggregatedOverview.totalDemandAmt)}
                 </p>
               </div>
             </div>
 
             {/* Amount of Budget Adjusted */}
-            <div className={`p-6 rounded-xl border-2 ${
+            <div className={`p-5 rounded-xl border-2 ${
               aggregatedOverview.adjustmentNeededAmt < 0
                 ? 'bg-red-50 dark:bg-red-900/20 border-red-400 dark:border-red-600'
                 : 'bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-600'
             }`}>
-              <p className={`text-sm uppercase font-semibold mb-2 ${
+              <p className={`text-xs uppercase font-semibold mb-2 ${
                 aggregatedOverview.adjustmentNeededAmt < 0
                   ? 'text-red-600 dark:text-red-400'
                   : 'text-green-600 dark:text-green-400'
               }`}>
                 Budget Adjustment Needed
               </p>
-              <p className={`text-4xl font-extrabold mb-1 ${
+              <p className={`text-3xl font-extrabold mb-2 break-words ${
                 aggregatedOverview.adjustmentNeededAmt < 0
                   ? 'text-red-700 dark:text-red-300'
                   : 'text-green-700 dark:text-green-300'
               }`}>
                 {formatCurrency(Math.abs(aggregatedOverview.adjustmentNeededAmt))}
               </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+              <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
                 {aggregatedOverview.adjustmentNeededAmt < 0
                   ? 'Budget exceeded - reduction required'
                   : 'Within budget - surplus available'
@@ -802,19 +802,19 @@ const DPKDemandAdjustment: React.FC = () => {
             </div>
 
             {/* Status Card */}
-            <div className={`p-6 rounded-xl border-2 ${
+            <div className={`p-5 rounded-xl border-2 ${
               aggregatedOverview.adjustmentNeededAmt < 0
                 ? 'bg-red-50 dark:bg-red-900/20 border-red-400 dark:border-red-600'
                 : 'bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-600'
             }`}>
-              <p className="text-sm text-gray-600 dark:text-gray-400 uppercase font-semibold mb-2">Budget Status</p>
-              <div className="flex items-center space-x-3">
-                <div className={`w-4 h-4 rounded-full ${
+              <p className="text-xs text-gray-600 dark:text-gray-400 uppercase font-semibold mb-2">Budget Status</p>
+              <div className="flex items-center space-x-2 mb-2">
+                <div className={`w-3 h-3 rounded-full flex-shrink-0 ${
                   aggregatedOverview.adjustmentNeededAmt < 0
                     ? 'bg-red-500 animate-pulse'
                     : 'bg-green-500'
                 }`}></div>
-                <p className={`text-3xl font-extrabold ${
+                <p className={`text-2xl font-extrabold break-words ${
                   aggregatedOverview.adjustmentNeededAmt < 0
                     ? 'text-red-700 dark:text-red-300'
                     : 'text-green-700 dark:text-green-300'
@@ -822,7 +822,7 @@ const DPKDemandAdjustment: React.FC = () => {
                   {aggregatedOverview.adjustmentNeededAmt < 0 ? 'Over Budget' : 'Within Budget'}
                 </p>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-3">
+              <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
                 {aggregatedOverview.adjustmentNeededAmt < 0
                   ? `${Math.abs(((aggregatedOverview.adjustmentNeededAmt / aggregatedOverview.totalBudgetAmt) * 100).toFixed(1))}% over approved budget`
                   : 'All demands within budget limits'
