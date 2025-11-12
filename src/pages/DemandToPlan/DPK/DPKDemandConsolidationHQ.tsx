@@ -148,7 +148,6 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
   const [currentPage, setCurrentPage] = useState(1);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  const [alertSortBy, setAlertSortBy] = useState<'unit' | 'deviation'>('deviation');
   const rowsPerPage = 20;
 
   function getSelectedValue(item: ForecastData): number {
@@ -229,51 +228,6 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
 
     return { total, totalValue, adjustedCount, pendingCount };
   }, [filteredData]);
-
-  const deviationAlerts = useMemo(() => {
-    const alertMap = new Map<string, {
-      unitName: string;
-      categoryName: string;
-      materialName: string;
-      deviationPercent: number;
-      alertDescription: string;
-    }>();
-
-    forecastData.forEach(item => {
-      if (item.aiForecast === 0) return;
-
-      const deviation = ((item.finalUnitForecast - item.aiForecast) / item.aiForecast) * 100;
-
-      if (Math.abs(deviation) >= 25) {
-        const key = `${item.unitName}-${item.material}`;
-
-        if (!alertMap.has(key)) {
-          const categoryName = materialCategories[item.material] || 'General';
-          const alertDesc = deviation > 0
-            ? `Final forecast exceeds AI forecast by ${deviation.toFixed(1)}%`
-            : `Final forecast is ${Math.abs(deviation).toFixed(1)}% below AI forecast`;
-
-          alertMap.set(key, {
-            unitName: item.unitName,
-            categoryName,
-            materialName: item.material,
-            deviationPercent: Math.abs(deviation),
-            alertDescription: alertDesc
-          });
-        }
-      }
-    });
-
-    let alerts = Array.from(alertMap.values());
-
-    if (alertSortBy === 'deviation') {
-      alerts.sort((a, b) => b.deviationPercent - a.deviationPercent);
-    } else {
-      alerts.sort((a, b) => a.unitName.localeCompare(b.unitName));
-    }
-
-    return alerts;
-  }, [forecastData, alertSortBy]);
 
   const finalSummary = useMemo(() => {
     const monthlyGroups: { [key: string]: { month: string; monthNumber: number; items: any[] } } = {};
@@ -494,86 +448,6 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
         </div>
       </div>
 
-      {/* Deviation Alerts */}
-      {deviationAlerts.length > 0 && (
-        <div className="bg-white dark:bg-gray-900 rounded-xl border-2 border-orange-200 dark:border-orange-800 shadow-xl overflow-hidden">
-          <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 dark:from-orange-500/20 dark:to-red-500/20 border-b border-orange-200 dark:border-orange-800 px-6 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
-                  <AlertCircle className="h-6 w-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                    Forecast Deviation Alerts
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {deviationAlerts.length} unit-material combination(s) with ≥25% deviation from AI forecast
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-2">
-                <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Sort by:</label>
-                <select
-                  value={alertSortBy}
-                  onChange={(e) => setAlertSortBy(e.target.value as 'unit' | 'deviation')}
-                  className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-sm font-medium text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500"
-                >
-                  <option value="deviation">Deviation %</option>
-                  <option value="unit">Unit Name</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {deviationAlerts.map((alert, index) => (
-                <div
-                  key={`${alert.unitName}-${alert.materialName}`}
-                  className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 border-2 border-orange-300 dark:border-orange-700 rounded-xl p-4 hover:shadow-lg transition-all"
-                >
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-2 mb-1">
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-orange-500 text-white">
-                          {alert.deviationPercent.toFixed(1)}%
-                        </span>
-                      </div>
-                      <h4 className="text-base font-bold text-gray-900 dark:text-white">
-                        {alert.unitName}
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-xs font-semibold text-gray-600 dark:text-gray-400">Category:</span>
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-accenture-purple/10 text-accenture-purple dark:bg-accenture-purple/20 dark:text-accenture-purple-light">
-                        {alert.categoryName}
-                      </span>
-                    </div>
-
-                    <div className="flex items-start space-x-2">
-                      <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 flex-shrink-0">Material:</span>
-                      <span className="text-xs font-medium text-gray-900 dark:text-white">
-                        {alert.materialName}
-                      </span>
-                    </div>
-
-                    <div className="pt-2 border-t border-orange-200 dark:border-orange-800">
-                      <p className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed">
-                        {alert.alertDescription}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
     {/* Filters */}
       <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -640,74 +514,6 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
           </div>
         </div>
       </div>
-
-      {/* AI Deviation Alerts */}
-      {deviationAlerts.length > 0 && (
-        <div className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 rounded-xl border-2 border-orange-300 dark:border-orange-700 p-6">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
-                <AlertCircle className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                  AI Deviation Alerts
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  {deviationAlerts.length} unit(s) with significant deviation (&gt;25%)
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">Sort by:</span>
-              <select
-                value={alertSortBy}
-                onChange={(e) => setAlertSortBy(e.target.value as 'unit' | 'deviation')}
-                className="px-3 py-1.5 text-sm border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              >
-                <option value="deviation">Deviation %</option>
-                <option value="unit">Unit Name</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {deviationAlerts.map((alert, index) => (
-              <div
-                key={`${alert.unitName}-${alert.materialName}-${index}`}
-                className="bg-white dark:bg-gray-900 rounded-lg border border-orange-200 dark:border-orange-800 p-4 hover:shadow-md transition-shadow"
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex-1">
-                    <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-1">
-                      {alert.unitName}
-                    </h4>
-                    <div className="flex items-center space-x-2">
-                      <span className="inline-flex px-2 py-0.5 rounded text-xs font-semibold bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300">
-                        {alert.categoryName}
-                      </span>
-                      <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
-                        {alert.materialName}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex-shrink-0 ml-2">
-                    <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300 font-bold text-sm">
-                      {alert.deviationPercent.toFixed(0)}%
-                    </span>
-                  </div>
-                </div>
-
-                <div className="pt-2 border-t border-orange-200 dark:border-orange-800">
-                  <p className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed">
-                    {alert.alertDescription}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
