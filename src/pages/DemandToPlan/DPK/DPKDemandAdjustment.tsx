@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Download, Sliders, CheckCircle2, Sparkles, Edit3, Save, Factory, Filter, Package, Database, Loader2, AlertCircle, Send } from 'lucide-react';
 import plnUnitsData from '../../../data/plnUnits.json';
 import {
@@ -50,17 +51,56 @@ type AdjustmentSelectionsByMaterial = {
   };
 };
 
-// Define materials array outside component to prevent recreation on every render
-const MATERIALS = ['Filter air', 'Filter Udara Cartridge', 'Oil Filter', 'Filter Gas', 'Filter Udara Kassa', 'Filtration Media', 'Bolts and Fasteners'];
+// Define materials array outside component to prevent recreation on every render - ALL 5 CATEGORIES
+const MATERIALS = [
+  // Mechanical Equipment (6)
+  'Turbine Blades', 'Pump Components', 'Valve Systems', 'Bearing Units', 'Coupling Systems', 'Gear Box Parts',
+  // Water Treatment System (5)
+  'Reverse Osmosis Membranes', 'Ion Exchange Resins', 'Chemical Dosing Pumps', 'Water Quality Sensors', 'Filtration Media',
+  // Spare Parts and Maintenance (6)
+  'Gaskets', 'Seals', 'Bolts and Fasteners', 'Electrical Cables', 'Sensors', 'Control Panels',
+  // Filter (8)
+  'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas filter',
+  // Fuel and Combustion (5)
+  'Coal', 'Diesel Fuel', 'Natural Gas', 'Fuel Oil', 'Biomass Pellets'
+];
 
 const MATERIAL_PRICES: { [key: string]: number } = {
-  'Filter air': 450000,
-  'Filter Udara Cartridge': 650000,
-  'Oil Filter': 350000,
-  'Filter Gas': 550000,
-  'Filter Udara Kassa': 280000,
+  // Mechanical Equipment
+  'Turbine Blades': 16000000,
+  'Pump Components': 8500000,
+  'Valve Systems': 12000000,
+  'Bearing Units': 4500000,
+  'Coupling Systems': 6800000,
+  'Gear Box Parts': 9200000,
+  // Water Treatment System
+  'Reverse Osmosis Membranes': 15000000,
+  'Ion Exchange Resins': 8500000,
+  'Chemical Dosing Pumps': 7200000,
+  'Water Quality Sensors': 3800000,
   'Filtration Media': 3200000,
-  'Bolts and Fasteners': 85000
+  // Spare Parts and Maintenance
+  'Gaskets': 450000,
+  'Seals': 380000,
+  'Bolts and Fasteners': 85000,
+  'Electrical Cables': 1200000,
+  'Sensors': 2500000,
+  'Control Panels': 18000000,
+  // Filter
+  'Air Filter': 450000,
+  'Fuel Filter': 520000,
+  'Chemical filter': 680000,
+  'Oil filter': 350000,
+  'Special filter': 780000,
+  'Multi function filter': 920000,
+  'Water filter': 410000,
+  'Gas filter': 550000,
+  // Fuel and Combustion
+  'Coal': 850000,
+  'Diesel Fuel': 15000,
+  'Natural Gas': 8500,
+  'Fuel Oil': 12000,
+  'Biomass Pellets': 650000
 };
 
 interface ConsolidatedDemandAlert {
@@ -89,6 +129,7 @@ const CONSOLIDATED_DEMAND_ALERTS: ConsolidatedDemandAlert[] = [
 ];
 
 const DPKDemandAdjustment: React.FC = () => {
+  const navigate = useNavigate();
   const [selectedUnit, setSelectedUnit] = useState<string>('UBP ADP');
   // Material selection now acts as a filter for adjustments and final table
   const [selectedMaterial, setSelectedMaterial] = useState<string>('All'); // now used only inside AI section filter
@@ -912,11 +953,11 @@ const DPKDemandAdjustment: React.FC = () => {
             </div>
           </div>
 
-          {/* Confirm & Send to E-Budget Button */}
+          {/* Confirm Button */}
           <div className="flex justify-end">
             <button
               onClick={() => {
-                alert('Budget adjustments confirmed and sent to E-Budget system!');
+                navigate('/demand-to-plan/dpk/demand-netting');
               }}
               className="px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all flex items-center space-x-3"
             >
