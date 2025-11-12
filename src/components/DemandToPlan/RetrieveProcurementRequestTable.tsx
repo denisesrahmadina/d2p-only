@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronRight, Users, Package, DollarSign, TrendingUp } from 'lucide-react';
+import { ChevronDown, ChevronRight, Users, Package, DollarSign, TrendingUp, FileText } from 'lucide-react';
+import FinalProcurementMonthlyTable from './FinalProcurementMonthlyTable';
+import { finalProcurementData } from '../../data/finalProcurementData';
 
 interface UnitRequest {
   unit: string;
@@ -228,6 +230,7 @@ interface RetrieveProcurementRequestTableProps {
 const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableProps> = ({ onMaterialDoubleClick }) => {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
   const [expandedMaterials, setExpandedMaterials] = useState<Set<string>>(new Set());
+  const [expandedProcurementTables, setExpandedProcurementTables] = useState<Set<string>>(new Set());
 
   const retrievedData = mockProcurementData;
 
@@ -245,6 +248,18 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
 
   const toggleMaterial = (materialId: string) => {
     setExpandedMaterials(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(materialId)) {
+        newSet.delete(materialId);
+      } else {
+        newSet.add(materialId);
+      }
+      return newSet;
+    });
+  };
+
+  const toggleProcurementTable = (materialId: string) => {
+    setExpandedProcurementTables(prev => {
       const newSet = new Set(prev);
       if (newSet.has(materialId)) {
         newSet.delete(materialId);
@@ -369,11 +384,16 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
                             <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
                               Total Quantity
                             </th>
+                            <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                              Procurement Table
+                            </th>
                           </tr>
                         </thead>
                         <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                           {items.map((item) => {
                             const isMaterialExpanded = expandedMaterials.has(item.materialId);
+                            const isProcurementTableExpanded = expandedProcurementTables.has(item.materialId);
+                            const hasProcurementData = finalProcurementData[item.materialName] !== undefined;
 
                             return (
                               <React.Fragment key={item.id}>
@@ -381,11 +401,7 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
                                   <td className="px-4 py-3 text-sm font-mono text-blue-600 dark:text-blue-400">
                                     {item.materialId}
                                   </td>
-                                  <td
-                                    className="px-4 py-3 text-sm text-gray-900 dark:text-gray-100 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors"
-                                    onDoubleClick={() => onMaterialDoubleClick?.(item.materialName)}
-                                    title="Double-click to filter Final Procurement Table"
-                                  >
+                                  <td className="px-4 py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">
                                     {item.materialName}
                                   </td>
                                   <td className="px-4 py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">
@@ -408,11 +424,29 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
                                   <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400 font-semibold">
                                     {item.totalQuantity}
                                   </td>
+                                  <td className="px-4 py-3 text-sm">
+                                    {hasProcurementData ? (
+                                      <button
+                                        onClick={() => toggleProcurementTable(item.materialId)}
+                                        className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
+                                      >
+                                        <FileText className="h-4 w-4" />
+                                        <span className="font-medium">View Table</span>
+                                        {isProcurementTableExpanded ? (
+                                          <ChevronDown className="h-4 w-4" />
+                                        ) : (
+                                          <ChevronRight className="h-4 w-4" />
+                                        )}
+                                      </button>
+                                    ) : (
+                                      <span className="text-gray-400 dark:text-gray-500 text-xs">N/A</span>
+                                    )}
+                                  </td>
                                 </tr>
 
                                 {isMaterialExpanded && (
                                   <tr>
-                                    <td colSpan={5} className="px-4 py-3 bg-gray-50 dark:bg-gray-700/30">
+                                    <td colSpan={6} className="px-4 py-3 bg-gray-50 dark:bg-gray-700/30">
                                       <div className="space-y-2">
                                         <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 uppercase mb-2">
                                           Unit Breakdown:
@@ -433,6 +467,17 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
                                           ))}
                                         </div>
                                       </div>
+                                    </td>
+                                  </tr>
+                                )}
+
+                                {isProcurementTableExpanded && hasProcurementData && (
+                                  <tr>
+                                    <td colSpan={6} className="px-4 py-4 bg-gray-50 dark:bg-gray-700/20">
+                                      <FinalProcurementMonthlyTable
+                                        materialName={item.materialName}
+                                        data={finalProcurementData[item.materialName]}
+                                      />
                                     </td>
                                   </tr>
                                 )}

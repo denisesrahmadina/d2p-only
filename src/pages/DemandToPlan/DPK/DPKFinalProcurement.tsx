@@ -931,124 +931,27 @@ const DPKFinalProcurement: React.FC = () => {
         </ResponsiveContainer>
       </div> */}
 
-      <RetrieveProcurementRequestTable
-        onMaterialDoubleClick={(materialName) => {
-          setFilteredMaterial(materialName);
-          setSelectedMaterial(materialName);
-        }}
-      />
-
-      <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-xl border-2 border-emerald-300 dark:border-emerald-700 p-6 shadow-xl">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-3 flex-1">
-            <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
-              <FileText className="h-6 w-6 text-white" />
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center space-x-3">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  Final Procurement Table - {selectedMaterial}
-                </h3>
-                {filteredMaterial && (
-                  <button
-                    onClick={() => {
-                      setFilteredMaterial(null);
-                      setSelectedMaterial('Filter air');
-                    }}
-                    className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg transition-colors flex items-center space-x-2"
-                  >
-                    <Filter className="h-4 w-4" />
-                    <span>Clear Filter</span>
-                  </button>
-                )}
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                {filteredMaterial
-                  ? `Filtered by: ${filteredMaterial} (double-click material names in the table above to filter)`
-                  : 'Complete procurement schedule with pricing (double-click material names in the table above to filter)'}
-              </p>
-            </div>
-          </div>
-          <button
-            onClick={handleExportProcurement}
-            className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors flex items-center space-x-2 font-semibold shadow-lg"
-          >
-            <Download className="h-4 w-4" />
-            <span>Export</span>
-          </button>
-        </div>
-
-        <div className="overflow-x-auto bg-white dark:bg-gray-900 rounded-xl border-2 border-emerald-300 dark:border-emerald-700 shadow-lg">
-          <table className="w-full">
-            <thead className="bg-emerald-100 dark:bg-emerald-900/40 border-b-2 border-emerald-300 dark:border-emerald-700">
-              <tr>
-                <th className="px-4 py-4 text-left text-sm font-bold text-gray-900 dark:text-white uppercase">Month</th>
-                <th className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white uppercase">Net Procurement</th>
-                <th className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white uppercase">Unit Price</th>
-                <th className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white uppercase">Total Amount</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
-              {currentMaterialData.monthlyData.map((row, index) => (
-                <tr key={index} className="hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors">
-                  <td className="px-4 py-4 text-sm font-semibold text-gray-900 dark:text-white">{row.month}</td>
-                  <td className="px-4 py-4 text-sm text-right font-bold text-blue-700 dark:text-blue-400">{row.netProcurement.toLocaleString()} units</td>
-                  <td className="px-4 py-4 text-sm text-right text-gray-600 dark:text-gray-400">{formatCurrency(row.unitPrice)}</td>
-                  <td className="px-4 py-4 text-sm text-right font-bold text-emerald-700 dark:text-emerald-400 text-lg">{formatCurrency(row.totalAmount)}</td>
-                </tr>
-              ))}
-              <tr className="bg-emerald-100 dark:bg-emerald-900/40 font-bold border-t-2 border-emerald-300 dark:border-emerald-700">
-                <td className="px-4 py-5 text-base text-gray-900 dark:text-white uppercase">Annual Total</td>
-                <td className="px-4 py-5 text-base text-right text-blue-700 dark:text-blue-300">{currentMaterialData.totalQuantity.toLocaleString()} units</td>
-                <td className="px-4 py-5 text-sm text-right text-gray-600 dark:text-gray-400">Avg: {formatCurrency(currentMaterialData.unitPrice)}</td>
-                <td className="px-4 py-5 text-base text-right text-emerald-700 dark:text-emerald-300 text-xl font-extrabold">{formatCurrency(currentMaterialData.totalAmount)}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-4 bg-white dark:bg-gray-900 rounded-lg border border-emerald-200 dark:border-emerald-800">
-            <div className="flex items-center space-x-2 mb-2">
-              <Calendar className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-              <p className="text-xs font-semibold text-gray-900 dark:text-white uppercase">Procurement Period</p>
-            </div>
-            <p className="text-sm text-gray-700 dark:text-gray-300">
-              12 months (January - December)
+      <div className="bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-300 dark:border-blue-700 rounded-xl p-6">
+        <div className="flex items-start space-x-3">
+          <FileText className="h-6 w-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" />
+          <div>
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+              How to View Final Procurement Tables
+            </h3>
+            <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+              Click the "View Table" button in the "Procurement Table" column to expand and view the detailed monthly procurement schedule for each material. The table shows:
             </p>
-          </div>
-          <div className="p-4 bg-white dark:bg-gray-900 rounded-lg border border-emerald-200 dark:border-emerald-800">
-            <div className="flex items-center space-x-2 mb-2">
-              <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-              <p className="text-xs font-semibold text-gray-900 dark:text-white uppercase">Average Monthly</p>
-            </div>
-            <p className="text-sm text-gray-700 dark:text-gray-300">
-              {Math.round(currentMaterialData.totalQuantity / 12).toLocaleString()} units / {formatCurrency(Math.round(currentMaterialData.totalAmount / 12))}
-            </p>
-          </div>
-          <div className="p-4 bg-white dark:bg-gray-900 rounded-lg border border-emerald-200 dark:border-emerald-800">
-            <div className="flex items-center space-x-2 mb-2">
-              <DollarSign className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-              <p className="text-xs font-semibold text-gray-900 dark:text-white uppercase">Budget Utilization</p>
-            </div>
-            <p className="text-sm text-gray-700 dark:text-gray-300">
-              {((currentMaterialData.totalAmount / totalProcurementAmount) * 100).toFixed(1)}% of total budget
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-6 p-4 bg-white dark:bg-gray-900 rounded-lg border border-emerald-200 dark:border-emerald-800">
-          <div className="flex items-start space-x-2">
-            <CheckCircle2 className="h-5 w-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Procurement Requirements Finalized</p>
-              <p className="text-xs text-gray-700 dark:text-gray-300">
-                This final procurement table includes complete quantity and pricing information after demand netting. Ready for DRP (Daftar Rencana Pengadaan) conversion and submission for approval. All figures have been validated against budget constraints and inventory optimization.
-              </p>
-            </div>
+            <ul className="list-disc list-inside text-sm text-gray-700 dark:text-gray-300 space-y-1">
+              <li>Monthly procurement quantities and amounts</li>
+              <li>Unit pricing information</li>
+              <li>Annual totals and averages</li>
+              <li>Export functionality for each material</li>
+            </ul>
           </div>
         </div>
       </div>
+
+      <RetrieveProcurementRequestTable />
     </div>
   );
 };
