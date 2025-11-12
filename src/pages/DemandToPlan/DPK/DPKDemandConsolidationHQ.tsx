@@ -1453,8 +1453,8 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
       </div>
       )}
 
-      {/* Final Summary Table - Hidden when all alerts are resolved */}
-      {!allAlertsResolved && finalSummary.length > 0 && (
+      {/* Final Summary Table - Completely Hidden (No longer needed) */}
+      {false && !allAlertsResolved && finalSummary.length > 0 && (
         <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
           <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 px-6 py-4 border-b-2 border-green-500">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center space-x-2">
