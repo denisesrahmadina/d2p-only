@@ -545,26 +545,6 @@ const UnitDemandConsolidation: React.FC<UnitDemandConsolidationProps> = ({ unitN
         </div>
       </div>
 
-       <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
-            <Filter className="h-5 w-5" />
-            <span>Material Selection</span>
-          </h3>
-        </div>
-        <div className="flex items-center space-x-3">
-          <Package className="h-5 w-5 text-gray-400" />
-          <select
-            value={selectedMaterial}
-            onChange={(e) => setSelectedMaterial(e.target.value)}
-            className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-accenture-purple focus:border-transparent"
-          >
-            {materials.map(material => (
-              <option key={material} value={material}>{material}</option>
-            ))}
-          </select>
-        </div>
-      </div>
 
       {showSuccess && (
         <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-4 flex items-center space-x-3">
