@@ -229,6 +229,46 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
     return { total, totalValue, adjustedCount, pendingCount };
   }, [filteredData]);
 
+  const deviationAlerts = useMemo(() => {
+    const alertMap = new Map<string, {
+      unitName: string;
+      categoryName: string;
+      materialName: string;
+      deviationPercent: number;
+      alertDescription: string;
+    }>();
+
+    forecastData.forEach(item => {
+      if (item.aiForecast === 0) return;
+
+      const deviation = ((item.finalUnitForecast - item.aiForecast) / item.aiForecast) * 100;
+
+      if (Math.abs(deviation) >= 25) {
+        const key = `${item.unitName}-${item.material}`;
+
+        if (!alertMap.has(key)) {
+          const categoryName = materialCategories[item.material] || 'General';
+          const alertDesc = deviation > 0
+            ? `Final forecast exceeds AI forecast by ${deviation.toFixed(1)}%`
+            : `Final forecast is ${Math.abs(deviation).toFixed(1)}% below AI forecast`;
+
+          alertMap.set(key, {
+            unitName: item.unitName,
+            categoryName,
+            materialName: item.material,
+            deviationPercent: Math.abs(deviation),
+            alertDescription: alertDesc
+          });
+        }
+      }
+    });
+
+    let alerts = Array.from(alertMap.values());
+    alerts.sort((a, b) => b.deviationPercent - a.deviationPercent);
+
+    return alerts.slice(0, 3);
+  }, [forecastData]);
+
   const finalSummary = useMemo(() => {
     const monthlyGroups: { [key: string]: { month: string; monthNumber: number; items: any[] } } = {};
 
@@ -447,6 +487,75 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
           </div>
         </div>
       </div>
+
+      {/* Deviation Alerts - Top 3 */}
+      {deviationAlerts.length > 0 && (
+        <div className="bg-white dark:bg-gray-900 rounded-xl border-2 border-orange-200 dark:border-orange-800 shadow-xl overflow-hidden">
+          <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 dark:from-orange-500/20 dark:to-red-500/20 border-b border-orange-200 dark:border-orange-800 px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
+                  <AlertCircle className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                    Forecast Deviation Alerts
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    Top 3 unit-material combinations with ≥25% deviation from AI forecast
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {deviationAlerts.map((alert, index) => (
+                <div
+                  key={`${alert.unitName}-${alert.materialName}`}
+                  className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 border-2 border-orange-300 dark:border-orange-700 rounded-xl p-4 hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-2 mb-1">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-orange-500 text-white">
+                          {alert.deviationPercent.toFixed(1)}%
+                        </span>
+                      </div>
+                      <h4 className="text-base font-bold text-gray-900 dark:text-white">
+                        {alert.unitName}
+                      </h4>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xs font-semibold text-gray-600 dark:text-gray-400">Category:</span>
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium bg-accenture-purple/10 text-accenture-purple dark:bg-accenture-purple/20 dark:text-accenture-purple-light">
+                        {alert.categoryName}
+                      </span>
+                    </div>
+
+                    <div className="flex items-start space-x-2">
+                      <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 flex-shrink-0">Material:</span>
+                      <span className="text-xs font-medium text-gray-900 dark:text-white">
+                        {alert.materialName}
+                      </span>
+                    </div>
+
+                    <div className="pt-2 border-t border-orange-200 dark:border-orange-800">
+                      <p className="text-xs text-gray-700 dark:text-gray-300 leading-relaxed">
+                        {alert.alertDescription}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
     {/* Filters */}
       <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
