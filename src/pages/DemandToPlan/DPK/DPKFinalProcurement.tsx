@@ -939,7 +939,7 @@ const DPKFinalProcurement: React.FC = () => {
               How to View Final Procurement Tables
             </h3>
             <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
-              Click the "View Table" button in the "Procurement Table" column to expand and view the detailed monthly procurement schedule for each material. The table shows:
+              Click the "See Full Forecast Table" button in the "Procurement Table" column to expand and view the detailed monthly procurement schedule for each material. The table shows:
             </p>
             <ul className="list-disc list-inside text-sm text-gray-700 dark:text-gray-300 space-y-1">
               <li>Monthly procurement quantities and amounts</li>

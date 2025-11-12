@@ -431,7 +431,7 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
                                         className="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
                                       >
                                         <FileText className="h-4 w-4" />
-                                        <span className="font-medium">View Table</span>
+                                        <span className="font-medium">See Full Forecast Table</span>
                                         {isProcurementTableExpanded ? (
                                           <ChevronDown className="h-4 w-4" />
                                         ) : (
