@@ -221,7 +221,11 @@ const mockProcurementData: ProcurementRequest[] = [
   }
 ];
 
-const RetrieveProcurementRequestTable: React.FC = () => {
+interface RetrieveProcurementRequestTableProps {
+  onMaterialDoubleClick?: (materialName: string) => void;
+}
+
+const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableProps> = ({ onMaterialDoubleClick }) => {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
   const [expandedMaterials, setExpandedMaterials] = useState<Set<string>>(new Set());
 
@@ -377,7 +381,11 @@ const RetrieveProcurementRequestTable: React.FC = () => {
                                   <td className="px-4 py-3 text-sm font-mono text-blue-600 dark:text-blue-400">
                                     {item.materialId}
                                   </td>
-                                  <td className="px-4 py-3 text-sm text-gray-900 dark:text-gray-100">
+                                  <td
+                                    className="px-4 py-3 text-sm text-gray-900 dark:text-gray-100 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors"
+                                    onDoubleClick={() => onMaterialDoubleClick?.(item.materialName)}
+                                    title="Double-click to filter Final Procurement Table"
+                                  >
                                     {item.materialName}
                                   </td>
                                   <td className="px-4 py-3 text-sm text-gray-900 dark:text-gray-100 font-medium">

@@ -39,9 +39,26 @@ const DPKFinalProcurement: React.FC = () => {
   const [selectedMaterial, setSelectedMaterial] = useState<string>('Filter air');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [chartType, setChartType] = useState<'bar' | 'line'>('bar');
+  const [filteredMaterial, setFilteredMaterial] = useState<string | null>(null);
 
   const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies'];
-  const materials = ['Filter air', 'Filter Udara Cartridge', 'Oil Filter', 'Filter Gas', 'Filter Udara Kassa'];
+  const materials = [
+    'Filter air',
+    'Filter Udara Cartridge',
+    'Oil Filter',
+    'Filter Gas',
+    'Filter Udara Kassa',
+    'Bottom Ash Removal Systems',
+    'Fly Ash Handling Equipment',
+    'Ash Conveyors',
+    'Ash Silos',
+    'Turbine Oil',
+    'Hydraulic Oil',
+    'Gear Oil',
+    'Circuit Breakers',
+    'Transformers',
+    'Power Cables'
+  ];
 
   const materialProcurementData: MaterialProcurementData = useMemo(() => ({
   'Filter air': {
@@ -441,7 +458,197 @@ const DPKFinalProcurement: React.FC = () => {
         unitPrice: 100000000,
         totalAmount: 3100000000
       },
-      
+
+    ]
+  },
+  'Bottom Ash Removal Systems': {
+    totalQuantity: 5,
+    unitPrice: 740000000,
+    totalAmount: 3700000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 0, unitPrice: 740000000, totalAmount: 0 },
+      { month: 'Feb', netProcurement: 1, unitPrice: 740000000, totalAmount: 740000000 },
+      { month: 'Mar', netProcurement: 0, unitPrice: 740000000, totalAmount: 0 },
+      { month: 'Apr', netProcurement: 1, unitPrice: 740000000, totalAmount: 740000000 },
+      { month: 'May', netProcurement: 0, unitPrice: 740000000, totalAmount: 0 },
+      { month: 'Jun', netProcurement: 1, unitPrice: 740000000, totalAmount: 740000000 },
+      { month: 'Jul', netProcurement: 0, unitPrice: 740000000, totalAmount: 0 },
+      { month: 'Aug', netProcurement: 1, unitPrice: 740000000, totalAmount: 740000000 },
+      { month: 'Sep', netProcurement: 0, unitPrice: 740000000, totalAmount: 0 },
+      { month: 'Oct', netProcurement: 1, unitPrice: 740000000, totalAmount: 740000000 },
+      { month: 'Nov', netProcurement: 0, unitPrice: 740000000, totalAmount: 0 },
+      { month: 'Dec', netProcurement: 0, unitPrice: 740000000, totalAmount: 0 }
+    ]
+  },
+  'Fly Ash Handling Equipment': {
+    totalQuantity: 7,
+    unitPrice: 600000000,
+    totalAmount: 4200000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 1, unitPrice: 600000000, totalAmount: 600000000 },
+      { month: 'Feb', netProcurement: 0, unitPrice: 600000000, totalAmount: 0 },
+      { month: 'Mar', netProcurement: 1, unitPrice: 600000000, totalAmount: 600000000 },
+      { month: 'Apr', netProcurement: 1, unitPrice: 600000000, totalAmount: 600000000 },
+      { month: 'May', netProcurement: 0, unitPrice: 600000000, totalAmount: 0 },
+      { month: 'Jun', netProcurement: 1, unitPrice: 600000000, totalAmount: 600000000 },
+      { month: 'Jul', netProcurement: 1, unitPrice: 600000000, totalAmount: 600000000 },
+      { month: 'Aug', netProcurement: 0, unitPrice: 600000000, totalAmount: 0 },
+      { month: 'Sep', netProcurement: 1, unitPrice: 600000000, totalAmount: 600000000 },
+      { month: 'Oct', netProcurement: 1, unitPrice: 600000000, totalAmount: 600000000 },
+      { month: 'Nov', netProcurement: 0, unitPrice: 600000000, totalAmount: 0 },
+      { month: 'Dec', netProcurement: 0, unitPrice: 600000000, totalAmount: 0 }
+    ]
+  },
+  'Ash Conveyors': {
+    totalQuantity: 21,
+    unitPrice: 100000000,
+    totalAmount: 2100000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 2, unitPrice: 100000000, totalAmount: 200000000 },
+      { month: 'Feb', netProcurement: 2, unitPrice: 100000000, totalAmount: 200000000 },
+      { month: 'Mar', netProcurement: 2, unitPrice: 100000000, totalAmount: 200000000 },
+      { month: 'Apr', netProcurement: 2, unitPrice: 100000000, totalAmount: 200000000 },
+      { month: 'May', netProcurement: 2, unitPrice: 100000000, totalAmount: 200000000 },
+      { month: 'Jun', netProcurement: 2, unitPrice: 100000000, totalAmount: 200000000 },
+      { month: 'Jul', netProcurement: 2, unitPrice: 100000000, totalAmount: 200000000 },
+      { month: 'Aug', netProcurement: 1, unitPrice: 100000000, totalAmount: 100000000 },
+      { month: 'Sep', netProcurement: 1, unitPrice: 100000000, totalAmount: 100000000 },
+      { month: 'Oct', netProcurement: 2, unitPrice: 100000000, totalAmount: 200000000 },
+      { month: 'Nov', netProcurement: 2, unitPrice: 100000000, totalAmount: 200000000 },
+      { month: 'Dec', netProcurement: 1, unitPrice: 100000000, totalAmount: 100000000 }
+    ]
+  },
+  'Ash Silos': {
+    totalQuantity: 9,
+    unitPrice: 200000000,
+    totalAmount: 1800000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 1, unitPrice: 200000000, totalAmount: 200000000 },
+      { month: 'Feb', netProcurement: 1, unitPrice: 200000000, totalAmount: 200000000 },
+      { month: 'Mar', netProcurement: 1, unitPrice: 200000000, totalAmount: 200000000 },
+      { month: 'Apr', netProcurement: 0, unitPrice: 200000000, totalAmount: 0 },
+      { month: 'May', netProcurement: 1, unitPrice: 200000000, totalAmount: 200000000 },
+      { month: 'Jun', netProcurement: 1, unitPrice: 200000000, totalAmount: 200000000 },
+      { month: 'Jul', netProcurement: 1, unitPrice: 200000000, totalAmount: 200000000 },
+      { month: 'Aug', netProcurement: 0, unitPrice: 200000000, totalAmount: 0 },
+      { month: 'Sep', netProcurement: 1, unitPrice: 200000000, totalAmount: 200000000 },
+      { month: 'Oct', netProcurement: 1, unitPrice: 200000000, totalAmount: 200000000 },
+      { month: 'Nov', netProcurement: 1, unitPrice: 200000000, totalAmount: 200000000 },
+      { month: 'Dec', netProcurement: 0, unitPrice: 200000000, totalAmount: 0 }
+    ]
+  },
+  'Turbine Oil': {
+    totalQuantity: 37000,
+    unitPrice: 140,
+    totalAmount: 5200000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 3000, unitPrice: 140, totalAmount: 420000000 },
+      { month: 'Feb', netProcurement: 3100, unitPrice: 140, totalAmount: 434000000 },
+      { month: 'Mar', netProcurement: 3200, unitPrice: 140, totalAmount: 448000000 },
+      { month: 'Apr', netProcurement: 3000, unitPrice: 140, totalAmount: 420000000 },
+      { month: 'May', netProcurement: 3100, unitPrice: 140, totalAmount: 434000000 },
+      { month: 'Jun', netProcurement: 3200, unitPrice: 140, totalAmount: 448000000 },
+      { month: 'Jul', netProcurement: 3000, unitPrice: 140, totalAmount: 420000000 },
+      { month: 'Aug', netProcurement: 3100, unitPrice: 140, totalAmount: 434000000 },
+      { month: 'Sep', netProcurement: 3000, unitPrice: 140, totalAmount: 420000000 },
+      { month: 'Oct', netProcurement: 3200, unitPrice: 140, totalAmount: 448000000 },
+      { month: 'Nov', netProcurement: 3000, unitPrice: 140, totalAmount: 420000000 },
+      { month: 'Dec', netProcurement: 3100, unitPrice: 140, totalAmount: 434000000 }
+    ]
+  },
+  'Hydraulic Oil': {
+    totalQuantity: 21500,
+    unitPrice: 176,
+    totalAmount: 3800000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 1800, unitPrice: 176, totalAmount: 316800000 },
+      { month: 'Feb', netProcurement: 1900, unitPrice: 176, totalAmount: 334400000 },
+      { month: 'Mar', netProcurement: 1700, unitPrice: 176, totalAmount: 299200000 },
+      { month: 'Apr', netProcurement: 1800, unitPrice: 176, totalAmount: 316800000 },
+      { month: 'May', netProcurement: 1900, unitPrice: 176, totalAmount: 334400000 },
+      { month: 'Jun', netProcurement: 1700, unitPrice: 176, totalAmount: 299200000 },
+      { month: 'Jul', netProcurement: 1800, unitPrice: 176, totalAmount: 316800000 },
+      { month: 'Aug', netProcurement: 1900, unitPrice: 176, totalAmount: 334400000 },
+      { month: 'Sep', netProcurement: 1700, unitPrice: 176, totalAmount: 299200000 },
+      { month: 'Oct', netProcurement: 1800, unitPrice: 176, totalAmount: 316800000 },
+      { month: 'Nov', netProcurement: 1900, unitPrice: 176, totalAmount: 334400000 },
+      { month: 'Dec', netProcurement: 1600, unitPrice: 176, totalAmount: 281600000 }
+    ]
+  },
+  'Gear Oil': {
+    totalQuantity: 16000,
+    unitPrice: 181,
+    totalAmount: 2900000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 1300, unitPrice: 181, totalAmount: 235300000 },
+      { month: 'Feb', netProcurement: 1400, unitPrice: 181, totalAmount: 253400000 },
+      { month: 'Mar', netProcurement: 1300, unitPrice: 181, totalAmount: 235300000 },
+      { month: 'Apr', netProcurement: 1400, unitPrice: 181, totalAmount: 253400000 },
+      { month: 'May', netProcurement: 1300, unitPrice: 181, totalAmount: 235300000 },
+      { month: 'Jun', netProcurement: 1400, unitPrice: 181, totalAmount: 253400000 },
+      { month: 'Jul', netProcurement: 1300, unitPrice: 181, totalAmount: 235300000 },
+      { month: 'Aug', netProcurement: 1400, unitPrice: 181, totalAmount: 253400000 },
+      { month: 'Sep', netProcurement: 1300, unitPrice: 181, totalAmount: 235300000 },
+      { month: 'Oct', netProcurement: 1400, unitPrice: 181, totalAmount: 253400000 },
+      { month: 'Nov', netProcurement: 1300, unitPrice: 181, totalAmount: 235300000 },
+      { month: 'Dec', netProcurement: 1200, unitPrice: 181, totalAmount: 217200000 }
+    ]
+  },
+  'Circuit Breakers': {
+    totalQuantity: 140,
+    unitPrice: 46400000,
+    totalAmount: 6500000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 12, unitPrice: 46400000, totalAmount: 556800000 },
+      { month: 'Feb', netProcurement: 11, unitPrice: 46400000, totalAmount: 510400000 },
+      { month: 'Mar', netProcurement: 12, unitPrice: 46400000, totalAmount: 556800000 },
+      { month: 'Apr', netProcurement: 12, unitPrice: 46400000, totalAmount: 556800000 },
+      { month: 'May', netProcurement: 11, unitPrice: 46400000, totalAmount: 510400000 },
+      { month: 'Jun', netProcurement: 12, unitPrice: 46400000, totalAmount: 556800000 },
+      { month: 'Jul', netProcurement: 12, unitPrice: 46400000, totalAmount: 556800000 },
+      { month: 'Aug', netProcurement: 11, unitPrice: 46400000, totalAmount: 510400000 },
+      { month: 'Sep', netProcurement: 12, unitPrice: 46400000, totalAmount: 556800000 },
+      { month: 'Oct', netProcurement: 12, unitPrice: 46400000, totalAmount: 556800000 },
+      { month: 'Nov', netProcurement: 11, unitPrice: 46400000, totalAmount: 510400000 },
+      { month: 'Dec', netProcurement: 12, unitPrice: 46400000, totalAmount: 556800000 }
+    ]
+  },
+  'Transformers': {
+    totalQuantity: 30,
+    unitPrice: 273300000,
+    totalAmount: 8200000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 3, unitPrice: 273300000, totalAmount: 819900000 },
+      { month: 'Feb', netProcurement: 2, unitPrice: 273300000, totalAmount: 546600000 },
+      { month: 'Mar', netProcurement: 3, unitPrice: 273300000, totalAmount: 819900000 },
+      { month: 'Apr', netProcurement: 2, unitPrice: 273300000, totalAmount: 546600000 },
+      { month: 'May', netProcurement: 3, unitPrice: 273300000, totalAmount: 819900000 },
+      { month: 'Jun', netProcurement: 2, unitPrice: 273300000, totalAmount: 546600000 },
+      { month: 'Jul', netProcurement: 3, unitPrice: 273300000, totalAmount: 819900000 },
+      { month: 'Aug', netProcurement: 2, unitPrice: 273300000, totalAmount: 546600000 },
+      { month: 'Sep', netProcurement: 3, unitPrice: 273300000, totalAmount: 819900000 },
+      { month: 'Oct', netProcurement: 2, unitPrice: 273300000, totalAmount: 546600000 },
+      { month: 'Nov', netProcurement: 3, unitPrice: 273300000, totalAmount: 819900000 },
+      { month: 'Dec', netProcurement: 2, unitPrice: 273300000, totalAmount: 546600000 }
+    ]
+  },
+  'Power Cables': {
+    totalQuantity: 43500,
+    unitPrice: 94,
+    totalAmount: 4100000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 3600, unitPrice: 94, totalAmount: 338400000 },
+      { month: 'Feb', netProcurement: 3700, unitPrice: 94, totalAmount: 347800000 },
+      { month: 'Mar', netProcurement: 3600, unitPrice: 94, totalAmount: 338400000 },
+      { month: 'Apr', netProcurement: 3700, unitPrice: 94, totalAmount: 347800000 },
+      { month: 'May', netProcurement: 3600, unitPrice: 94, totalAmount: 338400000 },
+      { month: 'Jun', netProcurement: 3700, unitPrice: 94, totalAmount: 347800000 },
+      { month: 'Jul', netProcurement: 3600, unitPrice: 94, totalAmount: 338400000 },
+      { month: 'Aug', netProcurement: 3700, unitPrice: 94, totalAmount: 347800000 },
+      { month: 'Sep', netProcurement: 3500, unitPrice: 94, totalAmount: 329000000 },
+      { month: 'Oct', netProcurement: 3700, unitPrice: 94, totalAmount: 347800000 },
+      { month: 'Nov', netProcurement: 3600, unitPrice: 94, totalAmount: 338400000 },
+      { month: 'Dec', netProcurement: 3400, unitPrice: 94, totalAmount: 319600000 }
     ]
   },
 }), []);
@@ -724,20 +931,41 @@ const DPKFinalProcurement: React.FC = () => {
         </ResponsiveContainer>
       </div> */}
 
-      <RetrieveProcurementRequestTable />
+      <RetrieveProcurementRequestTable
+        onMaterialDoubleClick={(materialName) => {
+          setFilteredMaterial(materialName);
+          setSelectedMaterial(materialName);
+        }}
+      />
 
       <div className="bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-xl border-2 border-emerald-300 dark:border-emerald-700 p-6 shadow-xl">
         <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 flex-1">
             <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
               <FileText className="h-6 w-6 text-white" />
             </div>
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                Final Procurement Table - {selectedMaterial}
-              </h3>
+            <div className="flex-1">
+              <div className="flex items-center space-x-3">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  Final Procurement Table - {selectedMaterial}
+                </h3>
+                {filteredMaterial && (
+                  <button
+                    onClick={() => {
+                      setFilteredMaterial(null);
+                      setSelectedMaterial('Filter air');
+                    }}
+                    className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg transition-colors flex items-center space-x-2"
+                  >
+                    <Filter className="h-4 w-4" />
+                    <span>Clear Filter</span>
+                  </button>
+                )}
+              </div>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Complete procurement schedule with pricing
+                {filteredMaterial
+                  ? `Filtered by: ${filteredMaterial} (double-click material names in the table above to filter)`
+                  : 'Complete procurement schedule with pricing (double-click material names in the table above to filter)'}
               </p>
             </div>
           </div>
