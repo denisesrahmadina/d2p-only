@@ -463,15 +463,39 @@ const DPKDemandAdjustment: React.FC = () => {
 
   const allAlertsResolved = resolvedAlerts.size === CONSOLIDATED_DEMAND_ALERTS.length;
 
-  // Category mapping for materials
+  // Category mapping for materials - SAME AS DEMAND CONSOLIDATION
   const materialCategoryMapping: { [key: string]: string } = {
     'Filter air': 'Filter',
-    'Filter Udara Cartridge': 'Filter',
-    'Oil Filter': 'Filter',
-    'Filter Gas': 'Filter',
-    'Filter Udara Kassa': 'Filter',
-    'Filtration Media': 'Water Treatment System',
-    'Bolts and Fasteners': 'Spare Parts and Maintenance'
+    'Air Filter': 'Filter',
+    'Fuel Filter': 'Filter',
+    'Chemical filter': 'Filter',
+    'Oil filter': 'Filter',
+    'Special filter': 'Filter',
+    'Multi function filter': 'Filter',
+    'Water filter': 'Filter',
+    'Gas filter': 'Filter',
+    'Coal': 'Fuel and Combustion',
+    'Diesel Fuel': 'Fuel and Combustion',
+    'Natural Gas': 'Fuel and Combustion',
+    'Fuel Oil': 'Fuel and Combustion',
+    'Biomass Pellets': 'Fuel and Combustion',
+    'Turbine Blades': 'Mechanical Equipment',
+    'Pump Components': 'Mechanical Equipment',
+    'Valve Systems': 'Mechanical Equipment',
+    'Bearing Units': 'Mechanical Equipment',
+    'Coupling Systems': 'Mechanical Equipment',
+    'Gear Box Parts': 'Mechanical Equipment',
+    'Gaskets': 'Spare Parts and Maintenance',
+    'Seals': 'Spare Parts and Maintenance',
+    'Bolts and Fasteners': 'Spare Parts and Maintenance',
+    'Electrical Cables': 'Spare Parts and Maintenance',
+    'Sensors': 'Spare Parts and Maintenance',
+    'Control Panels': 'Spare Parts and Maintenance',
+    'Reverse Osmosis Membranes': 'Water Treatment System',
+    'Ion Exchange Resins': 'Water Treatment System',
+    'Chemical Dosing Pumps': 'Water Treatment System',
+    'Water Quality Sensors': 'Water Treatment System',
+    'Filtration Media': 'Water Treatment System'
   };
 
   // Calculate category breakdown when all alerts are resolved
@@ -897,13 +921,13 @@ const DPKDemandAdjustment: React.FC = () => {
               className="px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all flex items-center space-x-3"
             >
               <Send className="h-6 w-6" />
-              <span>Confirm & Send to E-Budget</span>
+              <span>Confirm</span>
             </button>
           </div>
         </div>
       )}
 
-      {hasBudgetData && (
+      {hasBudgetData && !allAlertsResolved && (
         <>
           {/* <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
