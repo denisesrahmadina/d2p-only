@@ -98,15 +98,28 @@ function generateMockData(): ForecastData[] {
         const userForecast = baseValue;
         const aiForecast = baseValue + Math.floor(Math.random() * 100) - 50;
 
-        const shouldHaveHighDeviation = Math.random() < 0.15;
         let finalUnitForecast;
 
-        if (shouldHaveHighDeviation) {
-          const deviationDirection = Math.random() < 0.5 ? 1 : -1;
-          const deviationPercent = 0.25 + (Math.random() * 0.20);
-          finalUnitForecast = Math.round(aiForecast * (1 + (deviationDirection * deviationPercent)));
+        if (unit.name === 'UBP ADP' && material === 'Water filter') {
+          if (monthIndex === 0) {
+            finalUnitForecast = Math.round(aiForecast * 1.70);
+          } else if (monthIndex === 1) {
+            finalUnitForecast = Math.round(aiForecast * 1.60);
+          } else if (monthIndex === 2) {
+            finalUnitForecast = Math.round(aiForecast * 1.40);
+          } else {
+            finalUnitForecast = Math.round(aiForecast * 1.35);
+          }
         } else {
-          finalUnitForecast = baseValue + Math.floor(Math.random() * 80) - 40;
+          const shouldHaveHighDeviation = Math.random() < 0.15;
+
+          if (shouldHaveHighDeviation) {
+            const deviationDirection = Math.random() < 0.5 ? 1 : -1;
+            const deviationPercent = 0.25 + (Math.random() * 0.20);
+            finalUnitForecast = Math.round(aiForecast * (1 + (deviationDirection * deviationPercent)));
+          } else {
+            finalUnitForecast = baseValue + Math.floor(Math.random() * 80) - 40;
+          }
         }
 
         data.push({
