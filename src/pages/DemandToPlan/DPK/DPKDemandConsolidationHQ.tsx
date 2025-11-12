@@ -279,6 +279,44 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
     return alerts;
   }, [forecastData, resolvedAlerts]);
 
+  const allAlertsResolved = resolvedAlerts.size === INITIAL_HIGH_DEVIATION_ALERTS.length;
+
+  const finalProcurementSummary = useMemo(() => {
+    const materialSummary = new Map<string, {
+      materialId: string;
+      materialName: string;
+      materialValue: number;
+      unitRequestors: Set<string>;
+      totalQuantity: number;
+    }>();
+
+    forecastData.forEach(item => {
+      const selectedValue = getSelectedValue(item);
+
+      if (!materialSummary.has(item.material)) {
+        materialSummary.set(item.material, {
+          materialId: `MAT-${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
+          materialName: item.material,
+          materialValue: item.unitPrice,
+          unitRequestors: new Set(),
+          totalQuantity: 0
+        });
+      }
+
+      const summary = materialSummary.get(item.material)!;
+      summary.unitRequestors.add(item.unitName);
+      summary.totalQuantity += selectedValue;
+    });
+
+    return Array.from(materialSummary.values())
+      .map(item => ({
+        ...item,
+        unitRequestorsCount: item.unitRequestors.size,
+        unitRequestorsList: Array.from(item.unitRequestors).join(', ')
+      }))
+      .sort((a, b) => b.totalQuantity - a.totalQuantity);
+  }, [forecastData]);
+
   const finalSummary = useMemo(() => {
     const monthlyGroups: { [key: string]: { month: string; monthNumber: number; items: any[] } } = {};
 
@@ -591,6 +629,115 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Final Procurement Summary - Shown after all alerts are resolved */}
+      {allAlertsResolved && (
+        <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl border-2 border-green-200 dark:border-green-800 shadow-xl overflow-hidden">
+          <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 dark:from-green-500/20 dark:to-emerald-500/20 border-b border-green-200 dark:border-green-800 px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+                  <CheckCircle2 className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                    Final Procurement Summary
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    All deviation alerts have been resolved. Review final consolidated procurement requirements.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-6">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b-2 border-green-200 dark:border-green-800">
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                      Material ID
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                      Material Name
+                    </th>
+                    <th className="px-4 py-3 text-right text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                      Material Value (IDR)
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                      Unit Requestors
+                    </th>
+                    <th className="px-4 py-3 text-right text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                      Total Quantity
+                    </th>
+                    <th className="px-4 py-3 text-right text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                      Total Amount (IDR)
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {finalProcurementSummary.map((item, index) => (
+                    <tr
+                      key={item.materialId}
+                      className={`border-b border-green-100 dark:border-green-900/40 ${
+                        index % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-green-50/30 dark:bg-green-900/10'
+                      }`}
+                    >
+                      <td className="px-4 py-4 text-sm font-mono text-gray-600 dark:text-gray-400">
+                        {item.materialId}
+                      </td>
+                      <td className="px-4 py-4">
+                        <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                          {item.materialName}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 text-right">
+                        <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                          {item.materialValue.toLocaleString('id-ID')}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="flex items-center space-x-2">
+                          <span className="inline-flex items-center justify-center w-6 h-6 bg-green-500 text-white text-xs font-bold rounded-full">
+                            {item.unitRequestorsCount}
+                          </span>
+                          <span className="text-xs text-gray-600 dark:text-gray-400">
+                            units
+                          </span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-4 text-right">
+                        <span className="text-sm font-bold text-green-700 dark:text-green-400">
+                          {item.totalQuantity.toLocaleString('id-ID')} units
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 text-right">
+                        <span className="text-sm font-bold text-gray-900 dark:text-white">
+                          {(item.totalQuantity * item.materialValue).toLocaleString('id-ID')}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr className="bg-green-100 dark:bg-green-900/30 border-t-2 border-green-300 dark:border-green-700">
+                    <td colSpan={4} className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white">
+                      Grand Total:
+                    </td>
+                    <td className="px-4 py-4 text-right text-sm font-bold text-green-700 dark:text-green-400">
+                      {finalProcurementSummary.reduce((sum, item) => sum + item.totalQuantity, 0).toLocaleString('id-ID')} units
+                    </td>
+                    <td className="px-4 py-4 text-right text-lg font-bold text-gray-900 dark:text-white">
+                      {finalProcurementSummary.reduce((sum, item) => sum + (item.totalQuantity * item.materialValue), 0).toLocaleString('id-ID')}
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
             </div>
           </div>
         </div>
