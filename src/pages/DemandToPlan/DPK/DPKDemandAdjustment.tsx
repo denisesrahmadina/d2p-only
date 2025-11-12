@@ -234,13 +234,15 @@ const DPKDemandAdjustment: React.FC = () => {
           adjustmentNeeded: totalBudget - totalDemand,
           monthlyData: monthlyValues.map((val, idx) => {
             const budgetLimit = Math.round(val * (0.75 + Math.random() * 0.10)); // 75%-85% of demand - ALWAYS LOWER
+            const reductionPercent = 0.30 + Math.random() * 0.25; // 30-55% below consolidated
+            const recommendedAdjustment = Math.round(val * (1 - reductionPercent));
             const isOver = val > budgetLimit;
             return {
               month: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][idx],
               consolidatedDemand: val,
               budgetLimit: budgetLimit,
-              recommendedAdjustment: isOver ? budgetLimit : val,
-              adjustmentPercent: isOver ? ((budgetLimit - val) / val) * 100 : 0,
+              recommendedAdjustment: recommendedAdjustment,
+              adjustmentPercent: ((recommendedAdjustment - val) / val) * 100,
               status: isOver ? 'over' as const : 'within' as const
             };
           })
@@ -1418,8 +1420,8 @@ const DPKDemandAdjustment: React.FC = () => {
                       <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Month</th>
                       <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Consolidated (Qty)</th>
                       <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Consolidated Amt</th>
-                      <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Difference</th>
                       <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">AI Recommended</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Difference</th>
                       <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Recommended Amt</th>
                       <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase min-w-[300px]">Select Adjustment</th>
                     </tr>
@@ -1439,11 +1441,6 @@ const DPKDemandAdjustment: React.FC = () => {
                           <td className="px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">{row.month}</td>
                           <td className="px-4 py-3 text-sm text-right text-gray-900 dark:text-white">{row.consolidatedDemand.toLocaleString()} units</td>
                           <td className="px-4 py-3 text-sm text-right text-gray-600 dark:text-gray-400">{formatCurrency(consolidatedAmount)}</td>
-                          <td className={`px-4 py-3 text-sm text-right font-semibold ${
-                            row.status === 'over' ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'
-                          }`}>
-                            {row.status === 'over' ? '-' : '+'}{Math.abs(row.consolidatedDemand - row.budgetLimit).toLocaleString()}
-                          </td>
                           <td className="px-4 py-3 text-sm text-right">
                             <div className="flex flex-col items-end">
                               <span className="font-semibold text-blue-700 dark:text-blue-400">{row.recommendedAdjustment.toLocaleString()} units</span>
@@ -1451,6 +1448,9 @@ const DPKDemandAdjustment: React.FC = () => {
                                 ({row.adjustmentPercent.toFixed(1)}%)
                               </span>
                             </div>
+                          </td>
+                          <td className="px-4 py-3 text-sm text-right font-semibold text-red-600 dark:text-red-400">
+                            {(row.recommendedAdjustment - row.consolidatedDemand).toLocaleString()}
                           </td>
                           <td className="px-4 py-3 text-sm text-right font-semibold text-green-700 dark:text-green-400">
                             {formatCurrency(recommendedAmount)}
