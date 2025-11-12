@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Download, Sliders, CheckCircle2, Sparkles, Edit3, Save, Factory, Filter, Package, Database, Loader2, AlertCircle } from 'lucide-react';
+import { Download, Sliders, CheckCircle2, Sparkles, Edit3, Save, Factory, Filter, Package, Database, Loader2, AlertCircle, Send } from 'lucide-react';
 import plnUnitsData from '../../../data/plnUnits.json';
 import {
   BarChart,
@@ -448,11 +448,82 @@ const DPKDemandAdjustment: React.FC = () => {
       setSelectedMaterial('All');
       setSelectedCategory('');
 
-      setTimeout(() => {
-        document.getElementById('budget-deviation-alerts')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
+      const newResolvedCount = resolvedAlerts.size + 1;
+      if (newResolvedCount < CONSOLIDATED_DEMAND_ALERTS.length) {
+        setTimeout(() => {
+          document.getElementById('budget-deviation-alerts')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      } else {
+        setTimeout(() => {
+          document.getElementById('final-budget-category-breakdown')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
     }
   };
+
+  const allAlertsResolved = resolvedAlerts.size === CONSOLIDATED_DEMAND_ALERTS.length;
+
+  // Category mapping for materials
+  const materialCategoryMapping: { [key: string]: string } = {
+    'Filter air': 'Filter',
+    'Filter Udara Cartridge': 'Filter',
+    'Oil Filter': 'Filter',
+    'Filter Gas': 'Filter',
+    'Filter Udara Kassa': 'Filter',
+    'Filtration Media': 'Water Treatment System',
+    'Bolts and Fasteners': 'Spare Parts and Maintenance'
+  };
+
+  // Calculate category breakdown when all alerts are resolved
+  const categoryBreakdown = useMemo(() => {
+    if (!allAlertsResolved) return [];
+
+    const categoryMap = new Map<string, {
+      totalQuantity: number;
+      totalValue: number;
+      materials: Set<string>;
+    }>();
+
+    materials.forEach(mat => {
+      const category = materialCategoryMapping[mat] || 'Other';
+      const price = materialPrices[mat] || 0;
+
+      if (!categoryMap.has(category)) {
+        categoryMap.set(category, {
+          totalQuantity: 0,
+          totalValue: 0,
+          materials: new Set()
+        });
+      }
+
+      const categoryData = categoryMap.get(category)!;
+      const matData = materialBudgetData[mat];
+
+      matData.monthlyData.forEach(row => {
+        const selection = adjustmentSelections[mat]?.[row.month];
+        const adjustedValue = selection ? selection.value : row.recommendedAdjustment;
+        categoryData.totalQuantity += adjustedValue;
+        categoryData.totalValue += adjustedValue * price;
+      });
+
+      categoryData.materials.add(mat);
+    });
+
+    return Array.from(categoryMap.entries()).map(([category, data]) => ({
+      category,
+      totalQuantity: data.totalQuantity,
+      totalValue: data.totalValue,
+      materialsCount: data.materials.size
+    })).sort((a, b) => b.totalValue - a.totalValue);
+  }, [allAlertsResolved, materials, materialBudgetData, adjustmentSelections, materialCategoryMapping, materialPrices]);
+
+  const grandTotalValue = useMemo(() => {
+    return categoryBreakdown.reduce((sum, cat) => sum + cat.totalValue, 0);
+  }, [categoryBreakdown]);
+
+  const totalMaterialsCount = useMemo(() => {
+    return categoryBreakdown.reduce((sum, cat) => sum + cat.materialsCount, 0);
+  }, [categoryBreakdown]);
 
   const handleExportFinalAdjustment = () => {
     const csvContent = [
@@ -717,6 +788,117 @@ const DPKDemandAdjustment: React.FC = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Final Budget Category Breakdown - Show after all alerts resolved */}
+      {hasBudgetData && allAlertsResolved && (
+        <div id="final-budget-category-breakdown" className="space-y-6">
+          {/* Header */}
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl border-2 border-green-200 dark:border-green-800 p-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <CheckCircle2 className="h-7 w-7 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                    Final Budget After Adjustment
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    All deviation alerts resolved. Review by category before sending to E-Budget.
+                  </p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                  TOTAL CATEGORIES
+                </p>
+                <p className="text-3xl font-bold text-green-600 dark:text-green-400 mt-1">
+                  {categoryBreakdown.length}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Category Cards */}
+          <div className="space-y-4">
+            {categoryBreakdown.map((category, index) => (
+              <div
+                key={category.category}
+                className="bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-900/40 dark:to-gray-900/40 rounded-xl border-2 border-slate-200 dark:border-slate-700 p-6 hover:shadow-lg transition-all"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center">
+                      <Package className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-gray-900 dark:text-white">
+                        {category.category}
+                      </h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
+                        {category.materialsCount} materials from 15 units
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="mb-3">
+                      <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                        TOTAL QUANTITY
+                      </p>
+                      <p className="text-2xl font-bold text-green-600 dark:text-green-400">
+                        {category.totalQuantity.toLocaleString('id-ID')}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                        TOTAL VALUE
+                      </p>
+                      <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                        {formatCurrency(category.totalValue)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Grand Total */}
+          <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-6 shadow-2xl">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-semibold text-green-100 uppercase tracking-wide">
+                  GRAND TOTAL VALUE
+                </p>
+                <p className="text-4xl font-bold text-white mt-2">
+                  {formatCurrency(grandTotalValue)}
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-sm font-semibold text-green-100 uppercase tracking-wide">
+                  TOTAL MATERIALS
+                </p>
+                <p className="text-4xl font-bold text-white mt-2">
+                  {totalMaterialsCount}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Confirm & Send to E-Budget Button */}
+          <div className="flex justify-end">
+            <button
+              onClick={() => {
+                alert('Budget adjustments confirmed and sent to E-Budget system!');
+              }}
+              className="px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all flex items-center space-x-3"
+            >
+              <Send className="h-6 w-6" />
+              <span>Confirm & Send to E-Budget</span>
+            </button>
           </div>
         </div>
       )}
