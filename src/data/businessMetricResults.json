@@ -1,0 +1,786 @@
+[
+  {
+    "id": "cost-per-transaction",
+    "name": "Cost per Transaction",
+    "description": "Average cost to process one transaction across all SSC functions",
+    "category": "Financial",
+    "unit": "USD",
+    "target": 2.00,
+    "benchmark": 2.85,
+    "benchmarkSource": "Accenture Global Shared Services SurvAccenture 2024 - Industry Average for Finance Operations",
+    "currentValue": 2.45,
+    "trend": "down",
+    "priority": "High",
+    "owner": "Finance Operations",
+    "weeklyResults": [
+      {
+        "week": "2025-01-13",
+        "value": 2.65,
+        "variance": 0.65,
+        "variancePercentage": 32.5,
+        "status": "above_target",
+        "notes": "Higher volume of complex transactions"
+      },
+      {
+        "week": "2025-01-06",
+        "value": 2.58,
+        "variance": 0.58,
+        "variancePercentage": 29.0,
+        "status": "above_target",
+        "notes": "Process optimization initiatives started"
+      },
+      {
+        "week": "2024-12-30",
+        "value": 2.52,
+        "variance": 0.52,
+        "variancePercentage": 26.0,
+        "status": "above_target",
+        "notes": "Year-end processing volume spike"
+      },
+      {
+        "week": "2024-12-23",
+        "value": 2.48,
+        "variance": 0.48,
+        "variancePercentage": 24.0,
+        "status": "above_target",
+        "notes": "AI automation improvements implemented"
+      },
+      {
+        "week": "2024-12-16",
+        "value": 2.45,
+        "variance": 0.45,
+        "variancePercentage": 22.5,
+        "status": "above_target",
+        "notes": "Steady improvement in processing efficiency"
+      }
+    ]
+  },
+  {
+    "id": "sla-compliance",
+    "name": "SLA Compliance Rate",
+    "description": "Percentage of service requests completed within agreed SLA timeframes",
+    "category": "Service Quality",
+    "unit": "%",
+    "target": 99.0,
+    "benchmark": 96.5,
+    "benchmarkSource": "Accenture Shared Services Excellence Study 2024 - Top Quartile Performance",
+    "currentValue": 99.4,
+    "trend": "up",
+    "priority": "High",
+    "owner": "Service Delivery",
+    "weeklyResults": [
+      {
+        "week": "2025-01-13",
+        "value": 99.4,
+        "variance": 0.4,
+        "variancePercentage": 0.4,
+        "status": "above_target",
+        "notes": "Excellent performance across all service lines"
+      },
+      {
+        "week": "2025-01-06",
+        "value": 99.2,
+        "variance": 0.2,
+        "variancePercentage": 0.2,
+        "status": "above_target",
+        "notes": "Strong start to the year"
+      },
+      {
+        "week": "2024-12-30",
+        "value": 98.8,
+        "variance": -0.2,
+        "variancePercentage": -0.2,
+        "status": "below_target",
+        "notes": "Holiday period resource constraints"
+      },
+      {
+        "week": "2024-12-23",
+        "value": 99.1,
+        "variance": 0.1,
+        "variancePercentage": 0.1,
+        "status": "above_target",
+        "notes": "Recovery from holiday period"
+      },
+      {
+        "week": "2024-12-16",
+        "value": 99.3,
+        "variance": 0.3,
+        "variancePercentage": 0.3,
+        "status": "above_target",
+        "notes": "Consistent high performance"
+      }
+    ]
+  },
+  {
+    "id": "automation-rate",
+    "name": "Process Automation Rate",
+    "description": "Percentage of transactions processed through automated workflows",
+    "category": "Operational Efficiency",
+    "unit": "%",
+    "target": 90.0,
+    "benchmark": 72.3,
+    "benchmarkSource": "Accenture Global Institute - Automation in Shared Services 2024",
+    "currentValue": 85.2,
+    "trend": "up",
+    "priority": "Medium",
+    "owner": "Process Excellence",
+    "weeklyResults": [
+      {
+        "week": "2025-01-13",
+        "value": 85.2,
+        "variance": -4.8,
+        "variancePercentage": -5.3,
+        "status": "below_target",
+        "notes": "New AI agents deployed, ramping up automation"
+      },
+      {
+        "week": "2025-01-06",
+        "value": 84.1,
+        "variance": -5.9,
+        "variancePercentage": -6.6,
+        "status": "below_target",
+        "notes": "Integration of additional automated workflows"
+      },
+      {
+        "week": "2024-12-30",
+        "value": 82.8,
+        "variance": -7.2,
+        "variancePercentage": -8.0,
+        "status": "below_target",
+        "notes": "Manual processing increased during holidays"
+      },
+      {
+        "week": "2024-12-23",
+        "value": 83.5,
+        "variance": -6.5,
+        "variancePercentage": -7.2,
+        "status": "below_target",
+        "notes": "Gradual automation improvements"
+      },
+      {
+        "week": "2024-12-16",
+        "value": 81.9,
+        "variance": -8.1,
+        "variancePercentage": -9.0,
+        "status": "below_target",
+        "notes": "Baseline measurement before AI implementation"
+      }
+    ]
+  },
+  {
+    "id": "customer-satisfaction",
+    "name": "Customer Satisfaction Score",
+    "description": "Average satisfaction rating from internal customers using SSC services",
+    "category": "Customer Experience",
+    "unit": "/5.0",
+    "target": 4.5,
+    "benchmark": 4.1,
+    "benchmarkSource": "Accenture Customer Experience in Shared Services Benchmark 2024",
+    "currentValue": 4.7,
+    "trend": "up",
+    "priority": "High",
+    "owner": "Customer Experience",
+    "weeklyResults": [
+      {
+        "week": "2025-01-13",
+        "value": 4.7,
+        "variance": 0.2,
+        "variancePercentage": 4.4,
+        "status": "above_target",
+        "notes": "Exceptional feedback on AI-powered services"
+      },
+      {
+        "week": "2025-01-06",
+        "value": 4.6,
+        "variance": 0.1,
+        "variancePercentage": 2.2,
+        "status": "above_target",
+        "notes": "Positive response to service improvements"
+      },
+      {
+        "week": "2024-12-30",
+        "value": 4.4,
+        "variance": -0.1,
+        "variancePercentage": -2.2,
+        "status": "below_target",
+        "notes": "Holiday period service delays"
+      },
+      {
+        "week": "2024-12-23",
+        "value": 4.5,
+        "variance": 0.0,
+        "variancePercentage": 0.0,
+        "status": "on_target",
+        "notes": "Meeting target satisfaction levels"
+      },
+      {
+        "week": "2024-12-16",
+        "value": 4.3,
+        "variance": -0.2,
+        "variancePercentage": -4.4,
+        "status": "below_target",
+        "notes": "Service quality improvement initiatives launched"
+      }
+    ]
+  },
+  {
+    "id": "first-call-resolution",
+    "name": "First Call Resolution Rate",
+    "description": "Percentage of service requests resolved on first contact",
+    "category": "Service Quality",
+    "unit": "%",
+    "target": 85.0,
+    "benchmark": 78.2,
+    "benchmarkSource": "Accenture Global Shared Services Performance Study 2024",
+    "currentValue": 88.3,
+    "trend": "up",
+    "priority": "Medium",
+    "owner": "Service Delivery",
+    "weeklyResults": [
+      {
+        "week": "2025-01-13",
+        "value": 88.3,
+        "variance": 3.3,
+        "variancePercentage": 3.9,
+        "status": "above_target",
+        "notes": "AI knowledge base improvements showing results"
+      },
+      {
+        "week": "2025-01-06",
+        "value": 87.1,
+        "variance": 2.1,
+        "variancePercentage": 2.5,
+        "status": "above_target",
+        "notes": "Enhanced self-service capabilities"
+      },
+      {
+        "week": "2024-12-30",
+        "value": 84.2,
+        "variance": -0.8,
+        "variancePercentage": -0.9,
+        "status": "below_target",
+        "notes": "Complex year-end queries requiring escalation"
+      },
+      {
+        "week": "2024-12-23",
+        "value": 86.5,
+        "variance": 1.5,
+        "variancePercentage": 1.8,
+        "status": "above_target",
+        "notes": "Staff training improvements implemented"
+      },
+      {
+        "week": "2024-12-16",
+        "value": 85.8,
+        "variance": 0.8,
+        "variancePercentage": 0.9,
+        "status": "above_target",
+        "notes": "Consistent performance above target"
+      }
+    ]
+  },
+  {
+    "id": "processing-accuracy",
+    "name": "Processing Accuracy Rate",
+    "description": "Percentage of transactions processed without errors requiring rework",
+    "category": "Quality",
+    "unit": "%",
+    "target": 99.5,
+    "benchmark": 98.1,
+    "benchmarkSource": "Accenture Quality Excellence in Shared Services Report 2024",
+    "currentValue": 99.7,
+    "trend": "stable",
+    "priority": "High",
+    "owner": "Quality Assurance",
+    "weeklyResults": [
+      {
+        "week": "2025-01-13",
+        "value": 99.7,
+        "variance": 0.2,
+        "variancePercentage": 0.2,
+        "status": "above_target",
+        "notes": "AI validation systems maintaining high accuracy"
+      },
+      {
+        "week": "2025-01-06",
+        "value": 99.6,
+        "variance": 0.1,
+        "variancePercentage": 0.1,
+        "status": "above_target",
+        "notes": "Excellent quality control performance"
+      },
+      {
+        "week": "2024-12-30",
+        "value": 99.5,
+        "variance": 0.0,
+        "variancePercentage": 0.0,
+        "status": "on_target",
+        "notes": "Meeting accuracy targets consistently"
+      },
+      {
+        "week": "2024-12-23",
+        "value": 99.8,
+        "variance": 0.3,
+        "variancePercentage": 0.3,
+        "status": "above_target",
+        "notes": "Peak accuracy performance"
+      },
+      {
+        "week": "2024-12-16",
+        "value": 99.6,
+        "variance": 0.1,
+        "variancePercentage": 0.1,
+        "status": "above_target",
+        "notes": "Stable high-quality processing"
+      }
+    ]
+  },
+  {
+    "id": "employee-productivity",
+    "name": "Employee Productivity Index",
+    "description": "Composite measure of employee output and efficiency across SSC functions",
+    "category": "Human Resources",
+    "unit": "Index",
+    "target": 100.0,
+    "benchmark": 95.8,
+    "benchmarkSource": "Accenture  Global Shared Services Productivity Benchmark 2024",
+    "currentValue": 112.5,
+    "trend": "up",
+    "priority": "Medium",
+    "owner": "HR Operations",
+    "weeklyResults": [
+      {
+        "week": "2025-01-13",
+        "value": 112.5,
+        "variance": 12.5,
+        "variancePercentage": 12.5,
+        "status": "above_target",
+        "notes": "AI assistance boosting employee productivity"
+      },
+      {
+        "week": "2025-01-06",
+        "value": 108.2,
+        "variance": 8.2,
+        "variancePercentage": 8.2,
+        "status": "above_target",
+        "notes": "Strong start to year with new tools"
+      },
+      {
+        "week": "2024-12-30",
+        "value": 95.8,
+        "variance": -4.2,
+        "variancePercentage": -4.2,
+        "status": "below_target",
+        "notes": "Holiday period reduced productivity"
+      },
+      {
+        "week": "2024-12-23",
+        "value": 103.1,
+        "variance": 3.1,
+        "variancePercentage": 3.1,
+        "status": "above_target",
+        "notes": "Recovery from holiday period"
+      },
+      {
+        "week": "2024-12-16",
+        "value": 106.7,
+        "variance": 6.7,
+        "variancePercentage": 6.7,
+        "status": "above_target",
+        "notes": "Productivity improvements from training"
+      }
+    ]
+  },
+  {
+    "id": "cycle-time",
+    "name": "Average Cycle Time",
+    "description": "Average time from request initiation to completion across all SSC processes",
+    "category": "Operational Efficiency",
+    "unit": "hours",
+    "target": 24.0,
+    "benchmark": 36.5,
+    "benchmarkSource": "Accenture  Global Outsourcing 100 - Shared Services Performance Metrics 2024",
+    "currentValue": 18.5,
+    "trend": "down",
+    "priority": "Medium",
+    "owner": "Process Excellence",
+    "weeklyResults": [
+      {
+        "week": "2025-01-13",
+        "value": 18.5,
+        "variance": -5.5,
+        "variancePercentage": -22.9,
+        "status": "above_target",
+        "notes": "AI automation significantly reducing cycle times"
+      },
+      {
+        "week": "2025-01-06",
+        "value": 19.2,
+        "variance": -4.8,
+        "variancePercentage": -20.0,
+        "status": "above_target",
+        "notes": "Continued improvement in processing speed"
+      },
+      {
+        "week": "2024-12-30",
+        "value": 26.8,
+        "variance": 2.8,
+        "variancePercentage": 11.7,
+        "status": "below_target",
+        "notes": "Holiday period delays and reduced staffing"
+      },
+      {
+        "week": "2024-12-23",
+        "value": 22.1,
+        "variance": -1.9,
+        "variancePercentage": -7.9,
+        "status": "above_target",
+        "notes": "Process streamlining showing results"
+      },
+      {
+        "week": "2024-12-16",
+        "value": 23.4,
+        "variance": -0.6,
+        "variancePercentage": -2.5,
+        "status": "above_target",
+        "notes": "Baseline improvement from automation"
+      }
+    ]
+  },
+  {
+    "id": "error-rate",
+    "name": "Transaction Error Rate",
+    "description": "Percentage of transactions requiring correction or rework",
+    "category": "Quality",
+    "unit": "%",
+    "target": 0.5,
+    "benchmark": 1.8,
+    "benchmarkSource": "Accenture  Quality Management in Shared Services Study 2024",
+    "currentValue": 0.3,
+    "trend": "down",
+    "priority": "High",
+    "owner": "Quality Assurance",
+    "weeklyResults": [
+      {
+        "week": "2025-01-13",
+        "value": 0.3,
+        "variance": -0.2,
+        "variancePercentage": -40.0,
+        "status": "above_target",
+        "notes": "AI validation reducing error rates significantly"
+      },
+      {
+        "week": "2025-01-06",
+        "value": 0.4,
+        "variance": -0.1,
+        "variancePercentage": -20.0,
+        "status": "above_target",
+        "notes": "Quality improvements from automation"
+      },
+      {
+        "week": "2024-12-30",
+        "value": 0.7,
+        "variance": 0.2,
+        "variancePercentage": 40.0,
+        "status": "below_target",
+        "notes": "Higher error rate during holiday period"
+      },
+      {
+        "week": "2024-12-23",
+        "value": 0.5,
+        "variance": 0.0,
+        "variancePercentage": 0.0,
+        "status": "on_target",
+        "notes": "Meeting target error rate"
+      },
+      {
+        "week": "2024-12-16",
+        "value": 0.6,
+        "variance": 0.1,
+        "variancePercentage": 20.0,
+        "status": "below_target",
+        "notes": "Process improvements reducing errors"
+      }
+    ]
+  },
+  {
+    "id": "volume-processed",
+    "name": "Transaction Volume Processed",
+    "description": "Total number of transactions processed per week across all SSC functions",
+    "category": "Volume",
+    "unit": "transactions",
+    "target": 50000.0,
+    "benchmark": 42500.0,
+    "benchmarkSource": "Gartner Shared Services Market Analysis 2024 - Mid-Market SSC Volume",
+    "currentValue": 54750.0,
+    "trend": "up",
+    "priority": "Medium",
+    "owner": "Operations Management",
+    "weeklyResults": [
+      {
+        "week": "2025-01-13",
+        "value": 54750,
+        "variance": 4750,
+        "variancePercentage": 9.5,
+        "status": "above_target",
+        "notes": "High volume processing with AI scaling"
+      },
+      {
+        "week": "2025-01-06",
+        "value": 52300,
+        "variance": 2300,
+        "variancePercentage": 4.6,
+        "status": "above_target",
+        "notes": "Strong start to year with increased demand"
+      },
+      {
+        "week": "2024-12-30",
+        "value": 38200,
+        "variance": -11800,
+        "variancePercentage": -23.6,
+        "status": "below_target",
+        "notes": "Reduced volume during holiday period"
+      },
+      {
+        "week": "2024-12-23",
+        "value": 47800,
+        "variance": -2200,
+        "variancePercentage": -4.4,
+        "status": "below_target",
+        "notes": "Pre-holiday volume reduction"
+      },
+      {
+        "week": "2024-12-16",
+        "value": 51200,
+        "variance": 1200,
+        "variancePercentage": 2.4,
+        "status": "above_target",
+        "notes": "Normal processing volume"
+      }
+    ]
+  },
+  {
+    "id": "cost-savings",
+    "name": "Monthly Cost Savings",
+    "description": "Cost savings achieved through process optimization and automation",
+    "category": "Financial",
+    "unit": "USD",
+    "target": 150000.0,
+    "benchmark": 125000.0,
+    "benchmarkSource": "Accenture  - Shared Services ROI Analysis 2024",
+    "currentValue": 187500.0,
+    "trend": "up",
+    "priority": "High",
+    "owner": "Finance Operations",
+    "weeklyResults": [
+      {
+        "week": "2025-01-13",
+        "value": 187500,
+        "variance": 37500,
+        "variancePercentage": 25.0,
+        "status": "above_target",
+        "notes": "AI automation delivering significant savings"
+      },
+      {
+        "week": "2025-01-06",
+        "value": 172000,
+        "variance": 22000,
+        "variancePercentage": 14.7,
+        "status": "above_target",
+        "notes": "Cumulative savings from process improvements"
+      },
+      {
+        "week": "2024-12-30",
+        "value": 145000,
+        "variance": -5000,
+        "variancePercentage": -3.3,
+        "status": "below_target",
+        "notes": "Holiday period reduced optimization opportunities"
+      },
+      {
+        "week": "2024-12-23",
+        "value": 158000,
+        "variance": 8000,
+        "variancePercentage": 5.3,
+        "status": "above_target",
+        "notes": "Process optimization initiatives paying off"
+      },
+      {
+        "week": "2024-12-16",
+        "value": 162000,
+        "variance": 12000,
+        "variancePercentage": 8.0,
+        "status": "above_target",
+        "notes": "Strong savings from automation rollout"
+      }
+    ]
+  },
+  {
+    "id": "response-time",
+    "name": "Average Response Time",
+    "description": "Average time to provide initial response to service requests",
+    "category": "Service Quality",
+    "unit": "minutes",
+    "target": 15.0,
+    "benchmark": 22.8,
+    "benchmarkSource": "Accenture  Global Business Services - Service Response Time Benchmark 2024",
+    "currentValue": 8.2,
+    "trend": "down",
+    "priority": "Medium",
+    "owner": "Service Delivery",
+    "weeklyResults": [
+      {
+        "week": "2025-01-13",
+        "value": 8.2,
+        "variance": -6.8,
+        "variancePercentage": -45.3,
+        "status": "above_target",
+        "notes": "AI chatbots providing instant responses"
+      },
+      {
+        "week": "2025-01-06",
+        "value": 9.1,
+        "variance": -5.9,
+        "variancePercentage": -39.3,
+        "status": "above_target",
+        "notes": "Automated response systems performing well"
+      },
+      {
+        "week": "2024-12-30",
+        "value": 18.5,
+        "variance": 3.5,
+        "variancePercentage": 23.3,
+        "status": "below_target",
+        "notes": "Holiday staffing impacted response times"
+      },
+      {
+        "week": "2024-12-23",
+        "value": 12.3,
+        "variance": -2.7,
+        "variancePercentage": -18.0,
+        "status": "above_target",
+        "notes": "Response time improvements from AI deployment"
+      },
+      {
+        "week": "2024-12-16",
+        "value": 13.8,
+        "variance": -1.2,
+        "variancePercentage": -8.0,
+        "status": "above_target",
+        "notes": "Steady improvement in response capabilities"
+      }
+    ]
+  },
+  {
+    "id": "capacity-utilization",
+    "name": "Resource Capacity Utilization",
+    "description": "Percentage of available resource capacity being utilized effectively",
+    "category": "Resource Management",
+    "unit": "%",
+    "target": 80.0,
+    "benchmark": 74.2,
+    "benchmarkSource": "Hackett Group - Shared Services Resource Optimization Study 2024",
+    "currentValue": 92.3,
+    "trend": "up",
+    "priority": "Medium",
+    "owner": "Resource Planning",
+    "weeklyResults": [
+      {
+        "week": "2025-01-13",
+        "value": 92.3,
+        "variance": 12.3,
+        "variancePercentage": 15.4,
+        "status": "above_target",
+        "notes": "High demand driving optimal resource utilization"
+      },
+      {
+        "week": "2025-01-06",
+        "value": 89.7,
+        "variance": 9.7,
+        "variancePercentage": 12.1,
+        "status": "above_target",
+        "notes": "Efficient resource allocation and planning"
+      },
+      {
+        "week": "2024-12-30",
+        "value": 65.4,
+        "variance": -14.6,
+        "variancePercentage": -18.3,
+        "status": "below_target",
+        "notes": "Reduced utilization during holiday period"
+      },
+      {
+        "week": "2024-12-23",
+        "value": 78.9,
+        "variance": -1.1,
+        "variancePercentage": -1.4,
+        "status": "below_target",
+        "notes": "Pre-holiday capacity planning adjustments"
+      },
+      {
+        "week": "2024-12-16",
+        "value": 85.2,
+        "variance": 5.2,
+        "variancePercentage": 6.5,
+        "status": "above_target",
+        "notes": "Optimal resource deployment"
+      }
+    ]
+  },
+  {
+    "id": "digital-adoption",
+    "name": "Digital Service Adoption Rate",
+    "description": "Percentage of services accessed through digital channels vs traditional methods",
+    "category": "Digital Transformation",
+    "unit": "%",
+    "target": 75.0,
+    "benchmark": 68.9,
+    "benchmarkSource": "Forrester Digital Transformation in Shared Services Report 2024",
+    "currentValue": 82.1,
+    "trend": "up",
+    "priority": "Medium",
+    "owner": "Digital Innovation",
+    "weeklyResults": [
+      {
+        "week": "2025-01-13",
+        "value": 82.1,
+        "variance": 7.1,
+        "variancePercentage": 9.5,
+        "status": "above_target",
+        "notes": "Strong adoption of new digital services"
+      },
+      {
+        "week": "2025-01-06",
+        "value": 79.8,
+        "variance": 4.8,
+        "variancePercentage": 6.4,
+        "status": "above_target",
+        "notes": "Continued growth in digital channel usage"
+      },
+      {
+        "week": "2024-12-30",
+        "value": 76.2,
+        "variance": 1.2,
+        "variancePercentage": 1.6,
+        "status": "above_target",
+        "notes": "Maintaining digital adoption during holidays"
+      },
+      {
+        "week": "2024-12-23",
+        "value": 77.5,
+        "variance": 2.5,
+        "variancePercentage": 3.3,
+        "status": "above_target",
+        "notes": "Digital services preferred by users"
+      },
+      {
+        "week": "2024-12-16",
+        "value": 74.3,
+        "variance": -0.7,
+        "variancePercentage": -0.9,
+        "status": "below_target",
+        "notes": "Baseline digital adoption measurement"
+      }
+    ]
+  }
+]

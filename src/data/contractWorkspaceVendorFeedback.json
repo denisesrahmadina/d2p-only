@@ -1,0 +1,182 @@
+[
+  {
+    "id": "f0000000-0000-0000-0000-000000000001",
+    "contract_review_id": "c0000000-0000-0000-0000-000000000000",
+    "section_name": "Pricing Structure",
+    "feedback_type": "modification_request",
+    "feedback_text": "We propose adding volume-based discount tiers for quarterly orders exceeding 10,000 units. This would incentivize bulk ordering and provide cost savings for both parties.",
+    "sentiment": "positive",
+    "priority": "medium",
+    "submitted_at": "2025-11-07T10:15:00Z"
+  },
+  {
+    "id": "f0000000-0000-0000-0000-000000000002",
+    "contract_review_id": "c0000000-0000-0000-0000-000000000000",
+    "section_name": "Delivery Schedule",
+    "feedback_type": "suggestion",
+    "feedback_text": "We suggest including a provision for expedited delivery (24-48 hours) for emergency replacement needs, with an agreed premium charge of 15% for such urgent orders.",
+    "sentiment": "positive",
+    "priority": "high",
+    "submitted_at": "2025-11-07T11:30:00Z"
+  },
+  {
+    "id": "f0000000-0000-0000-0000-000000000003",
+    "contract_review_id": "c0000000-0000-0000-0000-000000000000",
+    "section_name": "Quality Specifications",
+    "feedback_type": "clarification",
+    "feedback_text": "The ISO 9001:2015 quality standards are clear, but we'd like to add ISO 14644 Class 7 cleanroom certification for filters designated for critical power generation equipment.",
+    "sentiment": "neutral",
+    "priority": "high",
+    "submitted_at": "2025-11-07T11:45:00Z"
+  },
+  {
+    "id": "f0000000-0000-0000-0000-000000000004",
+    "contract_review_id": "c0000000-0000-0000-0000-000000000000",
+    "section_name": "Payment Terms",
+    "feedback_type": "concern",
+    "feedback_text": "The 60-day payment term is longer than our standard 30-day terms. We request consideration for either 45-day payment terms or early payment discount of 2% for payments within 15 days.",
+    "sentiment": "negative",
+    "priority": "high",
+    "submitted_at": "2025-11-07T12:00:00Z"
+  },
+  {
+    "id": "f1111111-1111-1111-1111-111111111111",
+    "contract_review_id": "c1111111-1111-1111-1111-111111111111",
+    "section_name": "Pricing Terms",
+    "feedback_type": "modification_request",
+    "feedback_text": "We request an adjustment to the pricing escalation clause to use the Consumer Price Index (CPI) instead of a fixed 5% annual increase. This better reflects actual market conditions.",
+    "sentiment": "neutral",
+    "priority": "high",
+    "submitted_at": "2025-01-15T10:30:00Z"
+  },
+  {
+    "id": "f2222222-2222-2222-2222-222222222222",
+    "contract_review_id": "c1111111-1111-1111-1111-111111111111",
+    "section_name": "Delivery Schedule",
+    "feedback_type": "concern",
+    "feedback_text": "The proposed delivery timeline of 90 days is too aggressive given current supply chain constraints. We recommend extending to 120 days.",
+    "sentiment": "negative",
+    "priority": "high",
+    "submitted_at": "2025-01-15T11:45:00Z"
+  },
+  {
+    "id": "f3333333-3333-3333-3333-333333333333",
+    "contract_review_id": "c1111111-1111-1111-1111-111111111111",
+    "section_name": "Quality Standards",
+    "feedback_type": "clarification",
+    "feedback_text": "Please clarify the testing methodology for the quality acceptance criteria. We want to ensure alignment with international standards.",
+    "sentiment": "neutral",
+    "priority": "medium",
+    "submitted_at": "2025-01-15T14:20:00Z"
+  },
+  {
+    "id": "f4444444-4444-4444-4444-444444444444",
+    "contract_review_id": "c5555555-5555-5555-5555-555555555555",
+    "section_name": "Equity Structure",
+    "feedback_type": "modification_request",
+    "feedback_text": "We propose adjusting the equity split from 60-40 to 55-45 to better reflect our technology contribution and operational responsibilities.",
+    "sentiment": "neutral",
+    "priority": "high",
+    "submitted_at": "2025-01-18T09:15:00Z"
+  },
+  {
+    "id": "f5555555-5555-5555-5555-555555555555",
+    "contract_review_id": "c5555555-5555-5555-5555-555555555555",
+    "section_name": "Governance",
+    "feedback_type": "suggestion",
+    "feedback_text": "We suggest adding a technical advisory board with equal representation to facilitate joint decision-making on technical matters.",
+    "sentiment": "positive",
+    "priority": "medium",
+    "submitted_at": "2025-01-18T10:30:00Z"
+  },
+  {
+    "id": "f6666666-6666-6666-6666-666666666666",
+    "contract_review_id": "c5555555-5555-5555-5555-555555555555",
+    "section_name": "Exit Clauses",
+    "feedback_type": "concern",
+    "feedback_text": "The current exit clause heavily favors one party. We need more balanced terms for both parties in case of dissolution.",
+    "sentiment": "negative",
+    "priority": "high",
+    "submitted_at": "2025-01-18T13:00:00Z"
+  },
+  {
+    "id": "f7777777-7777-7777-7777-777777777777",
+    "contract_review_id": "c3333333-3333-3333-3333-333333333333",
+    "section_name": "Response Time",
+    "feedback_type": "modification_request",
+    "feedback_text": "Request to reduce emergency response time from 4 hours to 2 hours for critical failures to minimize production downtime.",
+    "sentiment": "neutral",
+    "priority": "high",
+    "submitted_at": "2025-01-12T15:45:00Z"
+  },
+  {
+    "id": "f8888888-8888-8888-8888-888888888888",
+    "contract_review_id": "c3333333-3333-3333-3333-333333333333",
+    "section_name": "Service Level Agreement",
+    "feedback_type": "suggestion",
+    "feedback_text": "We propose adding a tiered SLA structure with different response times based on issue severity levels (Critical, High, Medium, Low).",
+    "sentiment": "positive",
+    "priority": "medium",
+    "submitted_at": "2025-01-12T16:20:00Z"
+  },
+  {
+    "id": "f9999999-9999-9999-9999-999999999999",
+    "contract_review_id": "c3333333-3333-3333-3333-333333333333",
+    "section_name": "Compensation Terms",
+    "feedback_type": "concern",
+    "feedback_text": "The penalty clause for SLA violations appears excessive at 10% of monthly fees. Industry standard is typically 3-5%. We request a more reasonable penalty structure.",
+    "sentiment": "negative",
+    "priority": "high",
+    "submitted_at": "2025-01-12T17:10:00Z"
+  },
+  {
+    "id": "f1010101-1010-1010-1010-101010101010",
+    "contract_review_id": "c3333333-3333-3333-3333-333333333333",
+    "section_name": "Maintenance Windows",
+    "feedback_type": "clarification",
+    "feedback_text": "Can you clarify the scheduled maintenance windows? Our operations run 24/7 and we need advance notice of at least 2 weeks for planned maintenance.",
+    "sentiment": "neutral",
+    "priority": "medium",
+    "submitted_at": "2025-01-12T18:00:00Z"
+  },
+  {
+    "id": "f1111111-1111-1111-1111-111111111112",
+    "contract_review_id": "c3333333-3333-3333-3333-333333333333",
+    "section_name": "Payment Terms",
+    "feedback_type": "modification_request",
+    "feedback_text": "We request changing payment terms from monthly advance to quarterly arrears to align with our standard vendor payment cycles.",
+    "sentiment": "neutral",
+    "priority": "medium",
+    "submitted_at": "2025-01-13T09:30:00Z"
+  },
+  {
+    "id": "f1212121-1212-1212-1212-121212121212",
+    "contract_review_id": "c1111111-1111-1111-1111-111111111111",
+    "section_name": "Payment Terms",
+    "feedback_type": "suggestion",
+    "feedback_text": "We suggest adding an early payment discount of 2% if invoices are paid within 10 days to incentivize prompt payment.",
+    "sentiment": "positive",
+    "priority": "low",
+    "submitted_at": "2025-01-15T15:30:00Z"
+  },
+  {
+    "id": "f1313131-1313-1313-1313-131313131313",
+    "contract_review_id": "c1111111-1111-1111-1111-111111111111",
+    "section_name": "Warranty Terms",
+    "feedback_type": "modification_request",
+    "feedback_text": "Request to extend warranty period from 12 months to 24 months for major equipment components, aligned with manufacturer warranties.",
+    "sentiment": "neutral",
+    "priority": "high",
+    "submitted_at": "2025-01-15T16:15:00Z"
+  },
+  {
+    "id": "f1414141-1414-1414-1414-141414141414",
+    "contract_review_id": "c1111111-1111-1111-1111-111111111111",
+    "section_name": "Force Majeure",
+    "feedback_type": "clarification",
+    "feedback_text": "The force majeure clause should explicitly include pandemic events, cyberattacks, and supply chain disruptions as covered events.",
+    "sentiment": "neutral",
+    "priority": "medium",
+    "submitted_at": "2025-01-16T10:00:00Z"
+  }
+]

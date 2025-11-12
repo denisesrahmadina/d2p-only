@@ -1,0 +1,568 @@
+[
+  {
+    "id": "sap-erp",
+    "organizationId": "pertamina-holding",
+    "name": "SAP ERP",
+    "type": "Enterprise Resource Planning",
+    "status": "connected",
+    "lastSync": "2 minutes ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/SAP/getPOdata",
+        "description": "Get PO Data filtered by range of date/category"
+      },
+      {
+        "method": "GET",
+        "path": "/api/SAP/getFinancialData",
+        "description": "Retrieve financial data including OPEX, CAPEX, and budget variances"
+      },
+      {
+        "method": "POST",
+        "path": "/api/SAP/createWorkOrder",
+        "description": "Create maintenance work orders for equipment"
+      },
+      {
+        "method": "GET",
+        "path": "/api/SAP/getInventoryLevels",
+        "description": "Get current inventory levels and stock movements"
+      }
+    ]
+  },
+  {
+    "id": "anaplan",
+    "organizationId": "pertamina-holding",
+    "name": "Anaplan",
+    "type": "Planning & Analytics",
+    "status": "connected",
+    "lastSync": "5 minutes ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/Anaplan/getForecasts",
+        "description": "Retrieve financial and operational forecasts"
+      },
+      {
+        "method": "POST",
+        "path": "/api/Anaplan/runScenario",
+        "description": "Execute scenario planning models"
+      },
+      {
+        "method": "GET",
+        "path": "/api/Anaplan/getBudgetData",
+        "description": "Get budget allocation and utilization data"
+      },
+      {
+        "method": "PUT",
+        "path": "/api/Anaplan/updatePlan",
+        "description": "Update planning models with new data"
+      }
+    ]
+  },
+  {
+    "id": "hadoop-hive",
+    "organizationId": "pertamina-holding",
+    "name": "Hadoop Hive",
+    "type": "Data Warehouse",
+    "status": "connected",
+    "lastSync": "1 minute ago",
+    "apiEndpoints": [
+      {
+        "method": "POST",
+        "path": "/api/Hive/executeQuery",
+        "description": "Execute HiveQL queries on big data"
+      },
+      {
+        "method": "GET",
+        "path": "/api/Hive/getTableSchema",
+        "description": "Retrieve table schemas and metadata"
+      },
+      {
+        "method": "GET",
+        "path": "/api/Hive/getPerformanceMetrics",
+        "description": "Get query performance and cluster metrics"
+      }
+    ]
+  },
+  {
+    "id": "servicenow",
+    "organizationId": "pertamina-holding",
+    "name": "ServiceNow",
+    "type": "IT Service Management",
+    "status": "connected",
+    "lastSync": "3 minutes ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/ServiceNow/getIncidents",
+        "description": "Retrieve IT incidents and service requests"
+      },
+      {
+        "method": "POST",
+        "path": "/api/ServiceNow/createTicket",
+        "description": "Create new service tickets or incidents"
+      },
+      {
+        "method": "GET",
+        "path": "/api/ServiceNow/getComplianceStatus",
+        "description": "Get compliance monitoring and governance status"
+      },
+      {
+        "method": "PUT",
+        "path": "/api/ServiceNow/updateTicket",
+        "description": "Update existing tickets with status changes"
+      }
+    ]
+  },
+  {
+    "id": "teams",
+    "organizationId": "pertamina-holding",
+    "name": "Microsoft Teams",
+    "type": "Collaboration",
+    "status": "connected",
+    "lastSync": "30 seconds ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/Teams/getMeetingSummaries",
+        "description": "Get AI-generated meeting summaries and action items"
+      },
+      {
+        "method": "POST",
+        "path": "/api/Teams/scheduleMeeting",
+        "description": "Schedule cross-BU coordination meetings"
+      },
+      {
+        "method": "GET",
+        "path": "/api/Teams/getCommunicationMetrics",
+        "description": "Retrieve collaboration and communication analytics"
+      }
+    ]
+  },
+  {
+    "id": "oracle-cloud",
+    "organizationId": "pertamina-holding",
+    "name": "Oracle Cloud",
+    "type": "Cloud Infrastructure",
+    "status": "connected",
+    "lastSync": "4 minutes ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/Oracle/getResourceUsage",
+        "description": "Get cloud resource utilization and costs"
+      },
+      {
+        "method": "POST",
+        "path": "/api/Oracle/scaleResources",
+        "description": "Auto-scale compute resources based on demand"
+      },
+      {
+        "method": "GET",
+        "path": "/api/Oracle/getPerformanceMetrics",
+        "description": "Retrieve infrastructure performance metrics"
+      }
+    ]
+  },
+  {
+    "id": "azure-ml",
+    "organizationId": "pertamina-holding",
+    "name": "Azure Machine Learning",
+    "type": "ML Platform",
+    "status": "connected",
+    "lastSync": "7 minutes ago",
+    "apiEndpoints": [
+      {
+        "method": "POST",
+        "path": "/api/AzureML/deployModel",
+        "description": "Deploy machine learning models to production"
+      },
+      {
+        "method": "GET",
+        "path": "/api/AzureML/getModelMetrics",
+        "description": "Get ML model performance and accuracy metrics"
+      },
+      {
+        "method": "POST",
+        "path": "/api/AzureML/trainModel",
+        "description": "Initiate model training with new datasets"
+      }
+    ]
+  },
+  {
+    "id": "ms-sql",
+    "organizationId": "pertamina-holding",
+    "name": "MS SQL",
+    "type": "Database",
+    "status": "connected",
+    "lastSync": "4 minutes ago",
+    "apiEndpoints": [
+      {
+        "method": "POST",
+        "path": "/api/MSSQL/executeQuery",
+        "description": "Execute SQL queries on enterprise databases"
+      },
+      {
+        "method": "GET",
+        "path": "/api/MSSQL/getTableData",
+        "description": "Retrieve data from specific tables with filters"
+      },
+      {
+        "method": "GET",
+        "path": "/api/MSSQL/getDatabaseMetrics",
+        "description": "Get database performance and health metrics"
+      }
+    ]
+  },
+  {
+    "id": "snowflake",
+    "organizationId": "pertamina-holding",
+    "name": "Snowflake",
+    "type": "Data Warehouse",
+    "status": "connected",
+    "lastSync": "2 minutes ago",
+    "apiEndpoints": [
+      {
+        "method": "POST",
+        "path": "/api/Snowflake/executeQuery",
+        "description": "Execute complex analytics queries on data warehouse"
+      },
+      {
+        "method": "GET",
+        "path": "/api/Snowflake/getQueryPerformance",
+        "description": "Get query execution performance and optimization suggestions"
+      },
+      {
+        "method": "GET",
+        "path": "/api/Snowflake/getDataLineage",
+        "description": "Retrieve data lineage and governance information"
+      }
+    ]
+  },
+  {
+    "id": "aws-s3",
+    "organizationId": "pertamina-holding",
+    "name": "AWS S3",
+    "type": "Data Storage",
+    "status": "connected",
+    "lastSync": "1 minute ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/S3/getObjects",
+        "description": "List and retrieve objects from S3 buckets"
+      },
+      {
+        "method": "POST",
+        "path": "/api/S3/uploadData",
+        "description": "Upload data files to designated S3 buckets"
+      },
+      {
+        "method": "GET",
+        "path": "/api/S3/getStorageMetrics",
+        "description": "Get storage usage and cost analytics"
+      }
+    ]
+  }
+  ,
+  {
+    "id": "core-banking-system",
+    "organizationId": "aib-bank",
+    "name": "Core Banking System",
+    "type": "Banking Platform",
+    "status": "connected",
+    "lastSync": "30 seconds ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/CoreBanking/getAccountData",
+        "description": "Retrieve customer account information and balances"
+      },
+      {
+        "method": "POST",
+        "path": "/api/CoreBanking/processTransaction",
+        "description": "Process banking transactions and transfers"
+      },
+      {
+        "method": "GET",
+        "path": "/api/CoreBanking/getTransactionHistory",
+        "description": "Get transaction history with filtering options"
+      }
+    ]
+  },
+  {
+    "id": "treasury-management",
+    "organizationId": "aib-bank",
+    "name": "Treasury Management System",
+    "type": "Financial Management",
+    "status": "connected",
+    "lastSync": "1 minute ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/Treasury/getLiquidityPosition",
+        "description": "Get current liquidity position and cash flow data"
+      },
+      {
+        "method": "POST",
+        "path": "/api/Treasury/optimizeFunding",
+        "description": "Execute funding optimization strategies"
+      },
+      {
+        "method": "GET",
+        "path": "/api/Treasury/getRiskMetrics",
+        "description": "Retrieve treasury risk metrics and exposure data"
+      }
+    ]
+  },
+  {
+    "id": "risk-analytics",
+    "organizationId": "aib-bank",
+    "name": "Risk Analytics Platform",
+    "type": "Risk Management",
+    "status": "connected",
+    "lastSync": "45 seconds ago",
+    "apiEndpoints": [
+      {
+        "method": "POST",
+        "path": "/api/RiskAnalytics/calculateVaR",
+        "description": "Calculate Value at Risk for portfolios"
+      },
+      {
+        "method": "GET",
+        "path": "/api/RiskAnalytics/getStressTestResults",
+        "description": "Get stress testing results and scenarios"
+      },
+      {
+        "method": "POST",
+        "path": "/api/RiskAnalytics/runCreditScoring",
+        "description": "Execute credit scoring models for loan applications"
+      }
+    ]
+  },
+  {
+    "id": "regulatory-reporting",
+    "organizationId": "aib-bank",
+    "name": "Regulatory Reporting System",
+    "type": "Compliance",
+    "status": "connected",
+    "lastSync": "2 minutes ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/Regulatory/getComplianceReports",
+        "description": "Generate regulatory compliance reports"
+      },
+      {
+        "method": "POST",
+        "path": "/api/Regulatory/submitReport",
+        "description": "Submit regulatory reports to authorities"
+      },
+      {
+        "method": "GET",
+        "path": "/api/Regulatory/getCapitalRatios",
+        "description": "Get capital adequacy and liquidity ratios"
+      }
+    ]
+  },
+  {
+    "id": "credit-bureau",
+    "organizationId": "aib-bank",
+    "name": "Credit Bureau Interface",
+    "type": "Credit Information",
+    "status": "connected",
+    "lastSync": "1 minute ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/CreditBureau/getCreditScore",
+        "description": "Retrieve credit scores and credit history"
+      },
+      {
+        "method": "POST",
+        "path": "/api/CreditBureau/updateCreditData",
+        "description": "Update customer credit information"
+      },
+      {
+        "method": "GET",
+        "path": "/api/CreditBureau/getDefaultProbability",
+        "description": "Calculate default probability for customers"
+      }
+    ]
+  },
+  {
+    "id": "loan-origination-system",
+    "organizationId": "aib-bank",
+    "name": "Loan Origination System",
+    "type": "Lending Platform",
+    "status": "connected",
+    "lastSync": "30 seconds ago",
+    "apiEndpoints": [
+      {
+        "method": "POST",
+        "path": "/api/LOS/createLoanApplication",
+        "description": "Create new loan applications"
+      },
+      {
+        "method": "GET",
+        "path": "/api/LOS/getLoanStatus",
+        "description": "Get loan application status and approval workflow"
+      },
+      {
+        "method": "PUT",
+        "path": "/api/LOS/updateLoanTerms",
+        "description": "Update loan terms and conditions"
+      }
+    ]
+  },
+  {
+    "id": "digital-banking-platform",
+    "organizationId": "aib-bank",
+    "name": "Digital Banking Platform",
+    "type": "Digital Services",
+    "status": "connected",
+    "lastSync": "15 seconds ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/DigitalBanking/getCustomerJourney",
+        "description": "Analyze customer digital journey and behavior"
+      },
+      {
+        "method": "POST",
+        "path": "/api/DigitalBanking/personalizeExperience",
+        "description": "Personalize banking experience based on customer data"
+      },
+      {
+        "method": "GET",
+        "path": "/api/DigitalBanking/getUsageMetrics",
+        "description": "Get digital platform usage and performance metrics"
+      }
+    ]
+  },
+  {
+    "id": "customer-analytics",
+    "organizationId": "aib-bank",
+    "name": "Customer Analytics Engine",
+    "type": "Analytics Platform",
+    "status": "connected",
+    "lastSync": "1 minute ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/CustomerAnalytics/getSegmentation",
+        "description": "Get customer segmentation and behavioral analysis"
+      },
+      {
+        "method": "POST",
+        "path": "/api/CustomerAnalytics/generateInsights",
+        "description": "Generate customer insights and recommendations"
+      },
+      {
+        "method": "GET",
+        "path": "/api/CustomerAnalytics/getPredictiveModels",
+        "description": "Get predictive models for customer behavior"
+      }
+    ]
+  },
+  {
+    "id": "fraud-detection",
+    "organizationId": "aib-bank",
+    "name": "Fraud Detection System",
+    "type": "Security Platform",
+    "status": "connected",
+    "lastSync": "20 seconds ago",
+    "apiEndpoints": [
+      {
+        "method": "POST",
+        "path": "/api/FraudDetection/analyzeTransaction",
+        "description": "Analyze transactions for fraud patterns"
+      },
+      {
+        "method": "GET",
+        "path": "/api/FraudDetection/getFraudAlerts",
+        "description": "Get real-time fraud alerts and suspicious activities"
+      },
+      {
+        "method": "PUT",
+        "path": "/api/FraudDetection/updateRules",
+        "description": "Update fraud detection rules and thresholds"
+      }
+    ]
+  },
+  {
+    "id": "portfolio-management",
+    "organizationId": "aib-bank",
+    "name": "Portfolio Management System",
+    "type": "Investment Platform",
+    "status": "connected",
+    "lastSync": "1 minute ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/Portfolio/getPerformance",
+        "description": "Get portfolio performance and attribution analysis"
+      },
+      {
+        "method": "POST",
+        "path": "/api/Portfolio/rebalance",
+        "description": "Execute portfolio rebalancing strategies"
+      },
+      {
+        "method": "GET",
+        "path": "/api/Portfolio/getRiskMetrics",
+        "description": "Get portfolio risk metrics and exposure analysis"
+      }
+    ]
+  },
+  {
+    "id": "market-data",
+    "organizationId": "aib-bank",
+    "name": "Market Data Feed",
+    "type": "Financial Data",
+    "status": "connected",
+    "lastSync": "10 seconds ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/MarketData/getRealTimePrices",
+        "description": "Get real-time market prices and quotes"
+      },
+      {
+        "method": "GET",
+        "path": "/api/MarketData/getHistoricalData",
+        "description": "Retrieve historical market data and trends"
+      },
+      {
+        "method": "POST",
+        "path": "/api/MarketData/subscribeToFeed",
+        "description": "Subscribe to specific market data feeds"
+      }
+    ]
+  },
+  {
+    "id": "liquidity-monitoring",
+    "organizationId": "aib-bank",
+    "name": "Liquidity Monitoring System",
+    "type": "Treasury Platform",
+    "status": "connected",
+    "lastSync": "45 seconds ago",
+    "apiEndpoints": [
+      {
+        "method": "GET",
+        "path": "/api/LiquidityMonitoring/getCurrentPosition",
+        "description": "Get current liquidity position and ratios"
+      },
+      {
+        "method": "POST",
+        "path": "/api/LiquidityMonitoring/forecastCashFlow",
+        "description": "Generate cash flow forecasts and scenarios"
+      },
+      {
+        "method": "GET",
+        "path": "/api/LiquidityMonitoring/getComplianceStatus",
+        "description": "Check liquidity compliance with regulatory requirements"
+      }
+    ]
+  }
+]

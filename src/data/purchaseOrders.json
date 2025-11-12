@@ -1,0 +1,164 @@
+[
+  {
+    "id": "9300044065",
+    "vendor": "PT Accenture",
+    "category": "Professional Services",
+    "amount": "IDR 7,847,067,865",
+    "description": "SAP S/4 Transformation Program (Project scope with 3 milestones)",
+    "status": "Partially Delivered",
+    "requestor": "PT. ANGIN RIBUT AND TECHNOLOGY",
+    "approvedBy": "Michael Chen",
+    "orderDate": "2025-08-05",
+    "expectedDelivery": "2025-08-15",
+    "deliveryMilestone": [
+      {
+        "milestone": "Project Design Completion",
+        "percent": 30,
+        "plannedDate": "2025-07-01",
+        "plannedAmount": "IDR 2,101,893,178"
+      },
+      {
+        "milestone": "Project Testing Completion", 
+        "percent": 50,
+        "plannedDate": "2025-07-20",
+        "plannedAmount": "IDR 3,503,155,297"
+      },
+      {
+        "milestone": "Project Go-Live",
+        "percent": 20,
+        "plannedDate": "2025-08-15", 
+        "plannedAmount": "IDR 1,401,262,119"
+      }
+    ]
+  },
+  {
+    "id": "PO-2024-001",
+    "vendor": "PT Astra International",
+    "category": "Parts & Components",
+    "amount": "IDR 2,500,000,000",
+    "description": "Motorcycle engine components for Q1 production",
+    "status": "Open",
+    "requestor": "Production Team",
+    "approvedBy": "Sarah Johnson",
+    "orderDate": "2024-12-15",
+    "expectedDelivery": "2025-01-15",
+    "deliveryMilestone": [
+      {
+        "milestone": "Initial Delivery",
+        "percent": 60,
+        "plannedDate": "2025-01-05",
+        "plannedAmount": "IDR 1,500,000,000"
+      },
+      {
+        "milestone": "Final Delivery",
+        "percent": 40,
+        "plannedDate": "2025-01-15",
+        "plannedAmount": "IDR 1,000,000,000"
+      }
+    ]
+  },
+  {
+    "id": "PO-2024-002",
+    "vendor": "PT Honda Prospect Motor",
+    "category": "Manufacturing Equipment",
+    "amount": "IDR 5,750,000,000",
+    "description": "Assembly line automation equipment upgrade",
+    "status": "Partially Delivered",
+    "requestor": "Engineering Team",
+    "approvedBy": "Michael Chen",
+    "orderDate": "2024-11-20",
+    "expectedDelivery": "2025-02-28",
+    "deliveryMilestone": [
+      {
+        "milestone": "Equipment Delivery",
+        "percent": 70,
+        "plannedDate": "2025-02-10",
+        "plannedAmount": "IDR 4,025,000,000"
+      },
+      {
+        "milestone": "Installation & Testing",
+        "percent": 30,
+        "plannedDate": "2025-02-28",
+        "plannedAmount": "IDR 1,725,000,000"
+      }
+    ]
+  },
+  {
+    "id": "PO-2024-003",
+    "vendor": "PT Federal Izumi",
+    "category": "Office Supplies",
+    "amount": "IDR 125,000,000",
+    "description": "Office furniture and equipment for new facility",
+    "status": "Delivered",
+    "requestor": "Admin Team",
+    "approvedBy": "Lisa Wang",
+    "orderDate": "2024-10-05",
+    "expectedDelivery": "2024-11-15",
+    "deliveryMilestone": [
+      {
+        "milestone": "Furniture Delivery",
+        "percent": 80,
+        "plannedDate": "2024-11-10",
+        "plannedAmount": "IDR 100,000,000"
+      },
+      {
+        "milestone": "Equipment Setup",
+        "percent": 20,
+        "plannedDate": "2024-11-15",
+        "plannedAmount": "IDR 25,000,000"
+      }
+    ]
+  },
+  {
+    "id": "PO-2024-004",
+    "vendor": "PT Denso Indonesia",
+    "category": "Parts & Components",
+    "amount": "IDR 3,200,000,000",
+    "description": "Electronic control units and sensors",
+    "status": "Open",
+    "requestor": "Quality Team",
+    "approvedBy": "Robert Thompson",
+    "orderDate": "2024-12-01",
+    "expectedDelivery": "2025-01-30",
+    "deliveryMilestone": [
+      {
+        "milestone": "ECU Delivery",
+        "percent": 65,
+        "plannedDate": "2025-01-15",
+        "plannedAmount": "IDR 2,080,000,000"
+      },
+      {
+        "milestone": "Sensor Delivery",
+        "percent": 35,
+        "plannedDate": "2025-01-30",
+        "plannedAmount": "IDR 1,120,000,000"
+      }
+    ]
+  },
+  {
+    "id": "PO-2024-005",
+    "vendor": "PT Showa Indonesia",
+    "category": "Maintenance & Repair",
+    "amount": "IDR 890,000,000",
+    "description": "Hydraulic system maintenance and spare parts",
+    "status": "Partially Delivered",
+    "requestor": "Maintenance Team",
+    "approvedBy": "Jennifer Rodriguez",
+    "orderDate": "2024-11-30",
+    "expectedDelivery": "2025-01-20",
+    "deliveryMilestone": [
+      {
+        "milestone": "Parts Delivery",
+        "percent": 75,
+        "plannedDate": "2025-01-10",
+        "plannedAmount": "IDR 667,500,000"
+      },
+      {
+        "milestone": "Installation Service",
+        "percent": 25,
+        "plannedDate": "2025-01-20",
+        "plannedAmount": "IDR 222,500,000"
+      }
+    ]
+  }
+]

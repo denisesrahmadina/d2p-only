@@ -1,0 +1,362 @@
+[
+  {
+    "id": "ubp-adp",
+    "code": "ADP",
+    "name": "UBP ADP",
+    "fullName": "Unit Bisnis Pembangkitan ADP",
+    "progress": 87,
+    "location": "Indonesia",
+    "capacity": "1000 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-asm",
+    "code": "ASM",
+    "name": "UBP ASM",
+    "fullName": "Unit Bisnis Pembangkitan ASM",
+    "progress": 55,
+    "location": "Indonesia",
+    "capacity": "850 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-beu",
+    "code": "BEU",
+    "name": "UBP BEU",
+    "fullName": "Unit Bisnis Pembangkitan BEU",
+    "progress": 100,
+    "location": "Indonesia",
+    "capacity": "1200 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-bkl",
+    "code": "BKL",
+    "name": "UBP BKL",
+    "fullName": "Unit Bisnis Pembangkitan BKL",
+    "progress": 23,
+    "location": "Indonesia",
+    "capacity": "950 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-bkt",
+    "code": "BKT",
+    "name": "UBP BKT",
+    "fullName": "Unit Bisnis Pembangkitan BKT",
+    "progress": 78,
+    "location": "Indonesia",
+    "capacity": "1100 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-blb",
+    "code": "BLB",
+    "name": "UBP BLB",
+    "fullName": "Unit Bisnis Pembangkitan BLB",
+    "progress": 56,
+    "location": "Indonesia",
+    "capacity": "900 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-bli",
+    "code": "BLI",
+    "name": "UBP BLI",
+    "fullName": "Unit Bisnis Pembangkitan BLI",
+    "progress": 91,
+    "location": "Indonesia",
+    "capacity": "1300 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-blt",
+    "code": "BLT",
+    "name": "UBP BLT",
+    "fullName": "Unit Bisnis Pembangkitan BLT",
+    "progress": 15,
+    "location": "Indonesia",
+    "capacity": "800 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-bru",
+    "code": "BRU",
+    "name": "UBP BRU",
+    "fullName": "Unit Bisnis Pembangkitan BRU",
+    "progress": 68,
+    "location": "Indonesia",
+    "capacity": "1050 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-bsl",
+    "code": "BSL",
+    "name": "UBP BSL",
+    "fullName": "Unit Bisnis Pembangkitan BSL",
+    "progress": 84,
+    "location": "Indonesia",
+    "capacity": "1150 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-bto",
+    "code": "BTO",
+    "name": "UBP BTO",
+    "fullName": "Unit Bisnis Pembangkitan BTO",
+    "progress": 42,
+    "location": "Indonesia",
+    "capacity": "950 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-clg",
+    "code": "CLG",
+    "name": "UBP CLG",
+    "fullName": "Unit Bisnis Pembangkitan CLG",
+    "progress": 95,
+    "location": "Indonesia",
+    "capacity": "1400 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-grt",
+    "code": "GRT",
+    "name": "UBP GRT",
+    "fullName": "Unit Bisnis Pembangkitan GRT",
+    "progress": 29,
+    "location": "Indonesia",
+    "capacity": "850 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-htk",
+    "code": "HTK",
+    "name": "UBP HTK",
+    "fullName": "Unit Bisnis Pembangkitan HTK",
+    "progress": 73,
+    "location": "Indonesia",
+    "capacity": "1100 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-jmb",
+    "code": "JMB",
+    "name": "UBP JMB",
+    "fullName": "Unit Bisnis Pembangkitan JMB",
+    "progress": 88,
+    "location": "Indonesia",
+    "capacity": "1250 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-jpr",
+    "code": "JPR",
+    "name": "UBP JPR",
+    "fullName": "Unit Bisnis Pembangkitan JPR",
+    "progress": 51,
+    "location": "Indonesia",
+    "capacity": "1000 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-jrj",
+    "code": "JRJ",
+    "name": "UBP JRJ",
+    "fullName": "Unit Bisnis Pembangkitan JRJ",
+    "progress": 12,
+    "location": "Indonesia",
+    "capacity": "900 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-kmj",
+    "code": "KMJ",
+    "name": "UBP KMJ",
+    "fullName": "Unit Bisnis Pembangkitan KMJ",
+    "progress": 76,
+    "location": "Indonesia",
+    "capacity": "1150 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-kri",
+    "code": "KRI",
+    "name": "UBP KRI",
+    "fullName": "Unit Bisnis Pembangkitan KRI",
+    "progress": 63,
+    "location": "Indonesia",
+    "capacity": "1050 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-krm",
+    "code": "KRM",
+    "name": "UBP KRM",
+    "fullName": "Unit Bisnis Pembangkitan KRM",
+    "progress": 38,
+    "location": "Indonesia",
+    "capacity": "950 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-lba",
+    "code": "LBA",
+    "name": "UBP LBA",
+    "fullName": "Unit Bisnis Pembangkitan LBA",
+    "progress": 81,
+    "location": "Indonesia",
+    "capacity": "1200 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-mhk",
+    "code": "MHK",
+    "name": "UBP MHK",
+    "fullName": "Unit Bisnis Pembangkitan MHK",
+    "progress": 47,
+    "location": "Indonesia",
+    "capacity": "1000 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-mrc",
+    "code": "MRC",
+    "name": "UBP MRC",
+    "fullName": "Unit Bisnis Pembangkitan MRC",
+    "progress": 94,
+    "location": "Indonesia",
+    "capacity": "1350 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-omb",
+    "code": "OMB",
+    "name": "UBP OMB",
+    "fullName": "Unit Bisnis Pembangkitan OMB",
+    "progress": 27,
+    "location": "Indonesia",
+    "capacity": "900 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-pns",
+    "code": "PNS",
+    "name": "UBP PNS",
+    "fullName": "Unit Bisnis Pembangkitan PNS",
+    "progress": 70,
+    "location": "Indonesia",
+    "capacity": "1100 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-pro",
+    "code": "PRO",
+    "name": "UBP PRO",
+    "fullName": "Unit Bisnis Pembangkitan PRO",
+    "progress": 85,
+    "location": "Indonesia",
+    "capacity": "1250 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-sgl",
+    "code": "SGL",
+    "name": "UBP SGL",
+    "fullName": "Unit Bisnis Pembangkitan SGL",
+    "progress": 58,
+    "location": "Indonesia",
+    "capacity": "1050 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-sgu",
+    "code": "SGU",
+    "name": "UBP SGU",
+    "fullName": "Unit Bisnis Pembangkitan SGU",
+    "progress": 19,
+    "location": "Indonesia",
+    "capacity": "850 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-skw",
+    "code": "SKW",
+    "name": "UBP SKW",
+    "fullName": "Unit Bisnis Pembangkitan SKW",
+    "progress": 72,
+    "location": "Indonesia",
+    "capacity": "1150 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-sla",
+    "code": "SLA",
+    "name": "UBP SLA",
+    "fullName": "Unit Bisnis Pembangkitan SLA",
+    "progress": 89,
+    "location": "Indonesia",
+    "capacity": "1300 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-smg",
+    "code": "SMG",
+    "name": "UBP SMG",
+    "fullName": "Unit Bisnis Pembangkitan SMG",
+    "progress": 44,
+    "location": "Indonesia",
+    "capacity": "1000 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-stg",
+    "code": "STG",
+    "name": "UBP STG",
+    "fullName": "Unit Bisnis Pembangkitan STG",
+    "progress": 100,
+    "location": "Indonesia",
+    "capacity": "1400 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-tlo",
+    "code": "TLO",
+    "name": "UBP TLO",
+    "fullName": "Unit Bisnis Pembangkitan TLO",
+    "progress": 31,
+    "location": "Indonesia",
+    "capacity": "950 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-tir",
+    "code": "TIR",
+    "name": "UBP TIR",
+    "fullName": "Unit Bisnis Pembangkitan TIR",
+    "progress": 65,
+    "location": "Indonesia",
+    "capacity": "1100 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-jtg",
+    "code": "JTG",
+    "name": "UBP JTG",
+    "fullName": "Unit Bisnis Pembangkitan JTG",
+    "progress": 100,
+    "location": "Indonesia",
+    "capacity": "1200 MW",
+    "status": "active"
+  },
+  {
+    "id": "ubp-tjb",
+    "code": "TJB",
+    "name": "UBP TJB",
+    "fullName": "Unit Bisnis Pembangkitan TJB",
+    "progress": 100,
+    "location": "Indonesia",
+    "capacity": "1300 MW",
+    "status": "active"
+  }
+]

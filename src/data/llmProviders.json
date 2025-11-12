@@ -1,0 +1,80 @@
+[
+  {
+    "id": "openai-gpt4",
+    "organizationId": "pertamina-holding",
+    "name": "OpenAI GPT-4",
+    "provider": "OpenAI",
+    "model": "gpt-4-turbo",
+    "status": "active",
+    "apiEndpoint": "https://api.openai.com/v1/chat/completions",
+    "capabilities": ["text-generation", "reasoning", "analysis"],
+    "costPerToken": 0.00003,
+    "maxTokens": 128000,
+    "lastHealthCheck": "1 minute ago"
+  },
+  {
+    "id": "azure-openai",
+    "organizationId": "pertamina-holding",
+    "name": "Azure OpenAI Service",
+    "provider": "Microsoft Azure",
+    "model": "gpt-4",
+    "status": "active",
+    "apiEndpoint": "https://pertamina-ai.openai.azure.com/",
+    "capabilities": ["text-generation", "reasoning", "analysis", "enterprise-security"],
+    "costPerToken": 0.00003,
+    "maxTokens": 128000,
+    "lastHealthCheck": "2 minutes ago"
+  },
+  {
+    "id": "anthropic-claude",
+    "organizationId": "pertamina-holding",
+    "name": "Anthropic Claude",
+    "provider": "Anthropic",
+    "model": "claude-3-opus",
+    "status": "active",
+    "apiEndpoint": "https://api.anthropic.com/v1/messages",
+    "capabilities": ["text-generation", "reasoning", "analysis", "safety-focused"],
+    "costPerToken": 0.000015,
+    "maxTokens": 200000,
+    "lastHealthCheck": "3 minutes ago"
+  },
+  {
+    "id": "google-gemini",
+    "organizationId": "pertamina-holding",
+    "name": "Google Gemini Pro",
+    "provider": "Google Cloud",
+    "model": "gemini-pro",
+    "status": "active",
+    "apiEndpoint": "https://generativelanguage.googleapis.com/v1/models/gemini-pro",
+    "capabilities": ["text-generation", "multimodal", "reasoning"],
+    "costPerToken": 0.000125,
+    "maxTokens": 32000,
+    "lastHealthCheck": "1 minute ago"
+  },
+  {
+    "id": "aws-bedrock-claude",
+    "organizationId": "pertamina-holding",
+    "name": "AWS Bedrock Claude",
+    "provider": "Amazon Web Services",
+    "model": "anthropic.claude-v2",
+    "status": "active",
+    "apiEndpoint": "https://bedrock-runtime.us-east-1.amazonaws.com/",
+    "capabilities": ["text-generation", "reasoning", "enterprise-integration"],
+    "costPerToken": 0.00008,
+    "maxTokens": 100000,
+    "lastHealthCheck": "4 minutes ago"
+  },
+  {
+    "id": "deepseek-r1",
+    "organizationId": "pertamina-holding",
+    "name": "DeepSeek R1",
+    "provider": "DeepSeek",
+    "model": "deepseek-r1",
+    "status": "active",
+    "apiEndpoint": "https://api.deepseek.com/v1/chat/completions",
+    "capabilities": ["text-generation", "reasoning", "analysis", "enterprise"],
+    "costPerToken": 0.000002,
+    "maxTokens": 128000,
+    "lastHealthCheck": "2 minutes ago"
+  }
+]

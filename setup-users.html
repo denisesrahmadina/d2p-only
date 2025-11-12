@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Authentication Users</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        .log {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .log-entry {
+            margin: 8px 0;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .log-entry.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .log-entry.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .log-entry.info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .progress {
+            margin-top: 20px;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        .instructions {
+            background: #fef3c7;
+            border: 1px solid #fbbf24;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #92400e;
+        }
+        .credentials {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ecfdf5;
+            border: 1px solid #10b981;
+            border-radius: 6px;
+        }
+        .credentials h3 {
+            margin-top: 0;
+            color: #065f46;
+        }
+        .credential-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Setup Authentication Users</h1>
+        <p class="subtitle">This utility creates Supabase Auth users for the Indonesia Power team members</p>
+
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Click "Create Auth Users" to register all team members</li>
+                <li>All users will be created with the default password: <strong>indonesiapower2024</strong></li>
+                <li>Users can change their password after first login</li>
+            </ol>
+        </div>
+
+        <button id="setupBtn" onclick="setupUsers()">Create Auth Users</button>
+
+        <div class="progress" id="progress" style="display: none;">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="log" id="log"></div>
+
+        <div class="credentials" id="credentials" style="display: none;">
+            <h3>Login Credentials</h3>
+            <p>All users have been created with password: <strong>indonesiapower2024</strong></p>
+            <div id="credentialsList"></div>
+        </div>
+    </div>
+
+    <script>
+        const SUPABASE_URL = 'https://nkszdcupznvejgldciqv.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5rc3pkY3Vwem52ZWpnbGRjaXF2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzAwNjMwNDEsImV4cCI6MjA0NTYzOTA0MX0.pIEGRv1wPqVsJMC6P-hsBwf09mQUB2RRl4oE0bYQv5Y';
+
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const DEFAULT_PASSWORD = 'indonesiapower2024';
+
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function updateProgress(current, total) {
+            const progressBar = document.getElementById('progressBar');
+            const percentage = (current / total) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
+
+        async function setupUsers() {
+            const btn = document.getElementById('setupBtn');
+            const progressDiv = document.getElementById('progress');
+            const credentialsDiv = document.getElementById('credentials');
+            const credentialsList = document.getElementById('credentialsList');
+
+            btn.disabled = true;
+            progressDiv.style.display = 'block';
+            document.getElementById('log').innerHTML = '';
+
+            log('Starting user setup...', 'info');
+
+            // Fetch users from database
+            log('Fetching users from database...', 'info');
+            const { data: users, error: fetchError } = await supabase
+                .from('users')
+                .select('*')
+                .eq('organization_id', 'indonesia-power');
+
+            if (fetchError) {
+                log(`Error fetching users: ${fetchError.message}`, 'error');
+                btn.disabled = false;
+                return;
+            }
+
+            log(`Found ${users.length} users to register`, 'success');
+
+            const successfulUsers = [];
+
+            for (let i = 0; i < users.length; i++) {
+                const user = users[i];
+                updateProgress(i, users.length);
+
+                log(`Creating auth user for: ${user.email}`, 'info');
+
+                try {
+                    const response = await fetch(`${SUPABASE_URL}/functions/v1/create-auth-user`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'apikey': SUPABASE_ANON_KEY
+                        },
+                        body: JSON.stringify({
+                            email: user.email,
+                            password: DEFAULT_PASSWORD,
+                            name: user.name,
+                            organizationId: user.organization_id,
+                            departmentId: user.department_id,
+                            role: user.role,
+                            department: user.department,
+                            permissions: user.permissions || []
+                        })
+                    });
+
+                    const result = await response.json();
+
+                    if (result.error) {
+                        if (result.error.includes('already registered')) {
+                            log(`User ${user.email} already exists (skipping)`, 'info');
+                        } else {
+                            log(`Error for ${user.email}: ${result.error}`, 'error');
+                        }
+                    } else {
+                        log(`Successfully created: ${user.email}`, 'success');
+                        successfulUsers.push({ email: user.email, name: user.name });
+                    }
+                } catch (error) {
+                    log(`Exception for ${user.email}: ${error.message}`, 'error');
+                }
+
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+
+            updateProgress(users.length, users.length);
+            log('Setup complete!', 'success');
+            log(`${successfulUsers.length} users successfully registered`, 'success');
+
+            // Show credentials
+            if (successfulUsers.length > 0) {
+                credentialsDiv.style.display = 'block';
+                credentialsList.innerHTML = successfulUsers.map(u => `
+                    <div class="credential-item">
+                        <strong>${u.name}</strong><br>
+                        Email: ${u.email}<br>
+                        Password: ${DEFAULT_PASSWORD}
+                    </div>
+                `).join('');
+            }
+
+            btn.disabled = false;
+        }
+    </script>
+</body>
+</html>

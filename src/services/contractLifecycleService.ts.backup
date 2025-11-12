@@ -1,0 +1,1185 @@
+export interface ContractTemplate {
+  id: string;
+  sourcing_event_id: string;
+  template_name: string;
+  template_content: Record<string, any>;
+  template_sections: Record<string, any>;
+  status: 'Draft' | 'Pending Approval' | 'Approved' | 'Rejected';
+  version: number;
+  created_by: string;
+  approved_by?: string;
+  approval_status: 'Pending' | 'Approved' | 'Rejected';
+  approval_date?: string;
+  rejection_reason?: string;
+  organization_id?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ContractWorkspace {
+  id: string;
+  contract_template_id: string;
+  sourcing_event_id: string;
+  current_content: Record<string, any>;
+  workspace_status: 'Active' | 'Locked' | 'Archived' | 'Submitted for Approval';
+  locked_by?: string;
+  locked_at?: string;
+  active_editors: string[];
+  organization_id?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ContractChangeLog {
+  id: string;
+  contract_workspace_id: string;
+  changed_by: string;
+  change_type: 'Content Edit' | 'AI Suggestion Applied' | 'Section Added' | 'Section Deleted' | 'Format Change';
+  change_location: string;
+  previous_content?: string;
+  new_content?: string;
+  ai_suggestion_id?: string;
+  character_count_change: number;
+  timestamp: string;
+  organization_id?: string;
+}
+
+export interface ContractApproval {
+  id: string;
+  contract_workspace_id: string;
+  contract_version: number;
+  approver_id: string;
+  approver_name: string;
+  approver_role: 'Procurement Manager' | 'Requestor' | 'Legal' | 'Finance';
+  approval_status: 'Pending' | 'Approved' | 'Rejected' | 'Revision Required';
+  comments?: string;
+  ai_insights_reviewed: boolean;
+  reviewed_at?: string;
+  decision_notes?: string;
+  organization_id?: string;
+  created_at: string;
+}
+
+export interface ContractAIInsight {
+  id: string;
+  contract_workspace_id: string;
+  insight_type: 'Compliance Issue' | 'Risk Factor' | 'Missing Clause' | 'Improvement Suggestion' | 'Legal Risk' | 'Financial Risk' | 'Delivery Risk';
+  risk_category: 'Legal' | 'Financial' | 'Operational' | 'Compliance' | 'Delivery' | 'Performance';
+  severity: 'Critical' | 'High' | 'Medium' | 'Low';
+  title: string;
+  description: string;
+  affected_section: string;
+  recommendations: string[];
+  auto_applied: boolean;
+  applied_by?: string;
+  applied_at?: string;
+  organization_id?: string;
+  created_at: string;
+}
+
+export interface TemplateAISuggestion {
+  id: string;
+  template_id: string;
+  sourcing_event_id: string;
+  clause_category: 'Legal' | 'Financial' | 'Delivery' | 'Performance' | 'Compliance' | 'Risk Management' | 'Termination' | 'Special Conditions';
+  suggested_clause_text: string;
+  confidence_score: number;
+  applied_status: 'pending' | 'accepted' | 'rejected';
+  applied_by?: string;
+  applied_at?: string;
+  reasoning: string;
+  section_reference: string;
+  priority: 'critical' | 'high' | 'medium' | 'low';
+  organization_id?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+// Mock data for Contract Lifecycle
+const mockContractTemplates: ContractTemplate[] = [
+  {
+    id: 'CT001',
+    sourcing_event_id: 'SE-2025-001',
+    template_name: 'Solar Panel Supply Agreement',
+    template_content: {
+      parties: {
+        buyer: 'PT Indonesia Power',
+        supplier: 'To be determined',
+      },
+      scopeOfWork: 'Supply and installation of solar panels for 50 MW renewable energy project',
+      deliverySchedule: {
+        startDate: '2025-01-15',
+        endDate: '2025-07-15',
+        milestones: []
+      },
+      pricingTerms: {
+        totalValue: 'As per bid',
+        paymentTerms: '30% advance, 40% on delivery, 30% on commissioning',
+        currency: 'IDR'
+      },
+      performanceStandards: {
+        qualityMetrics: 'As per technical specifications',
+        warranties: ''
+      },
+      terminationClauses: {
+        noticePeriod: '30 days',
+        conditions: 'Material breach or force majeure',
+        liquidatedDamages: ''
+      },
+      specialConditions: {
+        localContentRequirement: '40% minimum',
+        sustainabilityRequirements: ''
+      }
+    },
+    template_sections: {
+      parties: true,
+      scopeOfWork: true,
+      deliverySchedule: true,
+      pricingTerms: true,
+      performanceStandards: true,
+      terminationClauses: true,
+      specialConditions: true
+    },
+    status: 'Approved',
+    version: 1,
+    created_by: 'admin@indonesiapower.co.id',
+    approved_by: 'manager@indonesiapower.co.id',
+    approval_status: 'Approved',
+    approval_date: new Date(Date.now() - 864000000).toISOString(),
+    organization_id: 'org-1',
+    created_at: new Date(Date.now() - 1728000000).toISOString(),
+    updated_at: new Date(Date.now() - 864000000).toISOString()
+  },
+  {
+    id: 'CT002',
+    sourcing_event_id: 'SE-2025-002',
+    template_name: 'Wind Turbine Equipment Contract',
+    template_content: {
+      parties: {
+        buyer: 'PT Indonesia Power',
+        supplier: 'To be determined',
+      },
+      scopeOfWork: 'Supply and installation of wind turbine components',
+      deliverySchedule: {
+        startDate: '2025-02-01',
+        endDate: '2025-08-01',
+        milestones: []
+      },
+      pricingTerms: {
+        totalValue: 'As per bid',
+        paymentTerms: '20% advance, 50% on delivery, 30% on commissioning',
+        currency: 'USD'
+      },
+      performanceStandards: {
+        qualityMetrics: 'IEC standards compliance',
+        warranties: ''
+      },
+      terminationClauses: {
+        noticePeriod: '60 days',
+        conditions: 'Material breach, force majeure, or regulatory changes',
+        liquidatedDamages: ''
+      },
+      specialConditions: {
+        localContentRequirement: '35% minimum',
+        sustainabilityRequirements: ''
+      }
+    },
+    template_sections: {
+      parties: true,
+      scopeOfWork: true,
+      deliverySchedule: true,
+      pricingTerms: true,
+      performanceStandards: true,
+      terminationClauses: true,
+      specialConditions: true
+    },
+    status: 'Approved',
+    version: 1,
+    created_by: 'admin@indonesiapower.co.id',
+    approved_by: 'manager@indonesiapower.co.id',
+    approval_status: 'Approved',
+    approval_date: new Date(Date.now() - 604800000).toISOString(),
+    organization_id: 'org-1',
+    created_at: new Date(Date.now() - 1296000000).toISOString(),
+    updated_at: new Date(Date.now() - 604800000).toISOString()
+  }
+];
+
+const mockWorkspaces: ContractWorkspace[] = [];
+const mockChangeLogs: ContractChangeLog[] = [];
+const mockApprovals: ContractApproval[] = [];
+const mockAIInsights: ContractAIInsight[] = [];
+const mockAISuggestions: TemplateAISuggestion[] = [];
+
+export class ContractLifecycleService {
+  static async getContractTemplatesBySourcingEvent(sourcingEventId: string): Promise<ContractTemplate[]> {
+    // Use mock data instead of Supabase
+    return mockContractTemplates.filter(t => t.sourcing_event_id === sourcingEventId);
+  }
+
+  static async getAllContractTemplates(): Promise<ContractTemplate[]> {
+    // Use mock data instead of Supabase
+    return [...mockContractTemplates];
+  }
+
+  static async getContractTemplateById(id: string): Promise<ContractTemplate | null> {
+    const { data, error } = await supabase
+      .from('fact_contract_template')
+      .select('*')
+      .eq('id', id)
+      .maybeSingle();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async createContractTemplate(template: Partial<ContractTemplate>): Promise<ContractTemplate> {
+    const { data, error } = await supabase
+      .from('fact_contract_template')
+      .insert(template)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async updateContractTemplate(id: string, updates: Partial<ContractTemplate>): Promise<ContractTemplate> {
+    const { data, error } = await supabase
+      .from('fact_contract_template')
+      .update({ ...updates, updated_at: new Date().toISOString() })
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async approveContractTemplate(id: string, approvedBy: string): Promise<ContractTemplate> {
+    return this.updateContractTemplate(id, {
+      status: 'Approved',
+      approval_status: 'Approved',
+      approved_by: approvedBy,
+      approval_date: new Date().toISOString()
+    });
+  }
+
+  static async rejectContractTemplate(id: string, rejectionReason: string): Promise<ContractTemplate> {
+    return this.updateContractTemplate(id, {
+      status: 'Rejected',
+      approval_status: 'Rejected',
+      rejection_reason: rejectionReason
+    });
+  }
+
+  static async getContractWorkspaceById(id: string): Promise<ContractWorkspace | null> {
+    const { data, error } = await supabase
+      .from('fact_contract_workspace')
+      .select('*')
+      .eq('id', id)
+      .maybeSingle();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async getContractWorkspaceBySourcingEvent(sourcingEventId: string): Promise<ContractWorkspace | null> {
+    // Use mock data instead of Supabase
+    return mockWorkspaces.find(w => w.sourcing_event_id === sourcingEventId) || null;
+  }
+
+  static async getAllContractWorkspaces(): Promise<ContractWorkspace[]> {
+    // Use mock data instead of Supabase
+    return [...mockWorkspaces];
+  }
+
+  static async createContractWorkspace(workspace: Partial<ContractWorkspace>): Promise<ContractWorkspace> {
+    // Create mock workspace
+    const newWorkspace: ContractWorkspace = {
+      id: `WS${Date.now()}`,
+      contract_template_id: workspace.contract_template_id || '',
+      sourcing_event_id: workspace.sourcing_event_id || '',
+      current_content: workspace.current_content || {},
+      workspace_status: workspace.workspace_status || 'Active',
+      active_editors: workspace.active_editors || [],
+      organization_id: workspace.organization_id || 'org-1',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    };
+    
+    mockWorkspaces.push(newWorkspace);
+    return newWorkspace;
+  }
+
+  static async updateWorkspaceContent(id: string, content: Record<string, any>, changedBy: string, changeLocation: string): Promise<ContractWorkspace> {
+    const workspace = mockWorkspaces.find(w => w.id === id);
+    if (!workspace) throw new Error('Workspace not found');
+
+    const oldContent = workspace.current_content[changeLocation] || '';
+    const newContent = content[changeLocation] || '';
+
+    workspace.current_content = content;
+    workspace.updated_at = new Date().toISOString();
+
+    await this.createChangeLog({
+      contract_workspace_id: id,
+      changed_by: changedBy,
+      change_type: 'Content Edit',
+      change_location: changeLocation,
+      previous_content: oldContent,
+      new_content: newContent,
+      character_count_change: newContent.length - oldContent.length
+    });
+
+    return workspace;
+  }
+
+  static async lockWorkspace(id: string, lockedBy: string): Promise<ContractWorkspace> {
+    const workspace = mockWorkspaces.find(w => w.id === id);
+    if (!workspace) throw new Error('Workspace not found');
+
+    workspace.workspace_status = 'Locked';
+    workspace.locked_by = lockedBy;
+    workspace.locked_at = new Date().toISOString();
+    workspace.updated_at = new Date().toISOString();
+
+    return workspace;
+  }
+
+  static async unlockWorkspace(id: string): Promise<ContractWorkspace> {
+    const workspace = mockWorkspaces.find(w => w.id === id);
+    if (!workspace) throw new Error('Workspace not found');
+
+    workspace.workspace_status = 'Active';
+    workspace.locked_by = undefined;
+    workspace.locked_at = undefined;
+    workspace.updated_at = new Date().toISOString();
+
+    return workspace;
+  }
+
+  static async submitWorkspaceForApproval(id: string): Promise<ContractWorkspace> {
+    const workspace = mockWorkspaces.find(w => w.id === id);
+    if (!workspace) throw new Error('Workspace not found');
+
+    workspace.workspace_status = 'Submitted for Approval';
+    workspace.updated_at = new Date().toISOString();
+
+    return workspace;
+  }
+
+  static async createChangeLog(log: Partial<ContractChangeLog>): Promise<ContractChangeLog> {
+    const newLog: ContractChangeLog = {
+      id: `CL${Date.now()}`,
+      contract_workspace_id: log.contract_workspace_id || '',
+      changed_by: log.changed_by || '',
+      change_type: log.change_type || 'Content Edit',
+      change_location: log.change_location || '',
+      previous_content: log.previous_content,
+      new_content: log.new_content,
+      ai_suggestion_id: log.ai_suggestion_id,
+      character_count_change: log.character_count_change || 0,
+      timestamp: new Date().toISOString(),
+      organization_id: log.organization_id || 'org-1'
+    };
+    
+    mockChangeLogs.push(newLog);
+    return newLog;
+  }
+
+  static async createApprovalRequest(approval: Partial<ContractApproval>): Promise<ContractApproval> {
+    const newApproval: ContractApproval = {
+      id: `APR${Date.now()}`,
+      contract_workspace_id: approval.contract_workspace_id || '',
+      contract_version: approval.contract_version || 1,
+      approver_id: approval.approver_id || '',
+      approver_name: approval.approver_name || '',
+      approver_role: approval.approver_role || 'Procurement Manager',
+      approval_status: approval.approval_status || 'Pending',
+      comments: approval.comments,
+      ai_insights_reviewed: approval.ai_insights_reviewed || false,
+      reviewed_at: approval.reviewed_at,
+      decision_notes: approval.decision_notes,
+      organization_id: approval.organization_id || 'org-1',
+      created_at: new Date().toISOString()
+    };
+    
+    mockApprovals.push(newApproval);
+    return newApproval;
+  }
+
+  static async applyAIInsight(insightId: string, appliedBy: string): Promise<ContractAIInsight> {
+    const insight = mockAIInsights.find(i => i.id === insightId);
+    if (!insight) throw new Error('Insight not found');
+
+    insight.auto_applied = true;
+    insight.applied_by = appliedBy;
+    insight.applied_at = new Date().toISOString();
+
+    return insight;
+  }
+
+  static async analyzeContractRisks(workspaceId: string, contractContent: Record<string, any>): Promise<ContractAIInsight[]> {
+    // Generate mock insights based on contract content
+    const newInsights: ContractAIInsight[] = [
+      {
+        id: `INS${Date.now()}-1`,
+        contract_workspace_id: workspaceId,
+        insight_type: 'Missing Clause',
+        risk_category: 'Legal',
+        severity: 'High',
+        title: 'Missing Force Majeure Clause',
+        description: 'The contract lacks a comprehensive force majeure clause which is critical for renewable energy projects.',
+        affected_section: 'terminationClauses',
+        recommendations: [
+          'Add force majeure clause covering natural disasters',
+          'Include pandemic and regulatory change provisions',
+          'Define notification and mitigation procedures'
+        ],
+        auto_applied: false,
+        organization_id: 'org-1',
+        created_at: new Date().toISOString()
+      },
+      {
+        id: `INS${Date.now()}-2`,
+        contract_workspace_id: workspaceId,
+        insight_type: 'Risk Factor',
+        risk_category: 'Financial',
+        severity: 'Medium',
+        title: 'Price Adjustment Mechanism Not Defined',
+        description: 'No clear price adjustment mechanism for multi-year contracts exposed to inflation risk.',
+        affected_section: 'pricingTerms',
+        recommendations: [
+          'Define price adjustment formula',
+          'Reference standard indices (CPI, FX rates)',
+          'Set maximum adjustment limits'
+        ],
+        auto_applied: false,
+        organization_id: 'org-1',
+        created_at: new Date().toISOString()
+      }
+    ];
+
+    mockAIInsights.push(...newInsights);
+    return newInsights;
+  }
+
+  static async getChangeLogsByWorkspace(workspaceId: string): Promise<ContractChangeLog[]> {
+    const { data, error } = await supabase
+      .from('fact_contract_change_log')
+      .select('*')
+      .eq('contract_workspace_id', workspaceId)
+      .order('timestamp', { ascending: false });
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async getChangeLogsByUser(userId: string): Promise<ContractChangeLog[]> {
+    const { data, error } = await supabase
+      .from('fact_contract_change_log')
+      .select('*')
+      .eq('changed_by', userId)
+      .order('timestamp', { ascending: false });
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async createApprovalRequest(approval: Partial<ContractApproval>): Promise<ContractApproval> {
+    const { data, error } = await supabase
+      .from('fact_contract_approval')
+      .insert(approval)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async getApprovalsByWorkspace(workspaceId: string): Promise<ContractApproval[]> {
+    const { data, error } = await supabase
+      .from('fact_contract_approval')
+      .select('*')
+      .eq('contract_workspace_id', workspaceId)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async getPendingApprovals(): Promise<ContractApproval[]> {
+    const { data, error } = await supabase
+      .from('fact_contract_approval')
+      .select('*')
+      .eq('approval_status', 'Pending')
+      .order('created_at', { ascending: true });
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async approveContract(approvalId: string, approverId: string, comments?: string): Promise<ContractApproval> {
+    const { data, error } = await supabase
+      .from('fact_contract_approval')
+      .update({
+        approval_status: 'Approved',
+        reviewed_at: new Date().toISOString(),
+        comments: comments,
+        ai_insights_reviewed: true
+      })
+      .eq('id', approvalId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async rejectContract(approvalId: string, approverId: string, comments: string): Promise<ContractApproval> {
+    const { data, error } = await supabase
+      .from('fact_contract_approval')
+      .update({
+        approval_status: 'Rejected',
+        reviewed_at: new Date().toISOString(),
+        comments: comments,
+        decision_notes: comments
+      })
+      .eq('id', approvalId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async requestRevision(approvalId: string, approverId: string, comments: string): Promise<ContractApproval> {
+    const { data, error } = await supabase
+      .from('fact_contract_approval')
+      .update({
+        approval_status: 'Revision Required',
+        reviewed_at: new Date().toISOString(),
+        comments: comments,
+        decision_notes: comments
+      })
+      .eq('id', approvalId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async createAIInsight(insight: Partial<ContractAIInsight>): Promise<ContractAIInsight> {
+    const { data, error } = await supabase
+      .from('ref_contract_ai_insight')
+      .insert(insight)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async getInsightsByWorkspace(workspaceId: string): Promise<ContractAIInsight[]> {
+    // Use mock data instead of Supabase
+    return mockAIInsights.filter(i => i.contract_workspace_id === workspaceId);
+  }
+
+  static async getInsightsByCategory(workspaceId: string, category: string): Promise<ContractAIInsight[]> {
+    const { data, error } = await supabase
+      .from('ref_contract_ai_insight')
+      .select('*')
+      .eq('contract_workspace_id', workspaceId)
+      .eq('risk_category', category)
+      .order('severity', { ascending: true });
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async applyAIInsight(insightId: string, appliedBy: string): Promise<ContractAIInsight> {
+    const { data, error } = await supabase
+      .from('ref_contract_ai_insight')
+      .update({
+        auto_applied: true,
+        applied_by: appliedBy,
+        applied_at: new Date().toISOString()
+      })
+      .eq('id', insightId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async generateContractFromSourcingEvent(sourcingEventId: string, sourcingEventData: any, createdBy: string): Promise<ContractTemplate> {
+    const tenderDocs = sourcingEventData.tenderDocuments || [];
+    const submissions = sourcingEventData.submissions || [];
+
+    let tenderContent = null;
+    if (tenderDocs.length > 0 && tenderDocs[0].content) {
+      tenderContent = tenderDocs[0].content;
+    }
+
+    const deliveryDate = sourcingEventData.delivery_date || sourcingEventData.deadline;
+    const estimatedPrice = sourcingEventData.estimate_price || sourcingEventData.estimatedValue;
+    const vendors = sourcingEventData.shortlisted_vendors || [];
+    const selectedVendor = vendors.length > 0 ? vendors[0] : 'To be determined';
+
+    const templateContent = {
+      header: {
+        title: `Supply Agreement - ${sourcingEventData.title}`,
+        contractNumber: `CNT-${Date.now()}`,
+        effectiveDate: new Date().toISOString().split('T')[0],
+        expiryDate: deliveryDate || new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+      },
+      parties: {
+        buyer: 'PT Indonesia Power',
+        buyerRepresentative: 'Procurement Director',
+        buyerAddress: 'Jakarta, Indonesia',
+        supplier: selectedVendor,
+        supplierRepresentative: 'To be confirmed',
+        supplierAddress: 'To be confirmed'
+      },
+      scopeOfWork: {
+        description: sourcingEventData.description || sourcingEventData.title,
+        deliverables: tenderContent?.deliverables || sourcingEventData.requirements || ['As specified in tender documents'],
+        specifications: tenderContent?.technicalSpecifications || 'As per technical specifications in tender documents',
+        quantity: sourcingEventData.demand_quantity || 'As specified',
+        location: sourcingEventData.delivery_location || 'As specified in purchase order'
+      },
+      pricingTerms: {
+        totalValue: typeof estimatedPrice === 'number'
+          ? `Rp ${new Intl.NumberFormat('id-ID').format(estimatedPrice)}`
+          : (estimatedPrice || 'To be negotiated'),
+        currency: 'IDR',
+        paymentStructure: 'Progress payments based on milestones',
+        priceAdjustment: 'Price may be adjusted based on material cost index changes not exceeding 5% annually',
+        taxTreatment: 'All prices exclude VAT unless stated otherwise'
+      },
+      paymentTerms: {
+        method: 'Bank transfer to designated account',
+        schedule: '30 days from invoice date and acceptance',
+        bankDetails: 'To be provided by supplier',
+        advancePayment: '20% upon contract signing (if applicable)',
+        progressPayments: 'Based on milestone completion and acceptance',
+        finalPayment: '10% upon final acceptance and warranty provision',
+        latePenalty: '2% per month on overdue amounts',
+        invoiceRequirements: 'Tax invoice with supporting documents'
+      },
+      deliverySchedule: {
+        location: sourcingEventData.delivery_location || 'As specified in purchase order',
+        timeline: sourcingEventData.timeline || tenderContent?.deliveryTimeline || '90 days from contract execution',
+        milestones: tenderContent?.milestones || [],
+        incoterms: 'DDP (Delivered Duty Paid) - Jakarta',
+        packingRequirements: 'Suitable for international/domestic transport',
+        inspectionPoint: 'Delivery location'
+      },
+      performanceStandards: {
+        qualityStandards: tenderContent?.qualityStandards || 'ISO 9001:2015 certified or equivalent',
+        inspectionProcess: 'Buyer reserves right to inspect at any stage',
+        acceptanceCriteria: tenderContent?.acceptanceCriteria || 'As per technical specifications and functional testing',
+        warranties: tenderContent?.warrantyPeriod || '24 months from date of acceptance',
+        performanceGuarantees: 'As specified in technical requirements',
+        testing: 'Factory acceptance test (FAT) and site acceptance test (SAT) required'
+      },
+      terminationClauses: {
+        terminationNotice: '60 days written notice for convenience',
+        terminationForCause: 'Immediate termination for material breach after 15 days cure period',
+        consequences: 'Return of advance payments less work completed, settlement of obligations',
+        disputeResolution: 'Amicable settlement, followed by mediation, then arbitration under BANI rules in Jakarta',
+        forceMajeure: 'Neither party liable for delays due to force majeure events beyond reasonable control'
+      },
+      legalTerms: {
+        governingLaw: 'Laws of the Republic of Indonesia',
+        jurisdiction: 'District Court of Central Jakarta',
+        confidentiality: 'All proprietary information shall remain confidential for 5 years',
+        liability: 'Each party liable for direct damages only, limited to contract value',
+        forceMajeure: 'War, natural disasters, government actions, pandemics as force majeure events',
+        insurance: 'Supplier maintains comprehensive insurance including product liability',
+        indemnification: 'Supplier indemnifies buyer against third-party claims'
+      },
+      specialConditions: {
+        compliance: 'Supplier complies with all Indonesian laws, labor regulations, and environmental requirements',
+        subcontracting: 'Not permitted without prior written approval from buyer',
+        intellectualProperty: 'Buyer owns all work product and deliverables created under this contract',
+        amendments: 'Must be in writing and signed by authorized representatives of both parties',
+        localContent: 'Supplier shall comply with local content requirements as per Indonesian regulations',
+        anticorruption: 'Both parties commit to anti-corruption and anti-bribery compliance'
+      }
+    };
+
+    const template = await this.createContractTemplate({
+      sourcing_event_id: sourcingEventId,
+      template_name: `Contract Template - ${sourcingEventData.title}`,
+      template_content: templateContent,
+      template_sections: Object.keys(templateContent).reduce((acc, key) => {
+        acc[key] = true;
+        return acc;
+      }, {} as Record<string, boolean>),
+      status: 'Draft',
+      version: 1,
+      created_by: createdBy,
+      approval_status: 'Pending'
+    });
+
+    await this.generateAISuggestionsForTemplate(
+      template.id,
+      sourcingEventId,
+      templateContent,
+      tenderDocs
+    );
+
+    return template;
+  }
+
+  static async analyzeContractRisks(workspaceId: string, contractContent: Record<string, any>): Promise<ContractAIInsight[]> {
+    const insights: Partial<ContractAIInsight>[] = [];
+
+    if (!contractContent.legalTerms?.liability || contractContent.legalTerms.liability.includes('Limited to contract value')) {
+      insights.push({
+        contract_workspace_id: workspaceId,
+        insight_type: 'Legal Risk',
+        risk_category: 'Legal',
+        severity: 'High',
+        title: 'Unlimited Liability Exposure',
+        description: 'Contract liability is limited to contract value, which may not cover all potential damages in case of breach or negligence.',
+        affected_section: 'legalTerms.liability',
+        recommendations: ['Consider comprehensive liability insurance', 'Add indemnification clauses', 'Specify caps for different liability types']
+      });
+    }
+
+    if (!contractContent.terminationClauses?.disputeResolution) {
+      insights.push({
+        contract_workspace_id: workspaceId,
+        insight_type: 'Legal Risk',
+        risk_category: 'Legal',
+        severity: 'Critical',
+        title: 'Missing Dispute Resolution Mechanism',
+        description: 'No clear dispute resolution process defined, which may lead to costly litigation.',
+        affected_section: 'terminationClauses.disputeResolution',
+        recommendations: ['Add arbitration clause', 'Specify mediation as first step', 'Define escalation process']
+      });
+    }
+
+    if (!contractContent.paymentTerms?.latePenalty) {
+      insights.push({
+        contract_workspace_id: workspaceId,
+        insight_type: 'Financial Risk',
+        risk_category: 'Financial',
+        severity: 'Medium',
+        title: 'No Late Payment Penalties',
+        description: 'Absence of late payment penalties may encourage delayed payments and impact cash flow.',
+        affected_section: 'paymentTerms.latePenalty',
+        recommendations: ['Add 2% monthly interest on overdue amounts', 'Specify payment grace period', 'Include suspension rights for non-payment']
+      });
+    }
+
+    if (!contractContent.performanceStandards?.warranties) {
+      insights.push({
+        contract_workspace_id: workspaceId,
+        insight_type: 'Performance Risk',
+        risk_category: 'Performance',
+        severity: 'High',
+        title: 'Missing Performance Warranties',
+        description: 'No warranties or guarantees specified for performance and quality standards.',
+        affected_section: 'performanceStandards.warranties',
+        recommendations: ['Add 12-month warranty period', 'Specify defect liability period', 'Include performance guarantees']
+      });
+    }
+
+    if (contractContent.deliverySchedule?.timeline?.includes('To be') || !contractContent.deliverySchedule?.timeline) {
+      insights.push({
+        contract_workspace_id: workspaceId,
+        insight_type: 'Delivery Risk',
+        risk_category: 'Delivery',
+        severity: 'Critical',
+        title: 'Vague Delivery Timeline',
+        description: 'Delivery timeline is not clearly defined, creating risk of delays and disputes.',
+        affected_section: 'deliverySchedule.timeline',
+        recommendations: ['Specify exact delivery dates', 'Add milestone schedule', 'Include delay penalties']
+      });
+    }
+
+    if (!contractContent.specialConditions?.compliance) {
+      insights.push({
+        contract_workspace_id: workspaceId,
+        insight_type: 'Compliance Issue',
+        risk_category: 'Compliance',
+        severity: 'High',
+        title: 'Missing Regulatory Compliance Requirements',
+        description: 'No specific compliance requirements mentioned for industry regulations and standards.',
+        affected_section: 'specialConditions.compliance',
+        recommendations: ['Add specific regulatory requirements', 'Include certification requirements', 'Specify audit rights']
+      });
+    }
+
+    const createdInsights: ContractAIInsight[] = [];
+    for (const insight of insights) {
+      const created = await this.createAIInsight(insight);
+      createdInsights.push(created);
+    }
+
+    return createdInsights;
+  }
+
+  static async getContractMetrics() {
+    const templates = await this.getAllContractTemplates();
+    const workspaces = await this.getAllContractWorkspaces();
+    const approvals = await this.getPendingApprovals();
+
+    return {
+      totalTemplates: templates.length,
+      approvedTemplates: templates.filter(t => t.status === 'Approved').length,
+      pendingTemplates: templates.filter(t => t.status === 'Pending Approval').length,
+      activeWorkspaces: workspaces.filter(w => w.workspace_status === 'Active').length,
+      pendingApprovals: approvals.length,
+      submittedForApproval: workspaces.filter(w => w.workspace_status === 'Submitted for Approval').length
+    };
+  }
+
+  static async getClauseLibrary(category?: string): Promise<any[]> {
+    let query = supabase.from('ref_clause_library').select('*');
+
+    if (category) {
+      query = query.eq('clause_category', category);
+    }
+
+    const { data, error } = await query.order('clause_category').order('clause_title');
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async getClausesByContractType(contractType: string): Promise<any[]> {
+    const { data, error } = await supabase
+      .from('ref_clause_library')
+      .select('*')
+      .contains('contract_type', [contractType])
+      .order('is_mandatory', { ascending: false })
+      .order('is_critical', { ascending: false });
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async getPersonnelAssignments(workspaceId: string): Promise<any[]> {
+    const { data, error } = await supabase
+      .from('fact_contract_personnel_assignment')
+      .select('*')
+      .eq('contract_workspace_id', workspaceId)
+      .eq('assignment_status', 'Active')
+      .order('user_role');
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async assignPersonnel(assignment: any): Promise<any> {
+    const { data, error } = await supabase
+      .from('fact_contract_personnel_assignment')
+      .insert(assignment)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async getTemplateRecommendations(sourcingEventId: string): Promise<any[]> {
+    const { data, error } = await supabase
+      .from('ref_template_recommendation')
+      .select('*, template:template_id(*)')
+      .eq('sourcing_event_id', sourcingEventId)
+      .order('confidence_score', { ascending: false });
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async getLegalComments(workspaceId: string): Promise<any[]> {
+    const { data, error } = await supabase
+      .from('fact_legal_collaboration')
+      .select('*')
+      .eq('contract_workspace_id', workspaceId)
+      .is('parent_comment_id', null)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async getCommentReplies(parentCommentId: string): Promise<any[]> {
+    const { data, error } = await supabase
+      .from('fact_legal_collaboration')
+      .select('*')
+      .eq('parent_comment_id', parentCommentId)
+      .order('created_at', { ascending: true });
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async addLegalComment(comment: any): Promise<any> {
+    const { data, error } = await supabase
+      .from('fact_legal_collaboration')
+      .insert(comment)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async resolveComment(commentId: string, resolvedBy: string): Promise<any> {
+    const { data, error } = await supabase
+      .from('fact_legal_collaboration')
+      .update({
+        is_resolved: true,
+        resolved_by: resolvedBy,
+        resolved_at: new Date().toISOString()
+      })
+      .eq('id', commentId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async getApprovalWorkflow(contractType: string, contractValue?: number): Promise<any> {
+    let query = supabase
+      .from('ref_approval_workflow_config')
+      .select('*')
+      .eq('contract_type', contractType)
+      .eq('is_active', true);
+
+    if (contractValue !== undefined) {
+      query = query.or(`min_value.lte.${contractValue},min_value.is.null`)
+        .or(`max_value.gte.${contractValue},max_value.is.null`);
+    }
+
+    const { data, error } = await query.maybeSingle();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async recordDigitalSignature(signature: any): Promise<any> {
+    const { data, error } = await supabase
+      .from('fact_digital_signature')
+      .insert(signature)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async getDigitalSignatures(workspaceId: string): Promise<any[]> {
+    const { data, error } = await supabase
+      .from('fact_digital_signature')
+      .select('*')
+      .eq('contract_workspace_id', workspaceId)
+      .order('signature_timestamp', { ascending: true });
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async recordInsightDecision(decision: any): Promise<any> {
+    const { data, error } = await supabase
+      .from('fact_writing_insight_decision')
+      .insert(decision)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async getInsightDecisions(workspaceId: string): Promise<any[]> {
+    const { data, error } = await supabase
+      .from('fact_writing_insight_decision')
+      .select('*, ai_insight:ai_insight_id(*)')
+      .eq('contract_workspace_id', workspaceId)
+      .order('decision_timestamp', { ascending: false });
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async createTemplateAISuggestion(suggestion: Partial<TemplateAISuggestion>): Promise<TemplateAISuggestion> {
+    const { data, error } = await supabase
+      .from('fact_template_ai_suggestion')
+      .insert(suggestion)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async getTemplateAISuggestions(templateId: string): Promise<TemplateAISuggestion[]> {
+    const { data, error } = await supabase
+      .from('fact_template_ai_suggestion')
+      .select('*')
+      .eq('template_id', templateId)
+      .order('priority')
+      .order('confidence_score', { ascending: false });
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async getPendingAISuggestions(templateId: string): Promise<TemplateAISuggestion[]> {
+    const { data, error } = await supabase
+      .from('fact_template_ai_suggestion')
+      .select('*')
+      .eq('template_id', templateId)
+      .eq('applied_status', 'pending')
+      .order('priority')
+      .order('confidence_score', { ascending: false });
+
+    if (error) throw error;
+    return data || [];
+  }
+
+  static async applyAISuggestion(suggestionId: string, appliedBy: string): Promise<TemplateAISuggestion> {
+    const { data, error } = await supabase
+      .from('fact_template_ai_suggestion')
+      .update({
+        applied_status: 'accepted',
+        applied_by: appliedBy,
+        applied_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', suggestionId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async rejectAISuggestion(suggestionId: string, rejectedBy: string): Promise<TemplateAISuggestion> {
+    const { data, error } = await supabase
+      .from('fact_template_ai_suggestion')
+      .update({
+        applied_status: 'rejected',
+        applied_by: rejectedBy,
+        applied_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', suggestionId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  }
+
+  static async generateAISuggestionsForTemplate(
+    templateId: string,
+    sourcingEventId: string,
+    templateContent: Record<string, any>,
+    tenderDocuments?: any[]
+  ): Promise<TemplateAISuggestion[]> {
+    const suggestions: Partial<TemplateAISuggestion>[] = [];
+
+    if (!templateContent.legalTerms?.governingLaw || templateContent.legalTerms.governingLaw === 'To be determined') {
+      suggestions.push({
+        template_id: templateId,
+        sourcing_event_id: sourcingEventId,
+        clause_category: 'Legal',
+        suggested_clause_text: 'This Agreement shall be governed by and construed in accordance with the laws of the Republic of Indonesia. Any disputes arising from this Agreement shall be subject to the exclusive jurisdiction of the courts in Jakarta, Indonesia.',
+        confidence_score: 0.95,
+        applied_status: 'pending',
+        reasoning: 'Governing law clause is essential for contract enforceability and must clearly specify applicable jurisdiction for renewable energy contracts in Indonesia.',
+        section_reference: 'legalTerms.governingLaw',
+        priority: 'critical'
+      });
+    }
+
+    if (!templateContent.performanceStandards?.warranties) {
+      suggestions.push({
+        template_id: templateId,
+        sourcing_event_id: sourcingEventId,
+        clause_category: 'Performance',
+        suggested_clause_text: 'The Supplier warrants that all equipment and services provided shall be free from defects in materials and workmanship for a period of 24 months from the date of acceptance. The Supplier further warrants that all equipment shall meet or exceed the performance specifications outlined in the technical requirements.',
+        confidence_score: 0.92,
+        applied_status: 'pending',
+        reasoning: 'Performance warranties are critical for renewable energy projects to ensure equipment reliability and operational efficiency over the contract term.',
+        section_reference: 'performanceStandards.warranties',
+        priority: 'high'
+      });
+    }
+
+    if (!templateContent.deliverySchedule?.milestones || (templateContent.deliverySchedule?.milestones || []).length === 0) {
+      suggestions.push({
+        template_id: templateId,
+        sourcing_event_id: sourcingEventId,
+        clause_category: 'Delivery',
+        suggested_clause_text: 'Delivery shall be completed in the following milestones: (1) Equipment procurement and mobilization - 30 days; (2) Installation and commissioning - 60 days; (3) Testing and acceptance - 15 days. Each milestone completion shall trigger a progress payment as specified in the payment terms.',
+        confidence_score: 0.88,
+        applied_status: 'pending',
+        reasoning: 'Clear milestone definitions with timelines ensure project tracking, progress payments alignment, and accountability for renewable energy installations.',
+        section_reference: 'deliverySchedule.milestones',
+        priority: 'high'
+      });
+    }
+
+    if (!templateContent.specialConditions?.sustainabilityRequirements) {
+      suggestions.push({
+        template_id: templateId,
+        sourcing_event_id: sourcingEventId,
+        clause_category: 'Compliance',
+        suggested_clause_text: 'The Supplier shall comply with all environmental, social, and governance (ESG) requirements. This includes maintaining ISO 14001 environmental certification, adhering to local content requirements as per Indonesian regulations, and providing quarterly sustainability reports documenting carbon emissions reduction and renewable energy generation metrics.',
+        confidence_score: 0.90,
+        applied_status: 'pending',
+        reasoning: 'ESG compliance is mandatory for renewable energy projects and critical for PT Indonesia Power\'s sustainability commitments and regulatory compliance.',
+        section_reference: 'specialConditions.sustainabilityRequirements',
+        priority: 'critical'
+      });
+    }
+
+    if (!templateContent.pricingTerms?.priceAdjustment || templateContent.pricingTerms.priceAdjustment === 'To be negotiated') {
+      suggestions.push({
+        template_id: templateId,
+        sourcing_event_id: sourcingEventId,
+        clause_category: 'Financial',
+        suggested_clause_text: 'Contract prices may be adjusted annually based on the following formula: New Price = Base Price × (0.4 + 0.3 × (CPI_current/CPI_base) + 0.3 × (FX_current/FX_base)), where CPI represents the Consumer Price Index and FX represents the USD/IDR exchange rate. Adjustments shall not exceed 10% annually.',
+        confidence_score: 0.85,
+        applied_status: 'pending',
+        reasoning: 'Price adjustment mechanism protects both parties from inflation and currency fluctuations over multi-year renewable energy contracts.',
+        section_reference: 'pricingTerms.priceAdjustment',
+        priority: 'medium'
+      });
+    }
+
+    if (!templateContent.terminationClauses?.liquidatedDamages) {
+      suggestions.push({
+        template_id: templateId,
+        sourcing_event_id: sourcingEventId,
+        clause_category: 'Termination',
+        suggested_clause_text: 'In the event of delay in completion beyond the agreed timeline, the Supplier shall pay liquidated damages of 0.1% of the contract value per day of delay, up to a maximum of 10% of the total contract value. For failure to meet guaranteed performance specifications, the Supplier shall pay liquidated damages of 0.5% of contract value for each 1% shortfall in performance.',
+        confidence_score: 0.87,
+        applied_status: 'pending',
+        reasoning: 'Liquidated damages clauses provide clear remedies for non-performance and encourage timely completion of renewable energy installations.',
+        section_reference: 'terminationClauses.liquidatedDamages',
+        priority: 'high'
+      });
+    }
+
+    const createdSuggestions: TemplateAISuggestion[] = [];
+    for (const suggestion of suggestions) {
+      const created = await this.createTemplateAISuggestion(suggestion);
+      createdSuggestions.push(created);
+    }
+
+    return createdSuggestions;
+  }
+}

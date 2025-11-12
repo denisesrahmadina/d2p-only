@@ -1,0 +1,35 @@
+[
+  {
+    "id": "HR-2025-001",
+    "title": "New Employee Onboarding",
+    "category": "Onboarding",
+    "requestor": "Jennifer Martinez",
+    "employee": "Alex Thompson",
+    "status": "In Processing",
+    "priority": "high",
+    "dueDate": "2025-01-28",
+    "createdDate": "2025-01-24"
+  },
+  {
+    "id": "HR-2025-002",
+    "title": "Benefits Enrollment Change",
+    "category": "Benefits",
+    "requestor": "Michael Chen",
+    "employee": "Sarah Wilson",
+    "status": "Pending Approval",
+    "priority": "medium",
+    "dueDate": "2025-01-30",
+    "createdDate": "2025-01-25"
+  },
+  {
+    "id": "HR-2025-003",
+    "title": "Performance Review Scheduling",
+    "category": "Performance",
+    "requestor": "Lisa Wang",
+    "employee": "David Johnson",
+    "status": "Completed",
+    "priority": "medium",
+    "dueDate": "2025-01-26",
+    "createdDate": "2025-01-22"
+  }
+]

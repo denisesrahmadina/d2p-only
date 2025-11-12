@@ -1,0 +1,96 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode: 'class',
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        accenture: {
+          purple: '#A100FF',
+          'purple-dark': '#7D00BF',
+          'purple-light': '#C24DFF',
+          azure: '#0089FF',
+          'azure-dark': '#0066CC',
+          'azure-light': '#4DA6FF',
+          black: '#000000',
+          'gray-dark': '#1A1A1A',
+          'gray-medium': '#333333',
+          'gray-light': '#F5F5F5',
+        },
+        'purple': {
+          50: '#faf5ff',
+          100: '#f3e8ff',
+          200: '#e9d5ff',
+          300: '#d8b4fe',
+          400: '#c084fc',
+          500: '#a855f7',
+          600: '#9333ea',
+          700: '#7e22ce',
+          800: '#6b21a8',
+          900: '#581c87',
+          950: '#3b0764',
+        },
+        'neutral-dark': {
+          50: '#fafafa',
+          100: '#f5f5f5',
+          200: '#e5e5e5',
+          300: '#d4d4d4',
+          400: '#a3a3a3',
+          500: '#737373',
+          600: '#525252',
+          700: '#404040',
+          800: '#262626',
+          850: '#1e1e1e',
+          900: '#171717',
+          925: '#141414',
+          950: '#121212',
+        },
+        'status': {
+          pending: {
+            light: '#fef3c7',
+            DEFAULT: '#f59e0b',
+            dark: '#92400e',
+          },
+          approved: {
+            light: '#d1fae5',
+            DEFAULT: '#10b981',
+            dark: '#065f46',
+          },
+          'in-progress': {
+            light: '#dbeafe',
+            DEFAULT: '#3b82f6',
+            dark: '#1e40af',
+          },
+          completed: {
+            light: '#ccfbf1',
+            DEFAULT: '#14b8a6',
+            dark: '#115e59',
+          },
+          canceled: {
+            light: '#fee2e2',
+            DEFAULT: '#ef4444',
+            dark: '#991b1b',
+          },
+          rejected: {
+            light: '#fed7aa',
+            DEFAULT: '#f97316',
+            dark: '#9a3412',
+          },
+        },
+      },
+      backgroundColor: {
+        'surface-light': '#ffffff',
+        'surface-dark': '#1e1e1e',
+        'card-light': '#ffffff',
+        'card-dark': '#262626',
+        'elevated-light': '#f9fafb',
+        'elevated-dark': '#171717',
+      },
+      borderColor: {
+        'divider-light': '#e5e7eb',
+        'divider-dark': '#404040',
+      },
+    },
+  },
+  plugins: [],
+};

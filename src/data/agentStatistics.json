@@ -1,0 +1,1015 @@
+[
+  {
+    "agentId": "ptm_a5",
+    "organizationId": "ssc-center",
+    "statistic_type": "service",
+    "targets": {
+      "uptime": 99.0,
+      "responseTime": 1.5,
+      "tasksCompleted": 150,
+      "errorRate": 1.0,
+      "throughput": 45,
+      "memoryUsage": 80.0,
+      "cpuUsage": 70.0
+    },
+    "statistics": [
+      {
+        "date": "2025-07-22",
+        "uptime": 99.2,
+        "responseTime": 1.2,
+        "tasksCompleted": 156,
+        "errorRate": 0.8,
+        "throughput": 45,
+        "memoryUsage": 78.5,
+        "cpuUsage": 65.2
+      },
+      {
+        "date": "2025-07-21",
+        "uptime": 98.8,
+        "responseTime": 1.3,
+        "tasksCompleted": 142,
+        "errorRate": 1.5,
+        "throughput": 42,
+        "memoryUsage": 76.2,
+        "cpuUsage": 68.1
+      },
+      {
+        "date": "2025-07-20",
+        "uptime": 99.5,
+        "responseTime": 1.1,
+        "tasksCompleted": 168,
+        "errorRate": 0.8,
+        "throughput": 48,
+        "memoryUsage": 79.1,
+        "cpuUsage": 62.3
+      },
+      {
+        "date": "2025-07-19",
+        "uptime": 97.2,
+        "responseTime": 1.4,
+        "tasksCompleted": 134,
+        "errorRate": 2.1,
+        "throughput": 38,
+        "memoryUsage": 74.8,
+        "cpuUsage": 71.5
+      },
+      {
+        "date": "2025-07-18",
+        "uptime": 99.1,
+        "responseTime": 1.2,
+        "tasksCompleted": 159,
+        "errorRate": 1.0,
+        "throughput": 46,
+        "memoryUsage": 77.9,
+        "cpuUsage": 64.7
+      },
+      {
+        "date": "2025-07-17",
+        "uptime": 98.6,
+        "responseTime": 1.3,
+        "tasksCompleted": 145,
+        "errorRate": 1.8,
+        "throughput": 41,
+        "memoryUsage": 75.6,
+        "cpuUsage": 69.2
+      },
+      {
+        "date": "2025-07-16",
+        "uptime": 99.3,
+        "responseTime": 1.1,
+        "tasksCompleted": 162,
+        "errorRate": 0.9,
+        "throughput": 47,
+        "memoryUsage": 78.3,
+        "cpuUsage": 63.8
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_hr5",
+    "organizationId": "ssc-center",
+    "statistic_type": "service",
+    "targets": {
+      "uptime": 99.0,
+      "responseTime": 1.0,
+      "tasksCompleted": 90,
+      "errorRate": 1.0,
+      "throughput": 30,
+      "memoryUsage": 70.0,
+      "cpuUsage": 60.0
+    },
+    "statistics": [
+      {
+        "date": "2025-07-22",
+        "uptime": 98.5,
+        "responseTime": 0.8,
+        "tasksCompleted": 89,
+        "errorRate": 1.2,
+        "throughput": 28,
+        "memoryUsage": 65.4,
+        "cpuUsage": 58.7
+      },
+      {
+        "date": "2025-07-21",
+        "uptime": 99.1,
+        "responseTime": 0.7,
+        "tasksCompleted": 95,
+        "errorRate": 0.9,
+        "throughput": 31,
+        "memoryUsage": 67.2,
+        "cpuUsage": 56.3
+      },
+      {
+        "date": "2025-07-20",
+        "uptime": 98.9,
+        "responseTime": 0.8,
+        "tasksCompleted": 92,
+        "errorRate": 1.1,
+        "throughput": 29,
+        "memoryUsage": 66.8,
+        "cpuUsage": 57.9
+      },
+      {
+        "date": "2025-07-19",
+        "uptime": 97.8,
+        "responseTime": 0.9,
+        "tasksCompleted": 78,
+        "errorRate": 2.2,
+        "throughput": 25,
+        "memoryUsage": 63.1,
+        "cpuUsage": 61.4
+      },
+      {
+        "date": "2025-07-18",
+        "uptime": 99.3,
+        "responseTime": 0.7,
+        "tasksCompleted": 98,
+        "errorRate": 0.7,
+        "throughput": 32,
+        "memoryUsage": 68.5,
+        "cpuUsage": 55.2
+      },
+      {
+        "date": "2025-07-17",
+        "uptime": 98.7,
+        "responseTime": 0.8,
+        "tasksCompleted": 86,
+        "errorRate": 1.3,
+        "throughput": 27,
+        "memoryUsage": 64.9,
+        "cpuUsage": 59.1
+      },
+      {
+        "date": "2025-07-16",
+        "uptime": 99.0,
+        "responseTime": 0.8,
+        "tasksCompleted": 91,
+        "errorRate": 1.0,
+        "throughput": 30,
+        "memoryUsage": 66.3,
+        "cpuUsage": 57.6
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_p2",
+    "organizationId": "ssc-center",
+    "statistic_type": "service",
+    "targets": {
+      "uptime": 99.5,
+      "responseTime": 1.8,
+      "tasksCompleted": 70,
+      "errorRate": 0.5,
+      "throughput": 25,
+      "memoryUsage": 75.0,
+      "cpuUsage": 50.0
+    },
+    "statistics": [
+      {
+        "date": "2025-07-22",
+        "uptime": 99.7,
+        "responseTime": 1.5,
+        "tasksCompleted": 67,
+        "errorRate": 0.3,
+        "throughput": 22,
+        "memoryUsage": 72.1,
+        "cpuUsage": 48.9
+      },
+      {
+        "date": "2025-07-21",
+        "uptime": 98.9,
+        "responseTime": 1.6,
+        "tasksCompleted": 61,
+        "errorRate": 1.1,
+        "throughput": 20,
+        "memoryUsage": 70.3,
+        "cpuUsage": 51.2
+      },
+      {
+        "date": "2025-07-20",
+        "uptime": 99.4,
+        "responseTime": 1.4,
+        "tasksCompleted": 72,
+        "errorRate": 0.6,
+        "throughput": 24,
+        "memoryUsage": 73.8,
+        "cpuUsage": 47.5
+      },
+      {
+        "date": "2025-07-19",
+        "uptime": 98.2,
+        "responseTime": 1.7,
+        "tasksCompleted": 55,
+        "errorRate": 1.8,
+        "throughput": 18,
+        "memoryUsage": 68.7,
+        "cpuUsage": 53.6
+      },
+      {
+        "date": "2025-07-18",
+        "uptime": 99.6,
+        "responseTime": 1.3,
+        "tasksCompleted": 75,
+        "errorRate": 0.4,
+        "throughput": 25,
+        "memoryUsage": 74.2,
+        "cpuUsage": 46.8
+      },
+      {
+        "date": "2025-07-17",
+        "uptime": 98.8,
+        "responseTime": 1.6,
+        "tasksCompleted": 63,
+        "errorRate": 1.2,
+        "throughput": 21,
+        "memoryUsage": 71.5,
+        "cpuUsage": 50.3
+      },
+      {
+        "date": "2025-07-16",
+        "uptime": 99.1,
+        "responseTime": 1.5,
+        "tasksCompleted": 69,
+        "errorRate": 0.9,
+        "throughput": 23,
+        "memoryUsage": 72.9,
+        "cpuUsage": 49.1
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_f7",
+    "organizationId": "ssc-center",
+    "statistic_type": "service",
+    "targets": {
+      "uptime": 99.8,
+      "responseTime": 2.5,
+      "tasksCompleted": 50,
+      "errorRate": 0.3,
+      "throughput": 18,
+      "memoryUsage": 85.0,
+      "cpuUsage": 75.0
+    },
+    "statistics": [
+      {
+        "date": "2025-07-22",
+        "uptime": 99.8,
+        "responseTime": 2.1,
+        "tasksCompleted": 45,
+        "errorRate": 0.2,
+        "throughput": 15,
+        "memoryUsage": 81.3,
+        "cpuUsage": 72.4
+      },
+      {
+        "date": "2025-07-21",
+        "uptime": 99.2,
+        "responseTime": 2.3,
+        "tasksCompleted": 41,
+        "errorRate": 0.8,
+        "throughput": 14,
+        "memoryUsage": 79.7,
+        "cpuUsage": 74.8
+      },
+      {
+        "date": "2025-07-20",
+        "uptime": 99.6,
+        "responseTime": 2.0,
+        "tasksCompleted": 48,
+        "errorRate": 0.4,
+        "throughput": 16,
+        "memoryUsage": 82.1,
+        "cpuUsage": 71.2
+      },
+      {
+        "date": "2025-07-19",
+        "uptime": 98.4,
+        "responseTime": 2.5,
+        "tasksCompleted": 37,
+        "errorRate": 1.6,
+        "throughput": 12,
+        "memoryUsage": 77.9,
+        "cpuUsage": 76.5
+      },
+      {
+        "date": "2025-07-18",
+        "uptime": 99.7,
+        "responseTime": 1.9,
+        "tasksCompleted": 51,
+        "errorRate": 0.3,
+        "throughput": 17,
+        "memoryUsage": 83.2,
+        "cpuUsage": 70.1
+      },
+      {
+        "date": "2025-07-17",
+        "uptime": 99.0,
+        "responseTime": 2.2,
+        "tasksCompleted": 43,
+        "errorRate": 1.0,
+        "throughput": 14,
+        "memoryUsage": 80.5,
+        "cpuUsage": 73.7
+      },
+      {
+        "date": "2025-07-16",
+        "uptime": 99.4,
+        "responseTime": 2.1,
+        "tasksCompleted": 46,
+        "errorRate": 0.6,
+        "throughput": 15,
+        "memoryUsage": 81.8,
+        "cpuUsage": 72.9
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_i4",
+    "organizationId": "ssc-center",
+    "statistic_type": "service",
+    "targets": {
+      "uptime": 99.0,
+      "responseTime": 0.8,
+      "tasksCompleted": 240,
+      "errorRate": 1.0,
+      "throughput": 80,
+      "memoryUsage": 60.0,
+      "cpuUsage": 45.0
+    },
+    "statistics": [
+      {
+        "date": "2025-07-22",
+        "uptime": 98.9,
+        "responseTime": 0.6,
+        "tasksCompleted": 234,
+        "errorRate": 1.1,
+        "throughput": 78,
+        "memoryUsage": 54.2,
+        "cpuUsage": 42.8
+      },
+      {
+        "date": "2025-07-21",
+        "uptime": 99.3,
+        "responseTime": 0.5,
+        "tasksCompleted": 251,
+        "errorRate": 0.7,
+        "throughput": 83,
+        "memoryUsage": 56.1,
+        "cpuUsage": 41.3
+      },
+      {
+        "date": "2025-07-20",
+        "uptime": 98.7,
+        "responseTime": 0.6,
+        "tasksCompleted": 228,
+        "errorRate": 1.3,
+        "throughput": 76,
+        "memoryUsage": 53.8,
+        "cpuUsage": 43.9
+      },
+      {
+        "date": "2025-07-19",
+        "uptime": 97.5,
+        "responseTime": 0.7,
+        "tasksCompleted": 198,
+        "errorRate": 2.5,
+        "throughput": 66,
+        "memoryUsage": 51.2,
+        "cpuUsage": 46.7
+      },
+      {
+        "date": "2025-07-18",
+        "uptime": 99.1,
+        "responseTime": 0.5,
+        "tasksCompleted": 245,
+        "errorRate": 0.9,
+        "throughput": 82,
+        "memoryUsage": 55.7,
+        "cpuUsage": 41.8
+      },
+      {
+        "date": "2025-07-17",
+        "uptime": 98.6,
+        "responseTime": 0.6,
+        "tasksCompleted": 221,
+        "errorRate": 1.4,
+        "throughput": 74,
+        "memoryUsage": 53.4,
+        "cpuUsage": 44.2
+      },
+      {
+        "date": "2025-07-16",
+        "uptime": 99.0,
+        "responseTime": 0.6,
+        "tasksCompleted": 238,
+        "errorRate": 1.0,
+        "throughput": 79,
+        "memoryUsage": 54.9,
+        "cpuUsage": 42.5
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_am3",
+    "organizationId": "ssc-center",
+    "statistic_type": "service",
+    "targets": {
+      "uptime": 99.0,
+      "responseTime": 1.2,
+      "tasksCompleted": 120,
+      "errorRate": 1.0,
+      "throughput": 35,
+      "memoryUsage": 65.0,
+      "cpuUsage": 55.0
+    },
+    "statistics": [
+      {
+        "date": "2025-07-22",
+        "uptime": 99.1,
+        "responseTime": 1.0,
+        "tasksCompleted": 118,
+        "errorRate": 0.9,
+        "throughput": 34,
+        "memoryUsage": 62.3,
+        "cpuUsage": 52.8
+      },
+      {
+        "date": "2025-07-21",
+        "uptime": 98.7,
+        "responseTime": 1.1,
+        "tasksCompleted": 115,
+        "errorRate": 1.3,
+        "throughput": 32,
+        "memoryUsage": 64.1,
+        "cpuUsage": 54.2
+      },
+      {
+        "date": "2025-07-20",
+        "uptime": 99.3,
+        "responseTime": 0.9,
+        "tasksCompleted": 125,
+        "errorRate": 0.7,
+        "throughput": 36,
+        "memoryUsage": 61.8,
+        "cpuUsage": 51.5
+      },
+      {
+        "date": "2025-07-19",
+        "uptime": 97.9,
+        "responseTime": 1.3,
+        "tasksCompleted": 108,
+        "errorRate": 2.1,
+        "throughput": 29,
+        "memoryUsage": 66.7,
+        "cpuUsage": 57.3
+      },
+      {
+        "date": "2025-07-18",
+        "uptime": 99.2,
+        "responseTime": 1.0,
+        "tasksCompleted": 122,
+        "errorRate": 0.8,
+        "throughput": 35,
+        "memoryUsage": 63.2,
+        "cpuUsage": 53.1
+      },
+      {
+        "date": "2025-07-17",
+        "uptime": 98.5,
+        "responseTime": 1.2,
+        "tasksCompleted": 112,
+        "errorRate": 1.5,
+        "throughput": 31,
+        "memoryUsage": 65.4,
+        "cpuUsage": 55.8
+      },
+      {
+        "date": "2025-07-16",
+        "uptime": 99.0,
+        "responseTime": 1.1,
+        "tasksCompleted": 119,
+        "errorRate": 1.0,
+        "throughput": 34,
+        "memoryUsage": 63.9,
+        "cpuUsage": 54.6
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_f3",
+    "organizationId": "ssc-center",
+    "statistic_type": "service",
+    "targets": {
+      "uptime": 99.0,
+      "responseTime": 2.0,
+      "errorRate": 1.0,
+      "throughput": 45.0
+    },
+    "statistics": [
+      {
+        "date": "2025-01-20",
+        "uptime": 99.2,
+        "responseTime": 1.8,
+        "tasksCompleted": 156,
+        "errorRate": 0.6,
+        "throughput": 52.0,
+        "memoryUsage": 68.5,
+        "cpuUsage": 42.3
+      },
+      {
+        "date": "2025-01-19",
+        "uptime": 98.9,
+        "responseTime": 1.9,
+        "tasksCompleted": 142,
+        "errorRate": 0.7,
+        "throughput": 47.3,
+        "memoryUsage": 71.2,
+        "cpuUsage": 45.1
+      },
+      {
+        "date": "2025-01-18",
+        "uptime": 99.5,
+        "responseTime": 1.7,
+        "tasksCompleted": 168,
+        "errorRate": 0.4,
+        "throughput": 56.0,
+        "memoryUsage": 65.8,
+        "cpuUsage": 38.9
+      },
+      {
+        "date": "2025-01-17",
+        "uptime": 99.1,
+        "responseTime": 2.0,
+        "tasksCompleted": 134,
+        "errorRate": 0.8,
+        "throughput": 44.7,
+        "memoryUsage": 72.4,
+        "cpuUsage": 47.2
+      },
+      {
+        "date": "2025-01-16",
+        "uptime": 98.7,
+        "responseTime": 2.1,
+        "tasksCompleted": 129,
+        "errorRate": 1.2,
+        "throughput": 43.0,
+        "memoryUsage": 74.1,
+        "cpuUsage": 49.8
+      },
+      {
+        "date": "2025-01-15",
+        "uptime": 99.3,
+        "responseTime": 1.6,
+        "tasksCompleted": 171,
+        "errorRate": 0.5,
+        "throughput": 57.0,
+        "memoryUsage": 63.2,
+        "cpuUsage": 36.7
+      },
+      {
+        "date": "2025-01-14",
+        "uptime": 99.0,
+        "responseTime": 1.9,
+        "tasksCompleted": 148,
+        "errorRate": 0.9,
+        "throughput": 49.3,
+        "memoryUsage": 69.7,
+        "cpuUsage": 43.5
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_f3",
+    "organizationId": "ssc-center",
+    "statistic_type": "quality",
+    "statistics": [
+      {
+        "date": "2025-01-20",
+        "groundedness": 96.8,
+        "relevance": 94.2,
+        "coherence": 95.5,
+        "contextAwareness": 93.7
+      },
+      {
+        "date": "2025-01-13",
+        "groundedness": 95.9,
+        "relevance": 93.8,
+        "coherence": 94.9,
+        "contextAwareness": 92.4
+      },
+      {
+        "date": "2025-01-06",
+        "groundedness": 96.2,
+        "relevance": 94.5,
+        "coherence": 95.1,
+        "contextAwareness": 93.1
+      },
+      {
+        "date": "2024-12-30",
+        "groundedness": 95.5,
+        "relevance": 93.2,
+        "coherence": 94.6,
+        "contextAwareness": 92.8
+      },
+      {
+        "date": "2024-12-23",
+        "groundedness": 96.1,
+        "relevance": 94.0,
+        "coherence": 95.3,
+        "contextAwareness": 93.5
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_a5",
+    "organizationId": "ssc-center",
+    "statistic_type": "quality",
+    "targets": {
+      "groundedness": 95.0,
+      "relevance": 90.0,
+      "coherence": 92.0,
+      "contextAwareness": 88.0
+    },
+    "statistics": [
+      {
+        "date": "2025-07-22",
+        "groundedness": 94.2,
+        "relevance": 91.5,
+        "coherence": 93.1,
+        "contextAwareness": 89.3
+      },
+      {
+        "date": "2025-07-21",
+        "groundedness": 95.8,
+        "relevance": 89.2,
+        "coherence": 91.7,
+        "contextAwareness": 87.9
+      },
+      {
+        "date": "2025-07-20",
+        "groundedness": 93.6,
+        "relevance": 92.3,
+        "coherence": 94.2,
+        "contextAwareness": 90.1
+      },
+      {
+        "date": "2025-07-19",
+        "groundedness": 92.1,
+        "relevance": 88.7,
+        "coherence": 90.5,
+        "contextAwareness": 86.8
+      },
+      {
+        "date": "2025-07-18",
+        "groundedness": 96.3,
+        "relevance": 93.1,
+        "coherence": 95.0,
+        "contextAwareness": 91.2
+      },
+      {
+        "date": "2025-07-17",
+        "groundedness": 94.7,
+        "relevance": 90.8,
+        "coherence": 92.3,
+        "contextAwareness": 88.5
+      },
+      {
+        "date": "2025-07-16",
+        "groundedness": 95.1,
+        "relevance": 91.9,
+        "coherence": 93.8,
+        "contextAwareness": 89.7
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_am3",
+    "organizationId": "ssc-center",
+    "statistic_type": "quality",
+    "targets": {
+      "groundedness": 93.0,
+      "relevance": 88.0,
+      "coherence": 90.0,
+      "contextAwareness": 85.0
+    },
+    "statistics": [
+      {
+        "date": "2025-07-22",
+        "groundedness": 92.8,
+        "relevance": 89.1,
+        "coherence": 91.2,
+        "contextAwareness": 86.4
+      },
+      {
+        "date": "2025-07-21",
+        "groundedness": 94.2,
+        "relevance": 87.6,
+        "coherence": 89.8,
+        "contextAwareness": 84.9
+      },
+      {
+        "date": "2025-07-20",
+        "groundedness": 91.5,
+        "relevance": 90.3,
+        "coherence": 92.1,
+        "contextAwareness": 87.2
+      },
+      {
+        "date": "2025-07-19",
+        "groundedness": 90.7,
+        "relevance": 86.8,
+        "coherence": 88.9,
+        "contextAwareness": 83.6
+      },
+      {
+        "date": "2025-07-18",
+        "groundedness": 95.1,
+        "relevance": 91.2,
+        "coherence": 93.4,
+        "contextAwareness": 88.7
+      },
+      {
+        "date": "2025-07-17",
+        "groundedness": 93.3,
+        "relevance": 88.9,
+        "coherence": 90.6,
+        "contextAwareness": 85.8
+      },
+      {
+        "date": "2025-07-16",
+        "groundedness": 92.9,
+        "relevance": 89.7,
+        "coherence": 91.8,
+        "contextAwareness": 86.1
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_f7",
+    "organizationId": "ssc-center",
+    "statistic_type": "quality",
+    "targets": {
+      "groundedness": 96.0,
+      "relevance": 92.0,
+      "coherence": 94.0,
+      "contextAwareness": 90.0
+    },
+    "statistics": [
+      {
+        "date": "2025-07-22",
+        "groundedness": 95.8,
+        "relevance": 93.2,
+        "coherence": 94.5,
+        "contextAwareness": 91.1
+      },
+      {
+        "date": "2025-07-21",
+        "groundedness": 96.3,
+        "relevance": 91.8,
+        "coherence": 93.9,
+        "contextAwareness": 89.7
+      },
+      {
+        "date": "2025-07-20",
+        "groundedness": 94.9,
+        "relevance": 94.1,
+        "coherence": 95.2,
+        "contextAwareness": 92.3
+      },
+      {
+        "date": "2025-07-19",
+        "groundedness": 93.4,
+        "relevance": 90.5,
+        "coherence": 92.8,
+        "contextAwareness": 88.9
+      },
+      {
+        "date": "2025-07-18",
+        "groundedness": 97.1,
+        "relevance": 94.8,
+        "coherence": 96.0,
+        "contextAwareness": 93.2
+      },
+      {
+        "date": "2025-07-17",
+        "groundedness": 95.6,
+        "relevance": 92.4,
+        "coherence": 94.1,
+        "contextAwareness": 90.5
+      },
+      {
+        "date": "2025-07-16",
+        "groundedness": 96.0,
+        "relevance": 93.7,
+        "coherence": 94.8,
+        "contextAwareness": 91.8
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_hr5",
+    "organizationId": "ssc-center",
+    "statistic_type": "quality",
+    "targets": {
+      "groundedness": 94.0,
+      "relevance": 89.0,
+      "coherence": 91.0,
+      "contextAwareness": 87.0
+    },
+    "statistics": [
+      {
+        "date": "2025-07-22",
+        "groundedness": 93.7,
+        "relevance": 90.2,
+        "coherence": 91.8,
+        "contextAwareness": 88.1
+      },
+      {
+        "date": "2025-07-21",
+        "groundedness": 94.5,
+        "relevance": 88.9,
+        "coherence": 90.6,
+        "contextAwareness": 86.8
+      },
+      {
+        "date": "2025-07-20",
+        "groundedness": 92.8,
+        "relevance": 91.4,
+        "coherence": 92.3,
+        "contextAwareness": 89.2
+      },
+      {
+        "date": "2025-07-19",
+        "groundedness": 91.9,
+        "relevance": 87.6,
+        "coherence": 89.7,
+        "contextAwareness": 85.4
+      },
+      {
+        "date": "2025-07-18",
+        "groundedness": 95.2,
+        "relevance": 92.1,
+        "coherence": 93.4,
+        "contextAwareness": 90.3
+      },
+      {
+        "date": "2025-07-17",
+        "groundedness": 94.1,
+        "relevance": 89.7,
+        "coherence": 91.2,
+        "contextAwareness": 87.9
+      },
+      {
+        "date": "2025-07-16",
+        "groundedness": 93.6,
+        "relevance": 90.8,
+        "coherence": 92.0,
+        "contextAwareness": 88.5
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_p2",
+    "organizationId": "ssc-center",
+    "statistic_type": "quality",
+    "targets": {
+      "groundedness": 97.0,
+      "relevance": 94.0,
+      "coherence": 95.0,
+      "contextAwareness": 92.0
+    },
+    "statistics": [
+      {
+        "date": "2025-07-22",
+        "groundedness": 96.8,
+        "relevance": 94.7,
+        "coherence": 95.3,
+        "contextAwareness": 92.8
+      },
+      {
+        "date": "2025-07-21",
+        "groundedness": 97.2,
+        "relevance": 93.5,
+        "coherence": 94.8,
+        "contextAwareness": 91.6
+      },
+      {
+        "date": "2025-07-20",
+        "groundedness": 96.1,
+        "relevance": 95.2,
+        "coherence": 96.0,
+        "contextAwareness": 93.4
+      },
+      {
+        "date": "2025-07-19",
+        "groundedness": 95.3,
+        "relevance": 92.8,
+        "coherence": 93.9,
+        "contextAwareness": 90.7
+      },
+      {
+        "date": "2025-07-18",
+        "groundedness": 97.8,
+        "relevance": 96.1,
+        "coherence": 96.7,
+        "contextAwareness": 94.2
+      },
+      {
+        "date": "2025-07-17",
+        "groundedness": 96.5,
+        "relevance": 94.3,
+        "coherence": 95.1,
+        "contextAwareness": 92.5
+      },
+      {
+        "date": "2025-07-16",
+        "groundedness": 96.9,
+        "relevance": 94.9,
+        "coherence": 95.6,
+        "contextAwareness": 93.1
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_i4",
+    "organizationId": "ssc-center",
+    "statistic_type": "quality",
+    "targets": {
+      "groundedness": 92.0,
+      "relevance": 87.0,
+      "coherence": 89.0,
+      "contextAwareness": 84.0
+    },
+    "statistics": [
+      {
+        "date": "2025-07-22",
+        "groundedness": 91.8,
+        "relevance": 88.3,
+        "coherence": 89.7,
+        "contextAwareness": 85.2
+      },
+      {
+        "date": "2025-07-21",
+        "groundedness": 92.4,
+        "relevance": 86.9,
+        "coherence": 88.5,
+        "contextAwareness": 83.8
+      },
+      {
+        "date": "2025-07-20",
+        "groundedness": 90.9,
+        "relevance": 89.1,
+        "coherence": 90.2,
+        "contextAwareness": 86.1
+      },
+      {
+        "date": "2025-07-19",
+        "groundedness": 89.7,
+        "relevance": 85.4,
+        "coherence": 87.8,
+        "contextAwareness": 82.9
+      },
+      {
+        "date": "2025-07-18",
+        "groundedness": 93.1,
+        "relevance": 90.2,
+        "coherence": 91.4,
+        "contextAwareness": 87.3
+      },
+      {
+        "date": "2025-07-17",
+        "groundedness": 92.0,
+        "relevance": 87.8,
+        "coherence": 89.3,
+        "contextAwareness": 84.7
+      },
+      {
+        "date": "2025-07-16",
+        "groundedness": 91.6,
+        "relevance": 88.6,
+        "coherence": 90.0,
+        "contextAwareness": 85.5
+      }
+    ]
+  }
+]

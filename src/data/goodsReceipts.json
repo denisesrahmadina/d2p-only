@@ -1,0 +1,68 @@
+[
+  {
+    "id": "GR-2025080501",
+    "poNumber": "PO-2024001",
+    "vendor": "PT Astra International",
+    "items": "Automotive Parts - Engine Components",
+    "quantity": "500 units",
+    "status": "Posted",
+    "receivedBy": "Warehouse Team A",
+    "receivedDate": "2025-01-15",
+    "inspectionStatus": "Passed"
+  },
+  {
+    "id": "GR-2025080502",
+    "poNumber": "PO-2024002",
+    "vendor": "PT Honda Prospect Motor",
+    "items": "Motorcycle Parts - Brake Systems",
+    "quantity": "250 units",
+    "status": "Pending Inspection",
+    "receivedBy": "Quality Control",
+    "receivedDate": "2025-01-14",
+    "inspectionStatus": "Pending"
+  },
+  {
+    "id": "GR-2025080503",
+    "poNumber": "PO-2024003",
+    "vendor": "PT Federal Izumi",
+    "items": "Manufacturing Equipment - Assembly Tools",
+    "quantity": "15 units",
+    "status": "Inspected",
+    "receivedBy": "Engineering Team",
+    "receivedDate": "2025-01-13",
+    "inspectionStatus": "Approved"
+  },
+  {
+    "id": "GR-2025080504",
+    "poNumber": "PO-2024004",
+    "vendor": "PT Denso Indonesia",
+    "items": "Electronic Components - Sensors",
+    "quantity": "1,200 units",
+    "status": "Posted",
+    "receivedBy": "Electronics Team",
+    "receivedDate": "2025-01-12",
+    "inspectionStatus": "Passed"
+  },
+  {
+    "id": "GR-2025080505",
+    "poNumber": "PO-2024005",
+    "vendor": "PT Showa Indonesia",
+    "items": "Suspension Components - Shock Absorbers",
+    "quantity": "300 units",
+    "status": "Pending Inspection",
+    "receivedBy": "Mechanical Team",
+    "receivedDate": "2025-01-11",
+    "inspectionStatus": "Pending"
+  },
+  {
+    "id": "GR-20250805-TESTING",
+    "poNumber": "9300044065",
+    "vendor": "PT Accenture",
+    "items": "SAP S/4 Transformation Program - Project Testing Completion Milestone",
+    "quantity": "1 milestone",
+    "status": "Posted",
+    "receivedBy": "Project Management Office",
+    "receivedDate": "2025-08-05",
+    "inspectionStatus": "Approved"
+  }
+]

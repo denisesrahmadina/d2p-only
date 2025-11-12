@@ -1,0 +1,522 @@
+[
+  {
+    "agentId": "ptm_a5",
+    "inputRecords": [
+      {
+        "id": "rec-001",
+        "timestamp": "2024-01-15T14:30:00Z",
+        "eventType": "PR_SUBMISSION",
+        "toolName": "SAP ERP",
+        "dataType": "Procurement Data",
+        "status": "active",
+        "lastUpdate": "2 minutes ago",
+        "dataSourceSystem": "SAP",
+        "data": "New PR submitted: $125,000 for IT equipment - Procurement Dept",
+        "sourceModule": "Purchase Requisition Module"
+      },
+      {
+        "id": "rec-002",
+        "timestamp": "2024-01-15T14:25:00Z",
+        "eventType": "PO_APPROVAL",
+        "toolName": "SAP ERP",
+        "dataType": "Procurement Data",
+        "status": "active",
+        "lastUpdate": "7 minutes ago",
+        "dataSourceSystem": "SAP",
+        "data": "PO approved: $89,500 for office supplies - Admin Dept",
+        "sourceModule": "Purchase Order Module"
+      },
+      {
+        "id": "rec-003",
+        "timestamp": "2024-01-15T14:20:00Z",
+        "eventType": "ABSORPTION_RATE",
+        "toolName": "Oracle HCM",
+        "dataType": "Performance Analytics",
+        "status": "active",
+        "lastUpdate": "12 minutes ago",
+        "dataSourceSystem": "Oracle",
+        "data": "PR to PO absorption rate: 78% this month (target: 85%)",
+        "sourceModule": "Analytics Dashboard"
+      },
+      {
+        "id": "rec-004",
+        "timestamp": "2024-01-15T14:28:00Z",
+        "eventType": "WORKFLOW_DELAY",
+        "toolName": "Tableau",
+        "dataType": "Process Analytics",
+        "status": "active",
+        "lastUpdate": "4 minutes ago",
+        "dataSourceSystem": "Tableau",
+        "data": "Average approval time increased to 5.2 days (target: 3 days)",
+        "sourceModule": "Process Intelligence"
+      },
+      {
+        "id": "rec-005",
+        "timestamp": "2024-01-15T14:22:00Z",
+        "eventType": "VENDOR_PERFORMANCE",
+        "toolName": "SAP ERP",
+        "dataType": "Supplier Data",
+        "status": "active",
+        "lastUpdate": "10 minutes ago",
+        "dataSourceSystem": "SAP",
+        "data": "Top vendor delivery performance: 94.2% on-time delivery rate",
+        "sourceModule": "Vendor Management"
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_hr5",
+    "inputRecords": [
+      {
+        "id": "rec-006",
+        "timestamp": "2024-01-15T14:30:00Z",
+        "eventType": "PERFORMANCE_REVIEW",
+        "toolName": "Workday HCM",
+        "dataType": "HR Data",
+        "status": "active",
+        "lastUpdate": "2 minutes ago",
+        "dataSourceSystem": "Workday",
+        "data": "Q4 performance reviews: 85% completed, 15% pending manager approval",
+        "sourceModule": "Performance Management"
+      },
+      {
+        "id": "rec-007",
+        "timestamp": "2024-01-15T14:25:00Z",
+        "eventType": "GOAL_ACHIEVEMENT",
+        "toolName": "Jira",
+        "dataType": "Project Data",
+        "status": "active",
+        "lastUpdate": "7 minutes ago",
+        "dataSourceSystem": "Jira",
+        "data": "Employee goal completion rate: 92% across all departments",
+        "sourceModule": "Goal Tracking System"
+      },
+      {
+        "id": "rec-008",
+        "timestamp": "2024-01-15T14:20:00Z",
+        "eventType": "COMPENSATION_UPDATE",
+        "toolName": "Workday HCM",
+        "dataType": "Compensation Data",
+        "status": "active",
+        "lastUpdate": "12 minutes ago",
+        "dataSourceSystem": "Workday",
+        "data": "Merit increase budget: $2.4M allocated for top performers",
+        "sourceModule": "Compensation Planning"
+      },
+      {
+        "id": "rec-009",
+        "timestamp": "2024-01-15T14:28:00Z",
+        "eventType": "ANALYTICS_REPORT",
+        "toolName": "Tableau",
+        "dataType": "HR Analytics",
+        "status": "active",
+        "lastUpdate": "4 minutes ago",
+        "dataSourceSystem": "Tableau",
+        "data": "Employee engagement score: 4.2/5.0 (up 0.3 from last quarter)",
+        "sourceModule": "HR Analytics Dashboard"
+      },
+      {
+        "id": "rec-010",
+        "timestamp": "2024-01-15T14:22:00Z",
+        "eventType": "TEAM_COLLABORATION",
+        "toolName": "Slack",
+        "dataType": "Communication Data",
+        "status": "active",
+        "lastUpdate": "10 minutes ago",
+        "dataSourceSystem": "Slack",
+        "data": "Cross-team collaboration index: 87% (target: 90%)",
+        "sourceModule": "Communication Analytics"
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_p2",
+    "inputRecords": [
+      {
+        "id": "rec-011",
+        "timestamp": "2024-01-15T14:30:00Z",
+        "eventType": "CONTRACT_SUBMISSION",
+        "toolName": "Salesforce CRM",
+        "dataType": "Contract Data",
+        "status": "active",
+        "lastUpdate": "2 minutes ago",
+        "dataSourceSystem": "Salesforce",
+        "data": "New contract submitted: $5.2M drilling services agreement",
+        "sourceModule": "Contract Management"
+      },
+      {
+        "id": "rec-012",
+        "timestamp": "2024-01-15T14:25:00Z",
+        "eventType": "COMPLIANCE_CHECK",
+        "toolName": "ServiceNow",
+        "dataType": "Compliance Data",
+        "status": "active",
+        "lastUpdate": "7 minutes ago",
+        "dataSourceSystem": "ServiceNow",
+        "data": "Contract compliance scan: 3 contracts require renewal within 30 days",
+        "sourceModule": "Compliance Monitor"
+      },
+      {
+        "id": "rec-013",
+        "timestamp": "2024-01-15T14:20:00Z",
+        "eventType": "RISK_ASSESSMENT",
+        "toolName": "BigQuery",
+        "dataType": "Risk Analytics",
+        "status": "active",
+        "lastUpdate": "12 minutes ago",
+        "dataSourceSystem": "BigQuery",
+        "data": "Contract risk score: Medium risk detected in 2 supplier agreements",
+        "sourceModule": "Risk Analytics Engine"
+      },
+      {
+        "id": "rec-014",
+        "timestamp": "2024-01-15T14:28:00Z",
+        "eventType": "RENEWAL_ALERT",
+        "toolName": "Salesforce CRM",
+        "dataType": "Contract Lifecycle",
+        "status": "active",
+        "lastUpdate": "4 minutes ago",
+        "dataSourceSystem": "Salesforce",
+        "data": "Contract renewal opportunity: $12.8M logistics contract expires in 45 days",
+        "sourceModule": "Renewal Management"
+      },
+      {
+        "id": "rec-015",
+        "timestamp": "2024-01-15T14:22:00Z",
+        "eventType": "NEGOTIATION_UPDATE",
+        "toolName": "Teams",
+        "dataType": "Communication Data",
+        "status": "active",
+        "lastUpdate": "10 minutes ago",
+        "dataSourceSystem": "Teams",
+        "data": "Contract negotiation progress: 75% terms agreed for equipment lease",
+        "sourceModule": "Negotiation Tracker"
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_f7",
+    "inputRecords": [
+      {
+        "id": "rec-016",
+        "timestamp": "2024-01-15T14:30:00Z",
+        "eventType": "TAX_CALCULATION",
+        "toolName": "SAP ERP",
+        "dataType": "Tax Data",
+        "status": "active",
+        "lastUpdate": "2 minutes ago",
+        "dataSourceSystem": "SAP",
+        "data": "Monthly tax liability calculated: $8.4M across all subsidiaries",
+        "sourceModule": "Tax Calculation Engine"
+      },
+      {
+        "id": "rec-017",
+        "timestamp": "2024-01-15T14:25:00Z",
+        "eventType": "COMPLIANCE_SCAN",
+        "toolName": "ServiceNow",
+        "dataType": "Compliance Data",
+        "status": "active",
+        "lastUpdate": "7 minutes ago",
+        "dataSourceSystem": "ServiceNow",
+        "data": "Tax compliance check: 2 jurisdictions require filing updates",
+        "sourceModule": "Compliance Monitor"
+      },
+      {
+        "id": "rec-018",
+        "timestamp": "2024-01-15T14:20:00Z",
+        "eventType": "OPTIMIZATION_OPPORTUNITY",
+        "toolName": "BigQuery",
+        "dataType": "Tax Analytics",
+        "status": "active",
+        "lastUpdate": "12 minutes ago",
+        "dataSourceSystem": "BigQuery",
+        "data": "Tax optimization identified: Potential $1.2M savings through restructuring",
+        "sourceModule": "Tax Optimization Engine"
+      },
+      {
+        "id": "rec-019",
+        "timestamp": "2024-01-15T14:28:00Z",
+        "eventType": "AUDIT_PREPARATION",
+        "toolName": "Tableau",
+        "dataType": "Audit Data",
+        "status": "active",
+        "lastUpdate": "4 minutes ago",
+        "dataSourceSystem": "Tableau",
+        "data": "Tax audit preparation: 94% documentation complete for Q3 review",
+        "sourceModule": "Audit Management"
+      },
+      {
+        "id": "rec-020",
+        "timestamp": "2024-01-15T14:22:00Z",
+        "eventType": "REGULATION_UPDATE",
+        "toolName": "Slack",
+        "dataType": "Regulatory Data",
+        "status": "active",
+        "lastUpdate": "10 minutes ago",
+        "dataSourceSystem": "Slack",
+        "data": "New tax regulation alert: VAT rate changes effective Q2 2024",
+        "sourceModule": "Regulatory Monitor"
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_i4",
+    "inputRecords": [
+      {
+        "id": "rec-021",
+        "timestamp": "2024-01-15T14:30:00Z",
+        "eventType": "LICENSE_USAGE",
+        "toolName": "ServiceNow",
+        "dataType": "License Data",
+        "status": "active",
+        "lastUpdate": "2 minutes ago",
+        "dataSourceSystem": "ServiceNow",
+        "data": "Microsoft Office 365: 2,847 of 3,200 licenses active (89% utilization)",
+        "sourceModule": "License Tracking"
+      },
+      {
+        "id": "rec-022",
+        "timestamp": "2024-01-15T14:25:00Z",
+        "eventType": "COST_ANALYSIS",
+        "toolName": "SAP ERP",
+        "dataType": "Financial Data",
+        "status": "active",
+        "lastUpdate": "7 minutes ago",
+        "dataSourceSystem": "SAP",
+        "data": "Software licensing costs: $1.8M monthly spend across all platforms",
+        "sourceModule": "Cost Management"
+      },
+      {
+        "id": "rec-023",
+        "timestamp": "2024-01-15T14:20:00Z",
+        "eventType": "COMPLIANCE_CHECK",
+        "toolName": "ServiceNow",
+        "dataType": "Compliance Data",
+        "status": "active",
+        "lastUpdate": "12 minutes ago",
+        "dataSourceSystem": "ServiceNow",
+        "data": "License compliance status: 98.5% compliant, 3 violations detected",
+        "sourceModule": "Compliance Scanner"
+      },
+      {
+        "id": "rec-024",
+        "timestamp": "2024-01-15T14:28:00Z",
+        "eventType": "OPTIMIZATION_ALERT",
+        "toolName": "Tableau",
+        "dataType": "Usage Analytics",
+        "status": "active",
+        "lastUpdate": "4 minutes ago",
+        "dataSourceSystem": "Tableau",
+        "data": "Unused licenses identified: Potential $45,000 monthly savings",
+        "sourceModule": "Optimization Engine"
+      },
+      {
+        "id": "rec-025",
+        "timestamp": "2024-01-15T14:22:00Z",
+        "eventType": "RENEWAL_NOTIFICATION",
+        "toolName": "AWS Services",
+        "dataType": "License Lifecycle",
+        "status": "active",
+        "lastUpdate": "10 minutes ago",
+        "dataSourceSystem": "AWS",
+        "data": "Enterprise license renewal: Adobe Creative Suite expires in 60 days",
+        "sourceModule": "Renewal Manager"
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_am1",
+    "inputRecords": [
+      {
+        "id": "rec-026",
+        "timestamp": "2024-01-15T14:30:00Z",
+        "eventType": "EQUIPMENT_ALERT",
+        "toolName": "PI System",
+        "dataType": "Equipment Data",
+        "status": "active",
+        "lastUpdate": "2 minutes ago",
+        "dataSourceSystem": "PI System",
+        "data": "Compressor C-101 vibration levels elevated: 8.2mm/s (threshold: 7.5mm/s)",
+        "sourceModule": "Vibration Monitoring"
+      },
+      {
+        "id": "rec-027",
+        "timestamp": "2024-01-15T14:25:00Z",
+        "eventType": "MAINTENANCE_SCHEDULE",
+        "toolName": "Maximo",
+        "dataType": "Maintenance Data",
+        "status": "active",
+        "lastUpdate": "7 minutes ago",
+        "dataSourceSystem": "Maximo",
+        "data": "Preventive maintenance due for Heat Exchanger HE-205 in 3 days",
+        "sourceModule": "Maintenance Planning"
+      },
+      {
+        "id": "rec-028",
+        "timestamp": "2024-01-15T14:20:00Z",
+        "eventType": "PERFORMANCE_DEGRADATION",
+        "toolName": "SAP ERP",
+        "dataType": "Performance Data",
+        "status": "active",
+        "lastUpdate": "12 minutes ago",
+        "dataSourceSystem": "SAP",
+        "data": "Pump P-301 efficiency dropped to 82% (baseline: 89%)",
+        "sourceModule": "Equipment Performance"
+      },
+      {
+        "id": "rec-029",
+        "timestamp": "2024-01-15T14:28:00Z",
+        "eventType": "PREDICTIVE_ALERT",
+        "toolName": "Tableau",
+        "dataType": "Analytics Data",
+        "status": "active",
+        "lastUpdate": "4 minutes ago",
+        "dataSourceSystem": "Tableau",
+        "data": "Turbine T-401 predicted failure probability: 15% within 30 days",
+        "sourceModule": "Predictive Analytics"
+      },
+      {
+        "id": "rec-030",
+        "timestamp": "2024-01-15T14:22:00Z",
+        "eventType": "ASSET_UTILIZATION",
+        "toolName": "PI System",
+        "dataType": "Utilization Data",
+        "status": "active",
+        "lastUpdate": "10 minutes ago",
+        "dataSourceSystem": "PI System",
+        "data": "Reactor R-102 utilization: 94.2% (optimal range: 85-95%)",
+        "sourceModule": "Asset Performance"
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_am2",
+    "inputRecords": [
+      {
+        "id": "rec-031",
+        "timestamp": "2024-01-15T14:30:00Z",
+        "eventType": "ASSET_LIFECYCLE",
+        "toolName": "SAP ERP",
+        "dataType": "Asset Data",
+        "status": "active",
+        "lastUpdate": "2 minutes ago",
+        "dataSourceSystem": "SAP",
+        "data": "Distillation Column DC-301 approaching 80% of design life (15 years)",
+        "sourceModule": "Asset Lifecycle Management"
+      },
+      {
+        "id": "rec-032",
+        "timestamp": "2024-01-15T14:25:00Z",
+        "eventType": "REPLACEMENT_PLANNING",
+        "toolName": "Oracle EAM",
+        "dataType": "Planning Data",
+        "status": "active",
+        "lastUpdate": "7 minutes ago",
+        "dataSourceSystem": "Oracle",
+        "data": "Heat Exchanger replacement budget approved: $2.4M for Q2 2024",
+        "sourceModule": "Capital Planning"
+      },
+      {
+        "id": "rec-033",
+        "timestamp": "2024-01-15T14:20:00Z",
+        "eventType": "DEPRECIATION_ANALYSIS",
+        "toolName": "Power BI",
+        "dataType": "Financial Data",
+        "status": "active",
+        "lastUpdate": "12 minutes ago",
+        "dataSourceSystem": "Power BI",
+        "data": "Asset depreciation optimization identified: $1.8M potential tax benefit",
+        "sourceModule": "Financial Analytics"
+      },
+      {
+        "id": "rec-034",
+        "timestamp": "2024-01-15T14:28:00Z",
+        "eventType": "UTILIZATION_REPORT",
+        "toolName": "Maximo",
+        "dataType": "Utilization Data",
+        "status": "active",
+        "lastUpdate": "4 minutes ago",
+        "dataSourceSystem": "Maximo",
+        "data": "Mobile equipment utilization: 76% (target: 80%)",
+        "sourceModule": "Asset Utilization"
+      },
+      {
+        "id": "rec-035",
+        "timestamp": "2024-01-15T14:22:00Z",
+        "eventType": "ROI_ANALYSIS",
+        "toolName": "SAP ERP",
+        "dataType": "Financial Data",
+        "status": "active",
+        "lastUpdate": "10 minutes ago",
+        "dataSourceSystem": "SAP",
+        "data": "New compressor ROI analysis: 18% IRR over 10-year lifecycle",
+        "sourceModule": "Investment Analysis"
+      }
+    ]
+  },
+  {
+    "agentId": "ptm_am3",
+    "inputRecords": [
+      {
+        "id": "rec-036",
+        "timestamp": "2024-01-15T14:30:00Z",
+        "eventType": "SPACE_UTILIZATION",
+        "toolName": "Building Management System",
+        "dataType": "Facility Data",
+        "status": "active",
+        "lastUpdate": "2 minutes ago",
+        "dataSourceSystem": "BMS",
+        "data": "Office space utilization: 68% average occupancy, 15 meeting rooms underutilized",
+        "sourceModule": "Space Analytics"
+      },
+      {
+        "id": "rec-037",
+        "timestamp": "2024-01-15T14:25:00Z",
+        "eventType": "MEETING_ROOM_USAGE",
+        "toolName": "Microsoft 365",
+        "dataType": "Booking Data",
+        "status": "active",
+        "lastUpdate": "7 minutes ago",
+        "dataSourceSystem": "Microsoft 365",
+        "data": "Meeting room booking efficiency: 72%, 28% no-show rate detected",
+        "sourceModule": "Room Booking System"
+      },
+      {
+        "id": "rec-038",
+        "timestamp": "2024-01-15T14:20:00Z",
+        "eventType": "VEHICLE_UTILIZATION",
+        "toolName": "Fleet Management System",
+        "dataType": "Fleet Data",
+        "status": "active",
+        "lastUpdate": "12 minutes ago",
+        "dataSourceSystem": "Fleet Management",
+        "data": "Corporate vehicle utilization: 64%, 12 vehicles idle for >3 days",
+        "sourceModule": "Fleet Analytics"
+      },
+      {
+        "id": "rec-039",
+        "timestamp": "2024-01-15T14:28:00Z",
+        "eventType": "ENERGY_CONSUMPTION",
+        "toolName": "Building Management System",
+        "dataType": "Energy Data",
+        "status": "active",
+        "lastUpdate": "4 minutes ago",
+        "dataSourceSystem": "BMS",
+        "data": "Building energy consumption: 15% above benchmark, HVAC optimization needed",
+        "sourceModule": "Energy Management"
+      },
+      {
+        "id": "rec-040",
+        "timestamp": "2024-01-15T14:22:00Z",
+        "eventType": "FACILITY_COST_ANALYSIS",
+        "toolName": "SAP ERP",
+        "dataType": "Financial Data",
+        "status": "active",
+        "lastUpdate": "10 minutes ago",
+        "dataSourceSystem": "SAP",
+        "data": "Facility operational costs: $2.8M monthly, 18% optimization potential identified",
+        "sourceModule": "Facility Finance"
+      }
+    ]
+  }
+]

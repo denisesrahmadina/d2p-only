@@ -1,0 +1,360 @@
+import { BAProcessHistory } from '../../types/ba';
+
+export const mockProcessHistory: BAProcessHistory[] = [
+  {
+    history_id: 1,
+    ba_id: 1,
+    action_type: 'CREATED',
+    action_by_user_id: 'USR-PLN001',
+    action_by_name: 'Ahmad Budiman',
+    action_by_role: 'Procurement Officer',
+    new_status: 'DRAFT',
+    action_comments: 'BA Pemeriksaan document created',
+    action_timestamp: '2025-01-04T14:30:00Z',
+    created_date: '2025-01-04T14:30:00Z'
+  },
+  {
+    history_id: 2,
+    ba_id: 1,
+    action_type: 'DOCUMENT_UPLOADED',
+    action_by_user_id: 'USR-PLN001',
+    action_by_name: 'Ahmad Budiman',
+    action_by_role: 'Procurement Officer',
+    action_comments: 'Uploaded Purchase Order document',
+    action_timestamp: '2025-01-04T14:32:00Z',
+    created_date: '2025-01-04T14:32:00Z'
+  },
+  {
+    history_id: 3,
+    ba_id: 1,
+    action_type: 'SUBMITTED',
+    action_by_user_id: 'USR-PLN001',
+    action_by_name: 'Ahmad Budiman',
+    action_by_role: 'Procurement Officer',
+    previous_status: 'DRAFT',
+    new_status: 'SUBMITTED',
+    action_comments: 'Document submitted for review',
+    action_timestamp: '2025-01-05T08:00:00Z',
+    created_date: '2025-01-05T08:00:00Z'
+  },
+  {
+    history_id: 4,
+    ba_id: 1,
+    action_type: 'REVIEWED',
+    action_by_user_id: 'USR-V002',
+    action_by_name: 'Sri Wahyuni',
+    action_by_role: 'Technical Supervisor',
+    previous_status: 'SUBMITTED',
+    new_status: 'UNDER_REVIEW',
+    action_comments: 'Started vendor review process',
+    action_timestamp: '2025-01-06T09:00:00Z',
+    created_date: '2025-01-06T09:00:00Z'
+  },
+  {
+    history_id: 5,
+    ba_id: 1,
+    action_type: 'REVIEWED',
+    action_by_user_id: 'USR-V002',
+    action_by_name: 'Sri Wahyuni',
+    action_by_role: 'Technical Supervisor',
+    action_comments: 'Verified and approved all inspection items',
+    action_timestamp: '2025-01-06T10:00:00Z',
+    created_date: '2025-01-06T10:00:00Z'
+  },
+  {
+    history_id: 6,
+    ba_id: 1,
+    action_type: 'REVIEWED',
+    action_by_user_id: 'USR-PLN002',
+    action_by_name: 'Budi Santoso',
+    action_by_role: 'Senior Inspector',
+    action_comments: 'Quality check completed. All items meet specifications.',
+    action_timestamp: '2025-01-07T14:30:00Z',
+    created_date: '2025-01-07T14:30:00Z'
+  },
+  {
+    history_id: 7,
+    ba_id: 1,
+    action_type: 'REVIEWED',
+    action_by_user_id: 'USR-PLN002',
+    action_by_name: 'Budi Santoso',
+    action_by_role: 'Senior Inspector',
+    previous_status: 'UNDER_REVIEW',
+    new_status: 'UNDER_APPROVAL',
+    action_comments: 'Review completed. Forwarded for approval.',
+    action_timestamp: '2025-01-08T10:00:00Z',
+    created_date: '2025-01-08T10:00:00Z'
+  },
+  {
+    history_id: 8,
+    ba_id: 1,
+    action_type: 'APPROVED',
+    action_by_user_id: 'USR-V003',
+    action_by_name: 'Ir. Bambang Wijaya',
+    action_by_role: 'Operations Director',
+    action_comments: 'Approved for delivery',
+    action_timestamp: '2025-01-09T11:00:00Z',
+    created_date: '2025-01-09T11:00:00Z'
+  },
+  {
+    history_id: 9,
+    ba_id: 1,
+    action_type: 'APPROVED',
+    action_by_user_id: 'USR-PLN003',
+    action_by_name: 'Ir. Suharto Wirawan',
+    action_by_role: 'Procurement Manager',
+    previous_status: 'UNDER_APPROVAL',
+    new_status: 'APPROVED',
+    action_comments: 'Final approval granted. Proceed with GR creation.',
+    action_timestamp: '2025-01-09T16:00:00Z',
+    created_date: '2025-01-09T16:00:00Z'
+  },
+  {
+    history_id: 10,
+    ba_id: 1,
+    action_type: 'SIGNATURE_ADDED',
+    action_by_user_id: 'USR-PLN003',
+    action_by_name: 'Ir. Suharto Wirawan',
+    action_by_role: 'Procurement Manager',
+    action_comments: 'Digital signature applied',
+    action_timestamp: '2025-01-09T16:15:00Z',
+    created_date: '2025-01-09T16:15:00Z'
+  },
+  {
+    history_id: 11,
+    ba_id: 1,
+    action_type: 'GR_CREATED',
+    action_by_name: 'System',
+    action_comments: 'Goods Receipt GR-2025-001 created successfully',
+    action_timestamp: '2025-01-10T08:00:00Z',
+    created_date: '2025-01-10T08:00:00Z'
+  },
+  {
+    history_id: 12,
+    ba_id: 1,
+    action_type: 'TIMELINE_SYNCED',
+    action_by_name: 'System',
+    action_comments: 'Order monitoring timeline synchronized',
+    action_timestamp: '2025-01-10T08:30:00Z',
+    created_date: '2025-01-10T08:30:00Z'
+  },
+  {
+    history_id: 13,
+    ba_id: 2,
+    action_type: 'CREATED',
+    action_by_user_id: 'USR-PLN004',
+    action_by_name: 'Siti Rahayu',
+    action_by_role: 'Warehouse Supervisor',
+    new_status: 'DRAFT',
+    action_comments: 'BA Serah Terima Barang document created',
+    action_timestamp: '2025-01-10T15:00:00Z',
+    created_date: '2025-01-10T15:00:00Z'
+  },
+  {
+    history_id: 14,
+    ba_id: 2,
+    action_type: 'SUBMITTED',
+    action_by_user_id: 'USR-PLN004',
+    action_by_name: 'Siti Rahayu',
+    action_by_role: 'Warehouse Supervisor',
+    previous_status: 'DRAFT',
+    new_status: 'SUBMITTED',
+    action_comments: 'Handover document submitted for review',
+    action_timestamp: '2025-01-11T10:00:00Z',
+    created_date: '2025-01-11T10:00:00Z'
+  },
+  {
+    history_id: 15,
+    ba_id: 2,
+    action_type: 'REVIEWED',
+    action_by_user_id: 'USR-V002',
+    action_by_name: 'Sri Wahyuni',
+    action_by_role: 'Technical Supervisor',
+    previous_status: 'SUBMITTED',
+    new_status: 'UNDER_REVIEW',
+    action_comments: 'Handover documentation verified',
+    action_timestamp: '2025-01-12T09:00:00Z',
+    created_date: '2025-01-12T09:00:00Z'
+  },
+  {
+    history_id: 16,
+    ba_id: 2,
+    action_type: 'REVIEWED',
+    action_by_user_id: 'USR-PLN005',
+    action_by_name: 'Dewi Lestari',
+    action_by_role: 'Warehouse Inspector',
+    previous_status: 'UNDER_REVIEW',
+    new_status: 'UNDER_APPROVAL',
+    action_comments: 'Review in progress - checking item condition',
+    action_timestamp: '2025-01-13T09:00:00Z',
+    created_date: '2025-01-13T09:00:00Z'
+  },
+  {
+    history_id: 17,
+    ba_id: 3,
+    action_type: 'CREATED',
+    action_by_user_id: 'USR-PLN006',
+    action_by_name: 'Budi Santoso',
+    action_by_role: 'Procurement Specialist',
+    new_status: 'DRAFT',
+    action_comments: 'BA Pemeriksaan document created for transmission components',
+    action_timestamp: '2025-01-13T16:00:00Z',
+    created_date: '2025-01-13T16:00:00Z'
+  },
+  {
+    history_id: 18,
+    ba_id: 3,
+    action_type: 'SUBMITTED',
+    action_by_user_id: 'USR-PLN006',
+    action_by_name: 'Budi Santoso',
+    action_by_role: 'Procurement Specialist',
+    previous_status: 'DRAFT',
+    new_status: 'SUBMITTED',
+    action_comments: 'Document submitted for inspection review',
+    action_timestamp: '2025-01-14T11:30:00Z',
+    created_date: '2025-01-14T11:30:00Z'
+  },
+  {
+    history_id: 19,
+    ba_id: 3,
+    action_type: 'REVIEWED',
+    action_by_user_id: 'USR-PLN007',
+    action_by_name: 'Eko Wijaya',
+    action_by_role: 'Technical Inspector',
+    previous_status: 'SUBMITTED',
+    new_status: 'UNDER_REVIEW',
+    action_comments: 'Started technical inspection. Found quality issues on 3 units.',
+    action_timestamp: '2025-01-15T08:00:00Z',
+    created_date: '2025-01-15T08:00:00Z'
+  },
+  {
+    history_id: 20,
+    ba_id: 6,
+    action_type: 'CREATED',
+    action_by_user_id: 'USR-PLN008',
+    action_by_name: 'Eko Prasetyo',
+    action_by_role: 'Procurement Officer',
+    new_status: 'DRAFT',
+    action_comments: 'BA Pemeriksaan document created for generator parts',
+    action_timestamp: '2025-01-07T14:00:00Z',
+    created_date: '2025-01-07T14:00:00Z'
+  },
+  {
+    history_id: 21,
+    ba_id: 6,
+    action_type: 'SUBMITTED',
+    action_by_user_id: 'USR-PLN008',
+    action_by_name: 'Eko Prasetyo',
+    action_by_role: 'Procurement Officer',
+    previous_status: 'DRAFT',
+    new_status: 'SUBMITTED',
+    action_comments: 'Document submitted for review',
+    action_timestamp: '2025-01-08T10:00:00Z',
+    created_date: '2025-01-08T10:00:00Z'
+  },
+  {
+    history_id: 22,
+    ba_id: 6,
+    action_type: 'REVIEWED',
+    action_by_user_id: 'USR-PLN009',
+    action_by_name: 'Fajar Wibowo',
+    action_by_role: 'Quality Inspector',
+    previous_status: 'SUBMITTED',
+    new_status: 'UNDER_REVIEW',
+    action_comments: 'Critical quality issues found during inspection',
+    action_timestamp: '2025-01-09T08:00:00Z',
+    created_date: '2025-01-09T08:00:00Z'
+  },
+  {
+    history_id: 23,
+    ba_id: 6,
+    action_type: 'REJECTED',
+    action_by_user_id: 'USR-PLN010',
+    action_by_name: 'Ir. Bambang Sulistyo',
+    action_by_role: 'Procurement Manager',
+    previous_status: 'UNDER_REVIEW',
+    new_status: 'REJECTED',
+    rejection_reason_id: 1,
+    rejection_reason_category: 'Quality Issue',
+    rejection_reason_detail: 'All bearing sets fail dimensional tolerance test. Manufacturing defect suspected.',
+    action_comments: 'Rejected due to critical quality defects. Vendor to replace all units.',
+    action_timestamp: '2025-01-10T14:00:00Z',
+    created_date: '2025-01-10T14:00:00Z'
+  },
+  {
+    history_id: 24,
+    ba_id: 9,
+    action_type: 'CREATED',
+    action_by_user_id: 'USR-PLN011',
+    action_by_name: 'I Made Suwandi',
+    action_by_role: 'Procurement Officer',
+    new_status: 'DRAFT',
+    action_comments: 'BA Pemeriksaan document created',
+    action_timestamp: '2025-01-12T15:00:00Z',
+    created_date: '2025-01-12T15:00:00Z'
+  },
+  {
+    history_id: 25,
+    ba_id: 9,
+    action_type: 'SUBMITTED',
+    action_by_user_id: 'USR-PLN011',
+    action_by_name: 'I Made Suwandi',
+    action_by_role: 'Procurement Officer',
+    previous_status: 'DRAFT',
+    new_status: 'SUBMITTED',
+    action_comments: 'Document submitted for review',
+    action_timestamp: '2025-01-13T09:00:00Z',
+    created_date: '2025-01-13T09:00:00Z'
+  },
+  {
+    history_id: 26,
+    ba_id: 9,
+    action_type: 'CANCELLED',
+    action_by_user_id: 'USR-PLN011',
+    action_by_name: 'I Made Suwandi',
+    action_by_role: 'Procurement Officer',
+    previous_status: 'SUBMITTED',
+    new_status: 'CANCELLED',
+    action_comments: 'Vendor requested cancellation due to supply chain issues. New delivery scheduled.',
+    action_timestamp: '2025-01-14T10:00:00Z',
+    created_date: '2025-01-14T10:00:00Z'
+  }
+];
+
+export const mockRejectionReasons = [
+  {
+    reason_id: 1,
+    reason_category: 'Quality Issue',
+    reason_code: 'QI-001',
+    reason_description: 'Items do not meet quality specifications',
+    is_active: true
+  },
+  {
+    reason_id: 2,
+    reason_category: 'Documentation Issue',
+    reason_code: 'DI-001',
+    reason_description: 'Incomplete or incorrect documentation',
+    is_active: true
+  },
+  {
+    reason_id: 3,
+    reason_category: 'Quantity Mismatch',
+    reason_code: 'QM-001',
+    reason_description: 'Delivered quantity does not match PO',
+    is_active: true
+  },
+  {
+    reason_id: 4,
+    reason_category: 'Specification Mismatch',
+    reason_code: 'SM-001',
+    reason_description: 'Items do not match technical specifications',
+    is_active: true
+  },
+  {
+    reason_id: 5,
+    reason_category: 'Delivery Issue',
+    reason_code: 'DEL-001',
+    reason_description: 'Delivery timing or condition issues',
+    is_active: true
+  }
+];

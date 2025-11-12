@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Users</title>
+</head>
+<body>
+  <h1>Testing User Service</h1>
+  <div id="results"></div>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.76.1';
+
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+    async function testUsers() {
+      console.log('Testing user fetch...');
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = '<p>Loading...</p>';
+
+      const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('organization_id', 'indonesia-power');
+
+      if (error) {
+        console.error('Error:', error);
+        resultsDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+        return;
+      }
+
+      console.log('Users fetched:', data);
+      resultsDiv.innerHTML = `
+        <h2>Found ${data.length} users:</h2>
+        <ul>
+          ${data.map(user => `<li>${user.name} - ${user.email}</li>`).join('')}
+        </ul>
+      `;
+    }
+
+    testUsers();
+  </script>
+</body>
+</html>

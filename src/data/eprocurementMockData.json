@@ -1,0 +1,2687 @@
+{
+  "procurementRequests": [
+    {
+      "id": "PR-2025-001-1",
+      "pr_number": "PR-2025-001",
+      "pr_line_number": 1,
+      "pr_type": "Standard",
+      "pr_status": "APPROVED",
+      "pr_date": "2025-01-15",
+      "material_id": "MAT-SOL-001",
+      "vendor_id": "VEN-001",
+      "unit_requestor_id": "Engineering Dept",
+      "requirement_date": "2025-03-15",
+      "delivery_date": "2025-03-20",
+      "demand_qty": 100,
+      "qty_ordered": 100,
+      "unit_price": 15000000,
+      "pr_value": 1500000000,
+      "currency": "IDR",
+      "created_date": "2025-01-15T08:00:00Z"
+    },
+    {
+      "id": "PR-2025-002-1",
+      "pr_number": "PR-2025-002",
+      "pr_line_number": 1,
+      "pr_type": "Standard",
+      "pr_status": "PENDING",
+      "pr_date": "2025-01-20",
+      "material_id": "MAT-WIN-001",
+      "vendor_id": null,
+      "unit_requestor_id": "Operations Team",
+      "requirement_date": "2025-04-01",
+      "delivery_date": "2025-04-05",
+      "demand_qty": 50,
+      "qty_ordered": 0,
+      "unit_price": 25000000,
+      "pr_value": 1250000000,
+      "currency": "IDR",
+      "created_date": "2025-01-20T09:30:00Z"
+    },
+    {
+      "id": "PR-2025-003-1",
+      "pr_number": "PR-2025-003",
+      "pr_line_number": 1,
+      "pr_type": "Urgent",
+      "pr_status": "ORDERED",
+      "pr_date": "2025-01-22",
+      "material_id": "MAT-BAT-001",
+      "vendor_id": "VEN-003",
+      "unit_requestor_id": "R&D Department",
+      "requirement_date": "2025-02-28",
+      "delivery_date": "2025-03-05",
+      "demand_qty": 30,
+      "qty_ordered": 30,
+      "unit_price": 40000000,
+      "pr_value": 1200000000,
+      "currency": "IDR",
+      "created_date": "2025-01-22T10:15:00Z"
+    }
+  ],
+  "sourcingEvents": [
+    {
+      "id": "SE-2025-001",
+      "sourcing_event_id": "SRC-2025-001",
+      "title": "Solar Panel Procurement - 50 MW",
+      "material_ids": ["MAT-SOL-001", "MAT-SOL-002"],
+      "demand_quantity": "100 units",
+      "delivery_date": "2025-05-15",
+      "delivery_location": "Jakarta Power Plant",
+      "estimate_price": 5000000000,
+      "total_value": 5000,
+      "vendor_count": 8,
+      "estimate_schedule": {
+        "duration": "60 days",
+        "milestones": ["Tender Preparation", "Announcement", "Evaluation", "Award"]
+      },
+      "shortlisted_vendors": ["VEN-001", "VEN-002", "VEN-003"],
+      "status": "In Progress",
+      "approval_status": "Approved",
+      "approved_by": "Manager",
+      "assigned_to": "Sarah Johnson",
+      "category": "Renewable Energy",
+      "responsible_planner": "Sarah Johnson",
+      "organization_id": "org-001",
+      "created_at": "2025-01-10T08:00:00Z"
+    },
+    {
+      "id": "SE-2025-002",
+      "sourcing_event_id": "SRC-2025-002",
+      "title": "Wind Turbine Components",
+      "material_ids": ["MAT-WIN-001"],
+      "demand_quantity": "50 units",
+      "delivery_date": "2025-06-20",
+      "delivery_location": "Surabaya Facility",
+      "estimate_price": 3500000000,
+      "total_value": 3500,
+      "vendor_count": 5,
+      "estimate_schedule": {
+        "duration": "90 days",
+        "milestones": ["Planning", "Tender", "Evaluation", "Contract"]
+      },
+      "shortlisted_vendors": ["VEN-004", "VEN-005"],
+      "status": "Scheduled",
+      "approval_status": "Approved",
+      "approved_by": "Director",
+      "assigned_to": "Michael Chen",
+      "category": "Equipment",
+      "responsible_planner": "Michael Chen",
+      "organization_id": "org-001",
+      "created_at": "2025-01-15T09:00:00Z"
+    },
+    {
+      "id": "SE-2025-003",
+      "sourcing_event_id": "SRC-2025-003",
+      "title": "Battery Energy Storage System",
+      "material_ids": ["MAT-BAT-001", "MAT-BAT-002"],
+      "demand_quantity": "30 units",
+      "delivery_date": "2025-04-30",
+      "delivery_location": "Bandung Storage Facility",
+      "estimate_price": 8000000000,
+      "total_value": 8000,
+      "vendor_count": 12,
+      "estimate_schedule": {
+        "duration": "75 days",
+        "milestones": ["Specification Review", "Tender", "Technical Evaluation", "Award"]
+      },
+      "shortlisted_vendors": ["VEN-006", "VEN-007", "VEN-008"],
+      "status": "Evaluation",
+      "approval_status": "Approved",
+      "approved_by": "Manager",
+      "assigned_to": "Amanda Rodriguez",
+      "category": "Energy Storage",
+      "responsible_planner": "Amanda Rodriguez",
+      "organization_id": "org-001",
+      "created_at": "2025-01-08T10:30:00Z"
+    }
+  ],
+  "tenderAnnouncements": [
+    {
+      "id": "TA-2025-001",
+      "sourcing_event_id": "SE-2025-001",
+      "title": "Tender Announcement: Solar Panel Procurement - 50 MW",
+      "header": "PT Indonesia Power invites qualified vendors to submit proposals",
+      "opener": "We are pleased to announce an opportunity for the procurement of high-efficiency solar panels for our renewable energy expansion project.",
+      "body": "Detailed specifications and requirements are available in the tender document. Vendors must demonstrate proven track record in solar panel manufacturing and installation.",
+      "closing": "Submission deadline: February 28, 2025. For inquiries, contact procurement@indonesiapower.co.id",
+      "publication_date": "2025-01-25",
+      "status": "Published",
+      "target_vendors": ["VEN-001", "VEN-002", "VEN-003", "VEN-009", "VEN-010"],
+      "approved_by": "Procurement Manager",
+      "organization_id": "org-001",
+      "created_at": "2025-01-20T08:00:00Z"
+    },
+    {
+      "id": "TA-2025-002",
+      "sourcing_event_id": "SE-2025-002",
+      "title": "Tender Announcement: Wind Turbine Components",
+      "header": "Request for Proposal - Wind Turbine Equipment",
+      "opener": "PT Indonesia Power seeks suppliers for high-quality wind turbine components for our offshore wind farm project.",
+      "body": "Components must meet international standards and include full warranty coverage. Technical specifications and delivery schedule are outlined in the tender document.",
+      "closing": "Bid submission closes on March 15, 2025",
+      "publication_date": "2025-02-01",
+      "status": "Draft",
+      "target_vendors": ["VEN-004", "VEN-005", "VEN-011"],
+      "organization_id": "org-001",
+      "created_at": "2025-01-28T09:00:00Z"
+    }
+  ],
+  "checklistItems": [
+    {
+      "id": "CHK-001",
+      "sourcing_event_id": "SE-2025-001",
+      "item_name": "Compliance Review",
+      "item_type": "Document",
+      "description": "Review procurement for regulatory compliance",
+      "status": "Completed",
+      "priority": "Critical",
+      "ai_rationale": "Compliance review ensures adherence to procurement regulations",
+      "completion_date": "2025-01-18T14:30:00Z",
+      "completed_by": "System Administrator",
+      "auto_complete_trigger": false,
+      "organization_id": "org-001",
+      "file_name": "Compliance_Review_Report.pdf",
+      "uploaded_by": "System Administrator",
+      "uploaded_on": "2025-01-18T14:30:00Z",
+      "document_summary": "All regulatory requirements verified and approved"
+    },
+    {
+      "id": "CHK-002",
+      "sourcing_event_id": "SE-2025-001",
+      "item_name": "Budget Verification",
+      "item_type": "Document",
+      "description": "Verify budget allocation and financial approval",
+      "status": "Completed",
+      "priority": "Critical",
+      "ai_rationale": "Budget verification confirms financial resources are available",
+      "completion_date": "2025-01-19T10:00:00Z",
+      "completed_by": "Finance Team",
+      "auto_complete_trigger": false,
+      "organization_id": "org-001",
+      "file_name": "Budget_Verification_Report.pdf",
+      "uploaded_by": "Finance Team",
+      "uploaded_on": "2025-01-19T10:00:00Z",
+      "document_summary": "Budget approved and funds allocated"
+    },
+    {
+      "id": "CHK-003",
+      "sourcing_event_id": "SE-2025-001",
+      "item_name": "Tender Document",
+      "item_type": "Document",
+      "description": "Create and finalize tender documentation",
+      "status": "In Progress",
+      "priority": "Critical",
+      "ai_rationale": "Tender document required to formally invite vendors",
+      "auto_complete_trigger": true,
+      "organization_id": "org-001",
+      "action_type": "create_tender",
+      "assigned_to": "Sarah Johnson"
+    },
+    {
+      "id": "CHK-004",
+      "sourcing_event_id": "SE-2025-001",
+      "item_name": "Vendor Shortlist Verification",
+      "item_type": "Validation",
+      "description": "Verify shortlisted vendors meet qualification criteria",
+      "status": "Pending",
+      "priority": "High",
+      "ai_rationale": "Vendor qualification ensures only capable suppliers participate",
+      "auto_complete_trigger": false,
+      "organization_id": "org-001",
+      "action_type": "select_vendor",
+      "assigned_to": "Sarah Johnson"
+    }
+  ],
+  "tenderEvaluations": [
+    {
+      "id": "EVAL-001",
+      "sourcing_event_id": "SE-2025-003",
+      "vendor_id": "VEN-006",
+      "criteria_name": "Price Competitiveness",
+      "ai_score": 88.5,
+      "manual_score": null,
+      "weight": 0.30,
+      "justification": "Historical pricing data indicates strong competitive positioning",
+      "scored_by": "AI System",
+      "organization_id": "org-001",
+      "created_at": "2025-01-28T10:00:00Z"
+    },
+    {
+      "id": "EVAL-002",
+      "sourcing_event_id": "SE-2025-003",
+      "vendor_id": "VEN-006",
+      "criteria_name": "Technical Capability",
+      "ai_score": 85.0,
+      "manual_score": null,
+      "weight": 0.25,
+      "justification": "Technical documentation demonstrates strong capability alignment",
+      "scored_by": "AI System",
+      "organization_id": "org-001",
+      "created_at": "2025-01-28T10:00:00Z"
+    },
+    {
+      "id": "EVAL-003",
+      "sourcing_event_id": "SE-2025-003",
+      "vendor_id": "VEN-006",
+      "criteria_name": "Delivery Timeline",
+      "ai_score": 92.0,
+      "manual_score": null,
+      "weight": 0.20,
+      "justification": "Historical delivery performance shows consistent on-time completion",
+      "scored_by": "AI System",
+      "organization_id": "org-001",
+      "created_at": "2025-01-28T10:00:00Z"
+    },
+    {
+      "id": "EVAL-004",
+      "sourcing_event_id": "SE-2025-003",
+      "vendor_id": "VEN-007",
+      "criteria_name": "Price Competitiveness",
+      "ai_score": 82.0,
+      "manual_score": 85.0,
+      "weight": 0.30,
+      "justification": "Market analysis shows favorable pricing",
+      "scored_by": "Amanda Rodriguez",
+      "organization_id": "org-001",
+      "created_at": "2025-01-28T11:00:00Z"
+    }
+  ],
+  "reverseAuctions": [
+    {
+      "id": "RA-2025-001",
+      "tender_id": "SE-2025-003",
+      "auction_structure": {
+        "type": "Open Descending",
+        "visibility": "Rank Only"
+      },
+      "bid_fields": [
+        {
+          "name": "Total Price",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "Delivery Timeline",
+          "type": "text",
+          "required": true
+        }
+      ],
+      "rules": {
+        "minimum_decrement": 100000,
+        "time_extension": "5 minutes per bid in last 5 minutes",
+        "bid_visibility": "Rank only"
+      },
+      "start_date": "2025-02-15T10:00:00Z",
+      "end_date": "2025-02-15T14:00:00Z",
+      "status": "Approved",
+      "approved_by": "Procurement Manager",
+      "organization_id": "org-001",
+      "created_at": "2025-01-25T08:00:00Z"
+    }
+  ],
+  "auctionBids": [
+    {
+      "id": "BID-001",
+      "auction_id": "RA-2025-001",
+      "vendor_id": "VEN-006",
+      "bid_amount": 7800000000,
+      "bid_details": {
+        "delivery_timeline": "90 days",
+        "warranty": "2 years"
+      },
+      "bid_time": "2025-02-15T10:15:00Z",
+      "rank": 1,
+      "organization_id": "org-001"
+    },
+    {
+      "id": "BID-002",
+      "auction_id": "RA-2025-001",
+      "vendor_id": "VEN-007",
+      "bid_amount": 7900000000,
+      "bid_details": {
+        "delivery_timeline": "85 days",
+        "warranty": "3 years"
+      },
+      "bid_time": "2025-02-15T10:20:00Z",
+      "rank": 2,
+      "organization_id": "org-001"
+    },
+    {
+      "id": "BID-003",
+      "auction_id": "RA-2025-001",
+      "vendor_id": "VEN-008",
+      "bid_amount": 8100000000,
+      "bid_details": {
+        "delivery_timeline": "95 days",
+        "warranty": "2 years"
+      },
+      "bid_time": "2025-02-15T10:25:00Z",
+      "rank": 3,
+      "organization_id": "org-001"
+    }
+  ],
+  "winnerSelections": [
+    {
+      "id": "WIN-001",
+      "sourcing_event_id": "SE-2025-003",
+      "winner_vendor_id": "VEN-006",
+      "total_score": 88.5,
+      "weighted_score": 87.2,
+      "selection_date": "2025-02-20",
+      "selected_by": "Amanda Rodriguez",
+      "justification": "VEN-006 scored highest across all evaluation criteria with best price and delivery timeline",
+      "status": "Selected",
+      "approval_status": "Pending Approval",
+      "submitted_by": "Amanda Rodriguez",
+      "submission_date": "2025-02-20T15:30:00Z",
+      "organization_id": "org-001",
+      "created_at": "2025-02-20T15:30:00Z"
+    }
+  ],
+  "milestones": [
+    {
+      "id": "MS-001",
+      "sourcing_event_id": "SE-2025-001",
+      "milestone_name": "Tender Preparation",
+      "milestone_date": "2025-02-01",
+      "status": "Completed",
+      "responsible_person": "Sarah Johnson",
+      "notes": "All tender documents prepared and reviewed",
+      "organization_id": "org-001",
+      "created_at": "2025-01-10T08:00:00Z"
+    },
+    {
+      "id": "MS-002",
+      "sourcing_event_id": "SE-2025-001",
+      "milestone_name": "Vendor Registration",
+      "milestone_date": "2025-02-15",
+      "status": "In Progress",
+      "responsible_person": "Sarah Johnson",
+      "notes": "8 vendors registered so far",
+      "organization_id": "org-001",
+      "created_at": "2025-01-10T08:00:00Z"
+    },
+    {
+      "id": "MS-003",
+      "sourcing_event_id": "SE-2025-001",
+      "milestone_name": "Document Submission",
+      "milestone_date": "2025-02-28",
+      "status": "Pending",
+      "responsible_person": "Sarah Johnson",
+      "notes": "Waiting for vendor submissions",
+      "organization_id": "org-001",
+      "created_at": "2025-01-10T08:00:00Z"
+    }
+  ],
+  "sourcingEventBundling": [
+    {
+      "id": "SEB-2025-001",
+      "sourcing_event_id": "SRC-2025-001",
+      "title": "Renewable Energy Equipment Bundle Q1-2025",
+      "estimated_price": 15500000000,
+      "vendor_participants": ["VEN-001", "VEN-002", "VEN-003", "VEN-009"],
+      "materials": [
+        { "id": "MAT-SOL-001", "name": "High-Efficiency Solar Panels 450W", "quantity": 1000, "unit": "pieces", "unit_price": 8500000 },
+        { "id": "MAT-SOL-002", "name": "Solar Panel Mounting System", "quantity": 250, "unit": "sets", "unit_price": 12000000 },
+        { "id": "MAT-INV-001", "name": "Solar Inverter 50kW", "quantity": 50, "unit": "units", "unit_price": 45000000 }
+      ],
+      "category": "Renewable Energy",
+      "status": "Ready for Evaluation",
+      "created_at": "2025-01-10T08:00:00Z"
+    },
+    {
+      "id": "SEB-2025-002",
+      "sourcing_event_id": "SRC-2025-002",
+      "title": "Wind Power Infrastructure Package",
+      "estimated_price": 24800000000,
+      "vendor_participants": ["VEN-004", "VEN-005", "VEN-010"],
+      "materials": [
+        { "id": "MAT-WIN-001", "name": "Wind Turbine Blade Assembly", "quantity": 30, "unit": "sets", "unit_price": 350000000 },
+        { "id": "MAT-WIN-002", "name": "Tower Structure Components", "quantity": 15, "unit": "sets", "unit_price": 580000000 },
+        { "id": "MAT-WIN-003", "name": "Generator Unit 5MW", "quantity": 15, "unit": "units", "unit_price": 420000000 }
+      ],
+      "category": "Wind Energy",
+      "status": "Ready for Evaluation",
+      "created_at": "2025-01-12T09:00:00Z"
+    },
+    {
+      "id": "SEB-2025-003",
+      "sourcing_event_id": "SRC-2025-003",
+      "title": "Battery Storage System Complete Set",
+      "estimated_price": 32000000000,
+      "vendor_participants": ["VEN-006", "VEN-007", "VEN-008"],
+      "materials": [
+        { "id": "MAT-BAT-001", "name": "Lithium-Ion Battery Module 100kWh", "quantity": 80, "unit": "modules", "unit_price": 280000000 },
+        { "id": "MAT-BAT-002", "name": "Battery Management System", "quantity": 20, "unit": "systems", "unit_price": 95000000 },
+        { "id": "MAT-BAT-003", "name": "Energy Storage Container", "quantity": 20, "unit": "units", "unit_price": 180000000 }
+      ],
+      "category": "Energy Storage",
+      "status": "Ready for Evaluation",
+      "created_at": "2025-01-14T10:30:00Z"
+    },
+    {
+      "id": "SEB-2025-004",
+      "sourcing_event_id": "SRC-2025-004",
+      "title": "Electrical Distribution Equipment Bundle",
+      "estimated_price": 18700000000,
+      "vendor_participants": ["VEN-001", "VEN-004", "VEN-011"],
+      "materials": [
+        { "id": "MAT-ELEC-001", "name": "High Voltage Switchgear", "quantity": 25, "unit": "units", "unit_price": 420000000 },
+        { "id": "MAT-ELEC-002", "name": "Power Transformer 50MVA", "quantity": 10, "unit": "units", "unit_price": 650000000 },
+        { "id": "MAT-ELEC-003", "name": "Circuit Breaker System", "quantity": 40, "unit": "sets", "unit_price": 85000000 }
+      ],
+      "category": "Electrical Equipment",
+      "status": "Ready for Evaluation",
+      "created_at": "2025-01-16T11:00:00Z"
+    },
+    {
+      "id": "SEB-2025-005",
+      "sourcing_event_id": "SRC-2025-005",
+      "title": "Control & Automation Systems Package",
+      "estimated_price": 12500000000,
+      "vendor_participants": ["VEN-002", "VEN-005", "VEN-012"],
+      "materials": [
+        { "id": "MAT-CTRL-001", "name": "SCADA System Complete", "quantity": 5, "unit": "systems", "unit_price": 850000000 },
+        { "id": "MAT-CTRL-002", "name": "PLC Controllers Industrial Grade", "quantity": 50, "unit": "units", "unit_price": 75000000 },
+        { "id": "MAT-CTRL-003", "name": "HMI Touch Panel 15 inch", "quantity": 80, "unit": "units", "unit_price": 28000000 }
+      ],
+      "category": "Automation",
+      "status": "Ready for Evaluation",
+      "created_at": "2025-01-18T08:45:00Z"
+    },
+    {
+      "id": "SEB-2025-006",
+      "sourcing_event_id": "SRC-2025-006",
+      "title": "Power Cable & Accessories Bundle",
+      "estimated_price": 9800000000,
+      "vendor_participants": ["VEN-003", "VEN-006", "VEN-013"],
+      "materials": [
+        { "id": "MAT-CABLE-001", "name": "High Voltage Cable 150kV", "quantity": 5000, "unit": "meters", "unit_price": 850000 },
+        { "id": "MAT-CABLE-002", "name": "Medium Voltage Cable 20kV", "quantity": 8000, "unit": "meters", "unit_price": 420000 },
+        { "id": "MAT-CABLE-003", "name": "Cable Termination Kits", "quantity": 200, "unit": "kits", "unit_price": 12500000 }
+      ],
+      "category": "Cables & Accessories",
+      "status": "Ready for Evaluation",
+      "created_at": "2025-01-20T09:15:00Z"
+    },
+    {
+      "id": "SEB-2025-007",
+      "sourcing_event_id": "SRC-2025-007",
+      "title": "Cooling Systems & HVAC Equipment",
+      "estimated_price": 14200000000,
+      "vendor_participants": ["VEN-007", "VEN-008", "VEN-014"],
+      "materials": [
+        { "id": "MAT-HVAC-001", "name": "Industrial Chiller 500 RT", "quantity": 12, "unit": "units", "unit_price": 580000000 },
+        { "id": "MAT-HVAC-002", "name": "Air Handling Unit Large Capacity", "quantity": 25, "unit": "units", "unit_price": 185000000 },
+        { "id": "MAT-HVAC-003", "name": "Cooling Tower 1000 GPM", "quantity": 8, "unit": "units", "unit_price": 320000000 }
+      ],
+      "category": "HVAC Systems",
+      "status": "Ready for Evaluation",
+      "created_at": "2025-01-22T10:00:00Z"
+    },
+    {
+      "id": "SEB-2025-008",
+      "sourcing_event_id": "SRC-2025-008",
+      "title": "Safety & Protection Equipment Set",
+      "estimated_price": 6500000000,
+      "vendor_participants": ["VEN-001", "VEN-009", "VEN-015"],
+      "materials": [
+        { "id": "MAT-SAFE-001", "name": "Fire Detection & Suppression System", "quantity": 30, "unit": "systems", "unit_price": 125000000 },
+        { "id": "MAT-SAFE-002", "name": "Lightning Protection System", "quantity": 20, "unit": "systems", "unit_price": 85000000 },
+        { "id": "MAT-SAFE-003", "name": "Emergency Power Supply UPS 100kVA", "quantity": 15, "unit": "units", "unit_price": 95000000 }
+      ],
+      "category": "Safety Equipment",
+      "status": "Ready for Evaluation",
+      "created_at": "2025-01-24T11:30:00Z"
+    },
+    {
+      "id": "SEB-2025-009",
+      "sourcing_event_id": "SRC-2025-009",
+      "title": "Monitoring & Metering Equipment Bundle",
+      "estimated_price": 8900000000,
+      "vendor_participants": ["VEN-002", "VEN-010", "VEN-016"],
+      "materials": [
+        { "id": "MAT-METER-001", "name": "Smart Energy Meter Three-Phase", "quantity": 500, "unit": "units", "unit_price": 4500000 },
+        { "id": "MAT-METER-002", "name": "Power Quality Analyzer", "quantity": 50, "unit": "units", "unit_price": 125000000 },
+        { "id": "MAT-METER-003", "name": "Environmental Monitoring Station", "quantity": 25, "unit": "stations", "unit_price": 78000000 }
+      ],
+      "category": "Monitoring Equipment",
+      "status": "Ready for Evaluation",
+      "created_at": "2025-01-26T08:20:00Z"
+    },
+    {
+      "id": "SEB-2025-010",
+      "sourcing_event_id": "SRC-2025-010",
+      "title": "Communication & Network Infrastructure",
+      "estimated_price": 11300000000,
+      "vendor_participants": ["VEN-003", "VEN-011", "VEN-017"],
+      "materials": [
+        { "id": "MAT-COMM-001", "name": "Industrial Ethernet Switch 48-Port", "quantity": 60, "unit": "units", "unit_price": 42000000 },
+        { "id": "MAT-COMM-002", "name": "Fiber Optic Cable Single Mode", "quantity": 15000, "unit": "meters", "unit_price": 125000 },
+        { "id": "MAT-COMM-003", "name": "Wireless Access Point Industrial", "quantity": 100, "unit": "units", "unit_price": 18500000 }
+      ],
+      "category": "Communication Systems",
+      "status": "Ready for Evaluation",
+      "created_at": "2025-01-28T09:45:00Z"
+    },
+    {
+      "id": "SEB-2025-011",
+      "sourcing_event_id": "SRC-2025-011",
+      "title": "Maintenance Tools & Equipment Package",
+      "estimated_price": 7200000000,
+      "vendor_participants": ["VEN-004", "VEN-012", "VEN-018"],
+      "materials": [
+        { "id": "MAT-TOOL-001", "name": "Thermal Imaging Camera Professional", "quantity": 15, "unit": "units", "unit_price": 185000000 },
+        { "id": "MAT-TOOL-002", "name": "Insulation Resistance Tester", "quantity": 40, "unit": "units", "unit_price": 65000000 },
+        { "id": "MAT-TOOL-003", "name": "Vibration Analyzer Kit", "quantity": 20, "unit": "kits", "unit_price": 125000000 }
+      ],
+      "category": "Maintenance Equipment",
+      "status": "Ready for Evaluation",
+      "created_at": "2025-01-30T10:15:00Z"
+    },
+    {
+      "id": "SEB-2025-012",
+      "sourcing_event_id": "SRC-2025-012",
+      "title": "Water Treatment & Management Systems",
+      "estimated_price": 16800000000,
+      "vendor_participants": ["VEN-005", "VEN-013", "VEN-019"],
+      "materials": [
+        { "id": "MAT-WATER-001", "name": "Reverse Osmosis System Industrial", "quantity": 8, "unit": "systems", "unit_price": 950000000 },
+        { "id": "MAT-WATER-002", "name": "Water Quality Monitoring System", "quantity": 20, "unit": "systems", "unit_price": 145000000 },
+        { "id": "MAT-WATER-003", "name": "Wastewater Treatment Plant Compact", "quantity": 5, "unit": "plants", "unit_price": 1200000000 }
+      ],
+      "category": "Water Treatment",
+      "status": "Ready for Evaluation",
+      "created_at": "2025-02-01T08:00:00Z"
+    }
+  ],
+  "administrationEvaluations": [
+    {
+      "sourcing_event_id": "SRC-2025-001",
+      "vendor_evaluations": [
+        {
+          "vendor_id": "VEN-001",
+          "scenario": "correct_complete",
+          "documents": [
+            { "name": "Company Registration Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "Tax Compliance Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "ISO 9001 Certification", "status": "Complete", "validity": "Valid" },
+            { "name": "Financial Statement 2024", "status": "Complete", "validity": "Valid" },
+            { "name": "Business License", "status": "Complete", "validity": "Valid" }
+          ],
+          "ai_score": 95,
+          "justification": "All required administrative documents are complete and valid. Company demonstrates full compliance with regulatory requirements.",
+          "manual_score": null
+        },
+        {
+          "vendor_id": "VEN-002",
+          "scenario": "correct_incomplete",
+          "documents": [
+            { "name": "Company Registration Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "Tax Compliance Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "ISO 9001 Certification", "status": "Missing", "validity": "N/A" },
+            { "name": "Financial Statement 2024", "status": "Complete", "validity": "Valid" },
+            { "name": "Business License", "status": "Complete", "validity": "Valid" }
+          ],
+          "ai_score": 75,
+          "justification": "Missing ISO 9001 Certification. Other documents are complete and valid. Quality management certification is required but not provided.",
+          "manual_score": null
+        },
+        {
+          "vendor_id": "VEN-003",
+          "scenario": "incorrect_complete",
+          "documents": [
+            { "name": "Company Registration Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "Tax Compliance Certificate", "status": "Complete", "validity": "Expired" },
+            { "name": "ISO 9001 Certification", "status": "Complete", "validity": "Valid" },
+            { "name": "Financial Statement 2024", "status": "Complete", "validity": "Invalid Format" },
+            { "name": "Business License", "status": "Complete", "validity": "Valid" }
+          ],
+          "ai_score": 65,
+          "justification": "Tax certificate has expired and financial statement format does not meet requirements. All documents submitted but validity issues identified.",
+          "manual_score": null
+        },
+        {
+          "vendor_id": "VEN-009",
+          "scenario": "incorrect_incomplete",
+          "documents": [
+            { "name": "Company Registration Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "Tax Compliance Certificate", "status": "Missing", "validity": "N/A" },
+            { "name": "ISO 9001 Certification", "status": "Complete", "validity": "Expired" },
+            { "name": "Financial Statement 2024", "status": "Missing", "validity": "N/A" },
+            { "name": "Business License", "status": "Complete", "validity": "Valid" }
+          ],
+          "ai_score": 45,
+          "justification": "Multiple critical documents missing (Tax Certificate, Financial Statement). ISO certification has expired. Does not meet minimum administrative requirements.",
+          "manual_score": null
+        }
+      ]
+    },
+    {
+      "sourcing_event_id": "SRC-2025-002",
+      "vendor_evaluations": [
+        {
+          "vendor_id": "VEN-004",
+          "scenario": "correct_complete",
+          "documents": [
+            { "name": "Company Registration Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "Tax Compliance Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "IEC 61400 Certification", "status": "Complete", "validity": "Valid" },
+            { "name": "Financial Statement 2024", "status": "Complete", "validity": "Valid" },
+            { "name": "Business License", "status": "Complete", "validity": "Valid" }
+          ],
+          "ai_score": 98,
+          "justification": "Excellent documentation. All administrative requirements fully satisfied with valid certifications specific to wind turbine manufacturing.",
+          "manual_score": null
+        },
+        {
+          "vendor_id": "VEN-005",
+          "scenario": "correct_incomplete",
+          "documents": [
+            { "name": "Company Registration Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "Tax Compliance Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "IEC 61400 Certification", "status": "Missing", "validity": "N/A" },
+            { "name": "Financial Statement 2024", "status": "Complete", "validity": "Valid" },
+            { "name": "Business License", "status": "Missing", "validity": "N/A" }
+          ],
+          "ai_score": 70,
+          "justification": "Missing industry-specific certification and business license. Core financial and tax documents are valid.",
+          "manual_score": null
+        },
+        {
+          "vendor_id": "VEN-010",
+          "scenario": "incorrect_complete",
+          "documents": [
+            { "name": "Company Registration Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "Tax Compliance Certificate", "status": "Complete", "validity": "Expired" },
+            { "name": "IEC 61400 Certification", "status": "Complete", "validity": "Valid" },
+            { "name": "Financial Statement 2024", "status": "Complete", "validity": "Unaudited" },
+            { "name": "Business License", "status": "Complete", "validity": "Valid" }
+          ],
+          "ai_score": 68,
+          "justification": "Tax compliance certificate expired. Financial statement is unaudited which raises concerns. All documents submitted but quality issues present.",
+          "manual_score": null
+        }
+      ]
+    },
+    {
+      "sourcing_event_id": "SRC-2025-003",
+      "vendor_evaluations": [
+        {
+          "vendor_id": "VEN-006",
+          "scenario": "correct_complete",
+          "documents": [
+            { "name": "Company Registration Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "Tax Compliance Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "UL 1973 Certification", "status": "Complete", "validity": "Valid" },
+            { "name": "Financial Statement 2024", "status": "Complete", "validity": "Valid" },
+            { "name": "Business License", "status": "Complete", "validity": "Valid" }
+          ],
+          "ai_score": 97,
+          "justification": "Outstanding administrative compliance. All documents complete, valid, and meet battery storage system requirements.",
+          "manual_score": null
+        },
+        {
+          "vendor_id": "VEN-007",
+          "scenario": "correct_incomplete",
+          "documents": [
+            { "name": "Company Registration Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "Tax Compliance Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "UL 1973 Certification", "status": "Complete", "validity": "Valid" },
+            { "name": "Financial Statement 2024", "status": "Missing", "validity": "N/A" },
+            { "name": "Business License", "status": "Complete", "validity": "Valid" }
+          ],
+          "ai_score": 78,
+          "justification": "Missing financial statement for 2024. All regulatory and technical certifications are in order.",
+          "manual_score": null
+        },
+        {
+          "vendor_id": "VEN-008",
+          "scenario": "incorrect_incomplete",
+          "documents": [
+            { "name": "Company Registration Certificate", "status": "Complete", "validity": "Valid" },
+            { "name": "Tax Compliance Certificate", "status": "Complete", "validity": "Expired" },
+            { "name": "UL 1973 Certification", "status": "Missing", "validity": "N/A" },
+            { "name": "Financial Statement 2024", "status": "Complete", "validity": "Invalid Format" },
+            { "name": "Business License", "status": "Missing", "validity": "N/A" }
+          ],
+          "ai_score": 42,
+          "justification": "Critical deficiencies: expired tax certificate, missing safety certification, missing business license, and invalid financial statement format.",
+          "manual_score": null
+        }
+      ]
+    }
+  ],
+  "technicalEvaluations": [
+    {
+      "sourcing_event_id": "SRC-2025-001",
+      "vendor_evaluations": [
+        {
+          "vendor_id": "VEN-001",
+          "scenario": "all_meet_requirements",
+          "criteria": [
+            {
+              "name": "Technical Experience",
+              "weight": 30,
+              "ai_score": 92,
+              "justification": "Vendor has 15+ years of experience in solar panel manufacturing with major project portfolio.",
+              "manual_score": null
+            },
+            {
+              "name": "Product Quality & Standards",
+              "weight": 25,
+              "ai_score": 95,
+              "justification": "Products meet IEC 61215 and IEC 61730 standards with excellent quality certifications.",
+              "manual_score": null
+            },
+            {
+              "name": "Compliance with Specifications",
+              "weight": 20,
+              "ai_score": 90,
+              "justification": "Technical specifications fully comply with tender requirements including efficiency ratings.",
+              "manual_score": null
+            },
+            {
+              "name": "Technical Support & Warranty",
+              "weight": 15,
+              "ai_score": 88,
+              "justification": "Comprehensive 25-year warranty with local technical support team.",
+              "manual_score": null
+            },
+            {
+              "name": "Innovation & R&D Capability",
+              "weight": 10,
+              "ai_score": 85,
+              "justification": "Active R&D department with patents in solar cell technology.",
+              "manual_score": null
+            }
+          ],
+          "overall_ai_score": 91,
+          "overall_justification": "Excellent technical capability across all criteria. Strong track record and compliance.",
+          "technical_proposal": {
+            "document_name": "SolarTech_Technical_Proposal_2025.pdf",
+            "total_pages": 6,
+            "document_quality": "excellent",
+            "pages": [
+              {
+                "page_number": 1,
+                "title": "Executive Summary & Company Overview",
+                "content": "SolarTech Industries has been a leading manufacturer of high-efficiency solar panels for over 15 years. This proposal outlines our technical approach for the 100MW Solar Power Plant project."
+              },
+              {
+                "page_number": 2,
+                "title": "Material & Component Specifications",
+                "content": "Our solar panels utilize monocrystalline silicon cells with efficiency ratings of 21.5%. Main casing constructed from marine-grade aluminum alloy 6063-T5 with anodized coating. Tempered glass thickness: 3.2mm low-iron with anti-reflective coating."
+              },
+              {
+                "page_number": 3,
+                "title": "Manufacturing Process & Quality Control",
+                "content": "ISO 9001:2015 certified manufacturing facility. Automated production line with real-time quality monitoring. Each panel undergoes thermal cycling, humidity-freeze testing, and electrical performance verification per IEC 61215 standards."
+              },
+              {
+                "page_number": 4,
+                "title": "Technical Performance & Efficiency",
+                "content": "Panel efficiency: 21.5% under STC conditions. Temperature coefficient: -0.35%/°C. Maximum system voltage: 1500V DC. Power output tolerance: +/-3%. Degradation rate: <0.5% annually over 25 years."
+              },
+              {
+                "page_number": 5,
+                "title": "Warranty & Technical Support",
+                "content": "25-year linear power warranty guaranteeing 80% output at year 25. 10-year product warranty covering manufacturing defects. Local technical support team available 24/7. Preventive maintenance program included."
+              },
+              {
+                "page_number": 6,
+                "title": "Compliance & Certifications",
+                "content": "Certified to IEC 61215, IEC 61730, UL 1703, and ISO 14001. Fire safety rating: Class C. Salt mist corrosion resistance: IEC 61701. PID resistance verified per IEC 62804."
+              }
+            ],
+            "ai_guidance": [
+              {
+                "criteria": "Technical Experience",
+                "page": 1,
+                "summary": "15+ years experience in solar panel manufacturing with comprehensive project portfolio documented",
+                "confidence": "95%",
+                "key_findings": "Executive summary clearly states 15 years of industry leadership"
+              },
+              {
+                "criteria": "Product Quality & Standards",
+                "page": 3,
+                "summary": "ISO 9001:2015 certification with detailed quality control procedures. IEC 61215 compliance verified",
+                "confidence": "98%",
+                "key_findings": "Manufacturing facility fully certified, automated QC processes documented"
+              },
+              {
+                "criteria": "Compliance with Specifications",
+                "page": 4,
+                "summary": "Technical specifications exceed requirements: 21.5% efficiency vs 20% required",
+                "confidence": "96%",
+                "key_findings": "All performance metrics documented and exceed tender specifications"
+              },
+              {
+                "criteria": "Technical Support & Warranty",
+                "page": 5,
+                "summary": "Comprehensive 25-year warranty with local 24/7 technical support team",
+                "confidence": "94%",
+                "key_findings": "Warranty terms exceed industry standards, support infrastructure clearly defined"
+              },
+              {
+                "criteria": "Innovation & R&D Capability",
+                "page": 2,
+                "summary": "Advanced monocrystalline technology with anti-reflective coating demonstrates R&D investment",
+                "confidence": "88%",
+                "key_findings": "Material specifications show advanced technology, though detailed R&D section could be expanded"
+              }
+            ]
+          }
+        },
+        {
+          "vendor_id": "VEN-002",
+          "scenario": "partial_compliance",
+          "criteria": [
+            {
+              "name": "Technical Experience",
+              "weight": 30,
+              "ai_score": 75,
+              "justification": "Moderate experience with 8 years in the industry. Limited large-scale project history.",
+              "manual_score": null
+            },
+            {
+              "name": "Product Quality & Standards",
+              "weight": 25,
+              "ai_score": 82,
+              "justification": "Products meet basic standards but lack some advanced certifications.",
+              "manual_score": null
+            },
+            {
+              "name": "Compliance with Specifications",
+              "weight": 20,
+              "ai_score": 78,
+              "justification": "Meets most specifications but efficiency rating slightly below optimal requirements.",
+              "manual_score": null
+            },
+            {
+              "name": "Technical Support & Warranty",
+              "weight": 15,
+              "ai_score": 70,
+              "justification": "Standard 15-year warranty. Technical support available but not locally based.",
+              "manual_score": null
+            },
+            {
+              "name": "Innovation & R&D Capability",
+              "weight": 10,
+              "ai_score": 65,
+              "justification": "Limited R&D investment. Relies primarily on proven existing technologies.",
+              "manual_score": null
+            }
+          ],
+          "overall_ai_score": 75,
+          "overall_justification": "Adequate technical capability but lacks depth in experience and advanced features.",
+          "technical_proposal": {
+            "document_name": "GreenEnergy_Technical_Proposal_2025.pdf",
+            "total_pages": 5,
+            "document_quality": "partial",
+            "pages": [
+              {
+                "page_number": 1,
+                "title": "Company Introduction",
+                "content": "Green Energy Solutions provides solar panel solutions with 8 years of experience in renewable energy sector."
+              },
+              {
+                "page_number": 2,
+                "title": "Product Specifications",
+                "content": "Polycrystalline solar panels with 19.2% efficiency. Aluminum frame construction. Standard glass covering."
+              },
+              {
+                "page_number": 3,
+                "title": "Quality Assurance",
+                "content": "ISO 9001 certified facility. Basic testing procedures include visual inspection and electrical testing."
+              },
+              {
+                "page_number": 4,
+                "title": "Technical Performance",
+                "content": "Efficiency: 19.2%. Temperature coefficient: -0.42%/°C. Maximum voltage: 1000V DC. Some performance data pending."
+              },
+              {
+                "page_number": 5,
+                "title": "Warranty Information",
+                "content": "15-year product warranty. 20-year power output warranty at 75%. Technical support available during business hours."
+              }
+            ],
+            "ai_guidance": [
+              {
+                "criteria": "Technical Experience",
+                "page": 1,
+                "summary": "8 years of experience documented, limited large-scale project references",
+                "confidence": "78%",
+                "key_findings": "Experience section brief, lacks detailed project portfolio"
+              },
+              {
+                "criteria": "Product Quality & Standards",
+                "page": 3,
+                "summary": "Basic ISO 9001 certification present, testing procedures lack detail",
+                "confidence": "72%",
+                "key_findings": "QA section incomplete, missing advanced certifications like IEC 61730"
+              },
+              {
+                "criteria": "Compliance with Specifications",
+                "page": 4,
+                "summary": "Efficiency at 19.2% slightly below optimal 20% requirement. Some data incomplete",
+                "confidence": "75%",
+                "key_findings": "Performance metrics partially documented, several pending data points noted"
+              },
+              {
+                "criteria": "Technical Support & Warranty",
+                "page": 5,
+                "summary": "Standard 15-year warranty, support limited to business hours only",
+                "confidence": "70%",
+                "key_findings": "Warranty terms adequate but not competitive, support infrastructure unclear"
+              },
+              {
+                "criteria": "Innovation & R&D Capability",
+                "page": 2,
+                "summary": "Standard polycrystalline technology, no evidence of R&D initiatives",
+                "confidence": "65%",
+                "key_findings": "Document lacks R&D section, technology appears conventional"
+              }
+            ]
+          }
+        },
+        {
+          "vendor_id": "VEN-003",
+          "scenario": "missing_poor_compliance",
+          "criteria": [
+            {
+              "name": "Technical Experience",
+              "weight": 30,
+              "ai_score": 65,
+              "justification": "Limited relevant experience. Previous projects were smaller scale and different technology.",
+              "manual_score": null
+            },
+            {
+              "name": "Product Quality & Standards",
+              "weight": 25,
+              "ai_score": 58,
+              "justification": "Quality documentation incomplete. Missing IEC 61730 safety certification.",
+              "manual_score": null
+            },
+            {
+              "name": "Compliance with Specifications",
+              "weight": 20,
+              "ai_score": 62,
+              "justification": "Does not fully meet efficiency specifications. Power output 5% below requirements.",
+              "manual_score": null
+            },
+            {
+              "name": "Technical Support & Warranty",
+              "weight": 15,
+              "ai_score": 55,
+              "justification": "Limited warranty period (10 years). No dedicated technical support structure.",
+              "manual_score": null
+            },
+            {
+              "name": "Innovation & R&D Capability",
+              "weight": 10,
+              "ai_score": 50,
+              "justification": "No evidence of R&D capability or innovation programs provided.",
+              "manual_score": null
+            }
+          ],
+          "overall_ai_score": 60,
+          "overall_justification": "Significant technical deficiencies. Missing critical certifications and below specification performance.",
+          "technical_proposal": {
+            "document_name": "RenewablePower_Technical_Proposal_2025.pdf",
+            "total_pages": 4,
+            "document_quality": "poor",
+            "pages": [
+              {
+                "page_number": 1,
+                "title": "Overview",
+                "content": "Renewable Power Corp offers solar solutions. Company established recently."
+              },
+              {
+                "page_number": 2,
+                "title": "Product Information",
+                "content": "Solar panels with basic specifications. Efficiency approximately 18%. Frame material: aluminum."
+              },
+              {
+                "page_number": 3,
+                "title": "Manufacturing",
+                "content": "Manufacturing facility information not fully detailed. Some quality processes in place."
+              },
+              {
+                "page_number": 4,
+                "title": "Terms",
+                "content": "10-year product warranty. Basic support available. Contact for additional details."
+              }
+            ],
+            "ai_guidance": [
+              {
+                "criteria": "Technical Experience",
+                "page": 1,
+                "summary": "Limited experience documentation, company history unclear",
+                "confidence": "52%",
+                "key_findings": "Experience section vague, no project references provided"
+              },
+              {
+                "criteria": "Product Quality & Standards",
+                "page": 3,
+                "summary": "Missing critical IEC 61730 safety certification. QA documentation incomplete",
+                "confidence": "48%",
+                "key_findings": "Quality control section severely lacking, no recognized certifications documented"
+              },
+              {
+                "criteria": "Compliance with Specifications",
+                "page": 2,
+                "summary": "Efficiency at ~18% significantly below 20% requirement. Specifications incomplete",
+                "confidence": "55%",
+                "key_findings": "Performance data vague and incomplete, multiple specifications missing"
+              },
+              {
+                "criteria": "Technical Support & Warranty",
+                "page": 4,
+                "summary": "Only 10-year warranty offered, well below industry standard. Support structure undefined",
+                "confidence": "45%",
+                "key_findings": "Warranty terms inadequate, no technical support infrastructure detailed"
+              },
+              {
+                "criteria": "Innovation & R&D Capability",
+                "page": 0,
+                "summary": "No R&D section found in document",
+                "confidence": "30%",
+                "key_findings": "Complete absence of R&D or innovation discussion"
+              }
+            ]
+          }
+        },
+        {
+          "vendor_id": "VEN-009",
+          "scenario": "partial_compliance",
+          "criteria": [
+            {
+              "name": "Technical Experience",
+              "weight": 30,
+              "ai_score": 80,
+              "justification": "Good industry experience with 10+ years but limited in renewable energy sector.",
+              "manual_score": null
+            },
+            {
+              "name": "Product Quality & Standards",
+              "weight": 25,
+              "ai_score": 85,
+              "justification": "High quality products with ISO certifications. Minor gaps in solar-specific standards.",
+              "manual_score": null
+            },
+            {
+              "name": "Compliance with Specifications",
+              "weight": 20,
+              "ai_score": 72,
+              "justification": "Generally compliant but some technical parameters need clarification.",
+              "manual_score": null
+            },
+            {
+              "name": "Technical Support & Warranty",
+              "weight": 15,
+              "ai_score": 78,
+              "justification": "20-year warranty provided. Technical support available during business hours.",
+              "manual_score": null
+            },
+            {
+              "name": "Innovation & R&D Capability",
+              "weight": 10,
+              "ai_score": 70,
+              "justification": "Some R&D activities but not specifically focused on solar technology advancement.",
+              "manual_score": null
+            }
+          ],
+          "overall_ai_score": 78,
+          "overall_justification": "Good technical foundation but lacks specialization in solar energy systems."
+        }
+      ]
+    },
+    {
+      "sourcing_event_id": "SRC-2025-002",
+      "vendor_evaluations": [
+        {
+          "vendor_id": "VEN-004",
+          "scenario": "all_meet_requirements",
+          "criteria": [
+            {
+              "name": "Technical Experience",
+              "weight": 30,
+              "ai_score": 95,
+              "justification": "Industry leader with 20+ years in wind turbine manufacturing. Multiple major installations worldwide.",
+              "manual_score": null
+            },
+            {
+              "name": "Product Quality & Standards",
+              "weight": 25,
+              "ai_score": 93,
+              "justification": "Products exceed IEC 61400 standards with additional safety certifications.",
+              "manual_score": null
+            },
+            {
+              "name": "Compliance with Specifications",
+              "weight": 20,
+              "ai_score": 96,
+              "justification": "All technical specifications met or exceeded. Power generation capacity 10% above requirement.",
+              "manual_score": null
+            },
+            {
+              "name": "Technical Support & Warranty",
+              "weight": 15,
+              "ai_score": 90,
+              "justification": "Comprehensive 20-year warranty with 24/7 technical support and local service center.",
+              "manual_score": null
+            },
+            {
+              "name": "Innovation & R&D Capability",
+              "weight": 10,
+              "ai_score": 92,
+              "justification": "Leading R&D in blade design and efficiency optimization. Multiple patents held.",
+              "manual_score": null
+            }
+          ],
+          "overall_ai_score": 94,
+          "overall_justification": "Outstanding technical excellence. Industry-leading capabilities and full compliance."
+        },
+        {
+          "vendor_id": "VEN-005",
+          "scenario": "partial_compliance",
+          "criteria": [
+            {
+              "name": "Technical Experience",
+              "weight": 30,
+              "ai_score": 72,
+              "justification": "7 years experience in wind energy. Limited offshore installation experience.",
+              "manual_score": null
+            },
+            {
+              "name": "Product Quality & Standards",
+              "weight": 25,
+              "ai_score": 78,
+              "justification": "Meets IEC 61400 standards. Quality assurance documentation provided but limited test results.",
+              "manual_score": null
+            },
+            {
+              "name": "Compliance with Specifications",
+              "weight": 20,
+              "ai_score": 75,
+              "justification": "Specifications generally met. Some concerns about performance in high-wind conditions.",
+              "manual_score": null
+            },
+            {
+              "name": "Technical Support & Warranty",
+              "weight": 15,
+              "ai_score": 68,
+              "justification": "15-year warranty. Technical support available but response time not guaranteed.",
+              "manual_score": null
+            },
+            {
+              "name": "Innovation & R&D Capability",
+              "weight": 10,
+              "ai_score": 65,
+              "justification": "Limited R&D investment. Focus on proven technology rather than innovation.",
+              "manual_score": null
+            }
+          ],
+          "overall_ai_score": 73,
+          "overall_justification": "Acceptable technical capability but limited experience and innovation."
+        },
+        {
+          "vendor_id": "VEN-010",
+          "scenario": "missing_poor_compliance",
+          "criteria": [
+            {
+              "name": "Technical Experience",
+              "weight": 30,
+              "ai_score": 55,
+              "justification": "New entrant with only 3 years experience. No large-scale project references provided.",
+              "manual_score": null
+            },
+            {
+              "name": "Product Quality & Standards",
+              "weight": 25,
+              "ai_score": 60,
+              "justification": "Basic certifications present but missing key IEC 61400-22 quality management certification.",
+              "manual_score": null
+            },
+            {
+              "name": "Compliance with Specifications",
+              "weight": 20,
+              "ai_score": 58,
+              "justification": "Several technical specifications not met. Power output and efficiency below requirements.",
+              "manual_score": null
+            },
+            {
+              "name": "Technical Support & Warranty",
+              "weight": 15,
+              "ai_score": 52,
+              "justification": "Only 10-year warranty. No established technical support infrastructure.",
+              "manual_score": null
+            },
+            {
+              "name": "Innovation & R&D Capability",
+              "weight": 10,
+              "ai_score": 48,
+              "justification": "No documented R&D activities or innovation track record.",
+              "manual_score": null
+            }
+          ],
+          "overall_ai_score": 56,
+          "overall_justification": "Insufficient technical capability. Does not meet minimum requirements for project scale."
+        }
+      ]
+    },
+    {
+      "sourcing_event_id": "SRC-2025-003",
+      "vendor_evaluations": [
+        {
+          "vendor_id": "VEN-006",
+          "scenario": "all_meet_requirements",
+          "criteria": [
+            {
+              "name": "Technical Experience",
+              "weight": 30,
+              "ai_score": 96,
+              "justification": "Extensive 18-year track record in battery storage systems. Global project portfolio.",
+              "manual_score": null
+            },
+            {
+              "name": "Product Quality & Standards",
+              "weight": 25,
+              "ai_score": 94,
+              "justification": "Products exceed UL 1973 and UN 38.3 standards with additional safety features.",
+              "manual_score": null
+            },
+            {
+              "name": "Compliance with Specifications",
+              "weight": 20,
+              "ai_score": 95,
+              "justification": "All specifications fully met. Energy density and cycle life exceed requirements.",
+              "manual_score": null
+            },
+            {
+              "name": "Technical Support & Warranty",
+              "weight": 15,
+              "ai_score": 92,
+              "justification": "Industry-leading 15-year warranty with local service center and 24/7 monitoring.",
+              "manual_score": null
+            },
+            {
+              "name": "Innovation & R&D Capability",
+              "weight": 10,
+              "ai_score": 90,
+              "justification": "Advanced battery management system with AI optimization. Active R&D in solid-state technology.",
+              "manual_score": null
+            }
+          ],
+          "overall_ai_score": 94,
+          "overall_justification": "Exceptional technical excellence. Market leader with proven reliability and innovation."
+        },
+        {
+          "vendor_id": "VEN-007",
+          "scenario": "partial_compliance",
+          "criteria": [
+            {
+              "name": "Technical Experience",
+              "weight": 30,
+              "ai_score": 78,
+              "justification": "9 years in battery storage. Good domestic experience but limited international projects.",
+              "manual_score": null
+            },
+            {
+              "name": "Product Quality & Standards",
+              "weight": 25,
+              "ai_score": 80,
+              "justification": "Meets UL 1973 standards. Quality documentation adequate but some test data missing.",
+              "manual_score": null
+            },
+            {
+              "name": "Compliance with Specifications",
+              "weight": 20,
+              "ai_score": 76,
+              "justification": "Most specifications met. Cycle life slightly below optimal target.",
+              "manual_score": null
+            },
+            {
+              "name": "Technical Support & Warranty",
+              "weight": 15,
+              "ai_score": 72,
+              "justification": "10-year warranty provided. Technical support during business hours only.",
+              "manual_score": null
+            },
+            {
+              "name": "Innovation & R&D Capability",
+              "weight": 10,
+              "ai_score": 68,
+              "justification": "Basic R&D capability. Focus on incremental improvements rather than breakthrough innovations.",
+              "manual_score": null
+            }
+          ],
+          "overall_ai_score": 76,
+          "overall_justification": "Solid technical foundation but room for improvement in advanced features and support."
+        },
+        {
+          "vendor_id": "VEN-008",
+          "scenario": "missing_poor_compliance",
+          "criteria": [
+            {
+              "name": "Technical Experience",
+              "weight": 30,
+              "ai_score": 52,
+              "justification": "Limited experience (4 years). Small-scale projects only. No grid-scale deployments.",
+              "manual_score": null
+            },
+            {
+              "name": "Product Quality & Standards",
+              "weight": 25,
+              "ai_score": 58,
+              "justification": "Missing critical UL 1973 certification. Quality assurance documentation incomplete.",
+              "manual_score": null
+            },
+            {
+              "name": "Compliance with Specifications",
+              "weight": 20,
+              "ai_score": 55,
+              "justification": "Multiple specification gaps. Energy density and efficiency below requirements.",
+              "manual_score": null
+            },
+            {
+              "name": "Technical Support & Warranty",
+              "weight": 15,
+              "ai_score": 50,
+              "justification": "Limited 5-year warranty. No dedicated technical support infrastructure.",
+              "manual_score": null
+            },
+            {
+              "name": "Innovation & R&D Capability",
+              "weight": 10,
+              "ai_score": 45,
+              "justification": "No evidence of R&D capability or technology development programs.",
+              "manual_score": null
+            }
+          ],
+          "overall_ai_score": 54,
+          "overall_justification": "Significant technical shortcomings. Does not meet project requirements for reliability and scale."
+        }
+      ]
+    }
+  ],
+  "commercialEvaluations": [
+    {
+      "sourcing_event_id": "SRC-2025-001",
+      "estimated_cost": {
+        "Main Casing": 100000,
+        "Bearing": 22000,
+        "Oil": 4500,
+        "Core": 55000,
+        "Coil": 28000,
+        "Accessories": 12000
+      },
+      "vendor_bids": [
+        {
+          "vendor_id": "VEN-001",
+          "documents": [
+            { "name": "Commercial Offer Letter", "status": "Submitted", "date": "2025-01-15" },
+            { "name": "Cost Breakdown Sheet", "status": "Submitted", "date": "2025-01-15" },
+            { "name": "Payment Terms Document", "status": "Submitted", "date": "2025-01-15" },
+            { "name": "Technical-Commercial Clarifications", "status": "Submitted", "date": "2025-01-15" }
+          ],
+          "cost_components": {
+            "Main Casing": 95000,
+            "Bearing": 21000,
+            "Oil": 4200,
+            "Core": 52000,
+            "Coil": 26500,
+            "Accessories": 11800
+          },
+          "total_offer": 210500,
+          "negotiation_notes": "Most competitive overall pricing. Strong performance in all major components.",
+          "ai_insight": "Vendor A offers the most competitive overall pricing at $210,500, which is 5% below estimate. Particularly strong in Core ($52k vs $55k estimate) and Coil ($26.5k vs $28k estimate) components. Minor savings opportunity in Bearing component compared to market rates."
+        },
+        {
+          "vendor_id": "VEN-002",
+          "documents": [
+            { "name": "Commercial Offer Letter", "status": "Submitted", "date": "2025-01-16" },
+            { "name": "Cost Breakdown Sheet", "status": "Submitted", "date": "2025-01-16" },
+            { "name": "Payment Terms Document", "status": "Incomplete", "date": null },
+            { "name": "Technical-Commercial Clarifications", "status": "Submitted", "date": "2025-01-16" }
+          ],
+          "cost_components": {
+            "Main Casing": 98000,
+            "Bearing": 28000,
+            "Oil": 5800,
+            "Core": 53000,
+            "Coil": 27000,
+            "Accessories": 16500
+          },
+          "total_offer": 228300,
+          "negotiation_notes": "Overpriced in Bearing (+27%) and Accessories (+38%). Strong negotiation potential on these components.",
+          "ai_insight": "Vendor B's total offer of $228,300 is 8% above estimate. Major concerns: Bearing priced at $28k (27% above estimate) and Accessories at $16.5k (38% above estimate). Negotiation should focus on these components. Core and Coil pricing is competitive. Consider 15-20% reduction in overpriced components."
+        },
+        {
+          "vendor_id": "VEN-003",
+          "documents": [
+            { "name": "Commercial Offer Letter", "status": "Submitted", "date": "2025-01-14" },
+            { "name": "Cost Breakdown Sheet", "status": "Submitted", "date": "2025-01-14" },
+            { "name": "Payment Terms Document", "status": "Submitted", "date": "2025-01-14" },
+            { "name": "Technical-Commercial Clarifications", "status": "Missing", "date": null }
+          ],
+          "cost_components": {
+            "Main Casing": 105000,
+            "Bearing": 23000,
+            "Oil": 4800,
+            "Core": 50000,
+            "Coil": 29000,
+            "Coil": 29000,
+            "Accessories": 14000
+          },
+          "total_offer": 225800,
+          "negotiation_notes": "Premium Main Casing pricing but excellent Core component. Moderate overall pricing.",
+          "ai_insight": "Vendor C offers $225,800 (2% above estimate). Strengths: Best Core pricing at $50k (9% below estimate). Weaknesses: Main Casing overpriced at $105k (5% above estimate), Coil at $29k slightly high. Mixed pricing strategy suggests premium quality positioning. Negotiate Main Casing reduction or seek volume discount."
+        },
+        {
+          "vendor_id": "VEN-009",
+          "documents": [
+            { "name": "Commercial Offer Letter", "status": "Submitted", "date": "2025-01-17" },
+            { "name": "Cost Breakdown Sheet", "status": "Missing", "date": null },
+            { "name": "Payment Terms Document", "status": "Submitted", "date": "2025-01-17" },
+            { "name": "Technical-Commercial Clarifications", "status": "Submitted", "date": "2025-01-17" }
+          ],
+          "cost_components": {
+            "Main Casing": 102000,
+            "Bearing": 24500,
+            "Oil": 5200,
+            "Core": 56000,
+            "Coil": 27500,
+            "Accessories": 13500
+          },
+          "total_offer": 228700,
+          "negotiation_notes": "Above estimate across most components. Limited negotiation leverage.",
+          "ai_insight": "Vendor D's offer of $228,700 is 3% above estimate. Core component significantly overpriced at $56k (2% above estimate). Other components within acceptable range but not competitive. Missing cost breakdown document raises transparency concerns. Consider as backup option only if primary vendors fail."
+        }
+      ],
+      "ai_summary": "Vendor A (SolarTech Industries) emerges as the clear winner with the most competitive overall bid at $210,500, offering 5% savings below estimate. All major components are well-priced. Vendor B shows potential if willing to negotiate Bearing and Accessories (potential 8% reduction). Vendor C offers premium quality with best Core pricing but requires Main Casing negotiation. Vendor D lacks competitiveness. **Recommendation**: Award to Vendor A. Use Vendor C's Core pricing as leverage for future negotiations."
+    },
+    {
+      "sourcing_event_id": "SRC-2025-002",
+      "estimated_cost": {
+        "Main Casing": 350000,
+        "Bearing": 85000,
+        "Oil": 15000,
+        "Core": 200000,
+        "Coil": 120000,
+        "Accessories": 45000
+      },
+      "vendor_bids": [
+        {
+          "vendor_id": "VEN-004",
+          "documents": [
+            { "name": "Commercial Offer Letter", "status": "Submitted", "date": "2025-01-18" },
+            { "name": "Cost Breakdown Sheet", "status": "Submitted", "date": "2025-01-18" },
+            { "name": "Payment Terms Document", "status": "Submitted", "date": "2025-01-18" },
+            { "name": "Technical-Commercial Clarifications", "status": "Submitted", "date": "2025-01-18" }
+          ],
+          "cost_components": {
+            "Main Casing": 340000,
+            "Bearing": 82000,
+            "Oil": 14200,
+            "Core": 195000,
+            "Coil": 115000,
+            "Accessories": 43000
+          },
+          "total_offer": 789200,
+          "negotiation_notes": "Industry leader pricing. Consistently below estimate across all components.",
+          "ai_insight": "Vendor A (WindForce) demonstrates market leadership with $789,200 total offer, 3% below estimate. All components competitively priced with no red flags. Core component shows strongest value at $195k (2.5% below estimate). Minimal negotiation needed - focus on payment terms and warranty extensions instead."
+        },
+        {
+          "vendor_id": "VEN-005",
+          "documents": [
+            { "name": "Commercial Offer Letter", "status": "Submitted", "date": "2025-01-19" },
+            { "name": "Cost Breakdown Sheet", "status": "Submitted", "date": "2025-01-19" },
+            { "name": "Payment Terms Document", "status": "Submitted", "date": "2025-01-19" },
+            { "name": "Technical-Commercial Clarifications", "status": "Incomplete", "date": "2025-01-19" }
+          ],
+          "cost_components": {
+            "Main Casing": 365000,
+            "Bearing": 88000,
+            "Oil": 16500,
+            "Core": 205000,
+            "Coil": 125000,
+            "Accessories": 52000
+          },
+          "total_offer": 851500,
+          "negotiation_notes": "Above estimate on most components. Accessories significantly overpriced.",
+          "ai_insight": "Vendor B's bid of $851,500 is 5% above estimate. Critical issues: Accessories at $52k (16% over), Oil at $16.5k (10% over), Main Casing at $365k (4% over). Only Coil pricing is reasonable. Strong negotiation required on Accessories and Oil. Potential 6-8% reduction achievable through focused negotiation."
+        },
+        {
+          "vendor_id": "VEN-010",
+          "documents": [
+            { "name": "Commercial Offer Letter", "status": "Submitted", "date": "2025-01-20" },
+            { "name": "Cost Breakdown Sheet", "status": "Missing", "date": null },
+            { "name": "Payment Terms Document", "status": "Submitted", "date": "2025-01-20" },
+            { "name": "Technical-Commercial Clarifications", "status": "Missing", "date": null }
+          ],
+          "cost_components": {
+            "Main Casing": 375000,
+            "Bearing": 92000,
+            "Oil": 17000,
+            "Core": 215000,
+            "Coil": 130000,
+            "Accessories": 48000
+          },
+          "total_offer": 877000,
+          "negotiation_notes": "Premium pricing across board. New entrant with limited track record.",
+          "ai_insight": "Vendor C's offer of $877,000 is 8% above estimate with no competitive advantages. All components overpriced. Missing critical documentation (Cost Breakdown, Clarifications) indicates lack of preparation. Core at $215k is 7.5% over estimate. Not recommended for award consideration due to pricing and documentation gaps."
+        }
+      ],
+      "ai_summary": "Clear winner: Vendor A (WindForce Manufacturing) at $789,200 with comprehensive documentation and competitive pricing across all components. Vendor B has negotiation potential if willing to reduce Accessories and Oil costs by 15-20% to reach $810k target. Vendor C is non-competitive with insufficient documentation. **Recommendation**: Award to Vendor A. Keep Vendor B as backup with conditional negotiation targets."
+    },
+    {
+      "sourcing_event_id": "SRC-2025-003",
+      "estimated_cost": {
+        "Main Casing": 280000,
+        "Bearing": 70000,
+        "Oil": 12000,
+        "Core": 165000,
+        "Coil": 95000,
+        "Accessories": 38000
+      },
+      "vendor_bids": [
+        {
+          "vendor_id": "VEN-006",
+          "documents": [
+            { "name": "Commercial Offer Letter", "status": "Submitted", "date": "2025-01-21" },
+            { "name": "Cost Breakdown Sheet", "status": "Submitted", "date": "2025-01-21" },
+            { "name": "Payment Terms Document", "status": "Submitted", "date": "2025-01-21" },
+            { "name": "Technical-Commercial Clarifications", "status": "Submitted", "date": "2025-01-21" }
+          ],
+          "cost_components": {
+            "Main Casing": 272000,
+            "Bearing": 68000,
+            "Oil": 11500,
+            "Core": 160000,
+            "Coil": 92000,
+            "Accessories": 36500
+          },
+          "total_offer": 640000,
+          "negotiation_notes": "Exceptional value proposition. Market leader with proven technology.",
+          "ai_insight": "Vendor A (Battery Systems Inc) offers outstanding value at $640,000, 3% below estimate. Leadership evident in Core ($160k, 3% below) and Coil ($92k, 3% below) components. All components competitively priced with no concerns. Complete documentation package. Strong technical reputation. **No negotiation needed** - proceed with award."
+        },
+        {
+          "vendor_id": "VEN-007",
+          "documents": [
+            { "name": "Commercial Offer Letter", "status": "Submitted", "date": "2025-01-22" },
+            { "name": "Cost Breakdown Sheet", "status": "Submitted", "date": "2025-01-22" },
+            { "name": "Payment Terms Document", "status": "Incomplete", "date": null },
+            { "name": "Technical-Commercial Clarifications", "status": "Submitted", "date": "2025-01-22" }
+          ],
+          "cost_components": {
+            "Main Casing": 285000,
+            "Bearing": 73000,
+            "Oil": 13000,
+            "Core": 168000,
+            "Coil": 97000,
+            "Accessories": 42000
+          },
+          "total_offer": 678000,
+          "negotiation_notes": "Moderate pricing with Accessories markup. Negotiation potential exists.",
+          "ai_insight": "Vendor B's bid of $678,000 is 3% above estimate. Main concerns: Accessories at $42k (11% over estimate), Bearing at $73k (4% over). Core and Coil are acceptable. Negotiate Accessories and Bearing for 7-10% reduction to reach $650k target. Payment terms document incomplete - request completion before award consideration."
+        },
+        {
+          "vendor_id": "VEN-008",
+          "documents": [
+            { "name": "Commercial Offer Letter", "status": "Submitted", "date": "2025-01-23" },
+            { "name": "Cost Breakdown Sheet", "status": "Missing", "date": null },
+            { "name": "Payment Terms Document", "status": "Submitted", "date": "2025-01-23" },
+            { "name": "Technical-Commercial Clarifications", "status": "Missing", "date": null }
+          ],
+          "cost_components": {
+            "Main Casing": 295000,
+            "Bearing": 76000,
+            "Oil": 14000,
+            "Core": 175000,
+            "Coil": 102000,
+            "Accessories": 45000
+          },
+          "total_offer": 707000,
+          "negotiation_notes": "Premium pricing without justification. Documentation gaps concerning.",
+          "ai_insight": "Vendor C's offer of $707,000 is 7% above estimate with no competitive strengths. All components overpriced, particularly Core at $175k (6% over) and Coil at $102k (7% over). Missing critical documents raises concerns about capability. Not recommended for award. Use only as last resort backup option."
+        }
+      ],
+      "ai_summary": "Vendor A (Battery Systems Inc) is the clear choice at $640,000 with superior pricing and complete documentation. Vendor B at $678,000 could be competitive with targeted negotiation on Accessories and Bearing components, aiming for $650k. Vendor C lacks competitiveness and documentation completeness. **Recommendation**: Award to Vendor A. Negotiate with Vendor B as backup contingency at $650k target price."
+    }
+  ],
+  "commercialPostNegotiations": [
+    {
+      "sourcing_event_id": "SRC-2025-001",
+      "internal_estimate": 221500,
+      "vendors": [
+        {
+          "vendor_id": "VEN-001",
+          "vendor_name": "SolarTech Industries",
+          "initial_offer": 210500,
+          "final_offer": 198000,
+          "negotiation_date": "2025-01-20",
+          "negotiation_minutes": "Meeting held on January 20, 2025 from 10:00-12:30.\\n\\nKey Negotiation Points:\\n- Discussed 8% volume discount on Main Casing component\\n- Requested improved warranty terms\\n- Reviewed payment schedule flexibility\\n\\nConcessions Given by Vendor:\\n- 6% discount on Main Casing ($89,300 final)\\n- Extended warranty from 25 to 30 years at no cost\\n- Agreed to 60-day payment terms (up from 30 days)\\n- Free preventive maintenance for first 2 years\\n\\nConcessions Given by Client:\\n- Committed to 3-year exclusive partnership\\n- Agreed to provide reference for future projects\\n\\nOpen Issues:\\n- None - all points resolved\\n\\nFinal Agreement:\\n- Total contract value: $198,000\\n- 6% discount achieved across multiple components\\n- Enhanced warranty and support terms\\n- All parties satisfied with outcome",
+          "key_concession": "6% discount on main casing + extended 30-year warranty + free 2-year maintenance",
+          "ai_score": 95,
+          "manual_score": null,
+          "rank": 1,
+          "justification": "Best overall commercial result. Achieved 6% reduction from initial offer bringing total to 11% below estimate. Vendor demonstrated strong willingness to negotiate and provided significant value-adds including extended warranty and free maintenance. Highly recommended as preferred vendor.",
+          "recommendation": "Preferred"
+        },
+        {
+          "vendor_id": "VEN-002",
+          "vendor_name": "Green Energy Solutions",
+          "initial_offer": 228300,
+          "final_offer": 218500,
+          "negotiation_date": "2025-01-21",
+          "negotiation_minutes": "Meeting held on January 21, 2025 from 14:00-15:45.\\n\\nKey Negotiation Points:\\n- Vendor's Bearing and Accessories pricing significantly above market\\n- Requested 15% reduction on overpriced components\\n- Discussed quality assurance improvements\\n\\nConcessions Given by Vendor:\\n- 4.3% overall discount achieved\\n- Bearing reduced from $28k to $26k (7% reduction)\\n- Accessories reduced from $16.5k to $15k (9% reduction)\\n- Agreed to provide quarterly quality reports\\n\\nConcessions Given by Client:\\n- Extended contract from 1 year to 18 months\\n- Provided advance payment of 20%\\n\\nOpen Issues:\\n- Payment terms document still incomplete\\n- Quality certification pending final approval\\n\\nFinal Agreement:\\n- Total contract value: $218,500\\n- Still 1.3% below estimate but not most competitive\\n- Conditional acceptance pending document completion",
+          "key_concession": "4.3% discount, focused on Bearing (-7%) and Accessories (-9%)",
+          "ai_score": 78,
+          "manual_score": null,
+          "rank": 2,
+          "justification": "Moderate negotiation success. Vendor reduced overpriced components but final offer still not competitive compared to Vendor A. Price now marginally below estimate but lacks value-adds. Suitable as backup option only. Incomplete documentation remains a concern.",
+          "recommendation": "Alternative"
+        },
+        {
+          "vendor_id": "VEN-003",
+          "vendor_name": "Renewable Power Corp",
+          "initial_offer": 225800,
+          "final_offer": 220000,
+          "negotiation_date": "2025-01-22",
+          "negotiation_minutes": "Meeting held on January 22, 2025 from 09:00-10:30.\\n\\nKey Negotiation Points:\\n- Main Casing pricing 5% above estimate\\n- Requested volume discount on premium positioning\\n- Discussed payment and delivery terms\\n\\nConcessions Given by Vendor:\\n- 2.6% overall discount\\n- Main Casing reduced from $105k to $102k (2.8% reduction)\\n- Agreed to 45-day payment terms\\n- Offered 5% discount on future orders\\n\\nConcessions Given by Client:\\n- Committed to consider vendor for future projects\\n\\nOpen Issues:\\n- Technical-Commercial Clarifications document still missing\\n- Warranty terms not improved from standard\\n\\nFinal Agreement:\\n- Total contract value: $220,000\\n- Minimal discount achieved\\n- Price remains 0.7% below estimate but not competitive\\n- Limited negotiation flexibility demonstrated",
+          "key_concession": "2.6% discount on Main Casing, 5% discount on future orders",
+          "ai_score": 72,
+          "manual_score": null,
+          "rank": 3,
+          "justification": "Limited negotiation success. Vendor showed minimal flexibility with only 2.6% reduction. Final price marginally below estimate but significantly higher than best offer. Missing documentation and standard warranty terms. Not recommended for this project but may be suitable for non-critical future needs.",
+          "recommendation": "Not Recommended"
+        },
+        {
+          "vendor_id": "VEN-009",
+          "vendor_name": "EcoPower Manufacturing",
+          "initial_offer": 228700,
+          "final_offer": 225000,
+          "negotiation_date": "2025-01-23",
+          "negotiation_minutes": "Meeting held on January 23, 2025 from 11:00-12:00.\\n\\nKey Negotiation Points:\\n- Overall pricing above competitive benchmark\\n- Requested significant cost reduction\\n- Missing cost breakdown documentation\\n\\nConcessions Given by Vendor:\\n- 1.6% overall discount\\n- Minor reductions across components\\n- Agreed to provide missing cost breakdown within 5 days\\n\\nConcessions Given by Client:\\n- None - unable to meet vendor's conditions\\n\\nOpen Issues:\\n- Cost breakdown document still not received\\n- Pricing remains significantly above competitive offers\\n- Limited willingness to negotiate\\n\\nFinal Agreement:\\n- Total contract value: $225,000\\n- Minimal discount of 1.6%\\n- Price 1.6% above estimate\\n- Documentation still incomplete\\n- Vendor not willing to match competitive pricing",
+          "key_concession": "1.6% minimal discount, promised cost breakdown document",
+          "ai_score": 58,
+          "manual_score": null,
+          "rank": 4,
+          "justification": "Unsuccessful negotiation. Vendor demonstrated very limited flexibility with only 1.6% reduction. Final offer remains above estimate and significantly higher than competitors. Missing critical documentation and unwillingness to negotiate competitively. Strongly not recommended.",
+          "recommendation": "Not Recommended"
+        }
+      ],
+      "ai_summary": "Post-negotiation results clearly favor Vendor A (SolarTech Industries) with an outstanding 11% savings below estimate at $198,000. Vendor demonstrated excellent negotiation flexibility, providing substantial concessions including extended warranty and free maintenance. Vendor B achieved moderate improvement but remains uncompetitive at $218,500. Vendors C and D showed minimal negotiation flexibility with final offers at $220,000 and $225,000 respectively. **Strong Recommendation**: Award to Vendor A as Preferred Vendor. Maintain Vendor B as backup Alternative option with conditional requirements for document completion."
+    }
+  ],
+  "tenderEvaluationSummaries": [
+    {
+      "sourcing_event_id": "SRC-2025-001",
+      "event_name": "100MW Solar Power Plant Equipment",
+      "evaluation_status": "completed",
+      "vendors": [
+        {
+          "vendor_id": "VEN-001",
+          "vendor_name": "SolarTech Industries",
+          "administration_result": "Pass",
+          "administration_status": "Final",
+          "administration_submitted_at": "2025-01-20T10:30:00Z",
+          "technical_score": 80,
+          "technical_status": "Final",
+          "technical_submitted_at": "2025-01-21T14:15:00Z",
+          "commercial_score": 20,
+          "commercial_status": "Final",
+          "commercial_submitted_at": "2025-01-22T09:45:00Z",
+          "total_score": 100,
+          "rank": 1,
+          "status": "Winner",
+          "eligible": true
+        },
+        {
+          "vendor_id": "VEN-002",
+          "vendor_name": "Green Energy Solutions",
+          "administration_result": "Pass",
+          "administration_status": "Final",
+          "administration_submitted_at": "2025-01-20T11:00:00Z",
+          "technical_score": 68,
+          "technical_status": "Final",
+          "technical_submitted_at": "2025-01-21T15:30:00Z",
+          "commercial_score": 18,
+          "commercial_status": "Final",
+          "commercial_submitted_at": "2025-01-22T10:00:00Z",
+          "total_score": 86,
+          "rank": 2,
+          "status": "Runner-up",
+          "eligible": true
+        },
+        {
+          "vendor_id": "VEN-003",
+          "vendor_name": "Renewable Power Corp",
+          "administration_result": "Not Pass",
+          "administration_status": "Final",
+          "administration_submitted_at": "2025-01-20T12:00:00Z",
+          "technical_score": 62,
+          "technical_status": "Final",
+          "technical_submitted_at": "2025-01-21T16:00:00Z",
+          "commercial_score": 16,
+          "commercial_status": "Final",
+          "commercial_submitted_at": "2025-01-22T11:00:00Z",
+          "total_score": 78,
+          "rank": 3,
+          "status": "Not Selected",
+          "eligible": false
+        },
+        {
+          "vendor_id": "VEN-009",
+          "vendor_name": "EcoPower Manufacturing",
+          "administration_result": "Pass",
+          "administration_status": "Final",
+          "administration_submitted_at": "2025-01-20T13:00:00Z",
+          "technical_score": 54,
+          "technical_status": "Final",
+          "technical_submitted_at": "2025-01-21T17:00:00Z",
+          "commercial_score": 14,
+          "commercial_status": "On-Progress",
+          "total_score": 68,
+          "rank": 4,
+          "status": "Not Selected",
+          "eligible": true
+        }
+      ],
+      "winner": {
+        "vendor_id": "VEN-001",
+        "vendor_name": "SolarTech Industries",
+        "total_score": 100,
+        "key_strengths": [
+          "Perfect administration compliance with all documents complete and valid",
+          "Highest technical score (80/80) demonstrating superior technical capability",
+          "Best commercial offer (20/20) with lowest pricing and optimal terms",
+          "Consistent excellence across all evaluation criteria"
+        ]
+      },
+      "ai_summary": "SolarTech Industries (VEN-001) emerges as the clear winner with a perfect total score of 100/100. The vendor achieved Pass in administration with complete documentation, scored maximum 80 points in technical evaluation demonstrating superior capability, and earned the full 20 points commercially with the lowest bid. Green Energy Solutions secured second place with 86/100, showing strong performance but unable to match the winner's excellence. Renewable Power Corp was disqualified due to failing administration evaluation (Not Pass), despite scoring 78 total points. EcoPower Manufacturing ranked fourth with 68/100, with commercial evaluation still in progress. **Recommendation**: Award contract to SolarTech Industries and proceed with contract finalization immediately.",
+      "insights": [
+        "Winner achieved perfect score across all categories (100/100)",
+        "Administration Pass/Not Pass system successfully filtered non-compliant vendors",
+        "Technical scoring (0-80) and Commercial scoring (0-20) provided clear differentiation",
+        "One vendor disqualified due to administration non-compliance despite reasonable technical score"
+      ],
+      "next_steps": [
+        "Issue Letter of Award to SolarTech Industries",
+        "Initiate contract negotiation and finalization",
+        "Send regret letters to unsuccessful bidders",
+        "Archive evaluation documentation for audit trail"
+      ]
+    },
+    {
+      "sourcing_event_id": "SRC-2025-002",
+      "event_name": "Wind Turbine Generator Procurement",
+      "evaluation_status": "in-progress",
+      "vendors": [
+        {
+          "vendor_id": "VEN-004",
+          "vendor_name": "WindForce Manufacturing",
+          "administration_result": "Pass",
+          "administration_status": "Final",
+          "administration_submitted_at": "2025-01-18T09:00:00Z",
+          "technical_score": 78,
+          "technical_status": "Final",
+          "technical_submitted_at": "2025-01-19T14:00:00Z",
+          "commercial_score": 19,
+          "commercial_status": "On-Progress",
+          "total_score": 97,
+          "rank": 1,
+          "status": "Leading",
+          "eligible": true
+        },
+        {
+          "vendor_id": "VEN-005",
+          "vendor_name": "PowerTech Systems",
+          "administration_result": "Pass",
+          "administration_status": "Final",
+          "administration_submitted_at": "2025-01-18T10:00:00Z",
+          "technical_score": 72,
+          "technical_status": "On-Progress",
+          "commercial_score": 17,
+          "commercial_status": "On-Progress",
+          "total_score": 89,
+          "rank": 2,
+          "status": "In-Progress",
+          "eligible": true
+        },
+        {
+          "vendor_id": "VEN-010",
+          "vendor_name": "Global Energy Corp",
+          "administration_result": "Pass",
+          "administration_status": "On-Progress",
+          "technical_score": 65,
+          "technical_status": "On-Progress",
+          "commercial_score": 15,
+          "commercial_status": "On-Progress",
+          "total_score": 80,
+          "rank": 3,
+          "status": "In-Progress",
+          "eligible": true
+        }
+      ],
+      "winner": {
+        "vendor_id": "VEN-004",
+        "vendor_name": "WindForce Manufacturing",
+        "total_score": 97,
+        "key_strengths": [
+          "Administration Pass with comprehensive documentation submitted",
+          "Strong technical score (78/80) showing excellent technical capability",
+          "Competitive commercial position (19/20) pending final evaluation",
+          "Currently leading with significant advantage over competitors"
+        ]
+      },
+      "ai_summary": "WindForce Manufacturing (VEN-004) is currently leading with 97/100, having passed administration and achieved 78/80 in technical evaluation, with commercial evaluation still in progress. PowerTech Systems is second with 89/100, with both technical and commercial evaluations ongoing. Global Energy Corp ranks third at 80/100 with all evaluations still in progress. All vendors have achieved or are on track for administration Pass. **Status**: Evaluation in progress - final rankings pending completion of all assessments.",
+      "insights": [
+        "All vendors currently eligible with Pass or pending Pass in administration",
+        "Technical scores range from 65-78, showing competitive field",
+        "Commercial evaluations pending for all vendors",
+        "Leader has 8-point advantage but final outcome depends on commercial completion"
+      ],
+      "next_steps": [
+        "Complete remaining technical evaluations",
+        "Finalize commercial assessments for all vendors",
+        "Conduct final scoring verification",
+        "Prepare winner announcement upon completion"
+      ]
+    },
+    {
+      "sourcing_event_id": "SRC-2025-003",
+      "event_name": "Battery Energy Storage System",
+      "evaluation_status": "completed",
+      "vendors": [
+        {
+          "vendor_id": "VEN-006",
+          "vendor_name": "Battery Systems Inc",
+          "administration_result": "Pass",
+          "administration_status": "Final",
+          "administration_submitted_at": "2025-01-16T08:30:00Z",
+          "technical_score": 76,
+          "technical_status": "Final",
+          "technical_submitted_at": "2025-01-17T13:00:00Z",
+          "commercial_score": 20,
+          "commercial_status": "Final",
+          "commercial_submitted_at": "2025-01-18T10:30:00Z",
+          "total_score": 96,
+          "rank": 1,
+          "status": "Winner",
+          "eligible": true
+        },
+        {
+          "vendor_id": "VEN-007",
+          "vendor_name": "PowerCell Technologies",
+          "administration_result": "Pass",
+          "administration_status": "Final",
+          "administration_submitted_at": "2025-01-16T09:00:00Z",
+          "technical_score": 70,
+          "technical_status": "Final",
+          "technical_submitted_at": "2025-01-17T14:00:00Z",
+          "commercial_score": 17,
+          "commercial_status": "Final",
+          "commercial_submitted_at": "2025-01-18T11:00:00Z",
+          "total_score": 87,
+          "rank": 2,
+          "status": "Runner-up",
+          "eligible": true
+        },
+        {
+          "vendor_id": "VEN-008",
+          "vendor_name": "EnergyTech Solutions",
+          "administration_result": "Pass",
+          "administration_status": "Final",
+          "administration_submitted_at": "2025-01-16T10:00:00Z",
+          "technical_score": 58,
+          "technical_status": "Final",
+          "technical_submitted_at": "2025-01-17T15:00:00Z",
+          "commercial_score": 14,
+          "commercial_status": "Final",
+          "commercial_submitted_at": "2025-01-18T12:00:00Z",
+          "total_score": 72,
+          "rank": 3,
+          "status": "Not Selected",
+          "eligible": true
+        }
+      ],
+      "winner": {
+        "vendor_id": "VEN-006",
+        "vendor_name": "Battery Systems Inc",
+        "total_score": 96,
+        "key_strengths": [
+          "Administration Pass with complete and valid documentation",
+          "Exceptional technical score (76/80) - best-in-class technology",
+          "Perfect commercial score (20/20) with most competitive pricing",
+          "Comprehensive value package including extended warranty and support"
+        ]
+      },
+      "ai_summary": "Battery Systems Inc (VEN-006) secures the award with an outstanding total score of 96/100, driven by exceptional technical (76/80) and perfect commercial (20/20) performance. The vendor offers best-in-class battery technology combined with the most competitive pricing. PowerCell Technologies achieved second place with 87/100 but fell short in both technical (70) and commercial (17) evaluations. EnergyTech Solutions ranked third at 72/100 with significant gaps in technical capability (58) and commercial competitiveness (14). The 9-point gap between winner and runner-up confirms Battery Systems Inc's superiority. **Recommendation**: Award contract to Battery Systems Inc and establish long-term partnership framework for future projects.",
+      "insights": [
+        "Winner achieved highest scores in technical and commercial categories",
+        "Perfect commercial score (20/20) indicates most competitive bid",
+        "Runner-up's technical score (70) significantly lower than winner's (76)",
+        "Third-place vendor scored weakly in both technical (58) and commercial (14)"
+      ],
+      "next_steps": [
+        "Issue Letter of Award to Battery Systems Inc",
+        "Initiate 3-year framework agreement negotiations",
+        "Schedule technical mobilization meeting",
+        "Provide feedback to unsuccessful vendors"
+      ]
+    }
+  ],
+  "vendors": [
+    {
+      "id": "VEN-001",
+      "vendor_name": "SolarTech Industries",
+      "vendor_code": "STI-001",
+      "category": "Renewable Energy",
+      "contact_person": "John Anderson",
+      "email": "john.anderson@solartech.com",
+      "phone": "+62-21-5551234",
+      "address": "Jakarta Industrial Park, Block A-15",
+      "certification": ["ISO 9001", "ISO 14001"],
+      "performance_rating": 4.5,
+      "organization_id": "org-001"
+    },
+    {
+      "id": "VEN-002",
+      "vendor_name": "Green Energy Solutions",
+      "vendor_code": "GES-002",
+      "category": "Renewable Energy",
+      "contact_person": "Maria Santos",
+      "email": "maria.santos@greenenergy.com",
+      "phone": "+62-21-5555678",
+      "address": "Surabaya Technology Center, Unit 45",
+      "certification": ["ISO 9001", "OHSAS 18001"],
+      "performance_rating": 4.2,
+      "organization_id": "org-001"
+    },
+    {
+      "id": "VEN-003",
+      "vendor_name": "Renewable Power Corp",
+      "vendor_code": "RPC-003",
+      "category": "Renewable Energy",
+      "contact_person": "David Kim",
+      "email": "david.kim@renewablepower.com",
+      "phone": "+62-21-5559012",
+      "address": "Bandung Energy Hub, Tower 2",
+      "certification": ["ISO 9001", "ISO 50001"],
+      "performance_rating": 4.7,
+      "organization_id": "org-001"
+    },
+    {
+      "id": "VEN-004",
+      "vendor_name": "WindForce Manufacturing",
+      "vendor_code": "WFM-004",
+      "category": "Equipment",
+      "contact_person": "Lisa Chen",
+      "email": "lisa.chen@windforce.com",
+      "phone": "+62-31-7771234",
+      "address": "Surabaya Industrial Estate",
+      "certification": ["ISO 9001", "IEC 61400"],
+      "performance_rating": 4.4,
+      "organization_id": "org-001"
+    },
+    {
+      "id": "VEN-005",
+      "vendor_name": "TurbineTech Global",
+      "vendor_code": "TTG-005",
+      "category": "Equipment",
+      "contact_person": "Robert Taylor",
+      "email": "robert.taylor@turbinetech.com",
+      "phone": "+62-31-7775678",
+      "address": "Surabaya Port Area, Building 12",
+      "certification": ["ISO 9001", "DNV GL"],
+      "performance_rating": 4.6,
+      "organization_id": "org-001"
+    },
+    {
+      "id": "VEN-006",
+      "vendor_name": "EnerStore Systems",
+      "vendor_code": "ESS-006",
+      "category": "Energy Storage",
+      "contact_person": "Jennifer Lee",
+      "email": "jennifer.lee@enerstore.com",
+      "phone": "+62-22-8881234",
+      "address": "Bandung Technology Park",
+      "certification": ["ISO 9001", "UL 1973"],
+      "performance_rating": 4.8,
+      "organization_id": "org-001"
+    },
+    {
+      "id": "VEN-007",
+      "vendor_name": "PowerCell Technologies",
+      "vendor_code": "PCT-007",
+      "category": "Energy Storage",
+      "contact_person": "Michael Brown",
+      "email": "michael.brown@powercell.com",
+      "phone": "+62-22-8885678",
+      "address": "Bandung Innovation Center",
+      "certification": ["ISO 9001", "IEC 62619"],
+      "performance_rating": 4.3,
+      "organization_id": "org-001"
+    },
+    {
+      "id": "VEN-008",
+      "vendor_name": "Advanced Battery Co",
+      "vendor_code": "ABC-008",
+      "category": "Energy Storage",
+      "contact_person": "Sarah Wilson",
+      "email": "sarah.wilson@advancedbattery.com",
+      "phone": "+62-22-8889012",
+      "address": "Bandung Science Park, Zone C",
+      "certification": ["ISO 9001", "UN 38.3"],
+      "performance_rating": 4.5,
+      "organization_id": "org-001"
+    }
+  ],
+  "personnelList": [
+    {
+      "id": "PERS-001",
+      "name": "Ali Rahman",
+      "role": "Procurement Lead",
+      "department": "Procurement",
+      "email": "ali.rahman@indonesiapower.co.id",
+      "phone": "+62-21-5551001",
+      "expertise": ["Strategic Sourcing", "Contract Management"],
+      "availability": "available"
+    },
+    {
+      "id": "PERS-002",
+      "name": "Siti Nuraeni",
+      "role": "Technical Evaluator",
+      "department": "Engineering",
+      "email": "siti.nuraeni@indonesiapower.co.id",
+      "phone": "+62-21-5551002",
+      "expertise": ["Technical Assessment", "Quality Assurance"],
+      "availability": "available"
+    },
+    {
+      "id": "PERS-003",
+      "name": "Budi Prakoso",
+      "role": "Commercial Analyst",
+      "department": "Finance",
+      "email": "budi.prakoso@indonesiapower.co.id",
+      "phone": "+62-21-5551003",
+      "expertise": ["Cost Analysis", "Financial Evaluation"],
+      "availability": "available"
+    },
+    {
+      "id": "PERS-004",
+      "name": "Dian Sasmita",
+      "role": "Legal Advisor",
+      "department": "Legal",
+      "email": "dian.sasmita@indonesiapower.co.id",
+      "phone": "+62-21-5551004",
+      "expertise": ["Contract Law", "Compliance"],
+      "availability": "available"
+    },
+    {
+      "id": "PERS-005",
+      "name": "Eko Wahyudi",
+      "role": "Procurement Officer",
+      "department": "Procurement",
+      "email": "eko.wahyudi@indonesiapower.co.id",
+      "phone": "+62-21-5551005",
+      "expertise": ["Tender Management", "Vendor Relations"],
+      "availability": "available"
+    },
+    {
+      "id": "PERS-006",
+      "name": "Fitri Handayani",
+      "role": "Quality Assurance Manager",
+      "department": "Quality",
+      "email": "fitri.handayani@indonesiapower.co.id",
+      "phone": "+62-21-5551006",
+      "expertise": ["Quality Standards", "Inspection"],
+      "availability": "available"
+    },
+    {
+      "id": "PERS-007",
+      "name": "Gunawan Setiawan",
+      "role": "Finance Approver",
+      "department": "Finance",
+      "email": "gunawan.setiawan@indonesiapower.co.id",
+      "phone": "+62-21-5551007",
+      "expertise": ["Budget Management", "Financial Approval"],
+      "availability": "available"
+    },
+    {
+      "id": "PERS-008",
+      "name": "Hesti Wulandari",
+      "role": "Technical Reviewer",
+      "department": "Engineering",
+      "email": "hesti.wulandari@indonesiapower.co.id",
+      "phone": "+62-21-5551008",
+      "expertise": ["Specification Review", "Technical Compliance"],
+      "availability": "available"
+    },
+    {
+      "id": "PERS-009",
+      "name": "Indra Kusuma",
+      "role": "Negotiation Officer",
+      "department": "Procurement",
+      "email": "indra.kusuma@indonesiapower.co.id",
+      "phone": "+62-21-5551009",
+      "expertise": ["Contract Negotiation", "Vendor Management"],
+      "availability": "available"
+    },
+    {
+      "id": "PERS-010",
+      "name": "Julia Kartika",
+      "role": "Administration Evaluator",
+      "department": "Procurement",
+      "email": "julia.kartika@indonesiapower.co.id",
+      "phone": "+62-21-5551010",
+      "expertise": ["Document Verification", "Compliance Check"],
+      "availability": "available"
+    },
+    {
+      "id": "PERS-011",
+      "name": "Kartono Wijaya",
+      "role": "Project Manager",
+      "department": "Operations",
+      "email": "kartono.wijaya@indonesiapower.co.id",
+      "phone": "+62-21-5551011",
+      "expertise": ["Project Coordination", "Stakeholder Management"],
+      "availability": "available"
+    },
+    {
+      "id": "PERS-012",
+      "name": "Lina Marlina",
+      "role": "Contract Administrator",
+      "department": "Legal",
+      "email": "lina.marlina@indonesiapower.co.id",
+      "phone": "+62-21-5551012",
+      "expertise": ["Contract Administration", "Documentation"],
+      "availability": "available"
+    }
+  ],
+  "personnelRoles": [
+    "Procurement Lead",
+    "Technical Evaluator",
+    "Commercial Analyst",
+    "Legal Advisor",
+    "Procurement Officer",
+    "Quality Assurance Manager",
+    "Finance Approver",
+    "Technical Reviewer",
+    "Negotiation Officer",
+    "Administration Evaluator",
+    "Project Manager",
+    "Contract Administrator"
+  ],
+  "departmentList": [
+    "Procurement",
+    "Engineering",
+    "Finance",
+    "Legal",
+    "Quality",
+    "Operations"
+  ],
+  "milestoneTemplates": [
+    {
+      "id": "TMPL-001",
+      "name": "Standard Tender Process",
+      "description": "Standard procurement tender process for goods and services",
+      "milestones": [
+        {
+          "name": "Tender Preparation",
+          "description": "Prepare tender documents and requirements",
+          "duration_days": 7,
+          "sequence": 1
+        },
+        {
+          "name": "Tender Announcement",
+          "description": "Publish tender announcement to vendors",
+          "duration_days": 3,
+          "sequence": 2
+        },
+        {
+          "name": "Vendor Registration",
+          "description": "Vendor registration and clarification period",
+          "duration_days": 7,
+          "sequence": 3
+        },
+        {
+          "name": "Proposal Submission",
+          "description": "Vendors submit technical and commercial proposals",
+          "duration_days": 14,
+          "sequence": 4
+        },
+        {
+          "name": "Administration Evaluation",
+          "description": "Evaluate vendor administrative compliance",
+          "duration_days": 5,
+          "sequence": 5
+        },
+        {
+          "name": "Technical Evaluation",
+          "description": "Assess technical proposals and capabilities",
+          "duration_days": 10,
+          "sequence": 6
+        },
+        {
+          "name": "Commercial Evaluation",
+          "description": "Analyze pricing and commercial terms",
+          "duration_days": 7,
+          "sequence": 7
+        },
+        {
+          "name": "Negotiation",
+          "description": "Negotiate terms with shortlisted vendors",
+          "duration_days": 5,
+          "sequence": 8
+        },
+        {
+          "name": "Winner Selection",
+          "description": "Final evaluation and winner announcement",
+          "duration_days": 3,
+          "sequence": 9
+        },
+        {
+          "name": "Contract Award",
+          "description": "Contract signing and award",
+          "duration_days": 7,
+          "sequence": 10
+        }
+      ]
+    },
+    {
+      "id": "TMPL-002",
+      "name": "Fast Track Tender",
+      "description": "Expedited tender process for urgent procurement",
+      "milestones": [
+        {
+          "name": "Tender Preparation",
+          "description": "Rapid preparation of tender documents",
+          "duration_days": 3,
+          "sequence": 1
+        },
+        {
+          "name": "Tender Announcement",
+          "description": "Immediate tender announcement",
+          "duration_days": 1,
+          "sequence": 2
+        },
+        {
+          "name": "Proposal Submission",
+          "description": "Accelerated proposal submission period",
+          "duration_days": 7,
+          "sequence": 3
+        },
+        {
+          "name": "Evaluation",
+          "description": "Combined evaluation process",
+          "duration_days": 7,
+          "sequence": 4
+        },
+        {
+          "name": "Winner Selection & Award",
+          "description": "Fast-track winner selection and contract",
+          "duration_days": 3,
+          "sequence": 5
+        }
+      ]
+    },
+    {
+      "id": "TMPL-003",
+      "name": "Complex Tender with Reverse Auction",
+      "description": "Comprehensive tender process including reverse auction",
+      "milestones": [
+        {
+          "name": "Tender Preparation",
+          "description": "Detailed preparation for complex tender",
+          "duration_days": 10,
+          "sequence": 1
+        },
+        {
+          "name": "Tender Announcement",
+          "description": "Publish tender with detailed specifications",
+          "duration_days": 5,
+          "sequence": 2
+        },
+        {
+          "name": "Pre-Bid Meeting",
+          "description": "Vendor clarification and site visit",
+          "duration_days": 3,
+          "sequence": 3
+        },
+        {
+          "name": "Proposal Submission",
+          "description": "Technical and commercial proposal submission",
+          "duration_days": 21,
+          "sequence": 4
+        },
+        {
+          "name": "Administration Evaluation",
+          "description": "Document compliance verification",
+          "duration_days": 7,
+          "sequence": 5
+        },
+        {
+          "name": "Technical Evaluation",
+          "description": "Detailed technical assessment",
+          "duration_days": 14,
+          "sequence": 6
+        },
+        {
+          "name": "Commercial Evaluation",
+          "description": "Initial commercial analysis",
+          "duration_days": 7,
+          "sequence": 7
+        },
+        {
+          "name": "Reverse Auction",
+          "description": "Online reverse auction for qualified vendors",
+          "duration_days": 1,
+          "sequence": 8
+        },
+        {
+          "name": "Post-Auction Negotiation",
+          "description": "Final negotiation with auction winner",
+          "duration_days": 5,
+          "sequence": 9
+        },
+        {
+          "name": "Winner Announcement",
+          "description": "Formal announcement of selected vendor",
+          "duration_days": 3,
+          "sequence": 10
+        },
+        {
+          "name": "Contract Award",
+          "description": "Contract finalization and signing",
+          "duration_days": 10,
+          "sequence": 11
+        }
+      ]
+    }
+  ],
+  "assignmentDefaults": {
+    "Renewable Energy": {
+      "Procurement Lead": "PERS-001",
+      "Technical Evaluator": "PERS-002",
+      "Commercial Analyst": "PERS-003",
+      "Legal Advisor": "PERS-004",
+      "Quality Assurance Manager": "PERS-006"
+    },
+    "Electrical Equipment": {
+      "Procurement Lead": "PERS-005",
+      "Technical Evaluator": "PERS-008",
+      "Commercial Analyst": "PERS-003",
+      "Legal Advisor": "PERS-004",
+      "Finance Approver": "PERS-007"
+    },
+    "Mechanical Equipment": {
+      "Procurement Lead": "PERS-001",
+      "Technical Reviewer": "PERS-008",
+      "Commercial Analyst": "PERS-003",
+      "Negotiation Officer": "PERS-009",
+      "Project Manager": "PERS-011"
+    },
+    "Civil & Infrastructure": {
+      "Procurement Lead": "PERS-005",
+      "Technical Evaluator": "PERS-002",
+      "Commercial Analyst": "PERS-003",
+      "Legal Advisor": "PERS-004",
+      "Project Manager": "PERS-011"
+    },
+    "Services & Maintenance": {
+      "Procurement Officer": "PERS-005",
+      "Technical Reviewer": "PERS-008",
+      "Commercial Analyst": "PERS-003",
+      "Contract Administrator": "PERS-012"
+    },
+    "General": {
+      "Procurement Lead": "PERS-001",
+      "Administration Evaluator": "PERS-010",
+      "Commercial Analyst": "PERS-003",
+      "Legal Advisor": "PERS-004"
+    }
+  },
+  "vendorShortlistAI": {
+    "SE-2025-001": [
+      {
+        "vendorId": "VEN-SOL-001",
+        "vendorName": "SolarTech Indonesia",
+        "performanceRating": 95,
+        "rationale": "Consistently met delivery KPIs in past tenders with 98% on-time delivery rate",
+        "pastProjects": 12,
+        "avgDeliveryDays": 45,
+        "qualityScore": 4.8,
+        "certifications": ["ISO 9001", "IEC 61215", "TÜV Certified"],
+        "priceCompetitiveness": "High"
+      },
+      {
+        "vendorId": "VEN-SOL-002",
+        "vendorName": "Green Energy Solutions",
+        "performanceRating": 92,
+        "rationale": "Strong technical support and competitive pricing with excellent warranty coverage",
+        "pastProjects": 8,
+        "avgDeliveryDays": 50,
+        "qualityScore": 4.7,
+        "certifications": ["ISO 14001", "PV Module Certification"],
+        "priceCompetitiveness": "Very High"
+      },
+      {
+        "vendorId": "VEN-SOL-003",
+        "vendorName": "EcoPower Industries",
+        "performanceRating": 88,
+        "rationale": "Fast delivery times and excellent warranty coverage with local manufacturing advantage",
+        "pastProjects": 15,
+        "avgDeliveryDays": 35,
+        "qualityScore": 4.6,
+        "certifications": ["ISO 9001", "Local Manufacturing License"],
+        "priceCompetitiveness": "Medium"
+      },
+      {
+        "vendorId": "VEN-SOL-004",
+        "vendorName": "Sustainable Power Co.",
+        "performanceRating": 85,
+        "rationale": "Comprehensive maintenance services and strong after-sales support network",
+        "pastProjects": 10,
+        "avgDeliveryDays": 55,
+        "qualityScore": 4.5,
+        "certifications": ["ISO 50001", "Energy Management Certification"],
+        "priceCompetitiveness": "Medium"
+      }
+    ],
+    "SE-2025-002": [
+      {
+        "vendorId": "VEN-WIND-001",
+        "vendorName": "WindPower Systems Ltd",
+        "performanceRating": 93,
+        "rationale": "Specialized in wind turbine components with proven track record in offshore projects",
+        "pastProjects": 18,
+        "avgDeliveryDays": 60,
+        "qualityScore": 4.9,
+        "certifications": ["ISO 9001", "CE Marking", "DNV GL Certified"],
+        "priceCompetitiveness": "High"
+      },
+      {
+        "vendorId": "VEN-WIND-002",
+        "vendorName": "Offshore Energy Solutions",
+        "performanceRating": 90,
+        "rationale": "International experience with excellent quality control and testing facilities",
+        "pastProjects": 14,
+        "avgDeliveryDays": 70,
+        "qualityScore": 4.7,
+        "certifications": ["ISO 14001", "Marine Equipment Directive"],
+        "priceCompetitiveness": "Medium"
+      },
+      {
+        "vendorId": "VEN-WIND-003",
+        "vendorName": "TurbineTech Manufacturing",
+        "performanceRating": 86,
+        "rationale": "Cost-effective solutions with flexible payment terms and local service centers",
+        "pastProjects": 9,
+        "avgDeliveryDays": 65,
+        "qualityScore": 4.4,
+        "certifications": ["ISO 9001", "Industry Standard Compliance"],
+        "priceCompetitiveness": "Very High"
+      }
+    ],
+    "SE-2025-003": [
+      {
+        "vendorId": "VEN-BAT-001",
+        "vendorName": "BatteryTech Systems",
+        "performanceRating": 96,
+        "rationale": "Industry leader with cutting-edge technology and superior performance guarantees",
+        "pastProjects": 50,
+        "avgDeliveryDays": 40,
+        "qualityScore": 4.9,
+        "certifications": ["ISO 9001", "UL 1973", "IEC 62619"],
+        "priceCompetitiveness": "Medium"
+      },
+      {
+        "vendorId": "VEN-BAT-002",
+        "vendorName": "PowerStore Solutions",
+        "performanceRating": 91,
+        "rationale": "Proven reliability with long-term performance guarantees and comprehensive monitoring",
+        "pastProjects": 25,
+        "avgDeliveryDays": 45,
+        "qualityScore": 4.7,
+        "certifications": ["ISO 14001", "Battery Safety Certification"],
+        "priceCompetitiveness": "High"
+      },
+      {
+        "vendorId": "VEN-BAT-003",
+        "vendorName": "Energy Bank Corporation",
+        "performanceRating": 87,
+        "rationale": "Cost-effective solutions with flexible financing options and rapid deployment capability",
+        "pastProjects": 15,
+        "avgDeliveryDays": 50,
+        "qualityScore": 4.5,
+        "certifications": ["ISO 9001", "Local Distributor License"],
+        "priceCompetitiveness": "Very High"
+      }
+    ]
+  },
+  "vendorMasterList": [
+    {
+      "vendorId": "VEN-SOL-001",
+      "vendorName": "SolarTech Indonesia",
+      "category": "Renewable Energy",
+      "type": "Solar Panels",
+      "location": "Jakarta",
+      "status": "Active"
+    },
+    {
+      "vendorId": "VEN-SOL-002",
+      "vendorName": "Green Energy Solutions",
+      "category": "Renewable Energy",
+      "type": "Solar Panels",
+      "location": "Surabaya",
+      "status": "Active"
+    },
+    {
+      "vendorId": "VEN-SOL-003",
+      "vendorName": "EcoPower Industries",
+      "category": "Renewable Energy",
+      "type": "Solar Equipment",
+      "location": "Bandung",
+      "status": "Active"
+    },
+    {
+      "vendorId": "VEN-SOL-004",
+      "vendorName": "Sustainable Power Co.",
+      "category": "Renewable Energy",
+      "type": "Solar Systems",
+      "location": "Medan",
+      "status": "Active"
+    },
+    {
+      "vendorId": "VEN-WIND-001",
+      "vendorName": "WindPower Systems Ltd",
+      "category": "Equipment",
+      "type": "Wind Turbines",
+      "location": "Jakarta",
+      "status": "Active"
+    },
+    {
+      "vendorId": "VEN-WIND-002",
+      "vendorName": "Offshore Energy Solutions",
+      "category": "Equipment",
+      "type": "Wind Components",
+      "location": "Singapore",
+      "status": "Active"
+    },
+    {
+      "vendorId": "VEN-WIND-003",
+      "vendorName": "TurbineTech Manufacturing",
+      "category": "Equipment",
+      "type": "Wind Equipment",
+      "location": "Batam",
+      "status": "Active"
+    },
+    {
+      "vendorId": "VEN-BAT-001",
+      "vendorName": "BatteryTech Systems",
+      "category": "Energy Storage",
+      "type": "Battery Systems",
+      "location": "Jakarta",
+      "status": "Active"
+    },
+    {
+      "vendorId": "VEN-BAT-002",
+      "vendorName": "PowerStore Solutions",
+      "category": "Energy Storage",
+      "type": "Energy Storage",
+      "location": "Surabaya",
+      "status": "Active"
+    },
+    {
+      "vendorId": "VEN-BAT-003",
+      "vendorName": "Energy Bank Corporation",
+      "category": "Energy Storage",
+      "type": "Battery Storage",
+      "location": "Bandung",
+      "status": "Active"
+    },
+    {
+      "vendorId": "VEN-GEN-001",
+      "vendorName": "Universal Supply Co.",
+      "category": "General",
+      "type": "General Supplies",
+      "location": "Jakarta",
+      "status": "Active"
+    },
+    {
+      "vendorId": "VEN-GEN-002",
+      "vendorName": "Industrial Equipment Suppliers",
+      "category": "Equipment",
+      "type": "Industrial Machinery",
+      "location": "Semarang",
+      "status": "Active"
+    }
+  ],
+  "checklistProgress": {
+    "SE-2025-001": {
+      "totalItems": 12,
+      "completed": 2,
+      "pending": 8,
+      "inProgress": 2,
+      "completionRate": 17
+    },
+    "SE-2025-002": {
+      "totalItems": 10,
+      "completed": 0,
+      "pending": 10,
+      "inProgress": 0,
+      "completionRate": 0
+    },
+    "SE-2025-003": {
+      "totalItems": 11,
+      "completed": 1,
+      "pending": 9,
+      "inProgress": 1,
+      "completionRate": 9
+    }
+  }
+}

@@ -1,0 +1,256 @@
+[
+  {
+    "sourcing_event_id": "SE-2025-001",
+    "milestones": [
+      {
+        "id": "M-001-01",
+        "name": "Tender Announcement Published",
+        "date": "2025-01-20",
+        "status": "Completed",
+        "responsible": "Sarah Chen",
+        "notes": "Published to vendor portal",
+        "insights": "On schedule - 5 vendors confirmed interest"
+      },
+      {
+        "id": "M-001-02",
+        "name": "Document Submission Deadline",
+        "date": "2025-02-10",
+        "status": "Completed",
+        "responsible": "Sarah Chen",
+        "notes": "All submissions received",
+        "insights": "3 vendors submitted complete proposals, 100% submission rate"
+      },
+      {
+        "id": "M-001-03",
+        "name": "Technical Evaluation",
+        "date": "2025-02-18",
+        "status": "Completed",
+        "responsible": "Technical Committee",
+        "notes": "All vendors meet minimum requirements",
+        "insights": "Average technical score: 85/100, all qualified for auction"
+      },
+      {
+        "id": "M-001-04",
+        "name": "Reverse Auction",
+        "date": "2025-02-20",
+        "status": "In Progress",
+        "responsible": "Sarah Chen",
+        "notes": "Auction currently active",
+        "insights": "Strong competition - 7% reduction from starting price achieved"
+      },
+      {
+        "id": "M-001-05",
+        "name": "Winner Announcement",
+        "date": "2025-02-23",
+        "status": "Pending",
+        "responsible": "Sarah Chen",
+        "notes": "Pending auction completion",
+        "insights": "Expected savings: 10-12% below budget"
+      },
+      {
+        "id": "M-001-06",
+        "name": "Contract Signature",
+        "date": "2025-02-28",
+        "status": "Pending",
+        "responsible": "Legal Team",
+        "notes": "Contract draft prepared",
+        "insights": "Standard terms applicable, minimal negotiation expected"
+      },
+      {
+        "id": "M-001-07",
+        "name": "Delivery Deadline",
+        "date": "2025-03-15",
+        "status": "Pending",
+        "responsible": "Logistics Team",
+        "notes": "Warehouse capacity confirmed",
+        "insights": "15 days buffer for quality inspection before production"
+      }
+    ]
+  },
+  {
+    "sourcing_event_id": "SE-2025-002",
+    "milestones": [
+      {
+        "id": "M-002-01",
+        "name": "Tender Announcement Published",
+        "date": "2025-01-25",
+        "status": "Completed",
+        "responsible": "David Park",
+        "notes": "Published via email and portal",
+        "insights": "4 qualified vendors responded"
+      },
+      {
+        "id": "M-002-02",
+        "name": "Pre-bid Meeting",
+        "date": "2025-02-05",
+        "status": "Completed",
+        "responsible": "David Park",
+        "notes": "Technical clarifications provided",
+        "insights": "Key concerns addressed, expected full participation"
+      },
+      {
+        "id": "M-002-03",
+        "name": "Document Submission Deadline",
+        "date": "2025-02-15",
+        "status": "Pending",
+        "responsible": "David Park",
+        "notes": "Deadline approaching",
+        "insights": "3/4 vendors confirmed submission readiness"
+      },
+      {
+        "id": "M-002-04",
+        "name": "Technical Evaluation",
+        "date": "2025-02-23",
+        "status": "Pending",
+        "responsible": "Technical Committee",
+        "notes": "Evaluation criteria finalized",
+        "insights": "Complex specifications may require extended review"
+      },
+      {
+        "id": "M-002-05",
+        "name": "Reverse Auction",
+        "date": "2025-02-25",
+        "status": "Pending",
+        "responsible": "David Park",
+        "notes": "Auction configuration prepared",
+        "insights": "High-value tender, expect competitive bidding"
+      },
+      {
+        "id": "M-002-06",
+        "name": "Winner Announcement",
+        "date": "2025-02-28",
+        "status": "Pending",
+        "responsible": "David Park",
+        "notes": "Awaiting approval",
+        "insights": "Timeline tight but achievable"
+      },
+      {
+        "id": "M-002-07",
+        "name": "Delivery Deadline",
+        "date": "2025-03-20",
+        "status": "Pending",
+        "responsible": "Logistics Team",
+        "notes": "Special handling required",
+        "insights": "Electronics require climate-controlled storage"
+      }
+    ]
+  },
+  {
+    "sourcing_event_id": "SE-2025-006",
+    "milestones": [
+      {
+        "id": "M-006-01",
+        "name": "Tender Announcement Published",
+        "date": "2025-01-08",
+        "status": "Completed",
+        "responsible": "Rachel Kim",
+        "notes": "Urgent procurement",
+        "insights": "Short timeline communicated to vendors"
+      },
+      {
+        "id": "M-006-02",
+        "name": "Document Submission Deadline",
+        "date": "2025-01-28",
+        "status": "Completed",
+        "responsible": "Rachel Kim",
+        "notes": "All submissions received on time",
+        "insights": "100% participation from shortlisted vendors"
+      },
+      {
+        "id": "M-006-03",
+        "name": "Technical Evaluation",
+        "date": "2025-02-05",
+        "status": "In Progress",
+        "responsible": "Technical Committee",
+        "notes": "Evaluation underway",
+        "insights": "All vendors demonstrate strong capability - difficult choice"
+      },
+      {
+        "id": "M-006-04",
+        "name": "Reverse Auction",
+        "date": "2025-02-07",
+        "status": "Pending",
+        "responsible": "Rachel Kim",
+        "notes": "Critical timeline",
+        "insights": "CRITICAL: Only 2 days until auction, ensure all preparations complete"
+      },
+      {
+        "id": "M-006-05",
+        "name": "Winner Announcement",
+        "date": "2025-02-10",
+        "status": "Pending",
+        "responsible": "Rachel Kim",
+        "notes": "Fast-track approval requested",
+        "insights": "URGENT: Accelerated timeline requires executive approval"
+      },
+      {
+        "id": "M-006-06",
+        "name": "Delivery Deadline",
+        "date": "2025-02-28",
+        "status": "Pending",
+        "responsible": "Logistics Team",
+        "notes": "Tight delivery window",
+        "insights": "CRITICAL: 18 days from award to delivery - monitor closely"
+      }
+    ]
+  },
+  {
+    "sourcing_event_id": "SE-2025-004",
+    "milestones": [
+      {
+        "id": "M-004-01",
+        "name": "Tender Announcement Published",
+        "date": "2025-02-25",
+        "status": "Pending",
+        "responsible": "James Taylor",
+        "notes": "Pending approval",
+        "insights": "High-value procurement requires board approval"
+      },
+      {
+        "id": "M-004-02",
+        "name": "Document Submission Deadline",
+        "date": "2025-03-10",
+        "status": "Pending",
+        "responsible": "James Taylor",
+        "notes": "Extended deadline for complex requirements",
+        "insights": "Large volume procurement, allow extra preparation time"
+      },
+      {
+        "id": "M-004-03",
+        "name": "Technical Evaluation",
+        "date": "2025-03-18",
+        "status": "Pending",
+        "responsible": "Technical Committee",
+        "notes": "Multiple evaluation rounds planned",
+        "insights": "Critical structural materials - thorough evaluation essential"
+      },
+      {
+        "id": "M-004-04",
+        "name": "Reverse Auction",
+        "date": "2025-03-20",
+        "status": "Pending",
+        "responsible": "James Taylor",
+        "notes": "High-stakes auction",
+        "insights": "Rp 3.2B value - expect intense competition"
+      },
+      {
+        "id": "M-004-05",
+        "name": "Winner Announcement",
+        "date": "2025-03-23",
+        "status": "Pending",
+        "responsible": "James Taylor",
+        "notes": "Board presentation required",
+        "insights": "Executive approval needed for high-value award"
+      },
+      {
+        "id": "M-004-06",
+        "name": "Delivery Deadline",
+        "date": "2025-04-25",
+        "status": "Pending",
+        "responsible": "Logistics Team",
+        "notes": "Phased delivery acceptable",
+        "insights": "Large volume - coordinate with production schedule"
+      }
+    ]
+  }
+]

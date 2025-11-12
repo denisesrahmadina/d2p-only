@@ -1,0 +1,606 @@
+[
+  {
+    "id": "template-rfp-001",
+    "name": "Standard RFP Contract Template",
+    "category": "Request for Proposal",
+    "description": "Comprehensive RFP contract template for complex procurement projects requiring detailed proposals from vendors",
+    "applicable_to": ["Renewable Energy", "Infrastructure", "IT Services", "Consulting"],
+    "template_content": {
+      "header": {
+        "Contract ID": "[AUTO-GENERATED]",
+        "Contract Type": "Request for Proposal Agreement",
+        "Effective Date": "[DATE OF SIGNING]",
+        "Contract Duration": "[SPECIFY DURATION - e.g., 24 Months]",
+        "Governing Law": "Republic of Indonesia",
+        "Jurisdiction": "Jakarta Special Capital Region"
+      },
+      "parties": {
+        "Party A (Buyer)": "PT Indonesia Power",
+        "Buyer Address": "Jl. Jenderal Gatot Subroto, Jakarta Selatan, DKI Jakarta 12950",
+        "Buyer Representative": "[PROCUREMENT OFFICER NAME]",
+        "Buyer Contact": "[CONTACT NUMBER]",
+        "Party B (Supplier)": "[WINNING VENDOR NAME]",
+        "Supplier Address": "[VENDOR ADDRESS]",
+        "Supplier Representative": "[VENDOR REPRESENTATIVE]",
+        "Supplier Contact": "[VENDOR CONTACT]",
+        "Supplier Tax ID": "[NPWP NUMBER]"
+      },
+      "scopeOfWork": {
+        "Project Title": "[PROJECT NAME FROM RFP]",
+        "Project Description": "[DETAILED DESCRIPTION FROM RFP DOCUMENT]",
+        "Deliverables": "[LIST ALL DELIVERABLES AS SPECIFIED IN RFP]",
+        "Location": "[PROJECT LOCATION(S)]",
+        "Implementation Timeline": "[PROJECT DURATION FROM RFP]",
+        "Quality Standards": "ISO 9001:2015, ISO 14001:2015, [ADDITIONAL STANDARDS]",
+        "Technical Specifications": "As detailed in RFP Document Annexure A",
+        "Performance Requirements": "[SPECIFIC KPIs AND METRICS]",
+        "Acceptance Criteria": "[DETAILED ACCEPTANCE CRITERIA]",
+        "Testing Requirements": "[TESTING PROTOCOLS AND PROCEDURES]"
+      },
+      "pricingTerms": {
+        "Total Contract Value": "[WINNING BID AMOUNT]",
+        "Payment Currency": "Indonesian Rupiah (IDR)",
+        "Price Validity": "Fixed price for contract duration unless otherwise specified",
+        "Price Adjustment": "Subject to agreed escalation clause after [SPECIFY PERIOD]",
+        "Tax Treatment": "Inclusive of VAT (11%), subject to PPh Article 23 (2%)",
+        "Payment Structure": "[MILESTONE-BASED / DELIVERABLE-BASED]",
+        "Price Breakdown": "As per attached Pricing Schedule (Annexure B)"
+      },
+      "paymentTerms": {
+        "Payment Method": "Bank Transfer to designated supplier account",
+        "Payment Schedule": "Net 30 days from invoice date and acceptance",
+        "Advance Payment": "[PERCENTAGE]% upon contract signing (if applicable)",
+        "Progress Payment": "Based on milestone completion and acceptance",
+        "Final Payment": "[PERCENTAGE]% upon final acceptance and warranty commencement",
+        "Late Payment Penalty": "1.5% per month on overdue amounts",
+        "Invoice Requirements": "Tax invoice, delivery receipt, acceptance certificate",
+        "Bank Details": "To be provided by supplier before first payment"
+      },
+      "deliverySchedule": {
+        "Commencement Date": "[CONTRACT START DATE]",
+        "Delivery Deadline": "[FINAL COMPLETION DATE]",
+        "Delivery Location": "[SPECIFY DELIVERY LOCATIONS]",
+        "Shipping Terms": "DDP (Delivered Duty Paid) - Incoterms 2020",
+        "Packaging Requirements": "Export standard, weatherproof, clearly labeled",
+        "Delivery Milestones": "[SPECIFY MILESTONE DATES AND DELIVERABLES]",
+        "Acceptance Criteria": "Visual inspection, functional testing, performance verification",
+        "Penalty for Late Delivery": "0.5% of milestone value per week, maximum 10% total",
+        "Force Majeure": "As per Article XX of this contract"
+      },
+      "performanceGuarantee": {
+        "Performance Bond": "10% of contract value",
+        "Bond Validity": "Until final acceptance + 90 days",
+        "Bank Guarantee": "Issued by reputable Indonesian bank (List A)",
+        "Warranty Period": "24 months from final acceptance (or as specified)",
+        "Performance Standards": "As per technical specifications in RFP",
+        "Service Level Agreement": "[SPECIFY SLA METRICS - e.g., 99.5% uptime]",
+        "Penalty for Non-Performance": "As per penalty schedule in Annexure C",
+        "Remediation Period": "30 days to cure defects after notification",
+        "Liquidated Damages": "Maximum 10% of contract value"
+      },
+      "terminationClauses": {
+        "Termination for Cause": "Either party may terminate upon 30 days written notice for material breach",
+        "Material Breach Definition": "Failure to meet critical milestones, quality standards, or payment obligations",
+        "Termination for Convenience": "Buyer may terminate with 60 days notice, payment for completed work",
+        "Force Majeure": "Performance excused for events beyond reasonable control (pandemic, natural disaster, war)",
+        "Consequences of Termination": "Return of materials, payment for completed work, transfer of documentation",
+        "Dispute Resolution": "Mediation (30 days), then arbitration under BANI rules",
+        "Governing Law": "Laws of the Republic of Indonesia",
+        "Notices": "In writing to registered addresses, deemed received after 3 business days"
+      },
+      "legalTerms": {
+        "Confidentiality": "All project information to remain confidential for 5 years post-completion",
+        "Intellectual Property": "Supplier retains existing IP, Buyer receives perpetual license for deliverables",
+        "Liability Cap": "Limited to total contract value except for willful misconduct or gross negligence",
+        "Insurance Requirements": "Professional liability $1M, Product liability $1M, Workers compensation",
+        "Compliance": "All applicable Indonesian laws, TKDN regulations, environmental laws",
+        "Anti-Corruption": "Zero tolerance policy, compliance with FCPA and UKBA",
+        "Data Protection": "Compliance with Indonesian Personal Data Protection Law",
+        "Audit Rights": "Buyer may audit supplier records related to contract performance",
+        "Subcontracting": "Requires prior written approval from Buyer"
+      },
+      "specialConditions": {
+        "Local Content": "Minimum [PERCENTAGE]% TKDN (Tingkat Komponen Dalam Negeri) required",
+        "Technology Transfer": "Knowledge transfer and training for Indonesian personnel (minimum [HOURS] hours)",
+        "Environmental Standards": "Compliance with AMDAL (Environmental Impact Assessment)",
+        "Safety Requirements": "Compliance with Indonesian K3L (Occupational Health and Safety) regulations",
+        "Community Development": "CSR contribution [PERCENTAGE]% of contract value to local communities",
+        "Reporting Requirements": "Monthly progress reports, quarterly financial reports, risk registers",
+        "Change Management": "All changes require written approval and may affect price and timeline",
+        "Quality Assurance": "QA/QC plan approval required before commencement",
+        "Escalation Procedures": "Defined escalation matrix for issues and disputes"
+      }
+    },
+    "required_annexures": [
+      "Annexure A: Technical Specifications and Requirements",
+      "Annexure B: Pricing Schedule and Payment Milestones",
+      "Annexure C: Penalty Schedule and Liquidated Damages",
+      "Annexure D: Performance Bond Format",
+      "Annexure E: Insurance Certificates",
+      "Annexure F: Delivery and Acceptance Procedures",
+      "Annexure G: Quality Assurance Plan",
+      "Annexure H: Environmental Management Plan"
+    ],
+    "created_by": "System Template",
+    "version": "1.0",
+    "last_updated": "2025-01-01"
+  },
+  {
+    "id": "template-rfq-001",
+    "name": "Standard RFQ Contract Template",
+    "category": "Request for Quotation",
+    "description": "Streamlined RFQ contract template for straightforward procurement of goods with clear specifications and pricing",
+    "applicable_to": ["Equipment", "Materials", "Spare Parts", "Office Supplies"],
+    "template_content": {
+      "header": {
+        "Contract ID": "[AUTO-GENERATED]",
+        "Contract Type": "Purchase Agreement (Request for Quotation)",
+        "Effective Date": "[DATE OF SIGNING]",
+        "Contract Duration": "As per delivery schedule",
+        "Governing Law": "Republic of Indonesia",
+        "PO Reference": "[PURCHASE ORDER NUMBER]"
+      },
+      "parties": {
+        "Party A (Buyer)": "PT Indonesia Power",
+        "Buyer Address": "Jl. Jenderal Gatot Subroto, Jakarta Selatan, DKI Jakarta 12950",
+        "Buyer PO Contact": "[PROCUREMENT OFFICER NAME AND CONTACT]",
+        "Party B (Supplier)": "[VENDOR NAME]",
+        "Supplier Address": "[VENDOR ADDRESS]",
+        "Supplier Contact Person": "[NAME AND CONTACT]",
+        "Supplier Tax ID": "[NPWP]"
+      },
+      "scopeOfWork": {
+        "Items Description": "[DETAILED ITEM SPECIFICATIONS FROM RFQ]",
+        "Quantity": "[SPECIFY QUANTITIES]",
+        "Unit of Measurement": "[SPECIFY UNITS]",
+        "Brand/Model": "[IF SPECIFIED IN RFQ]",
+        "Quality Standards": "[APPLICABLE STANDARDS - e.g., SNI, ISO]",
+        "Delivery Location": "[SPECIFY WAREHOUSE/SITE ADDRESS]",
+        "Inspection Requirements": "Visual inspection and quality check upon delivery"
+      },
+      "pricingTerms": {
+        "Total Contract Value": "[QUOTED AMOUNT]",
+        "Unit Price": "[PRICE PER UNIT]",
+        "Payment Currency": "Indonesian Rupiah (IDR)",
+        "Price Validity": "30 days from quotation date",
+        "Price Includes": "All applicable taxes (VAT 11%, PPh Article 23 2%)",
+        "Price Excludes": "[ANY EXCLUSIONS IF APPLICABLE]",
+        "Discount": "[IF APPLICABLE]"
+      },
+      "paymentTerms": {
+        "Payment Method": "Bank Transfer",
+        "Payment Terms": "Net 30 days from delivery and acceptance",
+        "Advance Payment": "[IF APPLICABLE - TYPICALLY NOT FOR RFQ]",
+        "Invoice Requirements": "Tax invoice with delivery receipt and BAST (Berita Acara Serah Terima)",
+        "Payment Process": "Invoice submitted to AP department after goods receipt",
+        "Bank Details": "Supplier to provide before delivery"
+      },
+      "deliverySchedule": {
+        "Delivery Deadline": "[SPECIFY DATE]",
+        "Delivery Time": "[SPECIFY TIME IF CRITICAL]",
+        "Delivery Location": "[FULL ADDRESS WITH CONTACT]",
+        "Shipping Terms": "DDP (Delivered Duty Paid) unless otherwise specified",
+        "Packaging": "Properly packed to prevent damage during transport",
+        "Delivery Contact": "[ON-SITE CONTACT NAME AND NUMBER]",
+        "Penalty for Late Delivery": "0.5% per week, maximum 5% of order value"
+      },
+      "performanceGuarantee": {
+        "Warranty Period": "12 months from acceptance (or manufacturer warranty if longer)",
+        "Warranty Coverage": "Defects in materials and workmanship",
+        "Replacement Terms": "Defective items replaced within 14 days at supplier cost",
+        "Return Policy": "Non-conforming items returnable within 7 days",
+        "Quality Guarantee": "Items must meet specifications in RFQ"
+      },
+      "terminationClauses": {
+        "Cancellation by Buyer": "May cancel before delivery with reasonable notice",
+        "Cancellation Penalty": "[IF APPLICABLE]",
+        "Non-Delivery": "Buyer may cancel and claim damages if delivery not made by deadline",
+        "Defective Goods": "Buyer may reject and cancel for non-conforming goods",
+        "Governing Law": "Laws of Republic of Indonesia"
+      },
+      "legalTerms": {
+        "Title Transfer": "Title passes to Buyer upon delivery and acceptance",
+        "Risk Transfer": "Risk transfers with title",
+        "Liability": "Supplier liable for defects and damages",
+        "Compliance": "All goods must comply with Indonesian regulations",
+        "Insurance": "Supplier responsible for insurance until delivery"
+      },
+      "specialConditions": {
+        "Local Content": "[IF APPLICABLE - SPECIFY TKDN REQUIREMENT]",
+        "Certificates Required": "[COO, COC, Material Certificates, etc.]",
+        "Safety Documentation": "MSDS for hazardous materials",
+        "Environmental Compliance": "[IF APPLICABLE]"
+      }
+    },
+    "required_annexures": [
+      "Annexure A: Item Specifications and Quantities",
+      "Annexure B: Delivery Schedule",
+      "Annexure C: Quality Standards and Inspection Criteria"
+    ],
+    "created_by": "System Template",
+    "version": "1.0",
+    "last_updated": "2025-01-01"
+  },
+  {
+    "id": "template-services-001",
+    "name": "Professional Services Contract Template",
+    "category": "Services Agreement",
+    "description": "Comprehensive template for professional services including consulting, maintenance, and managed services",
+    "applicable_to": ["Consulting", "Maintenance", "Managed Services", "Technical Support"],
+    "template_content": {
+      "header": {
+        "Contract ID": "[AUTO-GENERATED]",
+        "Contract Type": "Professional Services Agreement",
+        "Effective Date": "[START DATE]",
+        "Contract Duration": "[SPECIFY PERIOD - e.g., 12 months]",
+        "Renewal Terms": "Automatic renewal unless terminated 60 days prior",
+        "Governing Law": "Republic of Indonesia"
+      },
+      "parties": {
+        "Party A (Client)": "PT Indonesia Power",
+        "Client Address": "Jl. Jenderal Gatot Subroto, Jakarta Selatan, DKI Jakarta 12950",
+        "Client Representative": "[PROJECT MANAGER NAME]",
+        "Client Contact": "[CONTACT DETAILS]",
+        "Party B (Service Provider)": "[SERVICE PROVIDER NAME]",
+        "Provider Address": "[PROVIDER ADDRESS]",
+        "Provider Representative": "[ACCOUNT MANAGER NAME]",
+        "Provider Contact": "[CONTACT DETAILS]",
+        "Provider Business License": "[SIUP/NIB NUMBER]"
+      },
+      "scopeOfWork": {
+        "Services Description": "[DETAILED DESCRIPTION OF SERVICES]",
+        "Service Categories": "[LIST SERVICE TYPES]",
+        "Service Locations": "[WHERE SERVICES WILL BE PROVIDED]",
+        "Service Hours": "[SPECIFY WORKING HOURS OR 24/7]",
+        "Key Deliverables": "[LIST EXPECTED DELIVERABLES]",
+        "Staffing Requirements": "[NUMBER AND QUALIFICATIONS OF PERSONNEL]",
+        "Tools and Equipment": "[WHO PROVIDES WHAT]",
+        "Reporting Requirements": "[FREQUENCY AND FORMAT OF REPORTS]"
+      },
+      "pricingTerms": {
+        "Total Annual Value": "[ANNUAL CONTRACT VALUE]",
+        "Pricing Model": "[FIXED FEE / TIME & MATERIALS / RETAINER]",
+        "Monthly Retainer": "[IF APPLICABLE]",
+        "Hourly Rate": "[IF TIME & MATERIALS]",
+        "Rate Card": "As per Annexure B - Rate Schedule",
+        "Payment Currency": "Indonesian Rupiah (IDR)",
+        "Tax Treatment": "Subject to VAT (11%) and PPh Article 23 (2%)",
+        "Price Adjustment": "Annual review based on [SPECIFY INDEX OR %]",
+        "Out-of-Scope Work": "Quoted separately and requires approval"
+      },
+      "paymentTerms": {
+        "Payment Frequency": "Monthly in arrears",
+        "Payment Terms": "Net 30 days from invoice date",
+        "Invoice Requirements": "Detailed timesheet/activity report, tax invoice, acceptance sign-off",
+        "Payment Schedule": "[SPECIFY IF MILESTONE-BASED]",
+        "Late Payment": "1.5% monthly interest on overdue amounts",
+        "Disputed Invoices": "Disputes notified within 10 days, undisputed portion paid",
+        "Expenses": "Pre-approved expenses reimbursed with receipts"
+      },
+      "deliverySchedule": {
+        "Service Commencement": "[START DATE]",
+        "Ramp-Up Period": "[IF APPLICABLE]",
+        "Service Hours": "[BUSINESS HOURS / 24x7]",
+        "Response Times": "[SPECIFY SLA RESPONSE TIMES]",
+        "Resolution Times": "[SPECIFY SLA RESOLUTION TIMES]",
+        "Scheduled Maintenance": "[SPECIFY WINDOWS IF APPLICABLE]",
+        "Holiday Schedule": "Indonesian public holidays observed unless 24x7 service",
+        "Transition-In Period": "[KNOWLEDGE TRANSFER PERIOD]"
+      },
+      "performanceGuarantee": {
+        "Service Level Agreement": "As detailed in Annexure C - SLA Document",
+        "Uptime Guarantee": "[SPECIFY % UPTIME IF APPLICABLE]",
+        "Response Time Targets": "[PRIORITY-BASED RESPONSE TIMES]",
+        "Resolution Time Targets": "[PRIORITY-BASED RESOLUTION TIMES]",
+        "Performance Metrics": "[KPIs TO BE MEASURED]",
+        "Service Credits": "[CREDITS FOR SLA BREACHES]",
+        "Performance Reviews": "Quarterly service review meetings",
+        "Continuous Improvement": "Annual improvement plan required"
+      },
+      "terminationClauses": {
+        "Term": "[INITIAL TERM DURATION]",
+        "Renewal": "Automatic renewal for [PERIOD] unless terminated",
+        "Termination for Cause": "30 days notice for material breach",
+        "Termination for Convenience": "90 days written notice by either party",
+        "Termination Assistance": "Transition-out services for [PERIOD] at standard rates",
+        "Effect of Termination": "Payment for services rendered, return of materials",
+        "Survival": "Confidentiality, IP, and liability clauses survive termination",
+        "Dispute Resolution": "Mediation then arbitration under BANI"
+      },
+      "legalTerms": {
+        "Confidentiality": "All business information confidential for 5 years",
+        "Data Protection": "Compliance with Indonesian Personal Data Protection Law",
+        "Intellectual Property": "Provider retains IP in pre-existing materials, Client owns work product",
+        "Work Product": "All deliverables created under contract belong to Client",
+        "Liability Cap": "Limited to 12 months fees except willful misconduct",
+        "Indemnification": "Provider indemnifies against third-party IP claims",
+        "Insurance": "Professional indemnity $1M, Public liability $1M",
+        "Compliance": "All applicable Indonesian laws and regulations",
+        "Background Checks": "Provider staff subject to security screening",
+        "No Solicitation": "No staff poaching during term + 12 months"
+      },
+      "specialConditions": {
+        "Key Personnel": "[SPECIFY NAMED INDIVIDUALS IF CRITICAL]",
+        "Substitution": "Requires Client approval for key personnel changes",
+        "Training": "Provider to train Client staff as specified",
+        "Knowledge Transfer": "Continuous documentation of processes",
+        "Security Requirements": "[SPECIFY ACCESS AND SECURITY REQUIREMENTS]",
+        "Subcontracting": "Requires prior written approval",
+        "Equipment Provision": "[WHO PROVIDES LAPTOPS, TOOLS, ETC.]",
+        "Location": "[ON-SITE / REMOTE / HYBRID REQUIREMENTS]",
+        "Change Management": "Formal change request process per Annexure D"
+      }
+    },
+    "required_annexures": [
+      "Annexure A: Detailed Scope of Services",
+      "Annexure B: Rate Card and Pricing Schedule",
+      "Annexure C: Service Level Agreement (SLA)",
+      "Annexure D: Change Management Procedures",
+      "Annexure E: Security and Access Requirements",
+      "Annexure F: Reporting Templates",
+      "Annexure G: Key Personnel Resumes"
+    ],
+    "created_by": "System Template",
+    "version": "1.0",
+    "last_updated": "2025-01-01"
+  },
+  {
+    "id": "template-construction-001",
+    "name": "Construction & Installation Contract Template",
+    "category": "Construction Agreement",
+    "description": "Comprehensive template for construction, installation, and commissioning projects including renewable energy installations",
+    "applicable_to": ["Solar Installation", "Wind Farm", "Construction", "Infrastructure", "EPC Projects"],
+    "template_content": {
+      "header": {
+        "Contract ID": "[AUTO-GENERATED]",
+        "Contract Type": "Engineering, Procurement, Construction (EPC) Contract",
+        "Effective Date": "[CONTRACT SIGNING DATE]",
+        "Project Duration": "[SPECIFY MONTHS]",
+        "Completion Date": "[TARGET COMPLETION]",
+        "Governing Law": "Republic of Indonesia",
+        "Contract Value": "[TOTAL EPC VALUE]"
+      },
+      "parties": {
+        "Party A (Owner)": "PT Indonesia Power",
+        "Owner Address": "Jl. Jenderal Gatot Subroto, Jakarta Selatan, DKI Jakarta 12950",
+        "Owner Representative": "[PROJECT DIRECTOR]",
+        "Owner Contact": "[CONTACT DETAILS]",
+        "Party B (Contractor)": "[EPC CONTRACTOR NAME]",
+        "Contractor Address": "[CONTRACTOR ADDRESS]",
+        "Contractor Representative": "[PROJECT MANAGER]",
+        "Contractor Contact": "[CONTACT DETAILS]",
+        "Contractor License": "[IUJK - Construction License Number]"
+      },
+      "scopeOfWork": {
+        "Project Name": "[PROJECT TITLE]",
+        "Project Location": "[FULL ADDRESS AND COORDINATES]",
+        "Project Scope": "[DETAILED EPC SCOPE]",
+        "Engineering": "Detailed design, drawings, calculations, specifications",
+        "Procurement": "All materials, equipment, and supplies as per Bill of Quantities",
+        "Construction": "Civil works, installation, testing, commissioning",
+        "Testing & Commissioning": "Pre-commissioning, commissioning, performance testing",
+        "Capacity": "[SPECIFY CAPACITY - e.g., 100 MW]",
+        "Technology": "[SPECIFY TECHNOLOGY TYPE]",
+        "Standards": "IEC, IEEE, SNI standards as applicable",
+        "Permits": "Contractor responsible for all construction permits"
+      },
+      "pricingTerms": {
+        "Total Contract Value": "[EPC LUMPSUM PRICE]",
+        "Contract Type": "Lumpsum Turnkey",
+        "Payment Currency": "Indonesian Rupiah (IDR)",
+        "Foreign Currency": "[IF APPLICABLE FOR IMPORTED EQUIPMENT]",
+        "Price Includes": "All engineering, procurement, construction, testing, training",
+        "Price Excludes": "[OWNER RESPONSIBILITIES]",
+        "Tax Treatment": "Inclusive of VAT (11%), PPh Construction (2%-4%)",
+        "Contingency": "[PERCENTAGE FOR OWNER CONTINGENCY]",
+        "Price Adjustment": "Fixed price, no escalation except for force majeure events > 90 days"
+      },
+      "paymentTerms": {
+        "Payment Structure": "Milestone-based per Annexure B",
+        "Advance Payment": "15% upon contract signing and advance bank guarantee",
+        "Engineering": "10% upon approval of detailed design",
+        "Procurement": "25% upon equipment delivery to site",
+        "Construction": "30% progressive based on physical progress",
+        "Testing": "10% upon successful pre-commissioning",
+        "Commissioning": "5% upon successful commissioning",
+        "Final Payment": "5% upon final acceptance and performance testing",
+        "Retention": "5% retained for 12 months as defect liability security",
+        "Payment Terms": "Net 30 days from milestone certification",
+        "Required Documents": "Progress certificate, tax invoice, bank guarantee, insurance"
+      },
+      "deliverySchedule": {
+        "Contract Start": "[DATE]",
+        "Engineering Complete": "[DATE + 3 MONTHS]",
+        "Equipment Delivery": "[DATE + 9 MONTHS]",
+        "Construction Complete": "[DATE + 18 MONTHS]",
+        "Commissioning": "[DATE + 21 MONTHS]",
+        "Final Acceptance": "[DATE + 24 MONTHS]",
+        "Key Milestones": "As per Project Schedule in Annexure C",
+        "Delay Penalties": "0.1% per day of contract value, maximum 10%",
+        "Extension of Time": "Only for force majeure or Owner-caused delays"
+      },
+      "performanceGuarantee": {
+        "Performance Bond": "10% of contract value",
+        "Advance Payment Bond": "100% of advance payment",
+        "Retention Bond": "Option to substitute 5% retention",
+        "Bank Guarantee": "Issued by reputable Indonesian bank (List A)",
+        "Performance Standards": "[SPECIFY TECHNICAL GUARANTEES]",
+        "Capacity Guarantee": "[MINIMUM GUARANTEED CAPACITY]",
+        "Efficiency Guarantee": "[MINIMUM EFFICIENCY %]",
+        "Performance Test": "As per IEC standards or equivalent",
+        "Defect Liability": "24 months from final acceptance",
+        "O&M Training": "Comprehensive training for Owner's personnel",
+        "Spare Parts": "[MINIMUM 2 YEARS RECOMMENDED SPARES]"
+      },
+      "terminationClauses": {
+        "Termination for Default": "If contractor fails to meet milestones or quality standards",
+        "Cure Period": "30 days to remedy default",
+        "Termination for Convenience": "Owner may terminate with 60 days notice",
+        "Payment on Termination": "Work completed + reasonable demobilization costs",
+        "Force Majeure": "Pandemic, war, natural disaster, government action",
+        "Suspension": "Owner may suspend work for up to 180 days",
+        "Dispute Resolution": "Dispute Adjudication Board, then arbitration",
+        "Governing Law": "Laws of Republic of Indonesia"
+      },
+      "legalTerms": {
+        "Insurance": "Construction All Risk (CAR), Third Party Liability, Worker's Compensation",
+        "Site Access": "Owner provides access and right of way",
+        "Safety": "Contractor responsible for HSE per K3L regulations",
+        "Environmental": "Compliance with AMDAL and RKL-RPL",
+        "Security": "Contractor responsible for site security",
+        "Labor": "Compliance with Indonesian labor laws (UU Ketenagakerjaan)",
+        "Local Content": "Minimum 40% TKDN required with documentation",
+        "Subcontracting": "Requires Owner approval for major packages",
+        "Quality Assurance": "QA/QC plan and third-party inspection if required",
+        "As-Built Drawings": "Complete as-built documentation required",
+        "Intellectual Property": "All designs and IP transfer to Owner",
+        "Warranties": "Contractor warrants workmanship, Manufacturers warrant equipment"
+      },
+      "specialConditions": {
+        "Owner Furnished Equipment": "[IF ANY - SPECIFY]",
+        "Owner Responsibilities": "[ACCESS, PERMITS, UTILITIES]",
+        "Site Conditions": "Contractor responsible for site investigation",
+        "Geotechnical": "Soil reports provided by Owner for information only",
+        "Utilities": "[AVAILABILITY OF POWER, WATER, ACCESS ROAD]",
+        "Technology Transfer": "Full technology transfer and capacity building",
+        "Local Employment": "Prioritize local workforce per regulations",
+        "Community Engagement": "CSR program and community relations",
+        "Progressive Takeover": "Owner may take over portions before final completion",
+        "Parent Company Guarantee": "[IF REQUIRED FOR CONTRACTOR]"
+      }
+    },
+    "required_annexures": [
+      "Annexure A: Technical Specifications and Bill of Quantities",
+      "Annexure B: Payment Milestone Schedule",
+      "Annexure C: Project Master Schedule",
+      "Annexure D: Performance Guarantees and Testing Procedures",
+      "Annexure E: HSE Plan and K3L Requirements",
+      "Annexure F: Quality Assurance/Quality Control Plan",
+      "Annexure G: Form of Bank Guarantees",
+      "Annexure H: Insurance Requirements and Certificates",
+      "Annexure I: Form of Variation Order",
+      "Annexure J: TKDN Certification Requirements"
+    ],
+    "created_by": "System Template",
+    "version": "1.0",
+    "last_updated": "2025-01-01"
+  },
+  {
+    "id": "template-maintenance-001",
+    "name": "Maintenance & Support Contract Template",
+    "category": "Maintenance Agreement",
+    "description": "Template for ongoing maintenance, support, and operational services for equipment and facilities",
+    "applicable_to": ["Equipment Maintenance", "Facility Management", "Technical Support", "Asset Management"],
+    "template_content": {
+      "header": {
+        "Contract ID": "[AUTO-GENERATED]",
+        "Contract Type": "Annual Maintenance Contract (AMC)",
+        "Effective Date": "[START DATE]",
+        "Contract Period": "12 months (renewable)",
+        "Renewal Terms": "Annual renewal with 60 days notice",
+        "Governing Law": "Republic of Indonesia"
+      },
+      "parties": {
+        "Party A (Client)": "PT Indonesia Power",
+        "Client Address": "Jl. Jenderal Gatot Subroto, Jakarta Selatan, DKI Jakarta 12950",
+        "Client Facility Manager": "[NAME AND CONTACT]",
+        "Party B (Service Provider)": "[MAINTENANCE CONTRACTOR NAME]",
+        "Provider Address": "[CONTRACTOR ADDRESS]",
+        "Provider Service Manager": "[NAME AND CONTACT]",
+        "24/7 Hotline": "[EMERGENCY CONTACT NUMBER]"
+      },
+      "scopeOfWork": {
+        "Equipment Covered": "[LIST ALL EQUIPMENT WITH TAG NUMBERS]",
+        "Locations Covered": "[LIST ALL SITES/FACILITIES]",
+        "Preventive Maintenance": "Scheduled maintenance as per OEM recommendations",
+        "PM Frequency": "[MONTHLY / QUARTERLY / SEMI-ANNUAL / ANNUAL]",
+        "Corrective Maintenance": "Breakdown repairs and troubleshooting",
+        "Emergency Response": "24/7 emergency call-out service",
+        "Parts Inclusion": "[SPECIFY WHAT'S INCLUDED / EXCLUDED]",
+        "Consumables": "[SPECIFY IF INCLUDED]",
+        "Inspection": "Regular inspection and condition monitoring",
+        "Documentation": "Maintenance logs, inspection reports, recommendations",
+        "Exclusions": "[MAJOR OVERHAULS, ABUSE, FORCE MAJEURE DAMAGE]"
+      },
+      "pricingTerms": {
+        "Annual Contract Value": "[TOTAL ANNUAL FEE]",
+        "Monthly Retainer": "[MONTHLY AMOUNT]",
+        "Pricing Structure": "Fixed annual fee for covered services",
+        "Parts": "[INCLUDED / CHARGED SEPARATELY AT COST + %]",
+        "Emergency Callouts": "[INCLUDED / CHARGED PER VISIT]",
+        "After-Hours": "[INCLUDED / PREMIUM RATE]",
+        "Payment Currency": "Indonesian Rupiah (IDR)",
+        "Tax Treatment": "Subject to VAT (11%) and PPh (2%)",
+        "Price Escalation": "Annual review based on inflation index (max 5%)",
+        "Additional Work": "Out-of-scope work quoted separately"
+      },
+      "paymentTerms": {
+        "Payment Frequency": "Quarterly in advance",
+        "Payment Terms": "Net 30 days from invoice",
+        "Invoice Requirement": "Tax invoice with quarterly service report",
+        "Pro-Rata": "First and last quarter pro-rated if partial",
+        "Late Payment": "1.5% monthly interest on overdue",
+        "Suspension": "Service may be suspended if payment >60 days overdue"
+      },
+      "deliverySchedule": {
+        "PM Schedule": "As per Annexure B - Annual Maintenance Calendar",
+        "Response Time": "[SPECIFY - e.g., 4 hours for critical, 24 hours for non-critical]",
+        "Resolution Target": "[SPECIFY - e.g., 24 hours for critical issues]",
+        "Maintenance Windows": "[SPECIFY AGREED DOWNTIME WINDOWS]",
+        "Service Hours": "24x7 for emergency, business hours for PM",
+        "Reporting": "Monthly service reports by 5th of following month",
+        "Annual Review": "Annual performance and equipment condition review"
+      },
+      "performanceGuarantee": {
+        "Uptime Target": "[SPECIFY % UPTIME GUARANTEE IF APPLICABLE]",
+        "Response Time SLA": "Critical: [X] hours, Non-Critical: [Y] hours",
+        "First-Time Fix Rate": "[TARGET %]",
+        "Spare Parts Availability": "Critical spares in stock or [X] day delivery",
+        "Technician Qualification": "Certified technicians with [SPECIFY TRAINING]",
+        "Service Credits": "[PENALTY FOR SLA BREACH - e.g., 1 day free for each breach]",
+        "Equipment Reliability": "Maintain equipment in good operating condition",
+        "OEM Certification": "Technicians OEM-certified for covered equipment"
+      },
+      "terminationClauses": {
+        "Initial Term": "12 months from effective date",
+        "Auto-Renewal": "Automatically renews for 12 months unless terminated",
+        "Termination Notice": "60 days written notice before renewal date",
+        "Termination for Cause": "30 days for material breach",
+        "Effect of Termination": "Pro-rata refund of unused prepaid fees",
+        "Transition": "Provider assists with orderly transition for 30 days",
+        "Outstanding Issues": "Provider completes all open work orders"
+      },
+      "legalTerms": {
+        "Liability": "Provider liable for damage caused by negligence",
+        "Liability Cap": "Limited to annual contract value",
+        "Insurance": "Public liability $500K minimum",
+        "Force Majeure": "Standard force majeure clause",
+        "Confidentiality": "Client information kept confidential",
+        "Safety": "Compliance with HSE and K3L regulations",
+        "Access": "Provider staff must follow site access procedures",
+        "Background Checks": "Provider staff subject to security screening"
+      },
+      "specialConditions": {
+        "Spare Parts Stock": "[SPECIFY CRITICAL SPARES TO BE STOCKED]",
+        "Tools & Equipment": "Provider supplies all tools and test equipment",
+        "Training": "Annual refresher training for client operations staff",
+        "Condition Monitoring": "Quarterly condition assessment reports",
+        "Improvement Recommendations": "Annual optimization recommendations",
+        "Warranty Coordination": "Provider coordinates with OEM for warranty claims",
+        "Software Updates": "[IF APPLICABLE FOR CONTROL SYSTEMS]",
+        "Remote Monitoring": "[IF APPLICABLE]"
+      }
+    },
+    "required_annexures": [
+      "Annexure A: Equipment List with Tag Numbers and Locations",
+      "Annexure B: Annual Preventive Maintenance Schedule",
+      "Annexure C: Service Level Agreement and Response Times",
+      "Annexure D: Parts Pricing (if not included)",
+      "Annexure E: Emergency Contact List",
+      "Annexure F: Service Report Template"
+    ],
+    "created_by": "System Template",
+    "version": "1.0",
+    "last_updated": "2025-01-01"
+  }
+]

@@ -1,0 +1,1010 @@
+import React, { useState, useMemo, useEffect } from 'react';
+import { Download, Sliders, CheckCircle2, Sparkles, Edit3, Save, Factory, Filter, Package } from 'lucide-react';
+import plnUnitsData from '../../../data/plnUnits.json';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  LineChart,
+  Line
+} from 'recharts';
+
+interface MonthlyBudgetData {
+  month: string;
+  consolidatedDemand: number;
+  budgetLimit: number;
+  recommendedAdjustment: number;
+  adjustmentPercent: number;
+  status: 'within' | 'over';
+}
+
+interface MaterialData {
+  totalBudget: number;
+  totalDemand: number;
+  adjustmentNeeded: number;
+  monthlyData: MonthlyBudgetData[];
+}
+
+interface UnitBudgetData {
+  [unit: string]: {
+    [material: string]: MaterialData;
+  };
+}
+
+type AdjustmentSource = 'recommended' | 'custom';
+
+interface AdjustmentSelection {
+  source: AdjustmentSource;
+  value: number;
+  percent: number;
+}
+
+type AdjustmentSelectionsByMaterial = {
+  [material: string]: {
+    [month: string]: AdjustmentSelection;
+  };
+};
+
+// Define materials array outside component to prevent recreation on every render
+const MATERIALS = ['Filter air', 'Filter Udara Cartridge', 'Oil Filter', 'Filter Gas', 'Filter Udara Kassa'];
+
+const MATERIAL_PRICES: { [key: string]: number } = {
+  'Filter air': 450000,
+  'Filter Udara Cartridge': 650000,
+  'Oil Filter': 350000,
+  'Filter Gas': 550000,
+  'Filter Udara Kassa': 280000
+};
+
+const DPKDemandAdjustment: React.FC = () => {
+  const [selectedUnit, setSelectedUnit] = useState<string>('UBP ADP');
+  // Material selection now acts as a filter for adjustments and final table
+  const [selectedMaterial, setSelectedMaterial] = useState<string>('All'); // now used only inside AI section filter
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [hasBudgetData, setHasBudgetData] = useState(false);
+  const [showFinalTable, setShowFinalTable] = useState(false);
+  const [chartType, setChartType] = useState<'bar' | 'line'>('bar');
+
+  const [adjustmentSelections, setAdjustmentSelections] = useState<AdjustmentSelectionsByMaterial>({});
+  const [editingMonth, setEditingMonth] = useState<string | null>(null);
+  const [editingMaterial, setEditingMaterial] = useState<string | null>(null);
+  const [customValues, setCustomValues] = useState<{ [key: string]: string }>({});
+
+  const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies'];
+  const materials = MATERIALS;
+  const materialPrices = MATERIAL_PRICES;
+
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(value);
+  };
+
+  // Helper function to generate material data with variation
+  const generateMaterialData = (baseValues: number[], variation: number = 0) => {
+    return baseValues.map(val => Math.round(val + (Math.random() * variation * 2 - variation)));
+  };
+
+  // Data structured by Unit -> Material -> Monthly Data
+  const unitBudgetData: UnitBudgetData = useMemo(() => {
+    // Base monthly patterns for each material
+    const basePatterns = {
+      'Filter air': [330, 340, 355, 365, 375, 385, 395, 405, 385, 395, 415, 425],
+      'Filter Udara Cartridge': [230, 240, 250, 260, 270, 280, 290, 300, 280, 290, 310, 320],
+      'Oil Filter': [390, 400, 410, 420, 430, 440, 450, 460, 440, 450, 470, 480],
+      'Filter Gas': [180, 190, 200, 210, 220, 230, 240, 250, 230, 240, 260, 270],
+      'Filter Udara Kassa': [265, 275, 285, 295, 305, 315, 325, 335, 315, 325, 345, 355]
+    };
+
+    const createUnitData = (unitVariation: number) => {
+      const unitData: { [material: string]: MaterialData } = {};
+      
+      materials.forEach((material) => {
+        const pattern = basePatterns[material as keyof typeof basePatterns];
+        const monthlyValues = generateMaterialData(pattern, unitVariation);
+        const totalDemand = monthlyValues.reduce((sum, val) => sum + val, 0);
+        const totalBudget = Math.round(totalDemand * (0.95 + Math.random() * 0.1)); // 95%-105% of demand
+        
+        unitData[material] = {
+          totalBudget,
+          totalDemand,
+          adjustmentNeeded: totalBudget - totalDemand,
+          monthlyData: monthlyValues.map((val, idx) => {
+            const budgetLimit = Math.round(val * (0.90 + Math.random() * 0.15)); // 90%-105% of demand
+            const isOver = val > budgetLimit;
+            return {
+              month: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][idx],
+              consolidatedDemand: val,
+              budgetLimit: budgetLimit,
+              recommendedAdjustment: isOver ? budgetLimit : val,
+              adjustmentPercent: isOver ? ((budgetLimit - val) / val) * 100 : 0,
+              status: isOver ? 'over' as const : 'within' as const
+            };
+          })
+        };
+      });
+      
+      return unitData;
+    };
+
+    return {
+      'UBP ADP': createUnitData(0),
+      'UBP ASM': createUnitData(15),
+      'UBP BEU': createUnitData(20),
+      'UBP BKL': createUnitData(18),
+      'UBP BKT': createUnitData(22),
+      'UBP BLB': createUnitData(16),
+      'UBP BLI': createUnitData(14),
+      'UBP BLT': createUnitData(25),
+      'UBP BRU': createUnitData(12),
+      'UBP BSL': createUnitData(19),
+      'UBP BTO': createUnitData(21),
+      'UBP CLG': createUnitData(17),
+      'UBP GRT': createUnitData(23),
+      'UBP HTK': createUnitData(13),
+      'UBP JMB': createUnitData(24),
+      'UBP JPR': createUnitData(26),
+      'UBP JRJ': createUnitData(11),
+      'UBP KMJ': createUnitData(27),
+      'UBP KRI': createUnitData(15),
+      'UBP KRM': createUnitData(28),
+      'UBP LBA': createUnitData(20),
+      'UBP MHK': createUnitData(16),
+      'UBP MRC': createUnitData(18),
+      'UBP OMB': createUnitData(22),
+      'UBP PNS': createUnitData(14),
+      'UBP PRO': createUnitData(19),
+      'UBP SGL': createUnitData(21),
+      'UBP SGU': createUnitData(17),
+      'UBP SKW': createUnitData(23),
+      'UBP SLA': createUnitData(25),
+      'UBP SMG': createUnitData(12),
+      'UBP STG': createUnitData(24),
+      'UBP TLO': createUnitData(26),
+      'UBP TIR': createUnitData(13),
+      'UBP JTG': createUnitData(27),
+      'UBP TJB': createUnitData(28)
+    };
+  }, []);
+
+
+  // Get current unit data (default to UBP ADP if "All Units" selected)
+  // Get current unit data (default to UBP ADP if "All Units" selected)
+  const currentUnit = selectedUnit;
+  const materialBudgetData = useMemo(() => {
+    return unitBudgetData[currentUnit] || unitBudgetData['UBP ADP'];
+  }, [unitBudgetData, currentUnit]);
+  
+  // Get the display name for the current unit
+  const currentUnitName = plnUnitsData.find(u => u.id === selectedUnit)?.name || selectedUnit;
+
+  const currentMaterialKey = selectedMaterial === 'All' ? materials[0] : selectedMaterial;
+  const currentMaterialData = useMemo(() => {
+    const data = materialBudgetData[currentMaterialKey];
+    if (!data) {
+      console.warn(`No data found for material: ${currentMaterialKey}`);
+      return {
+        totalBudget: 0,
+        totalDemand: 0,
+        adjustmentNeeded: 0,
+        monthlyData: []
+      };
+    }
+    return data;
+  }, [materialBudgetData, currentMaterialKey]);
+  // Note: Currency helpers for overview removed; overview is now always aggregated across materials
+
+  // Aggregated helpers when 'All' selected
+  const aggregatedMonthly = useMemo(() => {
+    const months = materialBudgetData[materials[0]].monthlyData.map(m => m.month);
+    return months.map(month => {
+      let consolidatedDemand = 0;
+      let budgetLimit = 0;
+      let recommendedAdjustment = 0;
+      materials.forEach(mat => {
+        const row = materialBudgetData[mat].monthlyData.find(r => r.month === month)!;
+        consolidatedDemand += row.consolidatedDemand;
+        budgetLimit += row.budgetLimit;
+        recommendedAdjustment += row.recommendedAdjustment;
+      });
+      return { month, consolidatedDemand, budgetLimit, recommendedAdjustment };
+    });
+  }, [materialBudgetData, materials]);
+
+  const aggregatedOverview = useMemo(() => {
+    let totalBudgetQty = 0;
+    let totalDemandQty = 0;
+    let adjustmentNeededQty = 0;
+    let totalBudgetAmt = 0;
+    let totalDemandAmt = 0;
+    let adjustmentNeededAmt = 0;
+    materials.forEach(mat => {
+      const data = materialBudgetData[mat];
+      const price = materialPrices[mat] || 0;
+      totalBudgetQty += data.totalBudget;
+      totalDemandQty += data.totalDemand;
+      adjustmentNeededQty += data.adjustmentNeeded;
+      totalBudgetAmt += data.totalBudget * price;
+      totalDemandAmt += data.totalDemand * price;
+      adjustmentNeededAmt += data.adjustmentNeeded * price;
+    });
+    return {
+      totalBudgetQty,
+      totalDemandQty,
+      adjustmentNeededQty,
+      totalBudgetAmt,
+      totalDemandAmt,
+      adjustmentNeededAmt,
+      status: adjustmentNeededQty < 0 ? 'Over Budget' : 'Within Budget'
+    };
+  }, [materialBudgetData, materialPrices, materials]);
+
+  const finalAdjustedData = useMemo(() => {
+    // Single material view
+    if (selectedMaterial !== 'All') {
+      const matKey = currentMaterialKey;
+      if (!adjustmentSelections[matKey]) return [] as Array<{
+        month: string; consolidatedDemand: number; budgetLimit: number; adjustedDemand: number; source: string; variance: number;
+      }>;
+      return currentMaterialData.monthlyData.map(item => {
+        const selection = adjustmentSelections[matKey][item.month];
+        const adjustedValue: number = selection ? selection.value : item.recommendedAdjustment;
+        const src: AdjustmentSource = selection ? selection.source : 'recommended';
+        return {
+          month: item.month,
+          consolidatedDemand: item.consolidatedDemand,
+          budgetLimit: item.budgetLimit,
+          adjustedDemand: adjustedValue,
+          source: src === 'recommended' ? 'AI Recommended' : 'Custom Adjustment',
+          variance: adjustedValue - item.budgetLimit
+        };
+      });
+    }
+    // Aggregated view for 'All'
+    const months = materialBudgetData[materials[0]].monthlyData.map(m => m.month);
+    return months.map(month => {
+      let consolidatedDemand = 0;
+      let budgetLimit = 0;
+      let adjustedDemand = 0;
+      let anyCustom = false;
+      materials.forEach(mat => {
+        const row = materialBudgetData[mat].monthlyData.find(r => r.month === month)!;
+        consolidatedDemand += row.consolidatedDemand;
+        budgetLimit += row.budgetLimit;
+        const selection = adjustmentSelections[mat]?.[month];
+        if (selection) {
+          adjustedDemand += selection.value;
+          if (selection.source === 'custom') anyCustom = true;
+        } else {
+          adjustedDemand += row.recommendedAdjustment;
+        }
+      });
+      return {
+        month,
+        consolidatedDemand,
+        budgetLimit,
+        adjustedDemand,
+        source: anyCustom ? 'Mixed' : 'AI Recommended',
+        variance: adjustedDemand - budgetLimit
+      };
+    });
+  }, [adjustmentSelections, currentMaterialData, currentMaterialKey, selectedMaterial, materialBudgetData, materials]);
+
+  // Automatically load budget data and initialize selections when component mounts or filters change
+  useEffect(() => {
+    // Initialize selections for all materials
+    const all: AdjustmentSelectionsByMaterial = {};
+    materials.forEach(mat => {
+      all[mat] = {};
+      materialBudgetData[mat].monthlyData.forEach(item => {
+        all[mat][item.month] = {
+          source: 'recommended',
+          value: item.recommendedAdjustment,
+          percent: item.adjustmentPercent
+        };
+      });
+    });
+    setAdjustmentSelections(all);
+    setHasBudgetData(true);
+  }, [selectedUnit, materialBudgetData, materials]);
+
+  const handleSourceChange = (month: string, source: AdjustmentSource, material?: string) => {
+    const targetMaterial = material || currentMaterialKey;
+    const monthData = materialBudgetData[targetMaterial].monthlyData.find(d => d.month === month);
+    if (!monthData) return;
+
+    let value = monthData.recommendedAdjustment;
+    let percent = monthData.adjustmentPercent;
+
+    if (source === 'custom') {
+      value = adjustmentSelections[targetMaterial]?.[month]?.value || monthData.recommendedAdjustment;
+      percent = adjustmentSelections[targetMaterial]?.[month]?.percent || monthData.adjustmentPercent;
+      setEditingMonth(month);
+      setEditingMaterial(targetMaterial);
+      setCustomValues(prev => ({
+        ...prev,
+        [`${targetMaterial}:${month}`]: value.toString()
+      }));
+    } else {
+      setEditingMonth(null);
+      setEditingMaterial(null);
+    }
+    setAdjustmentSelections(prev => ({
+      ...prev,
+      [targetMaterial]: {
+        ...(prev[targetMaterial] || {}),
+        [month]: { source, value, percent }
+      }
+    }));
+  };
+
+  const handleCustomValueChange = (month: string, value: string, material?: string) => {
+    const targetMaterial = material || currentMaterialKey;
+    setCustomValues(prev => ({
+      ...prev,
+      [`${targetMaterial}:${month}`]: value
+    }));
+  };
+
+  const handleSaveCustomValue = (month: string, material?: string) => {
+    const targetMaterial = material || currentMaterialKey;
+    const monthData = materialBudgetData[targetMaterial].monthlyData.find(d => d.month === month);
+    if (!monthData) return;
+
+    const valueKey = `${targetMaterial}:${month}`;
+    const value = parseFloat(customValues[valueKey] || '0');
+    if (isNaN(value) || value < 0) {
+      alert('Please enter a valid positive number');
+      return;
+    }
+
+    const percent = ((value - monthData.consolidatedDemand) / monthData.consolidatedDemand) * 100;
+    setAdjustmentSelections(prev => ({
+      ...prev,
+      [targetMaterial]: {
+        ...(prev[targetMaterial] || {}),
+        [month]: { source: 'custom', value, percent }
+      }
+    }));
+    setEditingMonth(null);
+    setEditingMaterial(null);
+  };
+
+  const handleDone = () => {
+    setShowFinalTable(true);
+    setTimeout(() => {
+      document.getElementById('final-adjusted-table')?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
+
+  const handleExportFinalAdjustment = () => {
+    const csvContent = [
+      ['Month', 'Consolidated Demand', 'Budget Limit', 'Adjusted Demand', 'Source', 'Variance'].join(','),
+      ...finalAdjustedData.map(row =>
+        [row.month, row.consolidatedDemand, row.budgetLimit, row.adjustedDemand, row.source, row.variance].join(',')
+      )
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `adjusted_demand_${selectedMaterial}_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const chartData = useMemo(() => {
+    // Always show all materials in the chart, regardless of filter
+    return aggregatedMonthly.map(item => ({
+      month: item.month,
+      'Consolidated Demand': item.consolidatedDemand,
+      'Budget Limit': item.budgetLimit,
+      'Recommended': item.recommendedAdjustment
+    }));
+  }, [aggregatedMonthly]);
+
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+          <p className="font-semibold text-gray-900 dark:text-white mb-2">{label}</p>
+          {payload.map((entry: any, index: number) => (
+            <p key={index} className="text-sm" style={{ color: entry.color }}>
+              {entry.name}: {entry.value.toLocaleString()} units
+            </p>
+          ))}
+        </div>
+      );
+    }
+    return null;
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 rounded-xl p-6 border border-orange-200 dark:border-orange-800">
+        <div className="flex items-start space-x-4">
+          <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center flex-shrink-0">
+            <Sliders className="h-6 w-6 text-white" />
+          </div>
+          <div className="flex-1">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              Demand Adjustment (Stage 3)
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400">
+              Adjust your consolidated demand to fit within budget constraints. AI recommendations are provided based on historical patterns and priorities. Use the filters to view specific units and materials.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {hasBudgetData && (
+        <>
+          <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+              Budget Overview - All Materials
+            </h3>
+            {aggregatedOverview ? (
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                  <p className="text-xs text-blue-600 dark:text-blue-400 uppercase mb-3">Total Budget</p>
+                  <p className="text-3xl font-extrabold text-blue-700 dark:text-blue-300">
+                    {formatCurrency(aggregatedOverview.totalBudgetAmt)}
+                  </p>
+                </div>
+                <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
+                  <p className="text-xs text-purple-600 dark:text-purple-400 uppercase mb-3">Consolidated Demand</p>
+                  <p className="text-3xl font-extrabold text-purple-700 dark:text-purple-300">
+                    {formatCurrency(aggregatedOverview.totalDemandAmt)}
+                  </p>
+                </div>
+                <div className={`p-4 rounded-lg border ${
+                  aggregatedOverview.adjustmentNeededQty < 0
+                    ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
+                    : 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800'
+                }`}>
+                  <p className={`text-xs uppercase mb-3 ${
+                    aggregatedOverview.adjustmentNeededQty < 0
+                      ? 'text-red-600 dark:text-red-400'
+                      : 'text-green-600 dark:text-green-400'
+                  }`}>
+                    Adjustment Needed
+                  </p>
+                  <p className={`text-3xl font-extrabold ${
+                    aggregatedOverview.adjustmentNeededQty < 0
+                      ? 'text-red-700 dark:text-red-300'
+                      : 'text-green-700 dark:text-green-300'
+                  }`}>
+                    {formatCurrency(aggregatedOverview.adjustmentNeededAmt)}
+                  </p>
+                </div>
+                <div className="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg border border-orange-200 dark:border-orange-800">
+                  <p className="text-xs text-orange-600 dark:text-orange-400 uppercase mb-1">Status</p>
+                  <p className="text-lg font-bold text-orange-700 dark:text-orange-300">
+                    {aggregatedOverview.status}
+                  </p>
+                </div>
+              </div>
+            ) : null}
+          </div>
+
+          {/* <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                Budget vs Demand Comparison
+              </h3>
+              <div className="flex items-center space-x-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+                <button
+                  onClick={() => setChartType('bar')}
+                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
+                    chartType === 'bar'
+                      ? 'bg-white dark:bg-gray-700 text-orange-600 shadow-sm'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                  }`}
+                >
+                  Bar
+                </button>
+                <button
+                  onClick={() => setChartType('line')}
+                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
+                    chartType === 'line'
+                      ? 'bg-white dark:bg-gray-700 text-orange-600 shadow-sm'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                  }`}
+                >
+                  Line
+                </button>
+              </div>
+            </div>
+
+            <ResponsiveContainer width="100%" height={400} key={`chart-${chartType}`}>
+              {chartType === 'bar' ? (
+                <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.1} />
+                  <XAxis dataKey="month" stroke="#6B7280" style={{ fontSize: '12px' }} />
+                  <YAxis stroke="#6B7280" style={{ fontSize: '12px' }} domain={[0, 'auto']} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ paddingTop: '20px' }} />
+                  <Bar dataKey="Consolidated Demand" fill="#A855F7" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="Budget Limit" fill="#3B82F6" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="Recommended" fill="#F59E0B" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              ) : (
+                <LineChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.1} />
+                  <XAxis dataKey="month" stroke="#6B7280" style={{ fontSize: '12px' }} />
+                  <YAxis stroke="#6B7280" style={{ fontSize: '12px' }} domain={[0, 'auto']} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <Legend wrapperStyle={{ paddingTop: '20px' }} />
+                  <Line type="monotone" dataKey="Consolidated Demand" stroke="#A855F7" strokeWidth={3} dot={{ fill: '#A855F7', r: 4 }} />
+                  <Line type="monotone" dataKey="Budget Limit" stroke="#3B82F6" strokeWidth={3} dot={{ fill: '#3B82F6', r: 4 }} />
+                  <Line type="monotone" dataKey="Recommended" stroke="#F59E0B" strokeWidth={3} dot={{ fill: '#F59E0B', r: 4 }} />
+                </LineChart>
+              )}
+            </ResponsiveContainer>
+          </div> */}
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
+                  <Factory className="h-5 w-5" />
+                  <span>Unit Selection</span>
+                </h3>
+              </div>
+              <select
+                value={selectedUnit}
+                onChange={(e) => {
+                  setSelectedUnit(e.target.value);
+                  setShowFinalTable(false);
+                }}
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              >
+                {plnUnitsData.map(unit => (
+                  <option key={unit.id} value={unit.id}>{unit.name}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
+                  <Filter className="h-5 w-5" />
+                  <span>Category</span>
+                </h3>
+              </div>
+              <select
+                value={selectedCategory}
+                onChange={(e) => {
+                  setSelectedCategory(e.target.value);
+                  setShowFinalTable(false);
+                }}
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              >
+                {categories.map(category => (
+                  <option key={category} value={category}>{category}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
+                  <Package className="h-5 w-5" />
+                  <span>Material Selection</span>
+                </h3>
+              </div>
+              <select
+                value={selectedMaterial}
+                onChange={(e) => {
+                  setSelectedMaterial(e.target.value);
+                  setShowFinalTable(false);
+                }}
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              >
+                <option value="All">All Materials</option>
+                {materials.map(material => (
+                  <option key={material} value={material}>{material}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center space-x-2">
+                  <Sparkles className="h-5 w-5 text-orange-500" />
+                  <span>AI-Recommended Adjustments</span>
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Choose AI recommendation or enter custom adjustment for each month
+                </p>
+              </div>
+              <div className="flex items-center space-x-3">
+                <button
+                  onClick={handleDone}
+                  className="px-6 py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white rounded-lg transition-colors flex items-center space-x-2 font-semibold shadow-lg"
+                >
+                  <CheckCircle2 className="h-5 w-5" />
+                  <span>Done - Show Final Table</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="overflow-x-auto">
+              {selectedMaterial === 'All' ? (
+                <table className="w-full">
+                  <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Unit</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Material</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Month</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Consolidated (Qty)</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Consolidated Amt</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">AI Recommended</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Recommended Amt</th>
+                      <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase min-w-[300px]">Select Adjustment</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+                    {materials.map(mat => {
+                      const price = materialPrices[mat] || 0;
+                      return materialBudgetData[mat].monthlyData.map((row, idx) => {
+                        const consolidatedAmount = row.consolidatedDemand * price;
+                        const recommendedAmount = row.recommendedAdjustment * price;
+                        const selection = adjustmentSelections[mat]?.[row.month];
+                        const isEditing = editingMonth === row.month && editingMaterial === mat;
+                        return (
+                          <tr key={`${mat}-${row.month}-${idx}`} className={`hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors ${row.status === 'over' ? 'bg-red-50/30 dark:bg-red-900/10' : ''}`}>
+                            <td className="px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-300">{currentUnitName}</td>
+                            <td className="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">{mat}</td>
+                            <td className="px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">{row.month}</td>
+                            <td className="px-4 py-3 text-sm text-right text-gray-900 dark:text-white">{row.consolidatedDemand.toLocaleString()} units</td>
+                            <td className="px-4 py-3 text-sm text-right text-gray-600 dark:text-gray-400">{formatCurrency(consolidatedAmount)}</td>
+                            <td className="px-4 py-3 text-sm text-right">
+                              <div className="flex flex-col items-end">
+                                <span className="font-semibold text-blue-700 dark:text-blue-400">{row.recommendedAdjustment.toLocaleString()} units</span>
+                                <span className="text-xs text-gray-600 dark:text-gray-400">(0%)</span>
+                              </div>
+                            </td>
+                            <td className="px-4 py-3 text-sm text-right font-semibold text-green-700 dark:text-green-400">{formatCurrency(recommendedAmount)}</td>
+                            <td className="px-4 py-3">
+                              <div className="flex items-center justify-center space-x-3">
+                                <label className="flex items-center space-x-1.5 cursor-pointer">
+                                  <input
+                                    type="radio"
+                                    name={`adjustment-${mat}-${row.month}`}
+                                    checked={selection?.source === 'recommended'}
+                                    onChange={() => handleSourceChange(row.month, 'recommended', mat)}
+                                    className="w-4 h-4 text-orange-600 focus:ring-orange-500"
+                                  />
+                                  <span className="text-xs text-gray-700 dark:text-gray-300">AI Recommended</span>
+                                </label>
+                                <label className="flex items-center space-x-1.5 cursor-pointer">
+                                  <input
+                                    type="radio"
+                                    name={`adjustment-${mat}-${row.month}`}
+                                    checked={selection?.source === 'custom'}
+                                    onChange={() => handleSourceChange(row.month, 'custom', mat)}
+                                    className="w-4 h-4 text-blue-600 focus:ring-blue-500"
+                                  />
+                                  <span className="text-xs text-gray-700 dark:text-gray-300">Custom</span>
+                                </label>
+                                {selection?.source === 'custom' && (
+                                  <div className="flex items-center space-x-2">
+                                    {isEditing ? (
+                                      <>
+                                        <input
+                                          type="number"
+                                          value={customValues[`${mat}:${row.month}`] || ''}
+                                          onChange={(e) => handleCustomValueChange(row.month, e.target.value, mat)}
+                                          className="w-24 px-2 py-1 text-xs border border-blue-300 dark:border-blue-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
+                                          placeholder="Enter value"
+                                          autoFocus
+                                        />
+                                        <button
+                                          onClick={() => handleSaveCustomValue(row.month, mat)}
+                                          className="p-1 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
+                                          title="Save custom value"
+                                        >
+                                          <Save className="h-4 w-4" />
+                                        </button>
+                                      </>
+                                    ) : (
+                                      <div className="flex items-center space-x-2">
+                                        <span className="text-sm font-bold text-blue-700 dark:text-blue-400">
+                                          {selection?.value.toLocaleString()}
+                                        </span>
+                                        <button
+                                          onClick={() => {
+                                            setEditingMonth(row.month);
+                                            setEditingMaterial(mat);
+                                            setCustomValues(prev => ({
+                                              ...prev,
+                                              [`${mat}:${row.month}`]: selection?.value.toString() || ''
+                                            }));
+                                          }}
+                                          className="p-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded transition-colors"
+                                          title="Edit value"
+                                        >
+                                          <Edit3 className="h-4 w-4" />
+                                        </button>
+                                      </div>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      });
+                    })}
+                  </tbody>
+                </table>
+              ) : (
+                <table className="w-full">
+                  <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Unit</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Material</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Month</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Consolidated (Qty)</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Consolidated Amt</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Difference</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">AI Recommended</th>
+                      <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Recommended Amt</th>
+                      <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase min-w-[300px]">Select Adjustment</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+                    {currentMaterialData.monthlyData.map((row, index) => {
+                      const unitPriceSingle = materialPrices[selectedMaterial] || 1000000;
+                      const consolidatedAmount = row.consolidatedDemand * unitPriceSingle;
+                      const recommendedAmount = row.recommendedAdjustment * unitPriceSingle;
+
+                      return (
+                        <tr key={index} className={`hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors ${
+                          row.status === 'over' ? 'bg-red-50/30 dark:bg-red-900/10' : ''
+                        }`}>
+                          <td className="px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-300">{currentUnitName}</td>
+                          <td className="px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">{selectedMaterial}</td>
+                          <td className="px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">{row.month}</td>
+                          <td className="px-4 py-3 text-sm text-right text-gray-900 dark:text-white">{row.consolidatedDemand.toLocaleString()} units</td>
+                          <td className="px-4 py-3 text-sm text-right text-gray-600 dark:text-gray-400">{formatCurrency(consolidatedAmount)}</td>
+                          <td className={`px-4 py-3 text-sm text-right font-semibold ${
+                            row.status === 'over' ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'
+                          }`}>
+                            {row.status === 'over' ? '-' : '+'}{Math.abs(row.consolidatedDemand - row.budgetLimit).toLocaleString()}
+                          </td>
+                          <td className="px-4 py-3 text-sm text-right">
+                            <div className="flex flex-col items-end">
+                              <span className="font-semibold text-blue-700 dark:text-blue-400">{row.recommendedAdjustment.toLocaleString()} units</span>
+                              <span className="text-xs text-gray-600 dark:text-gray-400">
+                                ({row.adjustmentPercent.toFixed(1)}%)
+                              </span>
+                            </div>
+                          </td>
+                          <td className="px-4 py-3 text-sm text-right font-semibold text-green-700 dark:text-green-400">
+                            {formatCurrency(recommendedAmount)}
+                          </td>
+                          <td className="px-4 py-3">
+                          <div className="flex items-center justify-center space-x-3">
+                            <label className="flex items-center space-x-1.5 cursor-pointer">
+                              <input
+                                type="radio"
+                                name={`adjustment-${row.month}`}
+                                checked={adjustmentSelections[currentMaterialKey]?.[row.month]?.source === 'recommended'}
+                                onChange={() => handleSourceChange(row.month, 'recommended')}
+                                className="w-4 h-4 text-orange-600 focus:ring-orange-500"
+                              />
+                              <span className="text-xs text-gray-700 dark:text-gray-300">AI Recommended</span>
+                            </label>
+                            <label className="flex items-center space-x-1.5 cursor-pointer">
+                              <input
+                                type="radio"
+                                name={`adjustment-${row.month}`}
+                                checked={adjustmentSelections[currentMaterialKey]?.[row.month]?.source === 'custom'}
+                                onChange={() => handleSourceChange(row.month, 'custom')}
+                                className="w-4 h-4 text-blue-600 focus:ring-blue-500"
+                              />
+                              <span className="text-xs text-gray-700 dark:text-gray-300">Custom</span>
+                            </label>
+                            {adjustmentSelections[currentMaterialKey]?.[row.month]?.source === 'custom' && (
+                              <div className="flex items-center space-x-2">
+                                {editingMonth === row.month ? (
+                                  <>
+                                    <input
+                                      type="number"
+                                      value={customValues[`${currentMaterialKey}:${row.month}`] || ''}
+                                      onChange={(e) => handleCustomValueChange(row.month, e.target.value)}
+                                      className="w-24 px-2 py-1 text-xs border border-blue-300 dark:border-blue-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500"
+                                      placeholder="Enter value"
+                                      autoFocus
+                                    />
+                                    <button
+                                      onClick={() => handleSaveCustomValue(row.month)}
+                                      className="p-1 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
+                                      title="Save custom value"
+                                    >
+                                      <Save className="h-4 w-4" />
+                                    </button>
+                                  </>
+                                ) : (
+                                  <div className="flex items-center space-x-2">
+                                    <span className="text-sm font-bold text-blue-700 dark:text-blue-400">
+                                      {adjustmentSelections[currentMaterialKey]?.[row.month]?.value.toLocaleString()}
+                                    </span>
+                                    <button
+                                      onClick={() => {
+                                        setEditingMonth(row.month);
+                                        setEditingMaterial(currentMaterialKey);
+                                        setCustomValues(prev => ({
+                                          ...prev,
+                                          [`${currentMaterialKey}:${row.month}`]: adjustmentSelections[currentMaterialKey]?.[row.month]?.value.toString() || ''
+                                        }));
+                                      }}
+                                      className="p-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded transition-colors"
+                                      title="Edit value"
+                                    >
+                                      <Edit3 className="h-4 w-4" />
+                                    </button>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          </div>
+
+          {showFinalTable && (
+            <div id="final-adjusted-table" className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl border-2 border-blue-300 dark:border-blue-700 p-6 shadow-xl">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <CheckCircle2 className="h-7 w-7 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                      Final Adjusted Demand
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Material: <span className="font-semibold">{selectedMaterial}</span> • Ready for Approval
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={handleExportFinalAdjustment}
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center space-x-2 font-semibold shadow-lg"
+                >
+                  <Download className="h-4 w-4" />
+                  <span>Export</span>
+                </button>
+              </div>
+
+              <div className="overflow-x-auto bg-white dark:bg-gray-900 rounded-xl border-2 border-blue-300 dark:border-blue-700 shadow-lg">
+                {selectedMaterial === 'All' ? (
+                  <table className="w-full">
+                    <thead className="bg-blue-100 dark:bg-blue-900/40 border-b-2 border-blue-300 dark:border-blue-700">
+                      <tr>
+                        <th className="px-4 py-4 text-left text-sm font-bold text-gray-900 dark:text-white uppercase">Unit</th>
+                        <th className="px-4 py-4 text-left text-sm font-bold text-gray-900 dark:text-white uppercase">Month</th>
+                        <th className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white uppercase">Consolidated (All)</th>
+                        <th className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white uppercase">Adjusted Demand (All)</th>
+                        <th className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white uppercase">Total Amount (All)</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+                      {finalAdjustedData.map((row, idx) => {
+                        let totalAmount = 0;
+                        materials.forEach(mat => {
+                          const selection = adjustmentSelections[mat]?.[row.month];
+                          const rowData = materialBudgetData[mat].monthlyData.find(r => r.month === row.month)!;
+                          const val = selection ? selection.value : rowData.recommendedAdjustment;
+                          totalAmount += val * (materialPrices[mat] || 0);
+                        });
+                        return (
+                          <tr key={idx} className="hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
+                            <td className="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-300">{currentUnitName}</td>
+                            <td className="px-4 py-4 text-sm font-semibold text-gray-900 dark:text-white">{row.month}</td>
+                            <td className="px-4 py-4 text-sm text-right text-gray-600 dark:text-gray-400">{row.consolidatedDemand.toLocaleString()}</td>
+                            <td className="px-4 py-4 text-sm text-right font-bold text-blue-700 dark:text-blue-400">{row.adjustedDemand.toLocaleString()} units</td>
+                            <td className="px-4 py-4 text-sm text-right font-bold text-green-700 dark:text-green-400 text-lg">{formatCurrency(totalAmount)}</td>
+                          </tr>
+                        );
+                      })}
+                      <tr className="bg-blue-100 dark:bg-blue-900/40 font-bold border-t-2 border-blue-300 dark:border-blue-700">
+                        <td className="px-4 py-5 text-base text-gray-900 dark:text-white uppercase" colSpan={1}>{currentUnitName}</td>
+                        <td className="px-4 py-5 text-base text-gray-900 dark:text-white uppercase">Annual Total</td>
+                        <td className="px-4 py-5 text-sm text-right text-gray-600 dark:text-gray-400 font-semibold">{finalAdjustedData.reduce((sum, row) => sum + row.consolidatedDemand, 0).toLocaleString()}</td>
+                        <td className="px-4 py-5 text-base text-right text-blue-700 dark:text-blue-400 font-bold">{finalAdjustedData.reduce((sum, row) => sum + row.adjustedDemand, 0).toLocaleString()} units</td>
+                        <td className="px-4 py-5 text-base text-right text-green-700 dark:text-green-400 text-xl font-extrabold">{formatCurrency(materials.reduce((amt, mat) => {
+                          return amt + materialBudgetData[mat].monthlyData.reduce((inner, r) => {
+                            const sel = adjustmentSelections[mat]?.[r.month];
+                            const val = sel ? sel.value : r.recommendedAdjustment;
+                            return inner + val * (materialPrices[mat] || 0);
+                          }, 0);
+                        }, 0))}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                ) : (
+                  <table className="w-full">
+                    <thead className="bg-blue-100 dark:bg-blue-900/40 border-b-2 border-blue-300 dark:border-blue-700">
+                      <tr>
+                        <th className="px-4 py-4 text-left text-sm font-bold text-gray-900 dark:text-white uppercase">Unit</th>
+                        <th className="px-4 py-4 text-left text-sm font-bold text-gray-900 dark:text-white uppercase">Material</th>
+                        <th className="px-4 py-4 text-left text-sm font-bold text-gray-900 dark:text-white uppercase">Month</th>
+                        <th className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white uppercase">Consolidated</th>
+                        <th className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white uppercase">Adjusted Demand</th>
+                        <th className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white uppercase">Unit Price</th>
+                        <th className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white uppercase">Total Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+                      {finalAdjustedData.map((row, index) => {
+                        const unitPriceSingle = materialPrices[selectedMaterial] || 1000000;
+                        const totalAmount = row.adjustedDemand * unitPriceSingle;
+                        return (
+                          <tr key={index} className="hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
+                            <td className="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-300">{currentUnitName}</td>
+                            <td className="px-4 py-4 text-sm font-semibold text-gray-900 dark:text-white">{selectedMaterial}</td>
+                            <td className="px-4 py-4 text-sm font-semibold text-gray-900 dark:text-white">{row.month}</td>
+                            <td className="px-4 py-4 text-sm text-right text-gray-600 dark:text-gray-400">{row.consolidatedDemand.toLocaleString()}</td>
+                            <td className="px-4 py-4 text-sm text-right font-bold text-blue-700 dark:text-blue-400">{row.adjustedDemand.toLocaleString()} units</td>
+                            <td className="px-4 py-4 text-sm text-right text-gray-600 dark:text-gray-400">{formatCurrency(unitPriceSingle)}</td>
+                            <td className="px-4 py-4 text-sm text-right font-bold text-green-700 dark:text-green-400 text-lg">{formatCurrency(totalAmount)}</td>
+                          </tr>
+                        );
+                      })}
+                      <tr className="bg-blue-100 dark:bg-blue-900/40 font-bold border-t-2 border-blue-300 dark:border-blue-700">
+                        <td className="px-4 py-5 text-base text-gray-900 dark:text-white uppercase" colSpan={1}>{currentUnitName}</td>
+                        <td className="px-4 py-5 text-base text-gray-900 dark:text-white uppercase" colSpan={1}>{selectedMaterial}</td>
+                        <td className="px-4 py-5 text-base text-gray-900 dark:text-white uppercase">Annual Total</td>
+                        <td className="px-4 py-5 text-sm text-right text-gray-600 dark:text-gray-400 font-semibold">{currentMaterialData.totalDemand.toLocaleString()}</td>
+                        <td className="px-4 py-5 text-base text-right text-blue-700 dark:text-blue-400 font-bold">{finalAdjustedData.reduce((sum, row) => sum + row.adjustedDemand, 0).toLocaleString()} units</td>
+                        <td className="px-4 py-5 text-sm text-right text-gray-600 dark:text-gray-400 font-semibold">Avg: {formatCurrency(materialPrices[selectedMaterial] || 1000000)}</td>
+                        <td className="px-4 py-5 text-base text-right text-green-700 dark:text-green-400 text-xl font-extrabold">{formatCurrency(finalAdjustedData.reduce((sum, row) => sum + row.adjustedDemand, 0) * (materialPrices[selectedMaterial] || 1000000))}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                )}
+              </div>
+
+              <div className="mt-6 p-4 bg-white dark:bg-gray-900 rounded-lg border border-blue-200 dark:border-blue-800">
+                <div className="flex items-start space-x-2">
+                  <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Adjustments Complete</p>
+                    <p className="text-xs text-gray-700 dark:text-gray-300">
+                      Your adjusted demand is ready for final approval. This data can now be sent to production planning or exported for further analysis.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  );
+};
+
+export default DPKDemandAdjustment;

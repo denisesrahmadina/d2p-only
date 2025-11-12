@@ -1,0 +1,303 @@
+[
+  {
+    "id": "template-tech-001",
+    "name": "Technical Design Template.docx",
+    "description": "Standard technical design template for S/4HANA migration including system architecture, data models, integration specifications, and technical implementation guidelines",
+    "category": "Technical Documentation",
+    "version": "v3.2",
+    "status": "active",
+    "lastModified": "2024-12-30T14:30:00Z",
+    "modifiedBy": "David Kim",
+    "modifiedByRole": "SAP ABAP Development Lead",
+    "size": "2.8 MB",
+    "fileType": "docx",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/technical/technical-design-template-v3.2.docx",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/technical/preview/technical-design-template-v3.2.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "technical/technical-design-template-v3.2.docx",
+      "region": "us-east-1"
+    }
+  },
+  {
+    "id": "template-func-001",
+    "name": "Functional Design Template.docx",
+    "description": "Standard functional design template covering business processes, user requirements, functional specifications, and workflow documentation for any SAP module",
+    "category": "Functional Documentation",
+    "version": "v2.8",
+    "status": "active",
+    "lastModified": "2024-12-28T16:45:00Z",
+    "modifiedBy": "Ravi Sharma",
+    "modifiedByRole": "SAP Module Lead - Finance (FI/CO)",
+    "size": "3.1 MB",
+    "fileType": "docx",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/functional/functional-design-template-v2.8.docx",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/functional/preview/functional-design-template-v2.8.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "functional/functional-design-template-v2.8.docx",
+      "region": "us-east-1"
+    }
+  },
+  {
+    "id": "template-deploy-001",
+    "name": "Deployment Report Template.docx",
+    "description": "Universal deployment template for S/4HANA go-live including pre-deployment checklist, deployment validation, rollback procedures, and post-deployment monitoring",
+    "category": "Deployment Documentation",
+    "version": "v2.0",
+    "status": "active",
+    "lastModified": "2024-12-25T11:20:00Z",
+    "modifiedBy": "Sarah Chen",
+    "modifiedByRole": "SAP Deployment Lead",
+    "size": "2.4 MB",
+    "fileType": "docx",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/deployment/deployment-report-template-v2.0.docx",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/deployment/preview/deployment-report-template-v2.0.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "deployment/deployment-report-template-v2.0.docx",
+      "region": "us-east-1"
+    }
+  },
+  
+  {
+    "id": "template-deploy-002",
+    "name": "Go-Live Deployment Checklist Template.xlsx",
+    "description": "Detailed go-live checklist template with validation steps, cutover procedures, and post-deployment verification activities",
+    "category": "Go-Live Documentation",
+    "version": "v1.9",
+    "status": "active",
+    "lastModified": "2024-12-18T14:45:00Z",
+    "modifiedBy": "Priya Patel",
+    "modifiedByRole": "SAP Test Lead",
+    "size": "3.3 MB",
+    "fileType": "xlsx",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/deployment/go-live-checklist-v1.9.docx",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/deployment/preview/go-live-checklist-v1.9.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "deployment/go-live-checklist-v1.9.docx",
+      "region": "us-east-1"
+    }
+  },
+  {
+    "id": "template-func-003",
+    "name": "User Acceptance Testing Functional Template.xlsx",
+    "description": "Functional template for user acceptance testing documentation including test scenarios, acceptance criteria, and user validation results",
+    "category": "Testing Documentation",
+    "version": "v1.4",
+    "status": "draft",
+    "lastModified": "2024-12-12T16:20:00Z",
+    "modifiedBy": "Michael Anderson",
+    "modifiedByRole": "SAP Migration Project Lead",
+    "size": "2.1 MB",
+    "fileType": "xlsx",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/functional/uat-functional-template-v1.4.docx",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/functional/preview/uat-functional-template-v1.4.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "functional/uat-functional-template-v1.4.docx",
+      "region": "us-east-1"
+    }
+  },
+  {
+    "id": "template-train-001",
+    "name": "End User Training Materials Template.pptx",
+    "description": "Comprehensive template for creating end-user training materials including presentation slides, hands-on exercises, and quick reference guides",
+    "category": "Training Documentation",
+    "version": "v2.3",
+    "status": "active",
+    "lastModified": "2025-01-02T10:00:00Z",
+    "modifiedBy": "Jennifer Liu",
+    "modifiedByRole": "SAP Module Lead - Sales & Distribution (SD)",
+    "size": "4.5 MB",
+    "fileType": "pptx",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/training/end-user-training-v2.3.pptx",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/training/preview/end-user-training-v2.3.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "training/end-user-training-v2.3.pptx",
+      "region": "us-east-1"
+    }
+  },
+  {
+    "id": "template-train-002",
+    "name": "Administrator Training Guide Template.docx",
+    "description": "Template for system administrator training including system configuration, security setup, and troubleshooting procedures",
+    "category": "Training Documentation",
+    "version": "v1.7",
+    "status": "active",
+    "lastModified": "2024-12-28T14:30:00Z",
+    "modifiedBy": "James Wilson",
+    "modifiedByRole": "SAP Security Lead",
+    "size": "3.6 MB",
+    "fileType": "docx",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/training/admin-training-guide-v1.7.docx",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/training/preview/admin-training-guide-v1.7.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "training/admin-training-guide-v1.7.docx",
+      "region": "us-east-1"
+    }
+  },
+  {
+    "id": "template-int-001",
+    "name": "Integration Specification Template.docx",
+    "description": "Standard template for documenting system integrations including interface design, data mapping, error handling, and testing scenarios",
+    "category": "Integration Documentation",
+    "version": "v2.5",
+    "status": "active",
+    "lastModified": "2025-01-03T11:45:00Z",
+    "modifiedBy": "Maria Rodriguez",
+    "modifiedByRole": "SAP Integration Lead",
+    "size": "3.2 MB",
+    "fileType": "docx",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/integration/integration-spec-v2.5.docx",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/integration/preview/integration-spec-v2.5.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "integration/integration-spec-v2.5.docx",
+      "region": "us-east-1"
+    }
+  },
+  {
+    "id": "template-dm-001",
+    "name": "Data Migration Mapping Template.xlsx",
+    "description": "Template for data migration field mapping including source system fields, target S/4HANA fields, transformation rules, and validation logic",
+    "category": "Data Migration Documentation",
+    "version": "v3.0",
+    "status": "active",
+    "lastModified": "2025-01-04T09:30:00Z",
+    "modifiedBy": "Ravi Sharma",
+    "modifiedByRole": "SAP Module Lead - Finance (FI/CO)",
+    "size": "2.9 MB",
+    "fileType": "xlsx",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/data-migration/dm-mapping-v3.0.xlsx",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/data-migration/preview/dm-mapping-v3.0.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "data-migration/dm-mapping-v3.0.xlsx",
+      "region": "us-east-1"
+    }
+  },
+  {
+    "id": "template-test-001",
+    "name": "Test Plan & Strategy Template.docx",
+    "description": "Comprehensive test plan template covering test strategy, scope, approach, resources, schedule, and acceptance criteria",
+    "category": "Testing Documentation",
+    "version": "v2.2",
+    "status": "active",
+    "lastModified": "2025-01-01T13:15:00Z",
+    "modifiedBy": "Priya Patel",
+    "modifiedByRole": "SAP Test Lead",
+    "size": "2.7 MB",
+    "fileType": "docx",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/testing/test-plan-v2.2.docx",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/testing/preview/test-plan-v2.2.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "testing/test-plan-v2.2.docx",
+      "region": "us-east-1"
+    }
+  },
+  {
+    "id": "template-test-002",
+    "name": "Test Case Specification Template.xlsx",
+    "description": "Detailed test case template including test steps, expected results, actual results, and defect tracking",
+    "category": "Testing Documentation",
+    "version": "v1.9",
+    "status": "active",
+    "lastModified": "2024-12-30T16:00:00Z",
+    "modifiedBy": "David Kim",
+    "modifiedByRole": "SAP ABAP Development Lead",
+    "size": "2.5 MB",
+    "fileType": "xlsx",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/testing/test-case-spec-v1.9.xlsx",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/testing/preview/test-case-spec-v1.9.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "testing/test-case-spec-v1.9.xlsx",
+      "region": "us-east-1"
+    }
+  },
+  {
+    "id": "template-cm-001",
+    "name": "Change Management & Communication Plan Template.pptx",
+    "description": "Template for organizational change management including stakeholder analysis, communication strategy, and training rollout plan",
+    "category": "Change Management Documentation",
+    "version": "v2.1",
+    "status": "active",
+    "lastModified": "2024-12-27T10:45:00Z",
+    "modifiedBy": "Sarah Chen",
+    "modifiedByRole": "SAP Deployment Lead",
+    "size": "5.2 MB",
+    "fileType": "pptx",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/change-mgmt/cm-communication-v2.1.pptx",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/change-mgmt/preview/cm-communication-v2.1.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "change-mgmt/cm-communication-v2.1.pptx",
+      "region": "us-east-1"
+    }
+  },
+  {
+    "id": "template-sec-001",
+    "name": "Security & Compliance Assessment Template.xlsx",
+    "description": "Template for security and compliance documentation including risk assessment, authorization matrix, and audit trail requirements",
+    "category": "Security Documentation",
+    "version": "v2.8",
+    "status": "active",
+    "lastModified": "2025-01-05T15:30:00Z",
+    "modifiedBy": "James Wilson",
+    "modifiedByRole": "SAP Security Lead",
+    "size": "3.4 MB",
+    "fileType": "xlsx",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/security/security-compliance-v2.8.xlsx",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/security/preview/security-compliance-v2.8.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "security/security-compliance-v2.8.xlsx",
+      "region": "us-east-1"
+    }
+  },
+  {
+    "id": "template-report-001",
+    "name": "Project Status Report Template.pptx",
+    "description": "Executive status report template including project milestones, accomplishments, risks, issues, and next steps",
+    "category": "Project Management Documentation",
+    "version": "v1.5",
+    "status": "active",
+    "lastModified": "2024-12-26T12:00:00Z",
+    "modifiedBy": "Michael Anderson",
+    "modifiedByRole": "SAP Migration Project Lead",
+    "size": "4.1 MB",
+    "fileType": "pptx",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/project-mgmt/status-report-v1.5.pptx",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/project-mgmt/preview/status-report-v1.5.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "project-mgmt/status-report-v1.5.pptx",
+      "region": "us-east-1"
+    }
+  },
+  {
+    "id": "template-guide-001",
+    "name": "User Quick Reference Guide Template.pdf",
+    "description": "Quick reference guide template for end users including step-by-step procedures, screenshots, and troubleshooting tips",
+    "category": "User Documentation",
+    "version": "v2.0",
+    "status": "active",
+    "lastModified": "2024-12-29T11:20:00Z",
+    "modifiedBy": "Jennifer Liu",
+    "modifiedByRole": "SAP Module Lead - Sales & Distribution (SD)",
+    "size": "1.8 MB",
+    "fileType": "pdf",
+    "downloadUrl": "https://s3.amazonaws.com/sap-migration-templates/user-docs/quick-ref-guide-v2.0.pdf",
+    "previewUrl": "https://s3.amazonaws.com/sap-migration-templates/user-docs/preview/quick-ref-guide-v2.0.html",
+    "s3Location": {
+      "bucket": "sap-migration-templates",
+      "key": "user-docs/quick-ref-guide-v2.0.pdf",
+      "region": "us-east-1"
+    }
+  }
+]

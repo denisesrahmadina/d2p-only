@@ -1,0 +1,1000 @@
+import {
+  MarketplaceCategory,
+  MarketplaceSupplier,
+  MarketplaceItem,
+  MarketplaceCartItem,
+  PLNFacility,
+  MarketplacePRHeader,
+  MarketplacePRLine,
+  MarketplaceOrder,
+  MarketplaceOrderTracking,
+  PRStatusSummary,
+  OrderStatusSummary,
+  CartSummary
+} from '../types/marketplace';
+
+/**
+ * Mock Data for PLN Indonesia Power Marketplace
+ * Based on Filter Product Categories
+ */
+
+// ============================================================================
+// IN-MEMORY STORAGE FOR LOCALLY CREATED PRs
+// ============================================================================
+
+// This array will store PRs created locally without database
+let localPRStorage: MarketplacePRHeader[] = [];
+let localPRIdCounter = 1000; // Start from 1000 to avoid conflicts
+
+/**
+ * Add a PR to local storage
+ */
+export function addLocalPR(pr: MarketplacePRHeader): void {
+  localPRStorage.push(pr);
+}
+
+/**
+ * Get all locally stored PRs
+ */
+export function getLocalPRs(userId?: string): MarketplacePRHeader[] {
+  if (userId) {
+    return localPRStorage.filter(pr => pr.requestor_id === userId);
+  }
+  return localPRStorage;
+}
+
+/**
+ * Get next PR ID
+ */
+export function getNextPRId(): number {
+  return localPRIdCounter++;
+}
+
+/**
+ * Clear local PR storage (useful for testing)
+ */
+export function clearLocalPRs(): void {
+  localPRStorage = [];
+  localPRIdCounter = 1000;
+}
+
+// ============================================================================
+// CATEGORIES - Updated structure matching PLN categories
+// ============================================================================
+
+export const mockCategories: MarketplaceCategory[] = [
+  {
+    category_id: 'CAT-FASTENERS',
+    category_code: 'FAST',
+    category_name: 'BAUT, SEKRUP, MUR METRIK',
+    description: 'Bolts, screws, nuts and metric fasteners for power plant equipment assembly and maintenance',
+    icon_name: 'Wrench',
+    display_order: 1,
+    is_active: true,
+    created_at: '2025-01-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    category_id: 'CAT-BEARINGS',
+    category_code: 'BEAR',
+    category_name: 'BEARING',
+    description: 'Ball bearings, roller bearings, journal bearings and bearing accessories for rotating equipment',
+    icon_name: 'Circle',
+    display_order: 2,
+    is_active: true,
+    created_at: '2025-01-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    category_id: 'CAT-FILTERS',
+    category_code: 'FILT',
+    category_name: 'FILTER',
+    description: 'Fuel filters, oil filters, air filters, chemical filters and filtration systems for power plant applications',
+    icon_name: 'Filter',
+    display_order: 3,
+    is_active: true,
+    created_at: '2025-01-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    category_id: 'CAT-INSULATION',
+    category_code: 'INSL',
+    category_name: 'ISOLASI',
+    description: 'Thermal, electrical, and acoustic insulation materials for power generation equipment',
+    icon_name: 'Shield',
+    display_order: 4,
+    is_active: true,
+    created_at: '2025-01-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    category_id: 'CAT-VALVES',
+    category_code: 'VALV',
+    category_name: 'VALVE, TRAP',
+    description: 'Industrial valves, control valves, safety valves, steam traps and valve accessories',
+    icon_name: 'Settings',
+    display_order: 5,
+    is_active: true,
+    created_at: '2025-01-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  }
+];
+
+// ============================================================================
+// SUPPLIERS
+// ============================================================================
+
+export const mockSuppliers: MarketplaceSupplier[] = [
+  {
+    supplier_id: 'SUP-000001',
+    supplier_code: 'DNL-ID',
+    supplier_name: 'PT Donaldson Indonesia',
+    contact_person: 'Budi Santoso',
+    contact_email: 'budi.santoso@donaldson.co.id',
+    contact_phone: '+62-21-8934567',
+    address: 'Jl. Jababeka XIV Blok W No. 5-6',
+    city: 'Bekasi',
+    province: 'Jawa Barat',
+    postal_code: '17530',
+    certifications: ['ISO 9001:2015', 'ISO 14001:2015', 'OHSAS 18001'],
+    performance_rating: 4.8,
+    is_pln_approved: true,
+    is_active: true,
+    notes: 'Premier supplier of industrial filtration solutions',
+    created_at: '2024-01-15T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    supplier_id: 'SUP-000002',
+    supplier_code: 'PKR-ID',
+    supplier_name: 'PT Parker Hannifin Indonesia',
+    contact_person: 'Siti Nurhaliza',
+    contact_email: 'siti.nurhaliza@parker.com',
+    contact_phone: '+62-21-8901234',
+    address: 'Kawasan Industri MM2100 Blok HH-1',
+    city: 'Bekasi',
+    province: 'Jawa Barat',
+    postal_code: '17520',
+    certifications: ['ISO 9001:2015', 'ISO 14001:2015'],
+    performance_rating: 4.7,
+    is_pln_approved: true,
+    is_active: true,
+    notes: 'Global leader in motion and control technologies',
+    created_at: '2024-02-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    supplier_id: 'SUP-000003',
+    supplier_code: 'PLF-ID',
+    supplier_name: 'PT Pall Filtersystems Indonesia',
+    contact_person: 'Rudi Hartono',
+    contact_email: 'rudi.hartono@pall.com',
+    contact_phone: '+62-21-2934567',
+    address: 'Gedung Cyber 2 Tower Lt. 10',
+    city: 'Jakarta Selatan',
+    province: 'DKI Jakarta',
+    postal_code: '12950',
+    certifications: ['ISO 9001:2015', 'ISO 14001:2015', 'API Q1'],
+    performance_rating: 4.9,
+    is_pln_approved: true,
+    is_active: true,
+    notes: 'Advanced filtration and separations solutions',
+    created_at: '2024-02-15T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    supplier_id: 'SUP-000004',
+    supplier_code: 'RSX-ID',
+    supplier_name: 'PT Rockwool Indonesia',
+    contact_person: 'Andi Wijaya',
+    contact_email: 'andi.wijaya@rockwool.co.id',
+    contact_phone: '+62-21-8905678',
+    address: 'Jl. Raya Serang KM 14',
+    city: 'Tangerang',
+    province: 'Banten',
+    postal_code: '15710',
+    certifications: ['ISO 9001:2015', 'ISO 14001:2015'],
+    performance_rating: 4.6,
+    is_pln_approved: true,
+    is_active: true,
+    notes: 'Leading insulation materials supplier',
+    created_at: '2024-03-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    supplier_id: 'SUP-000005',
+    supplier_code: 'KIZ-ID',
+    supplier_name: 'PT Kitz Valve Indonesia',
+    contact_person: 'Dewi Sartika',
+    contact_email: 'dewi.sartika@kitz.co.id',
+    contact_phone: '+62-21-8907890',
+    address: 'Kawasan Industri Pulogadung',
+    city: 'Jakarta Timur',
+    province: 'DKI Jakarta',
+    postal_code: '13920',
+    certifications: ['ISO 9001:2015', 'API 6D', 'ASME'],
+    performance_rating: 4.8,
+    is_pln_approved: true,
+    is_active: true,
+    notes: 'Industrial valve specialist for power generation',
+    created_at: '2024-03-15T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    supplier_id: 'SUP-000006',
+    supplier_code: 'SKF-ID',
+    supplier_name: 'PT SKF Indonesia',
+    contact_person: 'Agus Setiawan',
+    contact_email: 'agus.setiawan@skf.com',
+    contact_phone: '+62-21-8956789',
+    address: 'Jl. Raya Bekasi KM 22',
+    city: 'Bekasi',
+    province: 'Jawa Barat',
+    postal_code: '17530',
+    certifications: ['ISO 9001:2015', 'ISO 14001:2015', 'TS 16949'],
+    performance_rating: 4.9,
+    is_pln_approved: true,
+    is_active: true,
+    notes: 'World-leading bearing and seal manufacturer',
+    created_at: '2024-04-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    supplier_id: 'SUP-000007',
+    supplier_code: 'WRG-ID',
+    supplier_name: 'PT Wurth Indonesia',
+    contact_person: 'Made Wirawan',
+    contact_email: 'made.wirawan@wurth.co.id',
+    contact_phone: '+62-21-5678901',
+    address: 'Jl. Gatot Subroto Kav. 32',
+    city: 'Jakarta Selatan',
+    province: 'DKI Jakarta',
+    postal_code: '12950',
+    certifications: ['ISO 9001:2015', 'DIN Standards'],
+    performance_rating: 4.7,
+    is_pln_approved: true,
+    is_active: true,
+    notes: 'Premium fasteners and assembly products supplier',
+    created_at: '2024-04-15T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    supplier_id: 'SUP-000008',
+    supplier_code: 'NSK-ID',
+    supplier_name: 'PT NSK Bearing Indonesia',
+    contact_person: 'Yanto Kurniawan',
+    contact_email: 'yanto.kurniawan@nsk.com',
+    contact_phone: '+62-21-4567890',
+    address: 'Kawasan Industri JIEP Blok A',
+    city: 'Surabaya',
+    province: 'Jawa Timur',
+    postal_code: '60177',
+    certifications: ['ISO 9001:2015', 'ISO 14001:2015'],
+    performance_rating: 4.8,
+    is_pln_approved: true,
+    is_active: true,
+    notes: 'Precision bearing technology specialist',
+    created_at: '2024-05-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    supplier_id: 'SUP-000009',
+    supplier_code: 'SPX-ID',
+    supplier_name: 'PT Spirax Sarco Indonesia',
+    contact_person: 'Rina Kusuma',
+    contact_email: 'rina.kusuma@spiraxsarco.com',
+    contact_phone: '+62-21-3456789',
+    address: 'Gedung Cakrawala Lt. 15',
+    city: 'Jakarta Pusat',
+    province: 'DKI Jakarta',
+    postal_code: '10340',
+    certifications: ['ISO 9001:2015', 'PED Certified'],
+    performance_rating: 4.9,
+    is_pln_approved: true,
+    is_active: true,
+    notes: 'Steam system and control valve experts',
+    created_at: '2024-05-15T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    supplier_id: 'SUP-000010',
+    supplier_code: 'CAM-ID',
+    supplier_name: 'PT Camfil Indonesia',
+    contact_person: 'Bambang Hermawan',
+    contact_email: 'bambang.hermawan@camfil.com',
+    contact_phone: '+62-21-2345678',
+    address: 'Jl. Industri Raya No. 45',
+    city: 'Tangerang',
+    province: 'Banten',
+    postal_code: '15134',
+    certifications: ['ISO 9001:2015', 'ISO 14644', 'ASHRAE'],
+    performance_rating: 4.8,
+    is_pln_approved: true,
+    is_active: true,
+    notes: 'Air filtration and clean air solutions',
+    created_at: '2024-06-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  }
+];
+
+// ============================================================================
+// PLN FACILITIES
+// ============================================================================
+
+export const mockPLNFacilities: PLNFacility[] = [
+  {
+    facility_id: 'FAC-PLN-001',
+    facility_code: 'PLTU-SRY',
+    facility_name: 'PLTU Suralaya',
+    facility_type: 'Steam Power Plant',
+    address: 'Jl. Raya Suralaya KM 12',
+    city: 'Cilegon',
+    province: 'Banten',
+    postal_code: '42447',
+    latitude: -6.0342,
+    longitude: 106.0212,
+    contact_person: 'Ir. Bambang Sutrisno',
+    contact_phone: '+62 254 391234',
+    contact_email: 'bambang.sutrisno@pln.co.id',
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    facility_id: 'FAC-PLN-002',
+    facility_code: 'PLTU-PBR',
+    facility_name: 'PLTU Paiton',
+    facility_type: 'Steam Power Plant',
+    address: 'Jl. Raya Surabaya-Situbondo KM 141',
+    city: 'Probolinggo',
+    province: 'Jawa Timur',
+    postal_code: '67291',
+    latitude: -7.7234,
+    longitude: 113.4567,
+    contact_person: 'Ir. Hadi Purnomo',
+    contact_phone: '+62 335 771001',
+    contact_email: 'hadi.purnomo@pln.co.id',
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    facility_id: 'FAC-PLN-003',
+    facility_code: 'PLTGU-CRB',
+    facility_name: 'PLTGU Cikarang Listrindo',
+    facility_type: 'Gas Turbine Power Plant',
+    address: 'Kawasan Industri Jababeka',
+    city: 'Cikarang',
+    province: 'Jawa Barat',
+    postal_code: '17530',
+    latitude: -6.2934,
+    longitude: 107.1567,
+    contact_person: 'Ir. Siti Aminah, MT',
+    contact_phone: '+62 21 8934567',
+    contact_email: 'siti.aminah@pln.co.id',
+    is_active: true,
+    created_at: '2024-01-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  }
+];
+
+// ============================================================================
+// MARKETPLACE ITEMS
+// ============================================================================
+
+export const mockMarketplaceItems: MarketplaceItem[] = [
+  {
+    item_id: 'ITEM-FLT-BBK-001',
+    item_code: 'FLT-BBK-001',
+    item_name: 'Diesel Fuel Filter - High Efficiency',
+    item_description: 'Premium diesel fuel filter for power generation equipment. Removes water, sediment, and contaminants.',
+    category_id: 'CAT-FILTERS',
+    supplier_id: 'SUP-000001',
+    unit_price: 1250000,
+    currency: 'IDR',
+    stock_quantity: 150,
+    lead_time_days: 7,
+    unit_of_measure: 'PCS',
+    technical_specifications: {
+      filtration_rating: '5 micron',
+      flow_rate: '100 LPM',
+      max_pressure: '10 bar',
+      temperature_range: '-10°C to 120°C'
+    },
+    compliance_certifications: ['ISO 9001:2015', 'API Certified'],
+    warranty_info: '12 months manufacturer warranty',
+    image_url: '/images/filters/diesel-fuel-filter.jpg',
+    is_active: true,
+    created_at: '2025-01-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    item_id: 'ITEM-FLT-MNY-001',
+    item_code: 'FLT-MNY-001',
+    item_name: 'Turbine Lube Oil Filter',
+    item_description: 'High-capacity lube oil filter for steam and gas turbines. Extended service life.',
+    category_id: 'CAT-FILTERS',
+    supplier_id: 'SUP-000002',
+    unit_price: 3500000,
+    currency: 'IDR',
+    stock_quantity: 80,
+    lead_time_days: 14,
+    unit_of_measure: 'PCS',
+    technical_specifications: {
+      filtration_rating: '3 micron',
+      flow_rate: '200 LPM',
+      max_pressure: '25 bar',
+      filter_media: 'Synthetic fiber'
+    },
+    compliance_certifications: ['ISO 9001:2015', 'ISO 14001:2015'],
+    warranty_info: '18 months manufacturer warranty',
+    image_url: '/images/filters/turbine-lube-oil.jpg',
+    is_active: true,
+    created_at: '2025-01-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    item_id: 'ITEM-FLT-UGS-001',
+    item_code: 'FLT-UGS-001',
+    item_name: 'Gas Turbine Air Intake Pre-Filter',
+    item_description: 'Multi-stage air intake filter for gas turbine protection. High dust holding capacity.',
+    category_id: 'CAT-FILTERS',
+    supplier_id: 'SUP-000003',
+    unit_price: 2800000,
+    currency: 'IDR',
+    stock_quantity: 120,
+    lead_time_days: 10,
+    unit_of_measure: 'PCS',
+    technical_specifications: {
+      efficiency: '99.5% at 1 micron',
+      airflow_capacity: '5000 m³/h',
+      pressure_drop: '<250 Pa',
+      frame_material: 'Galvanized steel'
+    },
+    compliance_certifications: ['EN 779:2012', 'ISO 16890'],
+    warranty_info: '12 months manufacturer warranty',
+    image_url: '/images/filters/air-intake-filter.jpg',
+    is_active: true,
+    created_at: '2025-01-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    item_id: 'ITEM-SRN-AIR-001',
+    item_code: 'SRN-AIR-001',
+    item_name: 'Multimedia Water Filter Vessel',
+    item_description: 'Complete multimedia filter system for raw water treatment. Includes media and control valve.',
+    category_id: 'CAT-FILTERS',
+    supplier_id: 'SUP-000001',
+    unit_price: 45000000,
+    currency: 'IDR',
+    stock_quantity: 5,
+    lead_time_days: 30,
+    unit_of_measure: 'SET',
+    technical_specifications: {
+      vessel_diameter: '1500 mm',
+      vessel_height: '2500 mm',
+      flow_rate: '50 m³/h',
+      operating_pressure: '6 bar'
+    },
+    compliance_certifications: ['ASME Code', 'NSF Certified'],
+    warranty_info: '24 months manufacturer warranty',
+    image_url: '/images/filters/multimedia-filter.jpg',
+    is_active: true,
+    created_at: '2025-01-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  },
+  {
+    item_id: 'ITEM-SPR-FLT-001',
+    item_code: 'SPR-FLT-001',
+    item_name: 'Filter Cartridge - Universal',
+    item_description: 'Replacement filter cartridges compatible with multiple filter housings.',
+    category_id: 'CAT-FILTERS',
+    supplier_id: 'SUP-000002',
+    unit_price: 350000,
+    currency: 'IDR',
+    stock_quantity: 500,
+    lead_time_days: 3,
+    unit_of_measure: 'PCS',
+    technical_specifications: {
+      length: '250 mm',
+      outer_diameter: '70 mm',
+      filtration_rating: '5 micron',
+      material: 'Polypropylene'
+    },
+    compliance_certifications: ['ISO 9001:2015'],
+    warranty_info: '6 months manufacturer warranty',
+    image_url: '/images/filters/cartridge-filter.jpg',
+    is_active: true,
+    created_at: '2025-01-01T00:00:00Z',
+    updated_at: '2025-01-01T00:00:00Z'
+  }
+];
+
+// ============================================================================
+// SHOPPING CART (User-specific)
+// ============================================================================
+
+export const mockCartItems: MarketplaceCartItem[] = [
+  {
+    cart_item_id: 1,
+    user_id: 'USR-001',
+    item_id: 'ITEM-FLT-BBK-001',
+    quantity: 10,
+    unit_price: 1250000,
+    total_price: 12500000,
+    notes: 'For Unit 1-5 generators',
+    added_at: '2025-11-05T10:00:00Z',
+    updated_at: '2025-11-05T10:00:00Z'
+  },
+  {
+    cart_item_id: 2,
+    user_id: 'USR-001',
+    item_id: 'ITEM-SPR-FLT-001',
+    quantity: 50,
+    unit_price: 350000,
+    total_price: 17500000,
+    notes: 'Spare cartridges',
+    added_at: '2025-11-05T10:15:00Z',
+    updated_at: '2025-11-05T10:15:00Z'
+  }
+];
+
+// ============================================================================
+// PURCHASE REQUISITIONS
+// ============================================================================
+
+export const mockPRHeaders: MarketplacePRHeader[] = [
+  {
+    pr_id: 1,
+    pr_number: 'PR-2025110001',
+    pr_date: '2025-11-01T08:30:00Z',
+    requestor_id: 'USR-001',
+    requestor_name: 'Ir. Bambang Sutrisno',
+    department: 'Maintenance Department',
+    delivery_facility_id: 'FAC-PLN-001',
+    total_value: 50000000,
+    currency: 'IDR',
+    pr_status: 'Approved',
+    notes: 'Urgent requirement for fuel filter replacement - scheduled maintenance',
+    created_at: '2025-11-01T08:30:00Z',
+    updated_at: '2025-11-02T10:00:00Z'
+  },
+  {
+    pr_id: 2,
+    pr_number: 'PR-2025110002',
+    pr_date: '2025-11-02T09:15:00Z',
+    requestor_id: 'USR-002',
+    requestor_name: 'Ir. Hadi Purnomo',
+    department: 'Operations Department',
+    delivery_facility_id: 'FAC-PLN-002',
+    total_value: 75000000,
+    currency: 'IDR',
+    pr_status: 'Approved',
+    notes: 'Quarterly maintenance stock replenishment',
+    created_at: '2025-11-02T09:15:00Z',
+    updated_at: '2025-11-03T14:00:00Z'
+  },
+  {
+    pr_id: 3,
+    pr_number: 'PR-2025110003',
+    pr_date: '2025-11-03T10:45:00Z',
+    requestor_id: 'USR-003',
+    requestor_name: 'Ir. Siti Aminah, MT',
+    department: 'Technical Services',
+    delivery_facility_id: 'FAC-PLN-003',
+    total_value: 120000000,
+    currency: 'IDR',
+    pr_status: 'In Procurement',
+    notes: 'Gas turbine air intake filter replacement project',
+    created_at: '2025-11-03T10:45:00Z',
+    updated_at: '2025-11-04T09:00:00Z'
+  },
+  {
+    pr_id: 4,
+    pr_number: 'PR-2025110004',
+    pr_date: '2025-11-04T11:20:00Z',
+    requestor_id: 'USR-004',
+    requestor_name: 'Drs. Ahmad Rahman',
+    department: 'Procurement Department',
+    delivery_facility_id: 'FAC-PLN-001',
+    total_value: 25000000,
+    currency: 'IDR',
+    pr_status: 'Pending Approval',
+    notes: 'Emergency procurement for fuel system upgrade',
+    created_at: '2025-11-04T11:20:00Z',
+    updated_at: '2025-11-04T11:20:00Z'
+  },
+  {
+    pr_id: 5,
+    pr_number: 'PR-2025110005',
+    pr_date: '2025-11-05T08:00:00Z',
+    requestor_id: 'USR-005',
+    requestor_name: 'Ir. Eko Prasetyo, MSc',
+    department: 'Water Treatment',
+    delivery_facility_id: 'FAC-PLN-003',
+    total_value: 180000000,
+    currency: 'IDR',
+    pr_status: 'Approved',
+    notes: 'DM water plant filter renewal',
+    created_at: '2025-11-05T08:00:00Z',
+    updated_at: '2025-11-05T16:00:00Z'
+  },
+  {
+    pr_id: 6,
+    pr_number: 'PR-2025110006',
+    pr_date: '2025-11-05T14:30:00Z',
+    requestor_id: 'USR-001',
+    requestor_name: 'Ir. Bambang Sutrisno',
+    department: 'Maintenance Department',
+    delivery_facility_id: 'FAC-PLN-001',
+    total_value: 35000000,
+    currency: 'IDR',
+    pr_status: 'Draft',
+    notes: 'Planning for next month maintenance - pending budget approval',
+    created_at: '2025-11-05T14:30:00Z',
+    updated_at: '2025-11-05T14:30:00Z'
+  }
+];
+
+// ============================================================================
+// PURCHASE ORDERS
+// ============================================================================
+
+export const mockOrders: MarketplaceOrder[] = [
+  {
+    order_id: 1,
+    po_number: 'PO-2025110001',
+    pr_id: 1,
+    supplier_id: 'SUP-000001',
+    delivery_facility_id: 'FAC-PLN-001',
+    total_value: 50000000,
+    currency: 'IDR',
+    current_status: 'ARRIVED_AT_DESTINATION',
+    current_step: 5,
+    order_placed_date: '2025-11-01T10:00:00Z',
+    processing_date: '2025-11-01T14:00:00Z',
+    shipped_date: '2025-11-02T08:00:00Z',
+    delivery_date: '2025-11-03T09:00:00Z',
+    arrived_date: '2025-11-03T15:30:00Z',
+    tracking_number: 'TRK-DNL-20251101-001',
+    carrier: 'JNE Trucking',
+    expected_delivery_date: '2025-11-04T12:00:00Z',
+    is_delayed: false,
+    notes: 'Delivered on time, all items received in good condition',
+    created_at: '2025-11-01T10:00:00Z',
+    updated_at: '2025-11-03T15:30:00Z'
+  },
+  {
+    order_id: 2,
+    po_number: 'PO-2025110002',
+    pr_id: 2,
+    supplier_id: 'SUP-000002',
+    delivery_facility_id: 'FAC-PLN-002',
+    total_value: 75000000,
+    currency: 'IDR',
+    current_status: 'DELIVERY',
+    current_step: 4,
+    order_placed_date: '2025-11-02T11:00:00Z',
+    processing_date: '2025-11-02T16:00:00Z',
+    shipped_date: '2025-11-04T07:00:00Z',
+    delivery_date: '2025-11-05T10:00:00Z',
+    tracking_number: 'TRK-PKR-20251102-002',
+    carrier: 'TIKI Cargo',
+    expected_delivery_date: '2025-11-06T12:00:00Z',
+    is_delayed: false,
+    notes: 'Currently in transit from Bekasi to Probolinggo',
+    created_at: '2025-11-02T11:00:00Z',
+    updated_at: '2025-11-05T10:00:00Z'
+  },
+  {
+    order_id: 3,
+    po_number: 'PO-2025110003',
+    pr_id: 3,
+    supplier_id: 'SUP-000003',
+    delivery_facility_id: 'FAC-PLN-003',
+    total_value: 120000000,
+    currency: 'IDR',
+    current_status: 'PROCESSING_ORDER',
+    current_step: 2,
+    order_placed_date: '2025-11-04T09:00:00Z',
+    processing_date: '2025-11-04T15:00:00Z',
+    tracking_number: 'TRK-CAM-20251104-003',
+    carrier: 'Pandu Logistics',
+    expected_delivery_date: '2025-11-18T12:00:00Z',
+    is_delayed: false,
+    notes: 'Custom HEPA filters being manufactured, 14 day lead time',
+    created_at: '2025-11-04T09:00:00Z',
+    updated_at: '2025-11-04T15:00:00Z'
+  },
+  {
+    order_id: 4,
+    po_number: 'PO-2025110005',
+    pr_id: 5,
+    supplier_id: 'SUP-000001',
+    delivery_facility_id: 'FAC-PLN-003',
+    total_value: 180000000,
+    currency: 'IDR',
+    current_status: 'SHIPPED',
+    current_step: 3,
+    order_placed_date: '2025-11-05T10:00:00Z',
+    processing_date: '2025-11-05T14:00:00Z',
+    shipped_date: '2025-11-06T08:00:00Z',
+    tracking_number: 'TRK-PEN-20251105-005',
+    carrier: 'Indah Cargo',
+    expected_delivery_date: '2025-11-08T12:00:00Z',
+    is_delayed: false,
+    notes: 'Large equipment shipment - multimedia filter vessel',
+    created_at: '2025-11-05T10:00:00Z',
+    updated_at: '2025-11-06T08:00:00Z'
+  }
+];
+
+// ============================================================================
+// SUMMARY STATISTICS
+// ============================================================================
+
+export const mockPRStatusSummary: PRStatusSummary = {
+  total: mockPRHeaders.length,
+  draft: mockPRHeaders.filter(pr => pr.pr_status === 'Draft').length,
+  pending_approval: mockPRHeaders.filter(pr => pr.pr_status === 'Pending Approval').length,
+  approved: mockPRHeaders.filter(pr => pr.pr_status === 'Approved').length,
+  rejected: mockPRHeaders.filter(pr => pr.pr_status === 'Rejected').length,
+  in_procurement: mockPRHeaders.filter(pr => pr.pr_status === 'In Procurement').length,
+  completed: mockPRHeaders.filter(pr => pr.pr_status === 'Completed').length,
+  cancelled: mockPRHeaders.filter(pr => pr.pr_status === 'Cancelled').length
+};
+
+export const mockOrderStatusSummary: OrderStatusSummary = {
+  total: mockOrders.length,
+  order_placed: mockOrders.filter(o => o.current_status === 'ORDER_PLACED').length,
+  processing: mockOrders.filter(o => o.current_status === 'PROCESSING_ORDER').length,
+  shipped: mockOrders.filter(o => o.current_status === 'SHIPPED').length,
+  delivery: mockOrders.filter(o => o.current_status === 'DELIVERY').length,
+  arrived: mockOrders.filter(o => o.current_status === 'ARRIVED_AT_DESTINATION').length,
+  delayed: mockOrders.filter(o => o.is_delayed).length
+};
+
+// Helper function to populate items with category and supplier details
+export const getItemsWithDetails = (): MarketplaceItem[] => {
+  return mockMarketplaceItems.map(item => ({
+    ...item,
+    category: mockCategories.find(c => c.category_id === item.category_id),
+    supplier: mockSuppliers.find(s => s.supplier_id === item.supplier_id)
+  }));
+};
+
+// Helper function to populate cart items with item details
+export const getCartWithDetails = (userId: string): MarketplaceCartItem[] => {
+  return mockCartItems
+    .filter(cart => cart.user_id === userId)
+    .map(cart => ({
+      ...cart,
+      item: getItemsWithDetails().find(i => i.item_id === cart.item_id)
+    }));
+};
+
+// Helper function to populate PRs with facility details
+export const getPRsWithDetails = (userId?: string) => {
+  // Combine predefined mock PRs with locally created PRs
+  let allPRs = [...mockPRHeaders, ...localPRStorage];
+  
+  if (userId) {
+    allPRs = allPRs.filter(pr => pr.requestor_id === userId);
+  }
+  
+  return allPRs.map(pr => ({
+    ...pr,
+    delivery_facility: mockPLNFacilities.find(f => f.facility_id === pr.delivery_facility_id)
+  }));
+};
+
+// Helper function to populate orders with details
+export const getOrdersWithDetails = () => {
+  return mockOrders.map(order => ({
+    ...order,
+    supplier: mockSuppliers.find(s => s.supplier_id === order.supplier_id),
+    delivery_facility: mockPLNFacilities.find(f => f.facility_id === order.delivery_facility_id)
+  }));
+};
+
+export default {
+  mockCategories,
+  mockSuppliers,
+  mockPLNFacilities,
+  mockMarketplaceItems,
+  mockCartItems,
+  mockPRHeaders,
+  mockOrders,
+  mockPRStatusSummary,
+  mockOrderStatusSummary,
+  getItemsWithDetails,
+  getCartWithDetails,
+  getPRsWithDetails,
+  getOrdersWithDetails
+};
+
+// ============================================================================
+// EXPANDED MARKETPLACE ITEMS - Comprehensive Power Plant Supplies
+// ============================================================================
+
+export const expandedMarketplaceItems: MarketplaceItem[] = [
+  // Additional BALL BEARING items
+  {
+    item_id: 'ITM-BEAR-BALL-001',
+    item_code: 'BRG-BALL-6310-2RS',
+    item_name: 'BALL BEARING Deep Groove 6310-2RS',
+    description: 'Deep groove ball bearing 6310-2RS, double sealed. Chrome steel construction. 50mm bore x 110mm OD x 27mm width. For electric motors, pumps, and industrial equipment. SKF equivalent quality.',
+    category_id: 'CAT-BEARINGS',
+    supplier_id: 'SUP-FILTER-02',
+    unit_of_measure: 'pieces',
+    unit_price: 165000,
+    minimum_order_quantity: 10,
+    stock_quantity: 500,
+    lead_time_days: 7,
+    warranty_months: 24,
+    specifications: {
+      bearing_type: 'Deep Groove Ball Bearing',
+      designation: '6310-2RS',
+      bore_diameter: '50mm',
+      outer_diameter: '110mm',
+      width: '27mm',
+      seal_type: 'Double rubber seal',
+      dynamic_load_rating: '61.8 kN',
+      static_load_rating: '41.5 kN',
+      applications: 'Motors, pumps, fans, general industrial'
+    },
+    images: ['/images/products/bearing-ball-6310.jpg'],
+    is_active: true,
+    created_at: '2025-01-15T00:00:00Z',
+    updated_at: '2025-01-15T00:00:00Z'
+  },
+
+  // CHECK VALVE
+  {
+    item_id: 'ITM-VALV-CHECK-001',
+    item_code: 'VLV-CHECK-SWING-DN80',
+    item_name: 'CHECK VALVE Swing Type DN80',
+    description: 'Swing check valve DN80 (3 inch). Cast iron body with bronze disc. Prevents backflow. PN16 rating. Flanged connections. For water and low-pressure steam applications.',
+    category_id: 'CAT-VALVES',
+    supplier_id: 'SUP-FILTER-03',
+    unit_of_measure: 'pieces',
+    unit_price: 1850000,
+    minimum_order_quantity: 2,
+    stock_quantity: 80,
+    lead_time_days: 14,
+    warranty_months: 24,
+    specifications: {
+      valve_type: 'Swing check valve',
+      size: 'DN80 (3 inch)',
+      body_material: 'Cast iron GG25',
+      disc_material: 'Bronze',
+      pressure_rating: 'PN16',
+      connection: 'Flanged ANSI 125',
+      applications: 'Water systems, steam, pumps'
+    },
+    images: ['/images/products/check-valve-swing.jpg'],
+    is_active: true,
+    created_at: '2025-01-15T00:00:00Z',
+    updated_at: '2025-01-15T00:00:00Z'
+  },
+
+  // GATE VALVE
+  {
+    item_id: 'ITM-VALV-GATE-001',
+    item_code: 'VLV-GATE-RS-DN150',
+    item_name: 'GATE VALVE Rising Stem DN150',
+    description: 'Rising stem gate valve DN150 (6 inch). Cast steel body. Bolted bonnet. Handwheel operated. PN25 rating. For on-off service in steam, water, and oil applications.',
+    category_id: 'CAT-VALVES',
+    supplier_id: 'SUP-FILTER-03',
+    unit_of_measure: 'pieces',
+    unit_price: 8750000,
+    minimum_order_quantity: 1,
+    stock_quantity: 40,
+    lead_time_days: 21,
+    warranty_months: 36,
+    specifications: {
+      valve_type: 'Gate valve, rising stem',
+      size: 'DN150 (6 inch)',
+      body_material: 'Cast steel WCB',
+      trim_material: 'Stainless steel 13Cr',
+      pressure_rating: 'PN25',
+      connection: 'Flanged ANSI 150',
+      operator: 'Handwheel',
+      applications: 'Steam, water, oil systems'
+    },
+    images: ['/images/products/gate-valve-rising.jpg'],
+    is_active: true,
+    created_at: '2025-01-15T00:00:00Z',
+    updated_at: '2025-01-15T00:00:00Z'
+  },
+
+  // GLOBE VALVE
+  {
+    item_id: 'ITM-VALV-GLOBE-001',
+    item_code: 'VLV-GLOBE-Y-DN50',
+    item_name: 'GLOBE VALVE Y-Pattern DN50',
+    description: 'Y-pattern globe valve DN50 (2 inch). Stainless steel 316 body. PTFE packing. Suitable for throttling and on-off service. PN40 rating. For high-pressure steam and thermal oil.',
+    category_id: 'CAT-VALVES',
+    supplier_id: 'SUP-FILTER-03',
+    unit_of_measure: 'pieces',
+    unit_price: 4250000,
+    minimum_order_quantity: 2,
+    stock_quantity: 60,
+    lead_time_days: 18,
+    warranty_months: 24,
+    specifications: {
+      valve_type: 'Globe valve, Y-pattern',
+      size: 'DN50 (2 inch)',
+      body_material: 'Stainless steel 316',
+      disc_material: 'Stainless steel 316',
+      pressure_rating: 'PN40',
+      connection: 'Flanged',
+      temperature_range: '-20°C to +350°C',
+      applications: 'Steam, thermal oil, throttling service'
+    },
+    images: ['/images/products/globe-valve-y.jpg'],
+    is_active: true,
+    created_at: '2025-01-15T00:00:00Z',
+    updated_at: '2025-01-15T00:00:00Z'
+  },
+
+  // NEEDLE VALVE
+  {
+    item_id: 'ITM-VALV-NEEDLE-001',
+    item_code: 'VLV-NEEDLE-SS-15MM',
+    item_name: 'NEEDLE VALVE Stainless Steel 15mm',
+    description: 'Precision needle valve 15mm (1/2 inch). Stainless steel 316 construction. Fine flow control. 6000 psi rating. For instrument and sampling lines. NPT threaded connections.',
+    category_id: 'CAT-VALVES',
+    supplier_id: 'SUP-FILTER-03',
+    unit_of_measure: 'pieces',
+    unit_price: 975000,
+    minimum_order_quantity: 5,
+    stock_quantity: 150,
+    lead_time_days: 10,
+    warranty_months: 24,
+    specifications: {
+      valve_type: 'Needle valve',
+      size: '15mm (1/2 inch)',
+      body_material: 'Stainless steel 316',
+      pressure_rating: '6000 psi (414 bar)',
+      connection: '1/2 inch NPT',
+      stem_type: 'Non-rotating',
+      applications: 'Instrument lines, sampling, flow control'
+    },
+    images: ['/images/products/needle-valve.jpg'],
+    is_active: true,
+    created_at: '2025-01-15T00:00:00Z',
+    updated_at: '2025-01-15T00:00:00Z'
+  },
+
+  // STEAM TRAP
+  {
+    item_id: 'ITM-VALV-TRAP-001',
+    item_code: 'VLV-TRAP-FLT-DN25',
+    item_name: 'TRAP - Float Steam Trap DN25',
+    description: 'Mechanical float-type steam trap DN25 (1 inch). Cast iron body with stainless steel internals. Continuous condensate discharge. For process heating and steam tracing applications.',
+    category_id: 'CAT-VALVES',
+    supplier_id: 'SUP-FILTER-03',
+    unit_of_measure: 'pieces',
+    unit_price: 2450000,
+    minimum_order_quantity: 5,
+    stock_quantity: 100,
+    lead_time_days: 14,
+    warranty_months: 24,
+    specifications: {
+      trap_type: 'Float steam trap',
+      size: 'DN25 (1 inch)',
+      body_material: 'Cast iron',
+      internals: 'Stainless steel',
+      max_pressure: '21 bar',
+      max_temperature: '220°C',
+      connection: 'Screwed BSP',
+      applications: 'Process heating, steam tracing, heat exchangers'
+    },
+    images: ['/images/products/steam-trap-float.jpg'],
+    is_active: true,
+    created_at: '2025-01-15T00:00:00Z',
+    updated_at: '2025-01-15T00:00:00Z'
+  }
+];
+

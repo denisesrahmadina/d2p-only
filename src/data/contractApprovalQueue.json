@@ -1,0 +1,172 @@
+[
+  {
+    "id": "ca-0001",
+    "contract_id": "BPA-2026-AF-001",
+    "sourcing_event_id": "SE-2026-BPA-004",
+    "vendor_name": "PT Air Filter Indonesia",
+    "contract_type": "Blanket Purchase Agreement (BPA)",
+    "contract_nature": "new",
+    "contract_value": 20000000000,
+    "duration_start": "2026-01-01",
+    "duration_end": "2026-12-31",
+    "deadline": "2025-12-15T00:00:00Z",
+    "status": "pending_approval",
+    "stage": "management_review",
+    "submitted_date": "2025-11-10T08:00:00Z",
+    "submitted_by": "Legal Team",
+    "priority": "high",
+    "original_content": {
+      "total_pages": 38,
+      "sections": ["Contract Header", "Contracting Parties", "Scope of Work", "Pricing Terms", "Payment Terms", "Delivery Schedule", "Quality Standards", "Performance Guarantee", "Termination Clauses", "Legal Terms", "Special Conditions"]
+    }
+  },
+  {
+    "id": "ca-0002",
+    "contract_id": "CNT-2025-001",
+    "sourcing_event_id": "SE-2025-002",
+    "vendor_name": "PT Sumber Energi Indonesia",
+    "contract_type": "Power Purchase Agreement",
+    "contract_nature": "new",
+    "contract_value": 5000000000,
+    "duration_start": "2025-03-01",
+    "duration_end": "2028-02-28",
+    "deadline": "2025-02-15T00:00:00Z",
+    "status": "pending_approval",
+    "stage": "management_review",
+    "submitted_date": "2025-11-09T14:30:00Z",
+    "submitted_by": "Contract Team",
+    "priority": "medium",
+    "original_content": {
+      "total_pages": 45,
+      "sections": ["Terms", "Pricing", "Delivery", "Quality Standards"]
+    }
+  },
+  {
+    "id": "ca-0003",
+    "contract_id": "CNT-2025-003",
+    "sourcing_event_id": "SE-2025-004",
+    "vendor_name": "PT Renewable Power Corp",
+    "contract_type": "Maintenance Service Agreement",
+    "contract_nature": "amendment",
+    "original_contract_id": "CNT-2023-045",
+    "contract_value": 1800000000,
+    "duration_start": "2025-02-15",
+    "duration_end": "2026-02-14",
+    "deadline": "2025-02-10T00:00:00Z",
+    "status": "pending_approval",
+    "stage": "management_review",
+    "submitted_date": "2025-11-08T10:00:00Z",
+    "submitted_by": "Procurement Team",
+    "priority": "urgent",
+    "original_content": {
+      "total_pages": 28,
+      "sections": ["Service Level", "Response Time", "Compensation"]
+    }
+  },
+  {
+    "id": "ca-0004",
+    "contract_id": "CNT-2025-005",
+    "sourcing_event_id": "SE-2025-006",
+    "vendor_name": "PT Wind Energy Systems",
+    "contract_type": "Joint Venture Agreement",
+    "contract_nature": "new",
+    "contract_value": 8000000000,
+    "duration_start": "2025-03-15",
+    "duration_end": "2030-03-14",
+    "deadline": "2025-02-25T00:00:00Z",
+    "status": "pending_approval",
+    "stage": "management_review",
+    "submitted_date": "2025-11-09T16:45:00Z",
+    "submitted_by": "Legal Team",
+    "priority": "high",
+    "original_content": {
+      "total_pages": 67,
+      "sections": ["Equity Structure", "Governance", "Profit Sharing", "Exit Clauses"]
+    }
+  },
+  {
+    "id": "ca-0005",
+    "contract_id": "CNT-2025-006",
+    "sourcing_event_id": "SE-2025-007",
+    "vendor_name": "PT Hydroelectric Power",
+    "contract_type": "Construction Contract",
+    "contract_nature": "new",
+    "contract_value": 12000000000,
+    "duration_start": "2025-03-01",
+    "duration_end": "2027-02-28",
+    "deadline": "2025-02-18T00:00:00Z",
+    "status": "pending_approval",
+    "stage": "management_review",
+    "submitted_date": "2025-11-10T09:15:00Z",
+    "submitted_by": "Contract Team",
+    "priority": "high",
+    "original_content": {
+      "total_pages": 89,
+      "sections": ["Scope of Work", "Timeline", "Quality Assurance", "Safety"]
+    }
+  },
+  {
+    "id": "ca-0006",
+    "contract_id": "CNT-2025-007",
+    "sourcing_event_id": "SE-2025-008",
+    "vendor_name": "PT Biomass Energy Group",
+    "contract_type": "Fuel Supply Agreement",
+    "contract_nature": "amendment",
+    "original_contract_id": "CNT-2024-112",
+    "contract_value": 2500000000,
+    "duration_start": "2025-03-01",
+    "duration_end": "2026-02-28",
+    "deadline": "2025-02-28T00:00:00Z",
+    "status": "pending_approval",
+    "stage": "management_review",
+    "submitted_date": "2025-11-09T11:30:00Z",
+    "submitted_by": "Procurement Team",
+    "priority": "medium",
+    "original_content": {
+      "total_pages": 34,
+      "sections": ["Supply Terms", "Quality Standards", "Pricing", "Logistics"]
+    }
+  },
+  {
+    "id": "ca-0007",
+    "contract_id": "CNT-2025-008",
+    "sourcing_event_id": "SE-2025-009",
+    "vendor_name": "PT Geothermal Resources",
+    "contract_type": "Exploration Agreement",
+    "contract_nature": "new",
+    "contract_value": 6500000000,
+    "duration_start": "2025-04-01",
+    "duration_end": "2030-03-31",
+    "deadline": "2025-03-05T00:00:00Z",
+    "status": "pending_approval",
+    "stage": "management_review",
+    "submitted_date": "2025-11-10T13:20:00Z",
+    "submitted_by": "Legal Team",
+    "priority": "medium",
+    "original_content": {
+      "total_pages": 72,
+      "sections": ["Exploration Rights", "Revenue Sharing", "Environmental", "Reporting"]
+    }
+  },
+  {
+    "id": "ca-0008",
+    "contract_id": "CNT-2025-009",
+    "sourcing_event_id": "SE-2025-010",
+    "vendor_name": "PT Smart Grid Technology",
+    "contract_type": "Technology License Agreement",
+    "contract_nature": "new",
+    "contract_value": 3800000000,
+    "duration_start": "2025-02-20",
+    "duration_end": "2027-02-19",
+    "deadline": "2025-02-12T00:00:00Z",
+    "status": "pending_approval",
+    "stage": "management_review",
+    "submitted_date": "2025-11-09T08:45:00Z",
+    "submitted_by": "Contract Team",
+    "priority": "high",
+    "original_content": {
+      "total_pages": 52,
+      "sections": ["License Terms", "IP Rights", "Support", "Training", "Warranty"]
+    }
+  }
+]

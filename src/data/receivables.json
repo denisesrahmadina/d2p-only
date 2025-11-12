@@ -1,0 +1,32 @@
+[
+  {
+    "id": "AR-2025-001",
+    "customer": "Global Manufacturing Corp",
+    "amount": "$125,000",
+    "description": "Q4 2024 Services",
+    "status": "Pending Collection",
+    "priority": "high",
+    "dueDate": "2025-01-30",
+    "invoiceDate": "2024-12-15"
+  },
+  {
+    "id": "AR-2025-002",
+    "customer": "Tech Innovations Ltd",
+    "amount": "$45,000",
+    "description": "Software implementation",
+    "status": "In Progress",
+    "priority": "medium",
+    "dueDate": "2025-02-05",
+    "invoiceDate": "2025-01-05"
+  },
+  {
+    "id": "AR-2025-003",
+    "customer": "Regional Services Inc",
+    "amount": "$28,500",
+    "description": "Consulting services",
+    "status": "Collected",
+    "priority": "medium",
+    "dueDate": "2025-01-20",
+    "invoiceDate": "2024-12-20"
+  }
+]

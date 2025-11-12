@@ -1,0 +1,14 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  optimizeDeps: {
+    exclude: ['lucide-react'],
+    include: ['leaflet', 'react-leaflet', '@react-leaflet/core'],
+  },
+  ssr: {
+    noExternal: ['react-leaflet', '@react-leaflet/core']
+  }
+});

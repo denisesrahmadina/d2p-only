@@ -1,0 +1,61 @@
+/*
+  # Populate task_historical table with historical data
+
+  1. Data Migration
+    - Insert all historical records from ticketHistorical.json
+    - Map ticketId to task_id
+    - Convert field names to snake_case format
+*/
+
+INSERT INTO task_historical (history_id, task_id, timestamp, from_status, to_status, changed_by, changed_by_type, reason, notes, assigned_to, assigned_to_type, priority, category)
+VALUES
+  ('hist-001', 'TKT-001', '2025-01-22T09:15:00Z', NULL, 'Created', 'SAP System', 'system', 'Automated invoice processing triggered', 'Invoice INV-2024-001234 submitted for processing', 'ptm_f7', 'ai_agent', 'medium', 'Finance'),
+  ('hist-002', 'TKT-001', '2025-01-22T09:16:30Z', 'Created', 'Assigned To', 'ptm_f7', 'ai_agent', 'AI agent automatically assigned to process invoice', 'Finance AI agent ptm_f7 assigned for invoice processing', 'ptm_f7', 'ai_agent', 'medium', 'Finance'),
+  ('hist-003', 'TKT-002', '2025-01-22T08:30:00Z', NULL, 'Created', 'ssc_h1', 'human', 'New employee onboarding request submitted', 'Employee onboarding for John Smith in IT Department', NULL, NULL, 'high', 'HR'),
+  ('hist-004', 'TKT-002', '2025-01-22T08:45:00Z', 'Created', 'Assigned To', 'Michael Chen', 'human', 'Manual assignment to HR Services Director', 'Assigned to Michael Chen for employee onboarding process', 'Michael Chen', 'human', 'high', 'HR'),
+  ('hist-005', 'TKT-002', '2025-01-22T10:45:00Z', 'Assigned To', 'Assigned To', 'Michael Chen', 'human', 'Status update with progress notes', 'Onboarding documentation completed, waiting for IT access setup', 'Michael Chen', 'human', 'high', 'HR'),
+  ('hist-006', 'TKT-003', '2025-01-21T14:20:00Z', NULL, 'Created', 'ssc_p1', 'human', 'Purchase order approval request submitted', 'PO-2024-5678 for IT equipment requiring manager approval', NULL, NULL, 'high', 'Procurement'),
+  ('hist-007', 'TKT-003', '2025-01-21T15:30:00Z', 'Created', 'Assigned To', 'David Kumar', 'human', 'Assigned to Procurement Director for approval', 'High-value purchase order assigned for review and approval', 'David Kumar', 'human', 'high', 'Procurement'),
+  ('hist-008', 'TKT-003', '2025-01-22T09:15:00Z', 'Assigned To', 'Done', 'David Kumar', 'human', 'Purchase order approved and processed', 'PO-2024-5678 approved for $125,000 IT equipment purchase', 'David Kumar', 'human', 'high', 'Procurement'),
+  ('hist-009', 'TKT-003', '2025-01-22T11:30:00Z', 'Done', 'Review for Closure', 'David Kumar', 'human', 'Moved to review for final closure verification', 'Purchase order completed, pending final review before closure', 'David Kumar', 'human', 'high', 'Procurement'),
+  ('hist-010', 'TKT-004', '2025-01-22T07:45:00Z', NULL, 'Created', 'ptm_i4', 'ai_agent', 'Automated password reset request detected', 'Password reset request for user sarah.johnson@ssc.com', 'ptm_i4', 'ai_agent', 'low', 'IT Support'),
+  ('hist-011', 'TKT-004', '2025-01-22T07:46:00Z', 'Created', 'Assigned To', 'ptm_i4', 'ai_agent', 'AI agent automatically assigned for password reset', 'IT Support AI agent processing password reset automatically', 'ptm_i4', 'ai_agent', 'low', 'IT Support'),
+  ('hist-012', 'TKT-004', '2025-01-22T07:47:00Z', 'Assigned To', 'Done', 'ptm_i4', 'ai_agent', 'Password reset completed successfully', 'Password reset email sent to user, new password generated', 'ptm_i4', 'ai_agent', 'low', 'IT Support'),
+  ('hist-013', 'TKT-005', '2025-01-20T10:00:00Z', NULL, 'Created', 'ssc_c1', 'human', 'Vendor compliance review request submitted', 'ABC Logistics contract renewal compliance review required', NULL, NULL, 'medium', 'Compliance'),
+  ('hist-014', 'TKT-005', '2025-01-20T11:30:00Z', 'Created', 'Assigned To', 'Robert Thompson', 'human', 'Assigned to Compliance Director for review', 'Compliance review assigned to Robert Thompson', 'Robert Thompson', 'human', 'medium', 'Compliance'),
+  ('hist-015', 'TKT-005', '2025-01-21T14:20:00Z', 'Assigned To', 'Done', 'Robert Thompson', 'human', 'Compliance review completed', 'Vendor compliance documentation reviewed and approved', 'Robert Thompson', 'human', 'medium', 'Compliance'),
+  ('hist-016', 'TKT-005', '2025-01-22T08:15:00Z', 'Done', 'Closed', 'Robert Thompson', 'human', 'Final closure after successful completion', 'Vendor compliance review completed successfully, contract renewed', 'Robert Thompson', 'human', 'medium', 'Compliance'),
+  ('hist-017', 'TKT-005', '2025-01-22T09:20:00Z', 'Closed', 'Re-Open', 'Robert Thompson', 'human', 'Additional compliance documentation required', 'Reopened due to additional compliance requirements from legal team', 'Robert Thompson', 'human', 'medium', 'Compliance'),
+  ('hist-018', 'TKT-006', '2025-01-21T23:00:00Z', NULL, 'Created', 'ssc_f1', 'human', 'Monthly financial report generation requested', 'December 2024 financial reports generation required', 'ptm_f7', 'ai_agent', 'high', 'Finance'),
+  ('hist-019', 'TKT-006', '2025-01-21T23:01:00Z', 'Created', 'Assigned To', 'ptm_f7', 'ai_agent', 'AI agent automatically assigned for report generation', 'Finance AI agent processing monthly financial reports', 'ptm_f7', 'ai_agent', 'high', 'Finance'),
+  ('hist-020', 'TKT-006', '2025-01-22T02:30:00Z', 'Assigned To', 'Done', 'ptm_f7', 'ai_agent', 'Financial reports generated successfully', 'December 2024 financial reports completed and validated', 'ptm_f7', 'ai_agent', 'high', 'Finance'),
+  ('hist-021', 'TKT-006', '2025-01-22T08:00:00Z', 'Done', 'Closed', 'ptm_f7', 'ai_agent', 'Reports delivered and validated by stakeholders', 'Financial reports successfully delivered to all stakeholders', 'ptm_f7', 'ai_agent', 'high', 'Finance'),
+  ('hist-022', 'TKT-007', '2025-01-22T06:00:00Z', NULL, 'Created', 'ptm_am1', 'ai_agent', 'IoT sensors detected maintenance requirement', 'Equipment EQ-001234 requires preventive maintenance based on sensor data', 'ptm_am1', 'ai_agent', 'high', 'Maintenance'),
+  ('hist-023', 'TKT-007', '2025-01-22T06:05:00Z', 'Created', 'Assigned To', 'ptm_am1', 'ai_agent', 'Asset management AI agent assigned', 'AI agent analyzing maintenance requirements and scheduling', 'ptm_am1', 'ai_agent', 'high', 'Maintenance'),
+  ('hist-024', 'TKT-008', '2025-01-19T11:00:00Z', NULL, 'Created', 'ssc_p1', 'human', 'Contract renewal review request submitted', 'Legal Services Agreement contract renewal for $250,000', NULL, NULL, 'medium', 'Procurement'),
+  ('hist-025', 'TKT-008', '2025-01-19T12:15:00Z', 'Created', 'Assigned To', 'Jennifer Rodriguez', 'human', 'Assigned to IT Support Director for review', 'Contract review assigned to Jennifer Rodriguez', 'Jennifer Rodriguez', 'human', 'medium', 'Procurement'),
+  ('hist-026', 'TKT-008', '2025-01-21T16:45:00Z', 'Assigned To', 'Done', 'Jennifer Rodriguez', 'human', 'Contract review completed successfully', 'Legal services contract reviewed and approved for renewal', 'Jennifer Rodriguez', 'human', 'medium', 'Procurement'),
+  ('hist-027', 'TKT-008', '2025-01-22T14:20:00Z', 'Done', 'Done', 'Jennifer Rodriguez', 'human', 'Final documentation update', 'Contract renewal documentation finalized and archived', 'Jennifer Rodriguez', 'human', 'medium', 'Procurement'),
+  ('hist-028', 'TKT-009', '2025-01-22T05:00:00Z', NULL, 'Created', 'ptm_a5', 'ai_agent', 'Quarterly analytics report generation triggered', 'Q4 performance analytics report generation initiated', 'ptm_a5', 'ai_agent', 'high', 'Analytics'),
+  ('hist-029', 'TKT-009', '2025-01-22T05:15:00Z', 'Created', 'Assigned To', 'ptm_a5', 'ai_agent', 'Analytics AI agent assigned for report generation', 'Data analytics AI processing Q4 performance metrics', 'ptm_a5', 'ai_agent', 'high', 'Analytics'),
+  ('hist-030', 'TKT-010', '2025-01-18T09:00:00Z', NULL, 'Created', 'ssc_c1', 'human', 'ISO 27001 audit preparation request', 'Compliance audit preparation for ISO 27001 certification', NULL, NULL, 'high', 'Compliance'),
+  ('hist-031', 'TKT-010', '2025-01-18T10:30:00Z', 'Created', 'Assigned To', 'Lisa Wang', 'human', 'Assigned to Analytics Director for audit preparation', 'ISO 27001 audit preparation assigned to Lisa Wang', 'Lisa Wang', 'human', 'high', 'Compliance'),
+  ('hist-032', 'TKT-010', '2025-01-20T14:30:00Z', 'Assigned To', 'Done', 'Lisa Wang', 'human', 'Audit documentation completed', 'ISO 27001 audit documentation prepared and validated', 'Lisa Wang', 'human', 'high', 'Compliance'),
+  ('hist-033', 'TKT-010', '2025-01-22T16:45:00Z', 'Done', 'Review for Closure', 'Lisa Wang', 'human', 'Moved to review for final audit readiness check', 'Audit preparation complete, pending final review', 'Lisa Wang', 'human', 'high', 'Compliance'),
+  ('hist-034', 'TKT-011', '2025-01-21T16:30:00Z', NULL, 'Created', 'ptm_f7', 'ai_agent', 'Expense report processing triggered', 'December 2024 travel expense reports submitted for processing', 'ptm_f7', 'ai_agent', 'low', 'Finance'),
+  ('hist-035', 'TKT-011', '2025-01-21T16:31:00Z', 'Created', 'Assigned To', 'ptm_f7', 'ai_agent', 'Finance AI agent assigned for expense processing', 'AI agent processing travel expense reports automatically', 'ptm_f7', 'ai_agent', 'low', 'Finance'),
+  ('hist-036', 'TKT-011', '2025-01-22T08:15:00Z', 'Assigned To', 'Done', 'ptm_f7', 'ai_agent', 'Expense reports processed and approved', 'Travel expense reports processed, $28,500 total approved', 'ptm_f7', 'ai_agent', 'low', 'Finance'),
+  ('hist-037', 'TKT-012', '2025-01-22T11:00:00Z', NULL, 'Created', 'ssc_i1', 'human', 'IT asset inventory update request', 'Hardware deployments and retirements require inventory update', NULL, NULL, 'low', 'IT Support'),
+  ('hist-038', 'TKT-012', '2025-01-22T11:30:00Z', 'Created', 'Assigned To', 'Priya Sharma', 'human', 'Assigned to IT Support Manager', 'Asset inventory update assigned to Priya Sharma', 'Priya Sharma', 'human', 'low', 'IT Support'),
+  ('hist-039', 'TKT-013', '2025-01-22T12:00:00Z', NULL, 'Created', 'ptm_hr5', 'ai_agent', 'Monthly payroll cycle initiated', 'January 2025 payroll processing for 12,847 employees', 'ptm_hr5', 'ai_agent', 'high', 'HR'),
+  ('hist-040', 'TKT-013', '2025-01-22T12:05:00Z', 'Created', 'Assigned To', 'ptm_hr5', 'ai_agent', 'HR AI agent assigned for payroll processing', 'HR AI agent processing monthly payroll automatically', 'ptm_hr5', 'ai_agent', 'high', 'HR'),
+  ('hist-041', 'TKT-014', '2025-01-21T09:30:00Z', NULL, 'Created', 'ptm_a5', 'ai_agent', 'Budget variance analysis request triggered', 'Q4 2024 budget variance analysis and recommendations', 'ptm_a5', 'ai_agent', 'medium', 'Analytics'),
+  ('hist-042', 'TKT-014', '2025-01-21T09:31:00Z', 'Created', 'Assigned To', 'ptm_a5', 'ai_agent', 'Analytics AI agent assigned for budget analysis', 'Data analytics AI processing budget variance analysis', 'ptm_a5', 'ai_agent', 'medium', 'Analytics'),
+  ('hist-043', 'TKT-014', '2025-01-22T14:15:00Z', 'Assigned To', 'Done', 'ptm_a5', 'ai_agent', 'Budget variance analysis completed', 'Q4 budget analysis completed with recommendations generated', 'ptm_a5', 'ai_agent', 'medium', 'Analytics'),
+  ('hist-044', 'TKT-015', '2025-01-22T13:45:00Z', NULL, 'Created', 'ssc_i1', 'human', 'Software license renewal request', 'Microsoft Office 365 license renewal for 3,200 users', NULL, NULL, 'high', 'IT Support'),
+  ('hist-045', 'TKT-015', '2025-01-22T14:00:00Z', 'Created', 'Assigned To', 'Jennifer Rodriguez', 'human', 'Assigned to IT Support Director', 'License renewal assigned to Jennifer Rodriguez for approval', 'Jennifer Rodriguez', 'human', 'high', 'IT Support'),
+  ('hist-046', 'TKT-016', '2025-01-22T14:30:00Z', NULL, 'Created', 'ptm_f7', 'ai_agent', 'Vendor payment batch ready for processing', 'Payment batch 2025-001 with $2.4M total amount ready', 'ptm_f7', 'ai_agent', 'high', 'Finance'),
+  ('hist-047', 'TKT-016', '2025-01-22T14:35:00Z', 'Created', 'Assigned To', 'ptm_f7', 'ai_agent', 'Finance AI agent assigned for payment processing', 'AI agent processing vendor payment batch automatically', 'ptm_f7', 'ai_agent', 'high', 'Finance'),
+  ('hist-048', 'TKT-017', '2025-01-22T15:00:00Z', NULL, 'Created', 'ssc_h1', 'human', 'Benefits enrollment review request', 'Q1 2025 employee benefits enrollment changes review', NULL, NULL, 'medium', 'HR'),
+  ('hist-049', 'TKT-017', '2025-01-22T15:30:00Z', 'Created', 'Assigned To', 'Carlos Martinez', 'human', 'Assigned to HR Operations Manager', 'Benefits enrollment review assigned to Carlos Martinez', 'Carlos Martinez', 'human', 'medium', 'HR')
+ON CONFLICT (history_id) DO NOTHING;

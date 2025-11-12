@@ -1,0 +1,74 @@
+[
+  {
+    "id": "s0000000-0000-0000-0000-000000000001",
+    "contract_review_id": "c0000000-0000-0000-0000-000000000000",
+    "stakeholder_type": "procurement",
+    "approval_status": "approved",
+    "approved_by": "Robert Kim - Procurement Manager",
+    "approved_at": "2025-11-07T13:15:00Z",
+    "comments": "BPA structure is well-designed with appropriate volume discounts and expedited delivery provisions. The pricing is competitive and aligns with market rates for high-quality air filtration systems. Recommend approval."
+  },
+  {
+    "id": "s0000000-0000-0000-0000-000000000002",
+    "contract_review_id": "c0000000-0000-0000-0000-000000000000",
+    "stakeholder_type": "legal",
+    "approval_status": "pending",
+    "approved_by": null,
+    "approved_at": null,
+    "comments": null
+  },
+  {
+    "id": "s0000000-0000-0000-0000-000000000003",
+    "contract_review_id": "c0000000-0000-0000-0000-000000000000",
+    "stakeholder_type": "finance",
+    "approval_status": "pending",
+    "approved_by": null,
+    "approved_at": null,
+    "comments": null
+  },
+  {
+    "id": "s0000000-0000-0000-0000-000000000004",
+    "contract_review_id": "c0000000-0000-0000-0000-000000000000",
+    "stakeholder_type": "executive",
+    "approval_status": "pending",
+    "approved_by": null,
+    "approved_at": null,
+    "comments": null
+  },
+  {
+    "id": "s1111111-1111-1111-1111-111111111111",
+    "contract_review_id": "c3333333-3333-3333-3333-333333333333",
+    "stakeholder_type": "procurement",
+    "approval_status": "approved",
+    "approved_by": "Sarah Johnson - Procurement Manager",
+    "approved_at": "2025-01-14T14:30:00Z",
+    "comments": "Commercial terms are acceptable. The revised response time commitment significantly improves our operational risk profile."
+  },
+  {
+    "id": "s2222222-2222-2222-2222-222222222222",
+    "contract_review_id": "c3333333-3333-3333-3333-333333333333",
+    "stakeholder_type": "legal",
+    "approval_status": "pending",
+    "approved_by": null,
+    "approved_at": null,
+    "comments": null
+  },
+  {
+    "id": "s3333333-3333-3333-3333-333333333333",
+    "contract_review_id": "c1111111-1111-1111-1111-111111111111",
+    "stakeholder_type": "procurement",
+    "approval_status": "pending",
+    "approved_by": null,
+    "approved_at": null,
+    "comments": null
+  },
+  {
+    "id": "s4444444-4444-4444-4444-444444444444",
+    "contract_review_id": "c1111111-1111-1111-1111-111111111111",
+    "stakeholder_type": "legal",
+    "approval_status": "pending",
+    "approved_by": null,
+    "approved_at": null,
+    "comments": null
+  }
+]
