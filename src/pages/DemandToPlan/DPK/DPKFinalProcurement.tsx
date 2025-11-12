@@ -66,7 +66,26 @@ const DPKFinalProcurement: React.FC = () => {
   ];
 
   const materialProcurementData: MaterialProcurementData = useMemo(() => ({
-  'Filter air': {
+  'All Material': {
+    totalQuantity: 1392,
+    unitPrice: 400000000,
+    totalAmount: 629320000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 110, unitPrice: 400000000, totalAmount: 48800000000 },
+      { month: 'Feb', netProcurement: 104, unitPrice: 400000000, totalAmount: 46480000000 },
+      { month: 'Mar', netProcurement: 121, unitPrice: 400000000, totalAmount: 54200000000 },
+      { month: 'Apr', netProcurement: 115, unitPrice: 400000000, totalAmount: 51950000000 },
+      { month: 'May', netProcurement: 128, unitPrice: 400000000, totalAmount: 57900000000 },
+      { month: 'Jun', netProcurement: 111, unitPrice: 400000000, totalAmount: 50190000000 },
+      { month: 'Jul', netProcurement: 119, unitPrice: 400000000, totalAmount: 54100000000 },
+      { month: 'Aug', netProcurement: 122, unitPrice: 400000000, totalAmount: 55360000000 },
+      { month: 'Sep', netProcurement: 109, unitPrice: 400000000, totalAmount: 49400000000 },
+      { month: 'Oct', netProcurement: 119, unitPrice: 400000000, totalAmount: 54020000000 },
+      { month: 'Nov', netProcurement: 128, unitPrice: 400000000, totalAmount: 58080000000 },
+      { month: 'Dec', netProcurement: 126, unitPrice: 400000000, totalAmount: 57340000000 }
+    ]
+  },
+  'Air Filter': {
     totalQuantity: 392,
     unitPrice: 300000000,
     totalAmount: 117600000000,
@@ -146,7 +165,7 @@ const DPKFinalProcurement: React.FC = () => {
       
     ]
   },
-  'Filter Udara Cartridge': {
+  'Fuel Filter': {
     totalQuantity: 284,
     unitPrice: 700000000,
     totalAmount: 198800000000,
@@ -226,7 +245,7 @@ const DPKFinalProcurement: React.FC = () => {
       
     ]
   },
-  'Oil Filter': {
+  'Oil filter': {
     totalQuantity: 464,
     unitPrice: 50000000,
     totalAmount: 23200000000,
@@ -306,7 +325,7 @@ const DPKFinalProcurement: React.FC = () => {
       
     ]
   },
-  'Filter Gas': {
+  'Gas Filter': {
     totalQuantity: 180,
     unitPrice: 250000000,
     totalAmount: 57500000000,
@@ -386,7 +405,7 @@ const DPKFinalProcurement: React.FC = () => {
       
     ]
   },
-  'Filter Udara Kassa': {
+  'Chemical filter': {
     totalQuantity: 320,
     unitPrice: 100000000,
     totalAmount: 32000000000,
@@ -464,6 +483,63 @@ const DPKFinalProcurement: React.FC = () => {
         totalAmount: 3100000000
       },
 
+    ]
+  },
+  'Special filter': {
+    totalQuantity: 156,
+    unitPrice: 450000000,
+    totalAmount: 70200000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 12, unitPrice: 450000000, totalAmount: 5400000000 },
+      { month: 'Feb', netProcurement: 11, unitPrice: 450000000, totalAmount: 4950000000 },
+      { month: 'Mar', netProcurement: 14, unitPrice: 450000000, totalAmount: 6300000000 },
+      { month: 'Apr', netProcurement: 13, unitPrice: 450000000, totalAmount: 5850000000 },
+      { month: 'May', netProcurement: 15, unitPrice: 450000000, totalAmount: 6750000000 },
+      { month: 'Jun', netProcurement: 12, unitPrice: 450000000, totalAmount: 5400000000 },
+      { month: 'Jul', netProcurement: 13, unitPrice: 450000000, totalAmount: 5850000000 },
+      { month: 'Aug', netProcurement: 14, unitPrice: 450000000, totalAmount: 6300000000 },
+      { month: 'Sep', netProcurement: 11, unitPrice: 450000000, totalAmount: 4950000000 },
+      { month: 'Oct', netProcurement: 13, unitPrice: 450000000, totalAmount: 5850000000 },
+      { month: 'Nov', netProcurement: 14, unitPrice: 450000000, totalAmount: 6300000000 },
+      { month: 'Dec', netProcurement: 14, unitPrice: 450000000, totalAmount: 6300000000 }
+    ]
+  },
+  'Multi function filter': {
+    totalQuantity: 218,
+    unitPrice: 520000000,
+    totalAmount: 113360000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 17, unitPrice: 520000000, totalAmount: 8840000000 },
+      { month: 'Feb', netProcurement: 16, unitPrice: 520000000, totalAmount: 8320000000 },
+      { month: 'Mar', netProcurement: 19, unitPrice: 520000000, totalAmount: 9880000000 },
+      { month: 'Apr', netProcurement: 18, unitPrice: 520000000, totalAmount: 9360000000 },
+      { month: 'May', netProcurement: 20, unitPrice: 520000000, totalAmount: 10400000000 },
+      { month: 'Jun', netProcurement: 17, unitPrice: 520000000, totalAmount: 8840000000 },
+      { month: 'Jul', netProcurement: 19, unitPrice: 520000000, totalAmount: 9880000000 },
+      { month: 'Aug', netProcurement: 18, unitPrice: 520000000, totalAmount: 9360000000 },
+      { month: 'Sep', netProcurement: 17, unitPrice: 520000000, totalAmount: 8840000000 },
+      { month: 'Oct', netProcurement: 19, unitPrice: 520000000, totalAmount: 9880000000 },
+      { month: 'Nov', netProcurement: 19, unitPrice: 520000000, totalAmount: 9880000000 },
+      { month: 'Dec', netProcurement: 19, unitPrice: 520000000, totalAmount: 9880000000 }
+    ]
+  },
+  'Water filter': {
+    totalQuantity: 342,
+    unitPrice: 380000000,
+    totalAmount: 129960000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 26, unitPrice: 380000000, totalAmount: 9880000000 },
+      { month: 'Feb', netProcurement: 27, unitPrice: 380000000, totalAmount: 10260000000 },
+      { month: 'Mar', netProcurement: 29, unitPrice: 380000000, totalAmount: 11020000000 },
+      { month: 'Apr', netProcurement: 28, unitPrice: 380000000, totalAmount: 10640000000 },
+      { month: 'May', netProcurement: 30, unitPrice: 380000000, totalAmount: 11400000000 },
+      { month: 'Jun', netProcurement: 28, unitPrice: 380000000, totalAmount: 10640000000 },
+      { month: 'Jul', netProcurement: 29, unitPrice: 380000000, totalAmount: 11020000000 },
+      { month: 'Aug', netProcurement: 30, unitPrice: 380000000, totalAmount: 11400000000 },
+      { month: 'Sep', netProcurement: 27, unitPrice: 380000000, totalAmount: 10260000000 },
+      { month: 'Oct', netProcurement: 29, unitPrice: 380000000, totalAmount: 11020000000 },
+      { month: 'Nov', netProcurement: 30, unitPrice: 380000000, totalAmount: 11400000000 },
+      { month: 'Dec', netProcurement: 29, unitPrice: 380000000, totalAmount: 11020000000 }
     ]
   },
   'Bottom Ash Removal Systems': {
