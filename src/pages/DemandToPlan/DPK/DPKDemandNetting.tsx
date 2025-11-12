@@ -586,15 +586,16 @@ const DPKDemandNetting: React.FC = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
                   {currentMaterialData.monthlyData.map((row, index) => {
-                    const inventoryAmount = row.inventoryFulfillment * row.unitPrice;
+                    const currentInventory = getInventoryFulfillment(row.month, row.inventoryFulfillment);
+                    const inventoryAmount = currentInventory * row.unitPrice;
                     return (
                       <tr key={index} className="hover:bg-green-50 dark:hover:bg-green-900/10 transition-colors">
                         <td className="px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">{row.month}</td>
                         <td className="px-4 py-3 text-sm text-right text-gray-600 dark:text-gray-400">{row.adjustedDemand.toLocaleString()} units</td>
-                        <td className="px-4 py-3 text-sm text-right font-semibold text-green-700 dark:text-green-400">{row.inventoryFulfillment.toLocaleString()} units</td>
+                        <td className="px-4 py-3 text-sm text-right font-semibold text-green-700 dark:text-green-400">{currentInventory.toLocaleString()} units</td>
                         <td className="px-4 py-3 text-sm text-right font-bold text-green-700 dark:text-green-400">{formatCurrency(inventoryAmount)}</td>
                         <td className="px-4 py-3 text-sm text-right font-semibold text-green-700 dark:text-green-400">
-                          {((row.inventoryFulfillment / row.adjustedDemand) * 100).toFixed(1)}%
+                          {((currentInventory / row.adjustedDemand) * 100).toFixed(1)}%
                         </td>
                       </tr>
                     );
@@ -602,10 +603,14 @@ const DPKDemandNetting: React.FC = () => {
                   <tr className="bg-green-100 dark:bg-green-900/30 font-bold">
                     <td className="px-4 py-4 text-sm text-gray-900 dark:text-white uppercase">Total</td>
                     <td className="px-4 py-4 text-sm text-right text-gray-900 dark:text-white">{currentMaterialData.adjustedTotal.toLocaleString()} units</td>
-                    <td className="px-4 py-4 text-sm text-right text-green-700 dark:text-green-300">{currentMaterialData.inventoryTotal.toLocaleString()} units</td>
-                    <td className="px-4 py-4 text-sm text-right font-bold text-green-700 dark:text-green-300">{formatCurrency(currentMaterialData.inventoryTotal * currentMaterialData.unitPrice)}</td>
                     <td className="px-4 py-4 text-sm text-right text-green-700 dark:text-green-300">
-                      {((currentMaterialData.inventoryTotal / currentMaterialData.adjustedTotal) * 100).toFixed(1)}%
+                      {currentMaterialData.monthlyData.reduce((sum, row) => sum + getInventoryFulfillment(row.month, row.inventoryFulfillment), 0).toLocaleString()} units
+                    </td>
+                    <td className="px-4 py-4 text-sm text-right font-bold text-green-700 dark:text-green-300">
+                      {formatCurrency(currentMaterialData.monthlyData.reduce((sum, row) => sum + (getInventoryFulfillment(row.month, row.inventoryFulfillment) * row.unitPrice), 0))}
+                    </td>
+                    <td className="px-4 py-4 text-sm text-right text-green-700 dark:text-green-300">
+                      {((currentMaterialData.monthlyData.reduce((sum, row) => sum + getInventoryFulfillment(row.month, row.inventoryFulfillment), 0) / currentMaterialData.adjustedTotal) * 100).toFixed(1)}%
                     </td>
                   </tr>
                 </tbody>
@@ -649,15 +654,16 @@ const DPKDemandNetting: React.FC = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
                   {currentMaterialData.monthlyData.map((row, index) => {
-                    const contractAmount = row.contractFulfillment * row.unitPrice;
+                    const currentContract = getContractFulfillment(row.month, row.contractFulfillment);
+                    const contractAmount = currentContract * row.unitPrice;
                     return (
                       <tr key={index} className="hover:bg-purple-50 dark:hover:bg-purple-900/10 transition-colors">
                         <td className="px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">{row.month}</td>
                         <td className="px-4 py-3 text-sm text-right text-gray-600 dark:text-gray-400">{row.adjustedDemand.toLocaleString()} units</td>
-                        <td className="px-4 py-3 text-sm text-right font-semibold text-purple-700 dark:text-purple-400">{row.contractFulfillment.toLocaleString()} units</td>
+                        <td className="px-4 py-3 text-sm text-right font-semibold text-purple-700 dark:text-purple-400">{currentContract.toLocaleString()} units</td>
                         <td className="px-4 py-3 text-sm text-right font-bold text-purple-700 dark:text-purple-400">{formatCurrency(contractAmount)}</td>
                         <td className="px-4 py-3 text-sm text-right font-semibold text-purple-700 dark:text-purple-400">
-                          {((row.contractFulfillment / row.adjustedDemand) * 100).toFixed(1)}%
+                          {((currentContract / row.adjustedDemand) * 100).toFixed(1)}%
                         </td>
                       </tr>
                     );
@@ -665,10 +671,14 @@ const DPKDemandNetting: React.FC = () => {
                   <tr className="bg-purple-100 dark:bg-purple-900/30 font-bold">
                     <td className="px-4 py-4 text-sm text-gray-900 dark:text-white uppercase">Total</td>
                     <td className="px-4 py-4 text-sm text-right text-gray-900 dark:text-white">{currentMaterialData.adjustedTotal.toLocaleString()} units</td>
-                    <td className="px-4 py-4 text-sm text-right text-purple-700 dark:text-purple-300">{currentMaterialData.contractTotal.toLocaleString()} units</td>
-                    <td className="px-4 py-4 text-sm text-right font-bold text-purple-700 dark:text-purple-300">{formatCurrency(currentMaterialData.contractTotal * currentMaterialData.unitPrice)}</td>
                     <td className="px-4 py-4 text-sm text-right text-purple-700 dark:text-purple-300">
-                      {((currentMaterialData.contractTotal / currentMaterialData.adjustedTotal) * 100).toFixed(1)}%
+                      {currentMaterialData.monthlyData.reduce((sum, row) => sum + getContractFulfillment(row.month, row.contractFulfillment), 0).toLocaleString()} units
+                    </td>
+                    <td className="px-4 py-4 text-sm text-right font-bold text-purple-700 dark:text-purple-300">
+                      {formatCurrency(currentMaterialData.monthlyData.reduce((sum, row) => sum + (getContractFulfillment(row.month, row.contractFulfillment) * row.unitPrice), 0))}
+                    </td>
+                    <td className="px-4 py-4 text-sm text-right text-purple-700 dark:text-purple-300">
+                      {((currentMaterialData.monthlyData.reduce((sum, row) => sum + getContractFulfillment(row.month, row.contractFulfillment), 0) / currentMaterialData.adjustedTotal) * 100).toFixed(1)}%
                     </td>
                   </tr>
                 </tbody>
@@ -712,15 +722,16 @@ const DPKDemandNetting: React.FC = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
                   {currentMaterialData.monthlyData.map((row, index) => {
-                    const transferAmount = row.stockTransfer * row.unitPrice;
+                    const currentTransfer = getStockTransfer(row.month, row.stockTransfer);
+                    const transferAmount = currentTransfer * row.unitPrice;
                     return (
                       <tr key={index} className="hover:bg-amber-50 dark:hover:bg-amber-900/10 transition-colors">
                         <td className="px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">{row.month}</td>
                         <td className="px-4 py-3 text-sm text-right text-gray-600 dark:text-gray-400">{row.adjustedDemand.toLocaleString()} units</td>
-                        <td className="px-4 py-3 text-sm text-right font-semibold text-amber-700 dark:text-amber-400">{row.stockTransfer.toLocaleString()} units</td>
+                        <td className="px-4 py-3 text-sm text-right font-semibold text-amber-700 dark:text-amber-400">{currentTransfer.toLocaleString()} units</td>
                         <td className="px-4 py-3 text-sm text-right font-bold text-amber-700 dark:text-amber-400">{formatCurrency(transferAmount)}</td>
                         <td className="px-4 py-3 text-sm text-right font-semibold text-amber-700 dark:text-amber-400">
-                          {((row.stockTransfer / row.adjustedDemand) * 100).toFixed(1)}%
+                          {((currentTransfer / row.adjustedDemand) * 100).toFixed(1)}%
                         </td>
                       </tr>
                     );
@@ -728,10 +739,14 @@ const DPKDemandNetting: React.FC = () => {
                   <tr className="bg-amber-100 dark:bg-amber-900/30 font-bold">
                     <td className="px-4 py-4 text-sm text-gray-900 dark:text-white uppercase">Total</td>
                     <td className="px-4 py-4 text-sm text-right text-gray-900 dark:text-white">{currentMaterialData.adjustedTotal.toLocaleString()} units</td>
-                    <td className="px-4 py-4 text-sm text-right text-amber-700 dark:text-amber-300">{currentMaterialData.transferTotal.toLocaleString()} units</td>
-                    <td className="px-4 py-4 text-sm text-right font-bold text-amber-700 dark:text-amber-300">{formatCurrency(currentMaterialData.transferTotal * currentMaterialData.unitPrice)}</td>
                     <td className="px-4 py-4 text-sm text-right text-amber-700 dark:text-amber-300">
-                      {((currentMaterialData.transferTotal / currentMaterialData.adjustedTotal) * 100).toFixed(1)}%
+                      {currentMaterialData.monthlyData.reduce((sum, row) => sum + getStockTransfer(row.month, row.stockTransfer), 0).toLocaleString()} units
+                    </td>
+                    <td className="px-4 py-4 text-sm text-right font-bold text-amber-700 dark:text-amber-300">
+                      {formatCurrency(currentMaterialData.monthlyData.reduce((sum, row) => sum + (getStockTransfer(row.month, row.stockTransfer) * row.unitPrice), 0))}
+                    </td>
+                    <td className="px-4 py-4 text-sm text-right text-amber-700 dark:text-amber-300">
+                      {((currentMaterialData.monthlyData.reduce((sum, row) => sum + getStockTransfer(row.month, row.stockTransfer), 0) / currentMaterialData.adjustedTotal) * 100).toFixed(1)}%
                     </td>
                   </tr>
                 </tbody>
