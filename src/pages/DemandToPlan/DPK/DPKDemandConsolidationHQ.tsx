@@ -83,8 +83,8 @@ const materialPrices: { [key: string]: number } = {
 
 const INITIAL_HIGH_DEVIATION_ALERTS = [
   { unitName: 'UBP ADP', material: 'Water filter', deviation: 1.60 },
-  { unitName: 'PLTU Suralaya', material: 'Air Filter', deviation: 1.45 },
-  { unitName: 'PLTU Paiton', material: 'Fuel Filter', deviation: 1.35 }
+  { unitName: 'UBP ADP', material: 'Air Filter', deviation: 1.50 },
+  { unitName: 'PLTU Suralaya', material: 'Fuel Filter', deviation: 1.35 }
 ];
 
 function generateMockData(): ForecastData[] {
