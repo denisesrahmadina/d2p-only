@@ -689,10 +689,41 @@ const DPKFinalProcurement: React.FC = () => {
     'Amount (M IDR)': item.totalAmount / 1000000
   }));
 
-  const pieData = allMaterialsSummary.map(item => ({
-    name: item.name,
-    value: item.amount
-  }));
+  const materialToCategory: Record<string, string> = {
+    'Filter air': 'Filters',
+    'Filter Udara Cartridge': 'Filters',
+    'Oil Filter': 'Filters',
+    'Filter Gas': 'Filters',
+    'Filter Udara Kassa': 'Filters',
+    'Bottom Ash Removal Systems': 'Ash Handling Systems',
+    'Fly Ash Handling Equipment': 'Ash Handling Systems',
+    'Ash Conveyors': 'Ash Handling Systems',
+    'Ash Silos': 'Ash Handling Systems',
+    'Turbine Oil': 'Lubricants & Fluids',
+    'Hydraulic Oil': 'Lubricants & Fluids',
+    'Gear Oil': 'Lubricants & Fluids',
+    'Circuit Breakers': 'Electrical Components',
+    'Transformers': 'Electrical Components',
+    'Power Cables': 'Electrical Components'
+  };
+
+  const categoryBudgetData = useMemo(() => {
+    const categoryMap: Record<string, number> = {};
+
+    allMaterialsSummary.forEach(material => {
+      const category = materialToCategory[material.name] || 'Others';
+      if (!categoryMap[category]) {
+        categoryMap[category] = 0;
+      }
+      categoryMap[category] += material.amount;
+    });
+
+    return Object.entries(categoryMap)
+      .map(([name, value]) => ({ name, value }))
+      .sort((a, b) => b.value - a.value);
+  }, [allMaterialsSummary]);
+
+  const pieData = categoryBudgetData;
 
   const COLORS = ['#3B82F6', '#8B5CF6', '#10B981', '#F59E0B', '#EF4444'];
 
@@ -792,7 +823,7 @@ const DPKFinalProcurement: React.FC = () => {
             </p>
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">Budget Distribution by Material</h4>
+            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">Budget Distribution by Category</h4>
             <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie
