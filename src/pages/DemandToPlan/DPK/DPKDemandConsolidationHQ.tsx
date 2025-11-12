@@ -83,8 +83,7 @@ const materialPrices: { [key: string]: number } = {
 
 const INITIAL_HIGH_DEVIATION_ALERTS = [
   { unitName: 'UBP ADP', material: 'Water filter', deviation: 1.60 },
-  { unitName: 'UBP ADP', material: 'Air Filter', deviation: 1.50 },
-  { unitName: 'PLTU Suralaya', material: 'Fuel Filter', deviation: 1.35 }
+  { unitName: 'UBP ADP', material: 'Air Filter', deviation: 1.50 }
 ];
 
 function generateMockData(): ForecastData[] {
@@ -280,6 +279,10 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
   }, [forecastData, resolvedAlerts]);
 
   const allAlertsResolved = resolvedAlerts.size === INITIAL_HIGH_DEVIATION_ALERTS.length;
+
+  React.useEffect(() => {
+    console.log('Resolved alerts:', resolvedAlerts.size, 'Total alerts:', INITIAL_HIGH_DEVIATION_ALERTS.length, 'All resolved?', allAlertsResolved);
+  }, [resolvedAlerts, allAlertsResolved]);
 
   const finalProcurementSummary = useMemo(() => {
     const materialSummary = new Map<string, {
@@ -568,7 +571,7 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
                     Forecast Deviation Alerts
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Top 3 unit-material combinations with ≥25% deviation from AI forecast
+                    {deviationAlerts.length} alert{deviationAlerts.length !== 1 ? 's' : ''} remaining - Click on each card to review and resolve
                   </p>
                 </div>
               </div>
