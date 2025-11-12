@@ -305,21 +305,6 @@ const AnnualForecastChart: React.FC = () => {
                 </select>
               </div>
 
-              {/* Material Filter */}
-              <div className="flex items-center space-x-2">
-                <Package className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-                <select
-                  value={selectedMaterial}
-                  onChange={(e) => setSelectedMaterial(e.target.value)}
-                  disabled={materialTypes[0] === 'No filter material'}
-                  className="bg-white dark:bg-accenture-gray-medium border border-gray-300 dark:border-accenture-gray-dark rounded-lg px-4 py-2 text-sm font-medium text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-accenture-purple disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {materialTypes.map(material => (
-                    <option key={material} value={material}>{material}</option>
-                  ))}
-                </select>
-              </div>
-
               {/* Export Button */}
               <button
                 onClick={() => handleExport('chart')}
