@@ -137,7 +137,7 @@ const DPKUnitDetail: React.FC<DPKUnitDetailProps> = ({ unitId, onBack }) => {
               </div>
 
               <div className="mb-4">
-                <p className="text-5xl font-bold text-gray-900 dark:text-white mb-1 leading-none">100%</p>
+                <p className="text-5xl font-bold text-gray-900 dark:text-white mb-1 leading-none">87%</p>
                 <p className="text-xs text-gray-600 dark:text-gray-400">Overall completion</p>
               </div>
 
@@ -145,12 +145,12 @@ const DPKUnitDetail: React.FC<DPKUnitDetailProps> = ({ unitId, onBack }) => {
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between text-[10px] text-gray-600 dark:text-gray-400">
                   <span className="font-medium">Progress</span>
-                  <span className="font-bold text-green-600 dark:text-green-400">100%</span>
+                  <span className="font-bold text-green-600 dark:text-green-400">87%</span>
                 </div>
                 <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden shadow-inner">
                   <div
                     className="h-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full transition-all duration-500"
-                    style={{ width: '100%' }}
+                    style={{ width: '87%' }}
                   />
                 </div>
               </div>
@@ -169,7 +169,7 @@ const DPKUnitDetail: React.FC<DPKUnitDetailProps> = ({ unitId, onBack }) => {
 
               <div className="mb-3">
                 <p className="text-4xl font-bold text-gray-900 dark:text-white mb-1 leading-none">
-                  <span className="text-blue-600 dark:text-blue-400">145</span>
+                  <span className="text-blue-600 dark:text-blue-400">126</span>
                   <span className="text-3xl text-gray-500 dark:text-gray-400">/145</span>
                 </p>
                 <p className="text-xs text-gray-600 dark:text-gray-400 break-words">Materials Forecast Confirmed</p>
@@ -179,7 +179,7 @@ const DPKUnitDetail: React.FC<DPKUnitDetailProps> = ({ unitId, onBack }) => {
               <div className="pt-3 border-t border-blue-200 dark:border-blue-700">
                 <div className="flex items-center justify-between text-[10px] text-gray-600 dark:text-gray-400">
                   <span>Confirmation Rate</span>
-                  <span className="font-bold text-blue-600 dark:text-blue-400">100%</span>
+                  <span className="font-bold text-blue-600 dark:text-blue-400">87%</span>
                 </div>
               </div>
             </div>
