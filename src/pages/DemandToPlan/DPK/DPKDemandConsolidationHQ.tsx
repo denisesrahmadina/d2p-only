@@ -414,6 +414,38 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
       .sort((a, b) => b.totalQuantity - a.totalQuantity);
   }, [forecastData]);
 
+  const categoryBreakdown = useMemo(() => {
+    const categories = new Map<string, {
+      category: string;
+      materials: typeof finalProcurementSummary;
+      totalQuantity: number;
+      totalValue: number;
+      unitCount: number;
+    }>();
+
+    finalProcurementSummary.forEach(material => {
+      const category = materialCategories[material.materialName] || 'Uncategorized';
+
+      if (!categories.has(category)) {
+        categories.set(category, {
+          category,
+          materials: [],
+          totalQuantity: 0,
+          totalValue: 0,
+          unitCount: 0
+        });
+      }
+
+      const cat = categories.get(category)!;
+      cat.materials.push(material);
+      cat.totalQuantity += material.totalQuantity;
+      cat.totalValue += material.totalQuantity * material.materialValue;
+      cat.unitCount = Math.max(cat.unitCount, material.unitRequestorsCount);
+    });
+
+    return Array.from(categories.values()).sort((a, b) => b.totalValue - a.totalValue);
+  }, [finalProcurementSummary]);
+
   const finalSummary = useMemo(() => {
     const monthlyGroups: { [key: string]: { month: string; monthNumber: number; items: any[] } } = {};
 
