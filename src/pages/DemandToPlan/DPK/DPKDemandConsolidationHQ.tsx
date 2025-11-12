@@ -255,9 +255,15 @@ function generateMockData(): ForecastData[] {
         );
 
         if (highDeviationAlert) {
-          finalUnitForecast = Math.round(aiForecast * highDeviationAlert.deviation);
+          const maxValue = Math.max(userForecast, aiForecast);
+          const minValue = Math.min(userForecast, aiForecast);
+          const range = maxValue - minValue;
+          finalUnitForecast = Math.round(minValue + range * (0.3 + Math.random() * 0.4));
         } else {
-          finalUnitForecast = aiForecast + Math.floor(Math.random() * 20) - 10;
+          const maxValue = Math.max(userForecast, aiForecast);
+          const minValue = Math.min(userForecast, aiForecast);
+          const range = maxValue - minValue;
+          finalUnitForecast = Math.round(minValue + range * (0.3 + Math.random() * 0.4));
         }
 
         data.push({
@@ -699,13 +705,13 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
 
   const handleExport = () => {
     const csvContent = [
-      ['Unit', 'Material', 'AI Forecast', 'User Forecast', 'Final Unit Forecast', 'Selected Source', 'Selected Value', 'Unit Price', 'Total Amount', 'Status'].join(','),
+      ['Unit', 'Material', 'AI Forecast', 'Final Unit Forecast', 'Deviation', 'Selected Source', 'Selected Value', 'Unit Price', 'Total Amount', 'Status'].join(','),
       ...filteredData.map(row => [
         row.unitName,
         row.material,
         row.aiForecast,
-        row.userForecast,
         row.finalUnitForecast,
+        row.finalUnitForecast - row.aiForecast,
         row.selectedSource.toUpperCase(),
         getSelectedValue(row),
         row.unitPrice,
@@ -1255,12 +1261,6 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
                 </th>
                 <th className="px-4 py-4 text-right text-xs font-bold text-gray-700 dark:text-gray-300 uppercase">
                   <div className="flex items-center justify-end space-x-1">
-                    <span>User Forecast</span>
-                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  </div>
-                </th>
-                <th className="px-4 py-4 text-right text-xs font-bold text-gray-700 dark:text-gray-300 uppercase">
-                  <div className="flex items-center justify-end space-x-1">
                     <span>AI Forecast</span>
                     <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
                   </div>
@@ -1269,6 +1269,12 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
                   <div className="flex items-center justify-end space-x-1">
                     <span>Final Unit Forecast</span>
                     <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  </div>
+                </th>
+                <th className="px-4 py-4 text-right text-xs font-bold text-gray-700 dark:text-gray-300 uppercase">
+                  <div className="flex items-center justify-end space-x-1">
+                    <span>Deviation</span>
+                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
                   </div>
                 </th>
                 <th className="px-4 py-4 text-center text-xs font-bold text-gray-700 dark:text-gray-300 uppercase min-w-[400px]">
@@ -1308,11 +1314,6 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
                     <span className="text-sm font-semibold text-gray-900 dark:text-white">{row.month}</span>
                   </td>
                   <td className="px-4 py-4 text-right">
-                    <span className="text-sm font-semibold text-purple-700 dark:text-purple-400">
-                      {row.userForecast.toLocaleString()}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 text-right">
                     <span className="text-sm font-semibold text-cyan-700 dark:text-cyan-400">
                       {row.aiForecast.toLocaleString()}
                     </span>
@@ -1320,6 +1321,11 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
                   <td className="px-4 py-4 text-right">
                     <span className="text-sm font-semibold text-blue-700 dark:text-blue-400">
                       {row.finalUnitForecast.toLocaleString()}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 text-right">
+                    <span className={`text-sm font-semibold ${(row.finalUnitForecast - row.aiForecast) >= 0 ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}>
+                      {(row.finalUnitForecast - row.aiForecast) >= 0 ? '+' : ''}{(row.finalUnitForecast - row.aiForecast).toLocaleString()}
                     </span>
                   </td>
                   <td className="px-4 py-4">
