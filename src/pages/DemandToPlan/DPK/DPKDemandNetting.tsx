@@ -34,7 +34,7 @@ const DPKDemandNetting: React.FC = () => {
   const [hasProcessed, setHasProcessed] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [isEditing, setIsEditing] = useState(false);
-  const [editedData, setEditedData] = useState<{ [key: string]: number }>({});
+  const [editedData, setEditedData] = useState<{ [key: string]: { inventory?: number; contract?: number; transfer?: number } }>({});
   const [showFinalTable, setShowFinalTable] = useState(false);
 
   const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies'];
@@ -288,10 +288,13 @@ const DPKDemandNetting: React.FC = () => {
     }, 1000);
   };
 
-  const handleEditProcurement = (month: string, value: number) => {
+  const handleEditField = (month: string, field: 'inventory' | 'contract' | 'transfer', value: number) => {
     setEditedData(prev => ({
       ...prev,
-      [month]: value
+      [month]: {
+        ...prev[month],
+        [field]: value
+      }
     }));
   };
 
@@ -305,8 +308,20 @@ const DPKDemandNetting: React.FC = () => {
     setShowFinalTable(false);
   };
 
-  const getNetProcurement = (month: string, originalValue: number) => {
-    return editedData[month] !== undefined ? editedData[month] : originalValue;
+  const getInventoryFulfillment = (month: string, originalValue: number) => {
+    return editedData[month]?.inventory !== undefined ? editedData[month].inventory! : originalValue;
+  };
+
+  const getContractFulfillment = (month: string, originalValue: number) => {
+    return editedData[month]?.contract !== undefined ? editedData[month].contract! : originalValue;
+  };
+
+  const getStockTransfer = (month: string, originalValue: number) => {
+    return editedData[month]?.transfer !== undefined ? editedData[month].transfer! : originalValue;
+  };
+
+  const calculateNetProcurement = (adjustedDemand: number, inventory: number, contract: number, transfer: number) => {
+    return adjustedDemand - inventory - contract - transfer;
   };
 
   const handleExportTable = (tableName: string) => {
@@ -775,26 +790,53 @@ const DPKDemandNetting: React.FC = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
                   {currentMaterialData.monthlyData.map((row, index) => {
-                    const currentNetProcurement = getNetProcurement(row.month, row.netProcurement);
-                    const calculatedAmount = currentNetProcurement * row.unitPrice;
+                    const currentInventory = getInventoryFulfillment(row.month, row.inventoryFulfillment);
+                    const currentContract = getContractFulfillment(row.month, row.contractFulfillment);
+                    const currentTransfer = getStockTransfer(row.month, row.stockTransfer);
+                    const calculatedNetProcurement = calculateNetProcurement(row.adjustedDemand, currentInventory, currentContract, currentTransfer);
+                    const calculatedAmount = calculatedNetProcurement * row.unitPrice;
                     return (
                       <tr key={index} className="hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors">
                         <td className="px-4 py-4 text-sm font-semibold text-gray-900 dark:text-white">{row.month}</td>
                         <td className="px-4 py-4 text-sm text-right text-gray-600 dark:text-gray-400">{row.adjustedDemand.toLocaleString()}</td>
-                        <td className="px-4 py-4 text-sm text-right text-green-600 dark:text-green-400">-{row.inventoryFulfillment.toLocaleString()}</td>
-                        <td className="px-4 py-4 text-sm text-right text-purple-600 dark:text-purple-400">-{row.contractFulfillment.toLocaleString()}</td>
-                        <td className="px-4 py-4 text-sm text-right text-amber-600 dark:text-amber-400">-{row.stockTransfer.toLocaleString()}</td>
-                        <td className="px-4 py-4 text-sm text-right font-bold text-blue-700 dark:text-blue-400">
+                        <td className="px-4 py-4 text-sm text-right text-green-600 dark:text-green-400">
                           {isEditing ? (
                             <input
                               type="number"
-                              value={currentNetProcurement}
-                              onChange={(e) => handleEditProcurement(row.month, parseInt(e.target.value) || 0)}
-                              className="w-24 px-2 py-1 text-right border border-orange-300 dark:border-orange-600 rounded bg-orange-50 dark:bg-orange-900/20 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500"
+                              value={currentInventory}
+                              onChange={(e) => handleEditField(row.month, 'inventory', parseInt(e.target.value) || 0)}
+                              className="w-20 px-2 py-1 text-right border border-green-300 dark:border-green-600 rounded bg-green-50 dark:bg-green-900/20 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500"
                             />
                           ) : (
-                            <span>{currentNetProcurement.toLocaleString()} units</span>
+                            <span>-{currentInventory.toLocaleString()}</span>
                           )}
+                        </td>
+                        <td className="px-4 py-4 text-sm text-right text-purple-600 dark:text-purple-400">
+                          {isEditing ? (
+                            <input
+                              type="number"
+                              value={currentContract}
+                              onChange={(e) => handleEditField(row.month, 'contract', parseInt(e.target.value) || 0)}
+                              className="w-20 px-2 py-1 text-right border border-purple-300 dark:border-purple-600 rounded bg-purple-50 dark:bg-purple-900/20 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500"
+                            />
+                          ) : (
+                            <span>-{currentContract.toLocaleString()}</span>
+                          )}
+                        </td>
+                        <td className="px-4 py-4 text-sm text-right text-amber-600 dark:text-amber-400">
+                          {isEditing ? (
+                            <input
+                              type="number"
+                              value={currentTransfer}
+                              onChange={(e) => handleEditField(row.month, 'transfer', parseInt(e.target.value) || 0)}
+                              className="w-20 px-2 py-1 text-right border border-amber-300 dark:border-amber-600 rounded bg-amber-50 dark:bg-amber-900/20 text-gray-900 dark:text-white focus:ring-2 focus:ring-amber-500"
+                            />
+                          ) : (
+                            <span>-{currentTransfer.toLocaleString()}</span>
+                          )}
+                        </td>
+                        <td className="px-4 py-4 text-sm text-right font-bold text-blue-700 dark:text-blue-400">
+                          {calculatedNetProcurement.toLocaleString()} units
                         </td>
                         <td className="px-4 py-4 text-sm text-right text-gray-600 dark:text-gray-400">{formatCurrency(row.unitPrice)}</td>
                         <td className="px-4 py-4 text-sm text-right font-bold text-green-700 dark:text-green-400 text-lg">{formatCurrency(calculatedAmount)}</td>
@@ -804,15 +846,32 @@ const DPKDemandNetting: React.FC = () => {
                   <tr className="bg-indigo-100 dark:bg-indigo-900/40 font-bold border-t-2 border-indigo-300 dark:border-indigo-700">
                     <td className="px-4 py-5 text-base text-gray-900 dark:text-white uppercase">Annual Total</td>
                     <td className="px-4 py-5 text-sm text-right text-gray-900 dark:text-white">{currentMaterialData.adjustedTotal.toLocaleString()}</td>
-                    <td className="px-4 py-5 text-sm text-right text-green-700 dark:text-green-300">-{currentMaterialData.inventoryTotal.toLocaleString()}</td>
-                    <td className="px-4 py-5 text-sm text-right text-purple-700 dark:text-purple-300">-{currentMaterialData.contractTotal.toLocaleString()}</td>
-                    <td className="px-4 py-5 text-sm text-right text-amber-700 dark:text-amber-300">-{currentMaterialData.transferTotal.toLocaleString()}</td>
+                    <td className="px-4 py-5 text-sm text-right text-green-700 dark:text-green-300">
+                      -{currentMaterialData.monthlyData.reduce((sum, row) => sum + getInventoryFulfillment(row.month, row.inventoryFulfillment), 0).toLocaleString()}
+                    </td>
+                    <td className="px-4 py-5 text-sm text-right text-purple-700 dark:text-purple-300">
+                      -{currentMaterialData.monthlyData.reduce((sum, row) => sum + getContractFulfillment(row.month, row.contractFulfillment), 0).toLocaleString()}
+                    </td>
+                    <td className="px-4 py-5 text-sm text-right text-amber-700 dark:text-amber-300">
+                      -{currentMaterialData.monthlyData.reduce((sum, row) => sum + getStockTransfer(row.month, row.stockTransfer), 0).toLocaleString()}
+                    </td>
                     <td className="px-4 py-5 text-base text-right text-blue-700 dark:text-blue-300 font-bold">
-                      {currentMaterialData.monthlyData.reduce((sum, row) => sum + getNetProcurement(row.month, row.netProcurement), 0).toLocaleString()} units
+                      {currentMaterialData.monthlyData.reduce((sum, row) => {
+                        const inventory = getInventoryFulfillment(row.month, row.inventoryFulfillment);
+                        const contract = getContractFulfillment(row.month, row.contractFulfillment);
+                        const transfer = getStockTransfer(row.month, row.stockTransfer);
+                        return sum + calculateNetProcurement(row.adjustedDemand, inventory, contract, transfer);
+                      }, 0).toLocaleString()} units
                     </td>
                     <td className="px-4 py-5 text-sm text-right text-gray-600 dark:text-gray-400 font-semibold">Avg: {formatCurrency(currentMaterialData.unitPrice)}</td>
                     <td className="px-4 py-5 text-base text-right text-green-700 dark:text-green-300 text-xl font-extrabold">
-                      {formatCurrency(currentMaterialData.monthlyData.reduce((sum, row) => sum + (getNetProcurement(row.month, row.netProcurement) * row.unitPrice), 0))}
+                      {formatCurrency(currentMaterialData.monthlyData.reduce((sum, row) => {
+                        const inventory = getInventoryFulfillment(row.month, row.inventoryFulfillment);
+                        const contract = getContractFulfillment(row.month, row.contractFulfillment);
+                        const transfer = getStockTransfer(row.month, row.stockTransfer);
+                        const netProcurement = calculateNetProcurement(row.adjustedDemand, inventory, contract, transfer);
+                        return sum + (netProcurement * row.unitPrice);
+                      }, 0))}
                     </td>
                   </tr>
                 </tbody>
@@ -847,7 +906,17 @@ const DPKDemandNetting: React.FC = () => {
                   <div>
                     <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Netting Complete</p>
                     <p className="text-xs text-gray-700 dark:text-gray-300">
-                      Final procurement requirements have been calculated. Total net procurement needed: <span className="font-bold text-indigo-700 dark:text-indigo-400">{currentMaterialData.monthlyData.reduce((sum, row) => sum + getNetProcurement(row.month, row.netProcurement), 0).toLocaleString()} units</span>. This represents {((currentMaterialData.monthlyData.reduce((sum, row) => sum + getNetProcurement(row.month, row.netProcurement), 0) / currentMaterialData.adjustedTotal) * 100).toFixed(1)}% of adjusted demand after netting against available resources.
+                      Final procurement requirements have been calculated. Total net procurement needed: <span className="font-bold text-indigo-700 dark:text-indigo-400">{currentMaterialData.monthlyData.reduce((sum, row) => {
+                        const inventory = getInventoryFulfillment(row.month, row.inventoryFulfillment);
+                        const contract = getContractFulfillment(row.month, row.contractFulfillment);
+                        const transfer = getStockTransfer(row.month, row.stockTransfer);
+                        return sum + calculateNetProcurement(row.adjustedDemand, inventory, contract, transfer);
+                      }, 0).toLocaleString()} units</span>. This represents {((currentMaterialData.monthlyData.reduce((sum, row) => {
+                        const inventory = getInventoryFulfillment(row.month, row.inventoryFulfillment);
+                        const contract = getContractFulfillment(row.month, row.contractFulfillment);
+                        const transfer = getStockTransfer(row.month, row.stockTransfer);
+                        return sum + calculateNetProcurement(row.adjustedDemand, inventory, contract, transfer);
+                      }, 0) / currentMaterialData.adjustedTotal) * 100).toFixed(1)}% of adjusted demand after netting against available resources.
                     </p>
                   </div>
                 </div>
@@ -891,7 +960,12 @@ const DPKDemandNetting: React.FC = () => {
                 <div className="bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-200 dark:border-green-800">
                   <p className="text-xs text-gray-600 dark:text-gray-400 uppercase mb-1">Total Procurement</p>
                   <p className="text-lg font-bold text-green-700 dark:text-green-400">
-                    {currentMaterialData.monthlyData.reduce((sum, row) => sum + getNetProcurement(row.month, row.netProcurement), 0).toLocaleString()} units
+                    {currentMaterialData.monthlyData.reduce((sum, row) => {
+                      const inventory = getInventoryFulfillment(row.month, row.inventoryFulfillment);
+                      const contract = getContractFulfillment(row.month, row.contractFulfillment);
+                      const transfer = getStockTransfer(row.month, row.stockTransfer);
+                      return sum + calculateNetProcurement(row.adjustedDemand, inventory, contract, transfer);
+                    }, 0).toLocaleString()} units
                   </p>
                 </div>
                 <div className="bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-200 dark:border-green-800">
@@ -901,7 +975,13 @@ const DPKDemandNetting: React.FC = () => {
                 <div className="bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-200 dark:border-green-800">
                   <p className="text-xs text-gray-600 dark:text-gray-400 uppercase mb-1">Total Amount</p>
                   <p className="text-lg font-bold text-green-700 dark:text-green-400">
-                    {formatCurrency(currentMaterialData.monthlyData.reduce((sum, row) => sum + (getNetProcurement(row.month, row.netProcurement) * row.unitPrice), 0))}
+                    {formatCurrency(currentMaterialData.monthlyData.reduce((sum, row) => {
+                      const inventory = getInventoryFulfillment(row.month, row.inventoryFulfillment);
+                      const contract = getContractFulfillment(row.month, row.contractFulfillment);
+                      const transfer = getStockTransfer(row.month, row.stockTransfer);
+                      const netProcurement = calculateNetProcurement(row.adjustedDemand, inventory, contract, transfer);
+                      return sum + (netProcurement * row.unitPrice);
+                    }, 0))}
                   </p>
                 </div>
               </div>
@@ -918,7 +998,10 @@ const DPKDemandNetting: React.FC = () => {
                   </thead>
                   <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
                     {currentMaterialData.monthlyData.map((row, index) => {
-                      const finalNetProcurement = getNetProcurement(row.month, row.netProcurement);
+                      const inventory = getInventoryFulfillment(row.month, row.inventoryFulfillment);
+                      const contract = getContractFulfillment(row.month, row.contractFulfillment);
+                      const transfer = getStockTransfer(row.month, row.stockTransfer);
+                      const finalNetProcurement = calculateNetProcurement(row.adjustedDemand, inventory, contract, transfer);
                       const finalAmount = finalNetProcurement * row.unitPrice;
                       return (
                         <tr key={index} className="hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors">
@@ -932,11 +1015,22 @@ const DPKDemandNetting: React.FC = () => {
                     <tr className="bg-green-100 dark:bg-green-900/40 font-bold border-t-2 border-green-300 dark:border-green-700">
                       <td className="px-4 py-5 text-base text-gray-900 dark:text-white uppercase">Annual Total</td>
                       <td className="px-4 py-5 text-base text-right text-green-700 dark:text-green-300 font-bold">
-                        {currentMaterialData.monthlyData.reduce((sum, row) => sum + getNetProcurement(row.month, row.netProcurement), 0).toLocaleString()} units
+                        {currentMaterialData.monthlyData.reduce((sum, row) => {
+                          const inventory = getInventoryFulfillment(row.month, row.inventoryFulfillment);
+                          const contract = getContractFulfillment(row.month, row.contractFulfillment);
+                          const transfer = getStockTransfer(row.month, row.stockTransfer);
+                          return sum + calculateNetProcurement(row.adjustedDemand, inventory, contract, transfer);
+                        }, 0).toLocaleString()} units
                       </td>
                       <td className="px-4 py-5 text-sm text-right text-gray-600 dark:text-gray-400 font-semibold">Avg: {formatCurrency(currentMaterialData.unitPrice)}</td>
                       <td className="px-4 py-5 text-base text-right text-green-700 dark:text-green-300 text-xl font-extrabold">
-                        {formatCurrency(currentMaterialData.monthlyData.reduce((sum, row) => sum + (getNetProcurement(row.month, row.netProcurement) * row.unitPrice), 0))}
+                        {formatCurrency(currentMaterialData.monthlyData.reduce((sum, row) => {
+                          const inventory = getInventoryFulfillment(row.month, row.inventoryFulfillment);
+                          const contract = getContractFulfillment(row.month, row.contractFulfillment);
+                          const transfer = getStockTransfer(row.month, row.stockTransfer);
+                          const netProcurement = calculateNetProcurement(row.adjustedDemand, inventory, contract, transfer);
+                          return sum + (netProcurement * row.unitPrice);
+                        }, 0))}
                       </td>
                     </tr>
                   </tbody>
