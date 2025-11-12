@@ -745,116 +745,207 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
         </div>
       )}
 
-      {/* Final Procurement Summary - Shown after all alerts are resolved */}
+      {/* Category-Based Procurement Tables - Shown after all alerts are resolved */}
       {allAlertsResolved && (
-        <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl border-2 border-green-200 dark:border-green-800 shadow-xl overflow-hidden">
-          <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 dark:from-green-500/20 dark:to-emerald-500/20 border-b border-green-200 dark:border-green-800 px-6 py-4">
+        <div className="space-y-6">
+          {/* Header */}
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl border-2 border-green-200 dark:border-green-800 p-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
-                  <CheckCircle2 className="h-6 w-6 text-white" />
+                <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center">
+                  <CheckCircle2 className="h-7 w-7 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                    Final Procurement Summary
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    Consolidated Procurement Requirements
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    All deviation alerts have been resolved. Review final consolidated procurement requirements.
+                    All deviation alerts resolved. Review by category before sending to E-Budget.
                   </p>
                 </div>
+              </div>
+              <div className="text-right">
+                <p className="text-xs text-gray-600 dark:text-gray-400 uppercase font-semibold mb-1">
+                  Total Categories
+                </p>
+                <p className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  {categoryBreakdown.length}
+                </p>
               </div>
             </div>
           </div>
 
-          <div className="p-6">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b-2 border-green-200 dark:border-green-800">
-                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
-                      Material ID
-                    </th>
-                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
-                      Material Name
-                    </th>
-                    <th className="px-4 py-3 text-right text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
-                      Material Value (IDR)
-                    </th>
-                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
-                      Unit Requestors
-                    </th>
-                    <th className="px-4 py-3 text-right text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
-                      Total Quantity
-                    </th>
-                    <th className="px-4 py-3 text-right text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
-                      Total Amount (IDR)
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {finalProcurementSummary.map((item, index) => (
-                    <tr
-                      key={item.materialId}
-                      className={`border-b border-green-100 dark:border-green-900/40 ${
-                        index % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-green-50/30 dark:bg-green-900/10'
-                      }`}
-                    >
-                      <td className="px-4 py-4 text-sm font-mono text-gray-600 dark:text-gray-400">
-                        {item.materialId}
-                      </td>
-                      <td className="px-4 py-4">
-                        <span className="text-sm font-semibold text-gray-900 dark:text-white">
-                          {item.materialName}
-                        </span>
-                      </td>
-                      <td className="px-4 py-4 text-right">
-                        <span className="text-sm font-semibold text-gray-900 dark:text-white">
-                          {item.materialValue.toLocaleString('id-ID')}
-                        </span>
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="flex items-center space-x-2">
-                          <span className="inline-flex items-center justify-center w-6 h-6 bg-green-500 text-white text-xs font-bold rounded-full">
-                            {item.unitRequestorsCount}
-                          </span>
-                          <span className="text-xs text-gray-600 dark:text-gray-400">
-                            units
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-right">
-                        <span className="text-sm font-bold text-green-700 dark:text-green-400">
-                          {item.totalQuantity.toLocaleString('id-ID')} units
-                        </span>
-                      </td>
-                      <td className="px-4 py-4 text-right">
-                        <span className="text-sm font-bold text-gray-900 dark:text-white">
-                          {(item.totalQuantity * item.materialValue).toLocaleString('id-ID')}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-                <tfoot>
-                  <tr className="bg-green-100 dark:bg-green-900/30 border-t-2 border-green-300 dark:border-green-700">
-                    <td colSpan={4} className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white">
-                      Grand Total:
-                    </td>
-                    <td className="px-4 py-4 text-right text-sm font-bold text-green-700 dark:text-green-400">
-                      {finalProcurementSummary.reduce((sum, item) => sum + item.totalQuantity, 0).toLocaleString('id-ID')} units
-                    </td>
-                    <td className="px-4 py-4 text-right text-lg font-bold text-gray-900 dark:text-white">
-                      {finalProcurementSummary.reduce((sum, item) => sum + (item.totalQuantity * item.materialValue), 0).toLocaleString('id-ID')}
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
+          {/* Category Tables */}
+          {categoryBreakdown.map((category) => (
+            <div
+              key={category.category}
+              className="bg-white dark:bg-gray-900 rounded-xl border-2 border-gray-200 dark:border-gray-800 overflow-hidden"
+            >
+              {/* Category Header */}
+              <div
+                onClick={() => toggleCategory(category.category)}
+                className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 cursor-pointer hover:from-gray-100 hover:to-gray-100 dark:hover:from-gray-750 dark:hover:to-gray-750 transition-colors"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    {expandedCategories.has(category.category) ? (
+                      <ChevronDown className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                    ) : (
+                      <ChevronRight className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+                    )}
+                    <Package className="h-6 w-6 text-accenture-purple" />
+                    <div>
+                      <h4 className="text-lg font-bold text-gray-900 dark:text-white">
+                        {category.category}
+                      </h4>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">
+                        {category.materials.length} materials from {category.unitCount} units
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-6">
+                    <div className="text-right">
+                      <p className="text-xs text-gray-600 dark:text-gray-400 uppercase font-semibold">
+                        Total Quantity
+                      </p>
+                      <p className="text-lg font-bold text-green-600 dark:text-green-400">
+                        {category.totalQuantity.toLocaleString('id-ID')}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs text-gray-600 dark:text-gray-400 uppercase font-semibold">
+                        Total Value
+                      </p>
+                      <p className="text-lg font-bold text-gray-900 dark:text-white">
+                        IDR {category.totalValue.toLocaleString('id-ID')}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Category Materials Table */}
+              {expandedCategories.has(category.category) && (
+                <div className="p-6">
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b-2 border-gray-200 dark:border-gray-700">
+                          <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                            Material ID
+                          </th>
+                          <th className="px-4 py-3 text-left text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                            Material Name
+                          </th>
+                          <th className="px-4 py-3 text-right text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                            Unit Price (IDR)
+                          </th>
+                          <th className="px-4 py-3 text-center text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                            Units
+                          </th>
+                          <th className="px-4 py-3 text-right text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                            Total Quantity
+                          </th>
+                          <th className="px-4 py-3 text-right text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                            Total Value (IDR)
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {category.materials.map((material, idx) => (
+                          <tr
+                            key={material.materialId}
+                            className={`border-b border-gray-100 dark:border-gray-800 ${
+                              idx % 2 === 0 ? 'bg-white dark:bg-gray-900' : 'bg-gray-50 dark:bg-gray-850'
+                            }`}
+                          >
+                            <td className="px-4 py-3 text-sm font-mono text-gray-600 dark:text-gray-400">
+                              {material.materialId}
+                            </td>
+                            <td className="px-4 py-3">
+                              <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                                {material.materialName}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <span className="text-sm font-semibold text-gray-900 dark:text-white">
+                                {material.materialValue.toLocaleString('id-ID')}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3">
+                              <div className="flex items-center justify-center">
+                                <span className="inline-flex items-center justify-center w-7 h-7 bg-accenture-purple text-white text-xs font-bold rounded-full">
+                                  {material.unitRequestorsCount}
+                                </span>
+                              </div>
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <span className="text-sm font-bold text-gray-900 dark:text-white">
+                                {material.totalQuantity.toLocaleString('id-ID')}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <span className="text-sm font-bold text-green-600 dark:text-green-400">
+                                {(material.totalQuantity * material.materialValue).toLocaleString('id-ID')}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                      <tfoot>
+                        <tr className="bg-gray-100 dark:bg-gray-800 border-t-2 border-gray-300 dark:border-gray-700">
+                          <td colSpan={5} className="px-4 py-3 text-right text-sm font-bold text-gray-900 dark:text-white">
+                            Category Total:
+                          </td>
+                          <td className="px-4 py-3 text-right text-lg font-bold text-gray-900 dark:text-white">
+                            {category.totalValue.toLocaleString('id-ID')}
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
+              )}
             </div>
+          ))}
+
+          {/* Grand Total Card */}
+          <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-6 text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase opacity-90 mb-1">
+                  Grand Total Value
+                </p>
+                <p className="text-3xl font-bold">
+                  IDR {categoryBreakdown.reduce((sum, cat) => sum + cat.totalValue, 0).toLocaleString('id-ID')}
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-sm font-semibold uppercase opacity-90 mb-1">
+                  Total Materials
+                </p>
+                <p className="text-3xl font-bold">
+                  {finalProcurementSummary.length}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Send to E-Budget Button */}
+          <div className="flex justify-end">
+            <button
+              onClick={handleSendToEBudget}
+              className="px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center space-x-3"
+            >
+              <Send className="h-5 w-5" />
+              <span>Confirm & Send to E-Budget</span>
+            </button>
           </div>
         </div>
       )}
 
-    {/* Filters */}
+    {/* Filters - Hidden when all alerts are resolved */}
+      {!allAlertsResolved && (
       <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           <div className="lg:col-span-1">
@@ -920,8 +1011,10 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
           </div>
         </div>
       </div>
+      )}
 
-      {/* Statistics Cards */}
+      {/* Statistics Cards - Hidden when all alerts are resolved */}
+      {!allAlertsResolved && (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4">
           <div className="flex items-center space-x-3">
@@ -961,9 +1054,10 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
           </div>
         </div>
       </div>
+      )}
 
       {/* Bulk Actions */}
-      {selectedRows.size > 0 && (
+      {!allAlertsResolved && selectedRows.size > 0 && (
         <div className="bg-accenture-purple/10 dark:bg-accenture-purple/20 border-2 border-accenture-purple rounded-xl p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -1003,7 +1097,8 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
         </div>
       )}
 
-      {/* Adjustments Table */}
+      {/* Adjustments Table - Hidden when all alerts are resolved */}
+      {!allAlertsResolved && (
       <div id="adjustments-table" className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
@@ -1294,9 +1389,10 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
           </div>
         )}
       </div>
+      )}
 
-      {/* Final Summary Table */}
-      {finalSummary.length > 0 && (
+      {/* Final Summary Table - Hidden when all alerts are resolved */}
+      {!allAlertsResolved && finalSummary.length > 0 && (
         <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
           <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 px-6 py-4 border-b-2 border-green-500">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white flex items-center space-x-2">
@@ -1382,6 +1478,28 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
               <Send className="h-6 w-6" />
               <span>Confirm & Send to E-Budget</span>
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Send to E-Budget Modal */}
+      {showSendToEBudgetModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 max-w-md w-full shadow-2xl">
+            <div className="text-center">
+              <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
+                <Send className="h-10 w-10 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                Sending to E-Budget...
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Your consolidated procurement requirements are being sent to the E-Budget application.
+              </p>
+              <p className="text-sm font-semibold text-green-600 dark:text-green-400">
+                Grand Total: IDR {categoryBreakdown.reduce((sum, cat) => sum + cat.totalValue, 0).toLocaleString('id-ID')}
+              </p>
+            </div>
           </div>
         </div>
       )}
