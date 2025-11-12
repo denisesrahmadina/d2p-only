@@ -98,6 +98,7 @@ const DPKDemandAdjustment: React.FC = () => {
   const [chartType, setChartType] = useState<'bar' | 'line'>('bar');
   const [isRetrievingBudget, setIsRetrievingBudget] = useState(false);
   const [demandAlerts] = useState<ConsolidatedDemandAlert[]>(CONSOLIDATED_DEMAND_ALERTS);
+  const [resolvedAlerts, setResolvedAlerts] = useState<Set<string>>(new Set());
 
   const [adjustmentSelections, setAdjustmentSelections] = useState<AdjustmentSelectionsByMaterial>({});
   const [editingMonth, setEditingMonth] = useState<string | null>(null);
@@ -146,14 +147,14 @@ const DPKDemandAdjustment: React.FC = () => {
         }
         const monthlyValues = generateMaterialData(pattern, unitVariation);
         const totalDemand = monthlyValues.reduce((sum, val) => sum + val, 0);
-        const totalBudget = Math.round(totalDemand * (0.95 + Math.random() * 0.1)); // 95%-105% of demand
-        
+        const totalBudget = Math.round(totalDemand * (0.80 + Math.random() * 0.10)); // 80%-90% of demand - ALWAYS LOWER
+
         unitData[material] = {
           totalBudget,
           totalDemand,
           adjustmentNeeded: totalBudget - totalDemand,
           monthlyData: monthlyValues.map((val, idx) => {
-            const budgetLimit = Math.round(val * (0.90 + Math.random() * 0.15)); // 90%-105% of demand
+            const budgetLimit = Math.round(val * (0.75 + Math.random() * 0.10)); // 75%-85% of demand - ALWAYS LOWER
             const isOver = val > budgetLimit;
             return {
               month: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][idx],
@@ -438,6 +439,21 @@ const DPKDemandAdjustment: React.FC = () => {
     }, 100);
   };
 
+  const handleSaveAdjustments = () => {
+    if (selectedUnit && selectedMaterial && selectedMaterial !== 'All') {
+      const alertKey = `${selectedUnit}-${selectedCategory}-${selectedMaterial}`;
+      setResolvedAlerts(prev => new Set([...prev, alertKey]));
+
+      setSelectedUnit('UBP ADP');
+      setSelectedMaterial('All');
+      setSelectedCategory('');
+
+      setTimeout(() => {
+        document.getElementById('budget-deviation-alerts')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  };
+
   const handleExportFinalAdjustment = () => {
     const csvContent = [
       ['Month', 'Consolidated Demand', 'Budget Limit', 'Adjusted Demand', 'Source', 'Variance'].join(','),
@@ -623,9 +639,12 @@ const DPKDemandAdjustment: React.FC = () => {
         </div>
       )}
 
-      {/* Consolidated Demand Alerts */}
-      {hasBudgetData && demandAlerts.length > 0 && (
-        <div className="bg-white dark:bg-gray-900 rounded-xl border-2 border-orange-200 dark:border-orange-800 shadow-xl overflow-hidden">
+      {/* Budget Deviation Alerts */}
+      {hasBudgetData && demandAlerts.filter(alert => {
+        const alertKey = `${alert.unit}-${alert.category}-${alert.material}`;
+        return !resolvedAlerts.has(alertKey);
+      }).length > 0 && (
+        <div id="budget-deviation-alerts" className="bg-white dark:bg-gray-900 rounded-xl border-2 border-orange-200 dark:border-orange-800 shadow-xl overflow-hidden">
           <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 dark:from-orange-500/20 dark:to-red-500/20 border-b border-orange-200 dark:border-orange-800 px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
@@ -634,10 +653,16 @@ const DPKDemandAdjustment: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                    Consolidated Demand Alerts
+                    Budget Deviation Alerts
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {demandAlerts.length} alert{demandAlerts.length !== 1 ? 's' : ''} - Click on each card to review and adjust
+                    {demandAlerts.filter(alert => {
+                      const alertKey = `${alert.unit}-${alert.category}-${alert.material}`;
+                      return !resolvedAlerts.has(alertKey);
+                    }).length} alert{demandAlerts.filter(alert => {
+                      const alertKey = `${alert.unit}-${alert.category}-${alert.material}`;
+                      return !resolvedAlerts.has(alertKey);
+                    }).length !== 1 ? 's' : ''} remaining - Click on each card to review and adjust
                   </p>
                 </div>
               </div>
@@ -646,7 +671,10 @@ const DPKDemandAdjustment: React.FC = () => {
 
           <div className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {demandAlerts.map((alert, index) => (
+              {demandAlerts.filter(alert => {
+                const alertKey = `${alert.unit}-${alert.category}-${alert.material}`;
+                return !resolvedAlerts.has(alertKey);
+              }).map((alert, index) => (
                 <div
                   key={`${alert.unit}-${alert.material}-${index}`}
                   onClick={() => handleAlertClick(alert)}
@@ -1117,6 +1145,27 @@ const DPKDemandAdjustment: React.FC = () => {
                 </table>
               )}
             </div>
+
+            {/* Save Adjustments Button */}
+            {selectedMaterial !== 'All' && (
+              <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 rounded-b-xl">
+                <div className="flex items-center justify-between">
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="font-semibold">
+                      Filtered by: <span className="text-blue-600 dark:text-blue-400">{selectedUnit}</span> - <span className="text-blue-600 dark:text-blue-400">{selectedMaterial}</span>
+                    </p>
+                    <p className="text-xs mt-1">Click Save to mark this deviation alert as resolved</p>
+                  </div>
+                  <button
+                    onClick={handleSaveAdjustments}
+                    className="flex items-center space-x-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+                  >
+                    <CheckCircle2 className="h-5 w-5" />
+                    <span>Save Adjustments</span>
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
           {showFinalTable && (
