@@ -155,6 +155,7 @@ const DPKDemandAdjustment: React.FC = () => {
 
   const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies', 'Water Treatment System', 'Spare Parts and Maintenance'];
   const materials = MATERIALS;
+  const materialFilterOptions = ['Filter air', 'Filter Udara Cartridge', 'Oil Filter', 'Filter Gas', 'Filter Udara Kassa'];
   const materialPrices = MATERIAL_PRICES;
 
   const formatCurrency = (value: number) => {
@@ -1280,7 +1281,7 @@ const DPKDemandAdjustment: React.FC = () => {
                 className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               >
                 <option value="All">All Materials</option>
-                {materials.map(material => (
+                {materialFilterOptions.map(material => (
                   <option key={material} value={material}>{material}</option>
                 ))}
               </select>

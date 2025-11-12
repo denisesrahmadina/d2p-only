@@ -42,7 +42,8 @@ const DPKFinalProcurement: React.FC = () => {
   const [filteredMaterial, setFilteredMaterial] = useState<string | null>(null);
 
   const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies'];
-  const materials = [
+  const materials = ['Filter air', 'Filter Udara Cartridge', 'Oil Filter', 'Filter Gas', 'Filter Udara Kassa'];
+  const allMaterialsList = [
     'Filter air',
     'Filter Udara Cartridge',
     'Oil Filter',
@@ -672,12 +673,12 @@ const DPKFinalProcurement: React.FC = () => {
   }, [selectedMaterial, unitMultiplier]);
 
   const allMaterialsSummary = useMemo(() =>
-    materials.map(material => ({
+    allMaterialsList.map(material => ({
       name: material,
       quantity: materialProcurementData[material].totalQuantity * unitMultiplier,
       amount: materialProcurementData[material].totalAmount * unitMultiplier
     }))
-  , [materials, unitMultiplier]);
+  , [allMaterialsList, unitMultiplier]);
 
   const totalProcurementAmount = useMemo(() =>
     allMaterialsSummary.reduce((sum, item) => sum + item.amount, 0)

@@ -29,7 +29,7 @@ interface MaterialNettingData {
 const DPKDemandNetting: React.FC = () => {
   const [selectedUnit, setSelectedUnit] = useState<string>('');
   const [selectedMaterial, setSelectedMaterial] = useState<string>('Filter air');
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('Filters');
   const [isProcessing, setIsProcessing] = useState(false);
   const [hasProcessed, setHasProcessed] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
