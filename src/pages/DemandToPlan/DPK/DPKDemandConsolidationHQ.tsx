@@ -42,10 +42,36 @@ const categoryMaterialsMap: { [key: string]: string[] } = {
     'Water filter',
     'Gas filter'
   ],
-  'Fuel and Combustion': [],
-  'Mechanical Equipment': [],
-  'Spare Part and Maintenance': [],
-  'Water Treatment System': []
+  'Fuel and Combustion': [
+    'Coal',
+    'Diesel Fuel',
+    'Natural Gas',
+    'Fuel Oil',
+    'Biomass Pellets'
+  ],
+  'Mechanical Equipment': [
+    'Turbine Blades',
+    'Pump Components',
+    'Valve Systems',
+    'Bearing Units',
+    'Coupling Systems',
+    'Gear Box Parts'
+  ],
+  'Spare Parts and Maintenance': [
+    'Gaskets',
+    'Seals',
+    'Bolts and Fasteners',
+    'Electrical Cables',
+    'Sensors',
+    'Control Panels'
+  ],
+  'Water Treatment System': [
+    'Reverse Osmosis Membranes',
+    'Ion Exchange Resins',
+    'Chemical Dosing Pumps',
+    'Water Quality Sensors',
+    'Filtration Media'
+  ]
 };
 
 const materials = [
@@ -56,7 +82,29 @@ const materials = [
   'Special filter',
   'Multi function filter',
   'Water filter',
-  'Gas filter'
+  'Gas filter',
+  'Coal',
+  'Diesel Fuel',
+  'Natural Gas',
+  'Fuel Oil',
+  'Biomass Pellets',
+  'Turbine Blades',
+  'Pump Components',
+  'Valve Systems',
+  'Bearing Units',
+  'Coupling Systems',
+  'Gear Box Parts',
+  'Gaskets',
+  'Seals',
+  'Bolts and Fasteners',
+  'Electrical Cables',
+  'Sensors',
+  'Control Panels',
+  'Reverse Osmosis Membranes',
+  'Ion Exchange Resins',
+  'Chemical Dosing Pumps',
+  'Water Quality Sensors',
+  'Filtration Media'
 ];
 
 const materialCategories: { [key: string]: string } = {
@@ -67,18 +115,62 @@ const materialCategories: { [key: string]: string } = {
   'Special filter': 'Filter',
   'Multi function filter': 'Filter',
   'Water filter': 'Filter',
-  'Gas filter': 'Filter'
+  'Gas filter': 'Filter',
+  'Coal': 'Fuel and Combustion',
+  'Diesel Fuel': 'Fuel and Combustion',
+  'Natural Gas': 'Fuel and Combustion',
+  'Fuel Oil': 'Fuel and Combustion',
+  'Biomass Pellets': 'Fuel and Combustion',
+  'Turbine Blades': 'Mechanical Equipment',
+  'Pump Components': 'Mechanical Equipment',
+  'Valve Systems': 'Mechanical Equipment',
+  'Bearing Units': 'Mechanical Equipment',
+  'Coupling Systems': 'Mechanical Equipment',
+  'Gear Box Parts': 'Mechanical Equipment',
+  'Gaskets': 'Spare Parts and Maintenance',
+  'Seals': 'Spare Parts and Maintenance',
+  'Bolts and Fasteners': 'Spare Parts and Maintenance',
+  'Electrical Cables': 'Spare Parts and Maintenance',
+  'Sensors': 'Spare Parts and Maintenance',
+  'Control Panels': 'Spare Parts and Maintenance',
+  'Reverse Osmosis Membranes': 'Water Treatment System',
+  'Ion Exchange Resins': 'Water Treatment System',
+  'Chemical Dosing Pumps': 'Water Treatment System',
+  'Water Quality Sensors': 'Water Treatment System',
+  'Filtration Media': 'Water Treatment System'
 };
 
 const materialPrices: { [key: string]: number } = {
-  'Coal': 850000,
-  'Gas Turbine Parts': 2500000,
-  'Boiler Components': 1800000,
-  'Generator Parts': 3200000,
-  'Electrical Equipment': 1500000,
-  'Lubricants': 450000,
-  'Chemicals': 780000,
-  'Spare Parts': 1200000
+  'Air Filter': 850000,
+  'Fuel Filter': 920000,
+  'Chemical filter': 780000,
+  'Oil filter': 650000,
+  'Special filter': 1100000,
+  'Multi function filter': 1350000,
+  'Water filter': 890000,
+  'Gas filter': 970000,
+  'Coal': 2500000,
+  'Diesel Fuel': 15000,
+  'Natural Gas': 8500,
+  'Fuel Oil': 12000,
+  'Biomass Pellets': 3200000,
+  'Turbine Blades': 45000000,
+  'Pump Components': 18000000,
+  'Valve Systems': 8500000,
+  'Bearing Units': 6200000,
+  'Coupling Systems': 5800000,
+  'Gear Box Parts': 12500000,
+  'Gaskets': 450000,
+  'Seals': 380000,
+  'Bolts and Fasteners': 125000,
+  'Electrical Cables': 850000,
+  'Sensors': 2200000,
+  'Control Panels': 15000000,
+  'Reverse Osmosis Membranes': 35000000,
+  'Ion Exchange Resins': 8500000,
+  'Chemical Dosing Pumps': 12000000,
+  'Water Quality Sensors': 4500000,
+  'Filtration Media': 3200000
 };
 
 const INITIAL_HIGH_DEVIATION_ALERTS = [
@@ -780,7 +872,7 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
               <option value="Filter">Filter</option>
               <option value="Fuel and Combustion">Fuel and Combustion</option>
               <option value="Mechanical Equipment">Mechanical Equipment</option>
-              <option value="Spare Part and Maintenance">Spare Part and Maintenance</option>
+              <option value="Spare Parts and Maintenance">Spare Parts and Maintenance</option>
               <option value="Water Treatment System">Water Treatment System</option>
             </select>
           </div>
