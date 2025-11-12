@@ -33,6 +33,9 @@ const DPKDemandNetting: React.FC = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [hasProcessed, setHasProcessed] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedData, setEditedData] = useState<{ [key: string]: number }>({});
+  const [showFinalTable, setShowFinalTable] = useState(false);
 
   const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies'];
   const materials = ['All Material', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
@@ -283,6 +286,27 @@ const DPKDemandNetting: React.FC = () => {
         return prev + 1;
       });
     }, 1000);
+  };
+
+  const handleEditProcurement = (month: string, value: number) => {
+    setEditedData(prev => ({
+      ...prev,
+      [month]: value
+    }));
+  };
+
+  const handleSaveAndFinalize = () => {
+    setIsEditing(false);
+    setShowFinalTable(true);
+  };
+
+  const handleEditMode = () => {
+    setIsEditing(true);
+    setShowFinalTable(false);
+  };
+
+  const getNetProcurement = (month: string, originalValue: number) => {
+    return editedData[month] !== undefined ? editedData[month] : originalValue;
   };
 
   const handleExportTable = (tableName: string) => {
@@ -708,20 +732,31 @@ const DPKDemandNetting: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                    4. Final Procurement Request
+                    4. Final Procurement Request {isEditing && <span className="text-sm text-orange-600 dark:text-orange-400">(Editing Mode)</span>}
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Net procurement requirements after netting
+                    Net procurement requirements after netting - Click edit to adjust values
                   </p>
                 </div>
               </div>
-              <button
-                onClick={() => handleExportTable('procurement')}
-                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors flex items-center space-x-2 font-semibold shadow-lg"
-              >
-                <Download className="h-4 w-4" />
-                <span>Export</span>
-              </button>
+              <div className="flex items-center space-x-3">
+                {!isEditing && !showFinalTable && (
+                  <button
+                    onClick={handleEditMode}
+                    className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors flex items-center space-x-2 font-semibold shadow-lg"
+                  >
+                    <FileText className="h-4 w-4" />
+                    <span>Edit</span>
+                  </button>
+                )}
+                <button
+                  onClick={() => handleExportTable('procurement')}
+                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors flex items-center space-x-2 font-semibold shadow-lg"
+                >
+                  <Download className="h-4 w-4" />
+                  <span>Export</span>
+                </button>
+              </div>
             </div>
 
             <div className="overflow-x-auto bg-white dark:bg-gray-900 rounded-xl border-2 border-indigo-300 dark:border-indigo-700 shadow-lg">
@@ -739,44 +774,188 @@ const DPKDemandNetting: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
-                  {currentMaterialData.monthlyData.map((row, index) => (
-                    <tr key={index} className="hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors">
-                      <td className="px-4 py-4 text-sm font-semibold text-gray-900 dark:text-white">{row.month}</td>
-                      <td className="px-4 py-4 text-sm text-right text-gray-600 dark:text-gray-400">{row.adjustedDemand.toLocaleString()}</td>
-                      <td className="px-4 py-4 text-sm text-right text-green-600 dark:text-green-400">-{row.inventoryFulfillment.toLocaleString()}</td>
-                      <td className="px-4 py-4 text-sm text-right text-purple-600 dark:text-purple-400">-{row.contractFulfillment.toLocaleString()}</td>
-                      <td className="px-4 py-4 text-sm text-right text-amber-600 dark:text-amber-400">-{row.stockTransfer.toLocaleString()}</td>
-                      <td className="px-4 py-4 text-sm text-right font-bold text-blue-700 dark:text-blue-400">{row.netProcurement.toLocaleString()} units</td>
-                      <td className="px-4 py-4 text-sm text-right text-gray-600 dark:text-gray-400">{formatCurrency(row.unitPrice)}</td>
-                      <td className="px-4 py-4 text-sm text-right font-bold text-green-700 dark:text-green-400 text-lg">{formatCurrency(row.totalAmount)}</td>
-                    </tr>
-                  ))}
+                  {currentMaterialData.monthlyData.map((row, index) => {
+                    const currentNetProcurement = getNetProcurement(row.month, row.netProcurement);
+                    const calculatedAmount = currentNetProcurement * row.unitPrice;
+                    return (
+                      <tr key={index} className="hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors">
+                        <td className="px-4 py-4 text-sm font-semibold text-gray-900 dark:text-white">{row.month}</td>
+                        <td className="px-4 py-4 text-sm text-right text-gray-600 dark:text-gray-400">{row.adjustedDemand.toLocaleString()}</td>
+                        <td className="px-4 py-4 text-sm text-right text-green-600 dark:text-green-400">-{row.inventoryFulfillment.toLocaleString()}</td>
+                        <td className="px-4 py-4 text-sm text-right text-purple-600 dark:text-purple-400">-{row.contractFulfillment.toLocaleString()}</td>
+                        <td className="px-4 py-4 text-sm text-right text-amber-600 dark:text-amber-400">-{row.stockTransfer.toLocaleString()}</td>
+                        <td className="px-4 py-4 text-sm text-right font-bold text-blue-700 dark:text-blue-400">
+                          {isEditing ? (
+                            <input
+                              type="number"
+                              value={currentNetProcurement}
+                              onChange={(e) => handleEditProcurement(row.month, parseInt(e.target.value) || 0)}
+                              className="w-24 px-2 py-1 text-right border border-orange-300 dark:border-orange-600 rounded bg-orange-50 dark:bg-orange-900/20 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500"
+                            />
+                          ) : (
+                            <span>{currentNetProcurement.toLocaleString()} units</span>
+                          )}
+                        </td>
+                        <td className="px-4 py-4 text-sm text-right text-gray-600 dark:text-gray-400">{formatCurrency(row.unitPrice)}</td>
+                        <td className="px-4 py-4 text-sm text-right font-bold text-green-700 dark:text-green-400 text-lg">{formatCurrency(calculatedAmount)}</td>
+                      </tr>
+                    );
+                  })}
                   <tr className="bg-indigo-100 dark:bg-indigo-900/40 font-bold border-t-2 border-indigo-300 dark:border-indigo-700">
                     <td className="px-4 py-5 text-base text-gray-900 dark:text-white uppercase">Annual Total</td>
                     <td className="px-4 py-5 text-sm text-right text-gray-900 dark:text-white">{currentMaterialData.adjustedTotal.toLocaleString()}</td>
                     <td className="px-4 py-5 text-sm text-right text-green-700 dark:text-green-300">-{currentMaterialData.inventoryTotal.toLocaleString()}</td>
                     <td className="px-4 py-5 text-sm text-right text-purple-700 dark:text-purple-300">-{currentMaterialData.contractTotal.toLocaleString()}</td>
                     <td className="px-4 py-5 text-sm text-right text-amber-700 dark:text-amber-300">-{currentMaterialData.transferTotal.toLocaleString()}</td>
-                    <td className="px-4 py-5 text-base text-right text-blue-700 dark:text-blue-300 font-bold">{currentMaterialData.procurementTotal.toLocaleString()} units</td>
+                    <td className="px-4 py-5 text-base text-right text-blue-700 dark:text-blue-300 font-bold">
+                      {currentMaterialData.monthlyData.reduce((sum, row) => sum + getNetProcurement(row.month, row.netProcurement), 0).toLocaleString()} units
+                    </td>
                     <td className="px-4 py-5 text-sm text-right text-gray-600 dark:text-gray-400 font-semibold">Avg: {formatCurrency(currentMaterialData.unitPrice)}</td>
-                    <td className="px-4 py-5 text-base text-right text-green-700 dark:text-green-300 text-xl font-extrabold">{formatCurrency(currentMaterialData.totalAmount)}</td>
+                    <td className="px-4 py-5 text-base text-right text-green-700 dark:text-green-300 text-xl font-extrabold">
+                      {formatCurrency(currentMaterialData.monthlyData.reduce((sum, row) => sum + (getNetProcurement(row.month, row.netProcurement) * row.unitPrice), 0))}
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <div className="mt-6 p-4 bg-white dark:bg-gray-900 rounded-lg border border-indigo-200 dark:border-indigo-800">
-              <div className="flex items-start space-x-2">
-                <CheckCircle2 className="h-5 w-5 text-indigo-600 dark:text-indigo-400 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Netting Complete</p>
-                  <p className="text-xs text-gray-700 dark:text-gray-300">
-                    Final procurement requirements have been calculated. Total net procurement needed: <span className="font-bold text-indigo-700 dark:text-indigo-400">{currentMaterialData.procurementTotal.toLocaleString()} units</span>. This represents {((currentMaterialData.procurementTotal / currentMaterialData.adjustedTotal) * 100).toFixed(1)}% of adjusted demand after netting against available resources.
+            {isEditing && (
+              <div className="mt-6 flex justify-end space-x-3">
+                <button
+                  onClick={() => {
+                    setIsEditing(false);
+                    setEditedData({});
+                  }}
+                  className="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors flex items-center space-x-2 font-semibold shadow-lg"
+                >
+                  <span>Cancel</span>
+                </button>
+                <button
+                  onClick={handleSaveAndFinalize}
+                  className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center space-x-2 font-semibold shadow-lg"
+                >
+                  <CheckCircle2 className="h-5 w-5" />
+                  <span>Save & Finalize</span>
+                </button>
+              </div>
+            )}
+
+            {!isEditing && !showFinalTable && (
+              <div className="mt-6 p-4 bg-white dark:bg-gray-900 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                <div className="flex items-start space-x-2">
+                  <CheckCircle2 className="h-5 w-5 text-indigo-600 dark:text-indigo-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Netting Complete</p>
+                    <p className="text-xs text-gray-700 dark:text-gray-300">
+                      Final procurement requirements have been calculated. Total net procurement needed: <span className="font-bold text-indigo-700 dark:text-indigo-400">{currentMaterialData.monthlyData.reduce((sum, row) => sum + getNetProcurement(row.month, row.netProcurement), 0).toLocaleString()} units</span>. This represents {((currentMaterialData.monthlyData.reduce((sum, row) => sum + getNetProcurement(row.month, row.netProcurement), 0) / currentMaterialData.adjustedTotal) * 100).toFixed(1)}% of adjusted demand after netting against available resources.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {showFinalTable && (
+            <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl border-2 border-green-300 dark:border-green-700 p-6 shadow-xl mt-6">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <CheckCircle2 className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                      Final Demand Netting Summary
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Finalized procurement requirements ready for approval
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => {
+                    setShowFinalTable(false);
+                    setEditedData({});
+                  }}
+                  className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors flex items-center space-x-2 font-semibold shadow-lg"
+                >
+                  <FileText className="h-4 w-4" />
+                  <span>Edit Again</span>
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div className="bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-200 dark:border-green-800">
+                  <p className="text-xs text-gray-600 dark:text-gray-400 uppercase mb-1">Material</p>
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">{selectedMaterial}</p>
+                </div>
+                <div className="bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-200 dark:border-green-800">
+                  <p className="text-xs text-gray-600 dark:text-gray-400 uppercase mb-1">Total Procurement</p>
+                  <p className="text-lg font-bold text-green-700 dark:text-green-400">
+                    {currentMaterialData.monthlyData.reduce((sum, row) => sum + getNetProcurement(row.month, row.netProcurement), 0).toLocaleString()} units
+                  </p>
+                </div>
+                <div className="bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-200 dark:border-green-800">
+                  <p className="text-xs text-gray-600 dark:text-gray-400 uppercase mb-1">Unit Price</p>
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">{formatCurrency(currentMaterialData.unitPrice)}</p>
+                </div>
+                <div className="bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-200 dark:border-green-800">
+                  <p className="text-xs text-gray-600 dark:text-gray-400 uppercase mb-1">Total Amount</p>
+                  <p className="text-lg font-bold text-green-700 dark:text-green-400">
+                    {formatCurrency(currentMaterialData.monthlyData.reduce((sum, row) => sum + (getNetProcurement(row.month, row.netProcurement) * row.unitPrice), 0))}
                   </p>
                 </div>
               </div>
+
+              <div className="overflow-x-auto bg-white dark:bg-gray-900 rounded-xl border-2 border-green-300 dark:border-green-700 shadow-lg">
+                <table className="w-full">
+                  <thead className="bg-green-100 dark:bg-green-900/40 border-b-2 border-green-300 dark:border-green-700">
+                    <tr>
+                      <th className="px-4 py-4 text-left text-sm font-bold text-gray-900 dark:text-white uppercase">Month</th>
+                      <th className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white uppercase">Net Procurement (Units)</th>
+                      <th className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white uppercase">Unit Price</th>
+                      <th className="px-4 py-4 text-right text-sm font-bold text-gray-900 dark:text-white uppercase">Total Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+                    {currentMaterialData.monthlyData.map((row, index) => {
+                      const finalNetProcurement = getNetProcurement(row.month, row.netProcurement);
+                      const finalAmount = finalNetProcurement * row.unitPrice;
+                      return (
+                        <tr key={index} className="hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors">
+                          <td className="px-4 py-4 text-sm font-semibold text-gray-900 dark:text-white">{row.month}</td>
+                          <td className="px-4 py-4 text-sm text-right font-bold text-green-700 dark:text-green-400">{finalNetProcurement.toLocaleString()}</td>
+                          <td className="px-4 py-4 text-sm text-right text-gray-600 dark:text-gray-400">{formatCurrency(row.unitPrice)}</td>
+                          <td className="px-4 py-4 text-sm text-right font-bold text-green-700 dark:text-green-400 text-lg">{formatCurrency(finalAmount)}</td>
+                        </tr>
+                      );
+                    })}
+                    <tr className="bg-green-100 dark:bg-green-900/40 font-bold border-t-2 border-green-300 dark:border-green-700">
+                      <td className="px-4 py-5 text-base text-gray-900 dark:text-white uppercase">Annual Total</td>
+                      <td className="px-4 py-5 text-base text-right text-green-700 dark:text-green-300 font-bold">
+                        {currentMaterialData.monthlyData.reduce((sum, row) => sum + getNetProcurement(row.month, row.netProcurement), 0).toLocaleString()} units
+                      </td>
+                      <td className="px-4 py-5 text-sm text-right text-gray-600 dark:text-gray-400 font-semibold">Avg: {formatCurrency(currentMaterialData.unitPrice)}</td>
+                      <td className="px-4 py-5 text-base text-right text-green-700 dark:text-green-300 text-xl font-extrabold">
+                        {formatCurrency(currentMaterialData.monthlyData.reduce((sum, row) => sum + (getNetProcurement(row.month, row.netProcurement) * row.unitPrice), 0))}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mt-6 p-4 bg-green-100 dark:bg-green-900/30 rounded-lg border border-green-300 dark:border-green-700">
+                <div className="flex items-start space-x-2">
+                  <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Ready for Final Procurement</p>
+                    <p className="text-xs text-gray-700 dark:text-gray-300">
+                      The demand netting process is complete and finalized. These requirements are now ready to be sent to Stage 5 (Final Procurement).
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </>
       )}
     </div>
