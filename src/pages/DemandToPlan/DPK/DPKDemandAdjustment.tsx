@@ -140,6 +140,8 @@ const DPKDemandAdjustment: React.FC = () => {
   const [isRetrievingBudget, setIsRetrievingBudget] = useState(false);
   const [demandAlerts] = useState<ConsolidatedDemandAlert[]>(CONSOLIDATED_DEMAND_ALERTS);
   const [resolvedAlerts, setResolvedAlerts] = useState<Set<string>>(new Set());
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const [adjustmentSelections, setAdjustmentSelections] = useState<AdjustmentSelectionsByMaterial>({});
   const [editingMonth, setEditingMonth] = useState<string | null>(null);
@@ -567,14 +569,21 @@ const DPKDemandAdjustment: React.FC = () => {
     'Filtration Media': 'Water Treatment System'
   };
 
-  // Calculate category breakdown when all alerts are resolved
+  // Calculate category breakdown when all alerts are resolved with material details
   const categoryBreakdown = useMemo(() => {
     if (!allAlertsResolved) return [];
 
     const categoryMap = new Map<string, {
       totalQuantity: number;
       totalValue: number;
-      materials: Set<string>;
+      materials: Array<{
+        id: string;
+        name: string;
+        unitPrice: number;
+        units: number;
+        totalQuantity: number;
+        totalValue: number;
+      }>;
     }>();
 
     materials.forEach(mat => {
@@ -585,28 +594,38 @@ const DPKDemandAdjustment: React.FC = () => {
         categoryMap.set(category, {
           totalQuantity: 0,
           totalValue: 0,
-          materials: new Set()
+          materials: []
         });
       }
 
       const categoryData = categoryMap.get(category)!;
       const matData = materialBudgetData[mat];
 
+      let matTotalQty = 0;
       matData.monthlyData.forEach(row => {
         const selection = adjustmentSelections[mat]?.[row.month];
         const adjustedValue = selection ? selection.value : row.recommendedAdjustment;
+        matTotalQty += adjustedValue;
         categoryData.totalQuantity += adjustedValue;
         categoryData.totalValue += adjustedValue * price;
       });
 
-      categoryData.materials.add(mat);
+      categoryData.materials.push({
+        id: `MAT-${mat.substring(0, 8).toUpperCase().replace(/\s+/g, '')}`,
+        name: mat,
+        unitPrice: price,
+        units: 15,
+        totalQuantity: matTotalQty,
+        totalValue: matTotalQty * price
+      });
     });
 
     return Array.from(categoryMap.entries()).map(([category, data]) => ({
       category,
       totalQuantity: data.totalQuantity,
       totalValue: data.totalValue,
-      materialsCount: data.materials.size
+      materialsCount: data.materials.length,
+      materials: data.materials.sort((a, b) => b.totalValue - a.totalValue)
     })).sort((a, b) => b.totalValue - a.totalValue);
   }, [allAlertsResolved, materials, materialBudgetData, adjustmentSelections, materialCategoryMapping, materialPrices]);
 
@@ -646,6 +665,23 @@ const DPKDemandAdjustment: React.FC = () => {
       'Recommended': item.recommendedAdjustment
     }));
   }, [aggregatedMonthly]);
+
+  const toggleCategory = (category: string) => {
+    setExpandedCategories(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(category)) {
+        newSet.delete(category);
+      } else {
+        newSet.add(category);
+      }
+      return newSet;
+    });
+  };
+
+  const handleConfirmAndSend = () => {
+    setShowConfirmModal(false);
+    navigate('/demand-to-plan/dpk');
+  };
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
@@ -887,7 +923,7 @@ const DPKDemandAdjustment: React.FC = () => {
 
       {/* Final Budget Category Breakdown - Show after all alerts resolved */}
       {hasBudgetData && allAlertsResolved && (
-        <div id="final-budget-category-breakdown" className="space-y-6">
+        <div id="final-budget-category-breakdown" className="space-y-4">
           {/* Header */}
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl border-2 border-green-200 dark:border-green-800 p-6">
             <div className="flex items-center justify-between">
@@ -897,7 +933,7 @@ const DPKDemandAdjustment: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                    Final Budget After Adjustment
+                    Consolidated Procurement Requirements
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                     All deviation alerts resolved. Review by category before sending to E-Budget.
@@ -915,48 +951,130 @@ const DPKDemandAdjustment: React.FC = () => {
             </div>
           </div>
 
-          {/* Category Cards */}
-          <div className="space-y-4">
-            {categoryBreakdown.map((category, index) => (
-              <div
-                key={category.category}
-                className="bg-gradient-to-r from-slate-50 to-gray-50 dark:from-slate-900/40 dark:to-gray-900/40 rounded-xl border-2 border-slate-200 dark:border-slate-700 p-6 hover:shadow-lg transition-all"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center">
-                      <Package className="h-6 w-6 text-white" />
+          {/* Category Cards with Expandable Details */}
+          <div className="space-y-2">
+            {categoryBreakdown.map((category) => {
+              const isExpanded = expandedCategories.has(category.category);
+              return (
+                <div
+                  key={category.category}
+                  className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden"
+                >
+                  {/* Category Header - Clickable */}
+                  <button
+                    onClick={() => toggleCategory(category.category)}
+                    className="w-full p-5 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-4">
+                        <div className={`transform transition-transform ${isExpanded ? 'rotate-90' : ''}`}>
+                          <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                        <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
+                          <Package className="h-5 w-5 text-white" />
+                        </div>
+                        <div className="text-left">
+                          <h4 className="text-base font-bold text-gray-900 dark:text-white">
+                            {category.category}
+                          </h4>
+                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                            {category.materialsCount} materials from 15 units
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-8">
+                        <div className="text-right">
+                          <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                            TOTAL QUANTITY
+                          </p>
+                          <p className="text-xl font-bold text-green-600 dark:text-green-400">
+                            {category.totalQuantity.toLocaleString('id-ID')}
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                            TOTAL VALUE
+                          </p>
+                          <p className="text-xl font-bold text-gray-900 dark:text-white">
+                            {formatCurrency(category.totalValue)}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="text-xl font-bold text-gray-900 dark:text-white">
-                        {category.category}
-                      </h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
-                        {category.materialsCount} materials from 15 units
-                      </p>
+                  </button>
+
+                  {/* Material Details Table - Expandable */}
+                  {isExpanded && (
+                    <div className="border-t border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/30">
+                      <div className="overflow-x-auto">
+                        <table className="w-full">
+                          <thead className="bg-gray-100 dark:bg-gray-800">
+                            <tr>
+                              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                Material ID
+                              </th>
+                              <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                Material Name
+                              </th>
+                              <th className="px-6 py-3 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                Unit Price (IDR)
+                              </th>
+                              <th className="px-6 py-3 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                Units
+                              </th>
+                              <th className="px-6 py-3 text-center text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                Total Quantity
+                              </th>
+                              <th className="px-6 py-3 text-right text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                                Total Value (IDR)
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                            {category.materials.map((material, idx) => (
+                              <tr key={material.id} className="hover:bg-white dark:hover:bg-gray-900 transition-colors">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600 dark:text-blue-400">
+                                  {material.id}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                                  {material.name}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-center text-gray-900 dark:text-white">
+                                  {material.unitPrice.toLocaleString('id-ID')}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-center">
+                                  <span className="inline-flex items-center justify-center w-8 h-8 bg-purple-600 text-white text-xs font-bold rounded-full">
+                                    {material.units}
+                                  </span>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-center font-semibold text-gray-900 dark:text-white">
+                                  {material.totalQuantity.toLocaleString('id-ID')}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-bold text-green-600 dark:text-green-400">
+                                  {formatCurrency(material.totalValue)}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                          <tfoot className="bg-gray-100 dark:bg-gray-800">
+                            <tr>
+                              <td colSpan={5} className="px-6 py-4 text-right text-sm font-bold text-gray-900 dark:text-white">
+                                Category Total:
+                              </td>
+                              <td className="px-6 py-4 text-right text-base font-bold text-green-600 dark:text-green-400">
+                                {formatCurrency(category.totalValue)}
+                              </td>
+                            </tr>
+                          </tfoot>
+                        </table>
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="mb-3">
-                      <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-                        TOTAL QUANTITY
-                      </p>
-                      <p className="text-2xl font-bold text-green-600 dark:text-green-400">
-                        {category.totalQuantity.toLocaleString('id-ID')}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-                        TOTAL VALUE
-                      </p>
-                      <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                        {formatCurrency(category.totalValue)}
-                      </p>
-                    </div>
-                  </div>
+                  )}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Grand Total */}
@@ -984,14 +1102,66 @@ const DPKDemandAdjustment: React.FC = () => {
           {/* Confirm Button */}
           <div className="flex justify-end">
             <button
-              onClick={() => {
-                navigate('/demand-to-plan/dpk/demand-netting');
-              }}
+              onClick={() => setShowConfirmModal(true)}
               className="px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all flex items-center space-x-3"
             >
               <Send className="h-6 w-6" />
               <span>Confirm</span>
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Confirmation Modal */}
+      {showConfirmModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full p-8 transform transition-all">
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle2 className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                Confirm Submission
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                Are you sure you want to send the adjusted budget to the next stage?
+              </p>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 mb-6">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Total Categories:</span>
+                <span className="text-lg font-bold text-gray-900 dark:text-white">{categoryBreakdown.length}</span>
+              </div>
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Total Materials:</span>
+                <span className="text-lg font-bold text-gray-900 dark:text-white">{totalMaterialsCount}</span>
+              </div>
+              <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Grand Total:</span>
+                  <span className="text-xl font-bold text-green-600 dark:text-green-400">
+                    {formatCurrency(grandTotalValue)}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex space-x-3">
+              <button
+                onClick={() => setShowConfirmModal(false)}
+                className="flex-1 px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-all"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmAndSend}
+                className="flex-1 px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2"
+              >
+                <Send className="h-5 w-5" />
+                <span>Confirm & Send</span>
+              </button>
+            </div>
           </div>
         </div>
       )}
