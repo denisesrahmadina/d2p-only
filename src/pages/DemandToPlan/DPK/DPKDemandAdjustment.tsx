@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Download, Sliders, CheckCircle2, Sparkles, Edit3, Save, Factory, Filter, Package } from 'lucide-react';
+import { Download, Sliders, CheckCircle2, Sparkles, Edit3, Save, Factory, Filter, Package, Database, Loader2 } from 'lucide-react';
 import plnUnitsData from '../../../data/plnUnits.json';
 import {
   BarChart,
@@ -69,6 +69,7 @@ const DPKDemandAdjustment: React.FC = () => {
   const [hasBudgetData, setHasBudgetData] = useState(false);
   const [showFinalTable, setShowFinalTable] = useState(false);
   const [chartType, setChartType] = useState<'bar' | 'line'>('bar');
+  const [isRetrievingBudget, setIsRetrievingBudget] = useState(false);
 
   const [adjustmentSelections, setAdjustmentSelections] = useState<AdjustmentSelectionsByMaterial>({});
   const [editingMonth, setEditingMonth] = useState<string | null>(null);
@@ -385,6 +386,15 @@ const DPKDemandAdjustment: React.FC = () => {
     }, 100);
   };
 
+  const handleRetrieveBudgetData = () => {
+    setIsRetrievingBudget(true);
+    // Simulate data retrieval animation
+    setTimeout(() => {
+      setIsRetrievingBudget(false);
+      setHasBudgetData(true);
+    }, 2500);
+  };
+
   const handleExportFinalAdjustment = () => {
     const csvContent = [
       ['Month', 'Consolidated Demand', 'Budget Limit', 'Adjusted Demand', 'Source', 'Variance'].join(','),
@@ -448,9 +458,131 @@ const DPKDemandAdjustment: React.FC = () => {
         </div>
       </div>
 
+      {/* Retrieve Budget Data Button */}
+      {!hasBudgetData && !isRetrievingBudget && (
+        <div className="flex justify-center">
+          <button
+            onClick={handleRetrieveBudgetData}
+            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl transition-all duration-200 flex items-center space-x-3 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+          >
+            <Database className="h-6 w-6" />
+            <span>Retrieve Budget Data from E-Budgeting</span>
+          </button>
+        </div>
+      )}
+
+      {/* Loading Animation */}
+      {isRetrievingBudget && (
+        <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-12">
+          <div className="flex flex-col items-center justify-center space-y-6">
+            <div className="relative">
+              <Loader2 className="h-16 w-16 text-blue-600 animate-spin" />
+              <Database className="h-8 w-8 text-blue-500 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+            </div>
+            <div className="text-center">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                Retrieving Budget Data...
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                Connecting to E-Budgeting Application
+              </p>
+              <div className="mt-4 flex items-center justify-center space-x-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '0ms' }}></div>
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '150ms' }}></div>
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '300ms' }}></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Budget Overview Cards - Show after retrieval */}
+      {hasBudgetData && aggregatedOverview && (
+        <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+            Budget Data Retrieved from E-Budgeting
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Total Approved Budget - Highlighted */}
+            <div className="relative p-6 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl border-2 border-blue-400 dark:border-blue-600 shadow-lg">
+              <div className="absolute top-3 right-3">
+                <CheckCircle2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+              </div>
+              <p className="text-sm text-blue-600 dark:text-blue-400 uppercase font-semibold mb-2">Total Approved Budget</p>
+              <p className="text-4xl font-extrabold text-blue-700 dark:text-blue-300 mb-3">
+                {formatCurrency(aggregatedOverview.totalBudgetAmt)}
+              </p>
+              <div className="pt-3 border-t border-blue-200 dark:border-blue-800">
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Consolidated Demand Request</p>
+                <p className="text-lg font-semibold text-gray-700 dark:text-gray-300">
+                  {formatCurrency(aggregatedOverview.totalDemandAmt)}
+                </p>
+              </div>
+            </div>
+
+            {/* Amount of Budget Adjusted */}
+            <div className={`p-6 rounded-xl border-2 ${
+              aggregatedOverview.adjustmentNeededAmt < 0
+                ? 'bg-red-50 dark:bg-red-900/20 border-red-400 dark:border-red-600'
+                : 'bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-600'
+            }`}>
+              <p className={`text-sm uppercase font-semibold mb-2 ${
+                aggregatedOverview.adjustmentNeededAmt < 0
+                  ? 'text-red-600 dark:text-red-400'
+                  : 'text-green-600 dark:text-green-400'
+              }`}>
+                Budget Adjustment Needed
+              </p>
+              <p className={`text-4xl font-extrabold mb-1 ${
+                aggregatedOverview.adjustmentNeededAmt < 0
+                  ? 'text-red-700 dark:text-red-300'
+                  : 'text-green-700 dark:text-green-300'
+              }`}>
+                {formatCurrency(Math.abs(aggregatedOverview.adjustmentNeededAmt))}
+              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                {aggregatedOverview.adjustmentNeededAmt < 0
+                  ? 'Budget exceeded - reduction required'
+                  : 'Within budget - surplus available'
+                }
+              </p>
+            </div>
+
+            {/* Status Card */}
+            <div className={`p-6 rounded-xl border-2 ${
+              aggregatedOverview.adjustmentNeededAmt < 0
+                ? 'bg-red-50 dark:bg-red-900/20 border-red-400 dark:border-red-600'
+                : 'bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-600'
+            }`}>
+              <p className="text-sm text-gray-600 dark:text-gray-400 uppercase font-semibold mb-2">Budget Status</p>
+              <div className="flex items-center space-x-3">
+                <div className={`w-4 h-4 rounded-full ${
+                  aggregatedOverview.adjustmentNeededAmt < 0
+                    ? 'bg-red-500 animate-pulse'
+                    : 'bg-green-500'
+                }`}></div>
+                <p className={`text-3xl font-extrabold ${
+                  aggregatedOverview.adjustmentNeededAmt < 0
+                    ? 'text-red-700 dark:text-red-300'
+                    : 'text-green-700 dark:text-green-300'
+                }`}>
+                  {aggregatedOverview.adjustmentNeededAmt < 0 ? 'Over Budget' : 'Within Budget'}
+                </p>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-3">
+                {aggregatedOverview.adjustmentNeededAmt < 0
+                  ? `${Math.abs(((aggregatedOverview.adjustmentNeededAmt / aggregatedOverview.totalBudgetAmt) * 100).toFixed(1))}% over approved budget`
+                  : 'All demands within budget limits'
+                }
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {hasBudgetData && (
         <>
-          <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
+          {/* <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
               Budget Overview - All Materials
             </h3>
@@ -496,7 +628,7 @@ const DPKDemandAdjustment: React.FC = () => {
                 </div>
               </div>
             ) : null}
-          </div>
+          </div> */}
 
           {/* <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
             <div className="flex items-center justify-between mb-6">
