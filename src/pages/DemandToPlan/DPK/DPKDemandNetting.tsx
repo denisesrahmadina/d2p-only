@@ -46,7 +46,30 @@ const DPKDemandNetting: React.FC = () => {
   ];
 
   const materialNettingData: MaterialNettingData = useMemo(() => ({
-   'Filter air': {
+   'All Material': {
+     adjustedTotal: 88156,
+     inventoryTotal: 28880,
+     contractTotal: 14080,
+     transferTotal: 704,
+     procurementTotal: 44492,
+     unitPrice: 450000,
+     totalAmount: 20021400000,
+     monthlyData: [
+       { month: 'Jan', adjustedDemand: 7200, inventoryFulfillment: 240, contractFulfillment: 120, stockTransfer: 60, netProcurement: 6780, unitPrice: 450000, totalAmount: 3051000000 },
+       { month: 'Feb', adjustedDemand: 7360, inventoryFulfillment: 240, contractFulfillment: 120, stockTransfer: 60, netProcurement: 6940, unitPrice: 450000, totalAmount: 3123000000 },
+       { month: 'Mar', adjustedDemand: 7465, inventoryFulfillment: 250, contractFulfillment: 125, stockTransfer: 60, netProcurement: 7030, unitPrice: 450000, totalAmount: 3163500000 },
+       { month: 'Apr', adjustedDemand: 7525, inventoryFulfillment: 240, contractFulfillment: 120, stockTransfer: 60, netProcurement: 7105, unitPrice: 450000, totalAmount: 3197250000 },
+       { month: 'May', adjustedDemand: 7635, inventoryFulfillment: 250, contractFulfillment: 125, stockTransfer: 60, netProcurement: 7200, unitPrice: 450000, totalAmount: 3240000000 },
+       { month: 'Jun', adjustedDemand: 7705, inventoryFulfillment: 250, contractFulfillment: 125, stockTransfer: 60, netProcurement: 7270, unitPrice: 450000, totalAmount: 3271500000 },
+       { month: 'Jul', adjustedDemand: 7765, inventoryFulfillment: 250, contractFulfillment: 130, stockTransfer: 50, netProcurement: 7335, unitPrice: 450000, totalAmount: 3300750000 },
+       { month: 'Aug', adjustedDemand: 7825, inventoryFulfillment: 250, contractFulfillment: 130, stockTransfer: 50, netProcurement: 7395, unitPrice: 450000, totalAmount: 3327750000 },
+       { month: 'Sep', adjustedDemand: 7345, inventoryFulfillment: 240, contractFulfillment: 120, stockTransfer: 50, netProcurement: 6935, unitPrice: 450000, totalAmount: 3120750000 },
+       { month: 'Oct', adjustedDemand: 7445, inventoryFulfillment: 250, contractFulfillment: 130, stockTransfer: 50, netProcurement: 7015, unitPrice: 450000, totalAmount: 3156750000 },
+       { month: 'Nov', adjustedDemand: 7885, inventoryFulfillment: 260, contractFulfillment: 135, stockTransfer: 50, netProcurement: 7440, unitPrice: 450000, totalAmount: 3348000000 },
+       { month: 'Dec', adjustedDemand: 8001, inventoryFulfillment: 260, contractFulfillment: 140, stockTransfer: 94, netProcurement: 7507, unitPrice: 450000, totalAmount: 3378150000 }
+     ]
+   },
+   'Air Filter': {
      adjustedTotal: 25920,
      inventoryTotal: 8000,
      contractTotal: 4000,
@@ -69,7 +92,7 @@ const DPKDemandNetting: React.FC = () => {
        { month: 'Dec', adjustedDemand: 425, inventoryFulfillment: 25, contractFulfillment: 20, stockTransfer: 10, netProcurement: 370, unitPrice: 450000, totalAmount: 166500000 }
      ]
    },
-   'Filter Udara Cartridge': {
+   'Fuel Filter': {
      adjustedTotal: 20920,
      inventoryTotal: 7200,
      contractTotal: 3600,
@@ -92,7 +115,7 @@ const DPKDemandNetting: React.FC = () => {
        { month: 'Dec', adjustedDemand: 1060, inventoryFulfillment: 27, contractFulfillment: 20, stockTransfer: 8, netProcurement: 1005, unitPrice: 650000, totalAmount: 653250000 }
      ]
    },
-   'Oil Filter': {
+   'Oil filter': {
      adjustedTotal: 26122,
      inventoryTotal: 6480,
      contractTotal: 3240,
@@ -115,7 +138,7 @@ const DPKDemandNetting: React.FC = () => {
        { month: 'Dec', adjustedDemand: 480, inventoryFulfillment: 30, contractFulfillment: 15, stockTransfer: 5, netProcurement: 430, unitPrice: 350000, totalAmount: 150500000 }
      ]
    },
-   'Filter Gas': {
+   'Gas Filter': {
      adjustedTotal: 15194,
      inventoryTotal: 5832,
      contractTotal: 2916,
@@ -138,7 +161,7 @@ const DPKDemandNetting: React.FC = () => {
        { month: 'Dec', adjustedDemand: 270, inventoryFulfillment: 15, contractFulfillment: 10, stockTransfer: 5, netProcurement: 235, unitPrice: 550000, totalAmount: 129250000 }
      ]
    },
-   'Filter Udara Kassa': {
+   'Chemical filter': {
      adjustedTotal: 19206,
      inventoryTotal: 5249,
      contractTotal: 2625,
@@ -159,6 +182,75 @@ const DPKDemandNetting: React.FC = () => {
        { month: 'Oct', adjustedDemand: 325, inventoryFulfillment: 20, contractFulfillment: 10, stockTransfer: 5, netProcurement: 280, unitPrice: 280000, totalAmount: 78400000 },
        { month: 'Nov', adjustedDemand: 345, inventoryFulfillment: 20, contractFulfillment: 10, stockTransfer: 5, netProcurement: 300, unitPrice: 280000, totalAmount: 84000000 },
        { month: 'Dec', adjustedDemand: 355, inventoryFulfillment: 20, contractFulfillment: 10, stockTransfer: 5, netProcurement: 310, unitPrice: 280000, totalAmount: 86800000 }
+     ]
+   },
+   'Special filter': {
+     adjustedTotal: 14850,
+     inventoryTotal: 4200,
+     contractTotal: 2100,
+     transferTotal: 105,
+     procurementTotal: 8445,
+     unitPrice: 420000,
+     totalAmount: 3546900000,
+     monthlyData: [
+       { month: 'Jan', adjustedDemand: 1200, inventoryFulfillment: 35, contractFulfillment: 18, stockTransfer: 9, netProcurement: 1138, unitPrice: 420000, totalAmount: 477960000 },
+       { month: 'Feb', adjustedDemand: 1210, inventoryFulfillment: 35, contractFulfillment: 18, stockTransfer: 9, netProcurement: 1148, unitPrice: 420000, totalAmount: 482160000 },
+       { month: 'Mar', adjustedDemand: 1230, inventoryFulfillment: 35, contractFulfillment: 18, stockTransfer: 9, netProcurement: 1168, unitPrice: 420000, totalAmount: 490560000 },
+       { month: 'Apr', adjustedDemand: 1240, inventoryFulfillment: 35, contractFulfillment: 18, stockTransfer: 9, netProcurement: 1178, unitPrice: 420000, totalAmount: 494760000 },
+       { month: 'May', adjustedDemand: 1250, inventoryFulfillment: 35, contractFulfillment: 18, stockTransfer: 9, netProcurement: 1188, unitPrice: 420000, totalAmount: 498960000 },
+       { month: 'Jun', adjustedDemand: 1260, inventoryFulfillment: 35, contractFulfillment: 18, stockTransfer: 9, netProcurement: 1198, unitPrice: 420000, totalAmount: 503160000 },
+       { month: 'Jul', adjustedDemand: 1270, inventoryFulfillment: 35, contractFulfillment: 18, stockTransfer: 9, netProcurement: 1208, unitPrice: 420000, totalAmount: 507360000 },
+       { month: 'Aug', adjustedDemand: 1280, inventoryFulfillment: 35, contractFulfillment: 18, stockTransfer: 9, netProcurement: 1218, unitPrice: 420000, totalAmount: 511560000 },
+       { month: 'Sep', adjustedDemand: 1220, inventoryFulfillment: 35, contractFulfillment: 18, stockTransfer: 9, netProcurement: 1158, unitPrice: 420000, totalAmount: 486360000 },
+       { month: 'Oct', adjustedDemand: 1240, inventoryFulfillment: 35, contractFulfillment: 18, stockTransfer: 9, netProcurement: 1178, unitPrice: 420000, totalAmount: 494760000 },
+       { month: 'Nov', adjustedDemand: 1290, inventoryFulfillment: 35, contractFulfillment: 18, stockTransfer: 9, netProcurement: 1228, unitPrice: 420000, totalAmount: 515760000 },
+       { month: 'Dec', adjustedDemand: 1310, inventoryFulfillment: 35, contractFulfillment: 18, stockTransfer: 7, netProcurement: 1250, unitPrice: 420000, totalAmount: 525000000 }
+     ]
+   },
+   'Multi function filter': {
+     adjustedTotal: 18920,
+     inventoryTotal: 5600,
+     contractTotal: 2800,
+     transferTotal: 140,
+     procurementTotal: 10380,
+     unitPrice: 490000,
+     totalAmount: 5086200000,
+     monthlyData: [
+       { month: 'Jan', adjustedDemand: 1550, inventoryFulfillment: 47, contractFulfillment: 23, stockTransfer: 12, netProcurement: 1468, unitPrice: 490000, totalAmount: 719320000 },
+       { month: 'Feb', adjustedDemand: 1560, inventoryFulfillment: 47, contractFulfillment: 23, stockTransfer: 12, netProcurement: 1478, unitPrice: 490000, totalAmount: 724220000 },
+       { month: 'Mar', adjustedDemand: 1580, inventoryFulfillment: 47, contractFulfillment: 23, stockTransfer: 12, netProcurement: 1498, unitPrice: 490000, totalAmount: 734020000 },
+       { month: 'Apr', adjustedDemand: 1590, inventoryFulfillment: 47, contractFulfillment: 23, stockTransfer: 12, netProcurement: 1508, unitPrice: 490000, totalAmount: 738920000 },
+       { month: 'May', adjustedDemand: 1600, inventoryFulfillment: 47, contractFulfillment: 23, stockTransfer: 12, netProcurement: 1518, unitPrice: 490000, totalAmount: 743820000 },
+       { month: 'Jun', adjustedDemand: 1610, inventoryFulfillment: 47, contractFulfillment: 23, stockTransfer: 12, netProcurement: 1528, unitPrice: 490000, totalAmount: 748720000 },
+       { month: 'Jul', adjustedDemand: 1620, inventoryFulfillment: 47, contractFulfillment: 23, stockTransfer: 12, netProcurement: 1538, unitPrice: 490000, totalAmount: 753620000 },
+       { month: 'Aug', adjustedDemand: 1630, inventoryFulfillment: 47, contractFulfillment: 23, stockTransfer: 12, netProcurement: 1548, unitPrice: 490000, totalAmount: 758520000 },
+       { month: 'Sep', adjustedDemand: 1570, inventoryFulfillment: 47, contractFulfillment: 23, stockTransfer: 12, netProcurement: 1488, unitPrice: 490000, totalAmount: 729120000 },
+       { month: 'Oct', adjustedDemand: 1590, inventoryFulfillment: 47, contractFulfillment: 23, stockTransfer: 12, netProcurement: 1508, unitPrice: 490000, totalAmount: 738920000 },
+       { month: 'Nov', adjustedDemand: 1640, inventoryFulfillment: 47, contractFulfillment: 23, stockTransfer: 12, netProcurement: 1558, unitPrice: 490000, totalAmount: 763420000 },
+       { month: 'Dec', adjustedDemand: 1660, inventoryFulfillment: 47, contractFulfillment: 23, stockTransfer: 8, netProcurement: 1582, unitPrice: 490000, totalAmount: 775180000 }
+     ]
+   },
+   'Water filter': {
+     adjustedTotal: 22450,
+     inventoryTotal: 6800,
+     contractTotal: 3400,
+     transferTotal: 170,
+     procurementTotal: 12080,
+     unitPrice: 360000,
+     totalAmount: 4348800000,
+     monthlyData: [
+       { month: 'Jan', adjustedDemand: 1820, inventoryFulfillment: 57, contractFulfillment: 28, stockTransfer: 14, netProcurement: 1721, unitPrice: 360000, totalAmount: 619560000 },
+       { month: 'Feb', adjustedDemand: 1840, inventoryFulfillment: 57, contractFulfillment: 28, stockTransfer: 14, netProcurement: 1741, unitPrice: 360000, totalAmount: 626760000 },
+       { month: 'Mar', adjustedDemand: 1870, inventoryFulfillment: 57, contractFulfillment: 28, stockTransfer: 14, netProcurement: 1771, unitPrice: 360000, totalAmount: 637560000 },
+       { month: 'Apr', adjustedDemand: 1880, inventoryFulfillment: 57, contractFulfillment: 28, stockTransfer: 14, netProcurement: 1781, unitPrice: 360000, totalAmount: 641160000 },
+       { month: 'May', adjustedDemand: 1900, inventoryFulfillment: 57, contractFulfillment: 28, stockTransfer: 14, netProcurement: 1801, unitPrice: 360000, totalAmount: 648360000 },
+       { month: 'Jun', adjustedDemand: 1910, inventoryFulfillment: 57, contractFulfillment: 28, stockTransfer: 14, netProcurement: 1811, unitPrice: 360000, totalAmount: 651960000 },
+       { month: 'Jul', adjustedDemand: 1930, inventoryFulfillment: 57, contractFulfillment: 28, stockTransfer: 14, netProcurement: 1831, unitPrice: 360000, totalAmount: 659160000 },
+       { month: 'Aug', adjustedDemand: 1940, inventoryFulfillment: 57, contractFulfillment: 28, stockTransfer: 14, netProcurement: 1841, unitPrice: 360000, totalAmount: 662760000 },
+       { month: 'Sep', adjustedDemand: 1850, inventoryFulfillment: 57, contractFulfillment: 28, stockTransfer: 14, netProcurement: 1751, unitPrice: 360000, totalAmount: 630360000 },
+       { month: 'Oct', adjustedDemand: 1880, inventoryFulfillment: 57, contractFulfillment: 28, stockTransfer: 14, netProcurement: 1781, unitPrice: 360000, totalAmount: 641160000 },
+       { month: 'Nov', adjustedDemand: 1950, inventoryFulfillment: 57, contractFulfillment: 28, stockTransfer: 14, netProcurement: 1851, unitPrice: 360000, totalAmount: 666360000 },
+       { month: 'Dec', adjustedDemand: 1980, inventoryFulfillment: 57, contractFulfillment: 28, stockTransfer: 12, netProcurement: 1883, unitPrice: 360000, totalAmount: 677880000 }
      ]
    }
  }), []);
