@@ -130,14 +130,20 @@ const DPKDemandAdjustment: React.FC = () => {
       'Filter Udara Cartridge': [230, 240, 250, 260, 270, 280, 290, 300, 280, 290, 310, 320],
       'Oil Filter': [390, 400, 410, 420, 430, 440, 450, 460, 440, 450, 470, 480],
       'Filter Gas': [180, 190, 200, 210, 220, 230, 240, 250, 230, 240, 260, 270],
-      'Filter Udara Kassa': [265, 275, 285, 295, 305, 315, 325, 335, 315, 325, 345, 355]
+      'Filter Udara Kassa': [265, 275, 285, 295, 305, 315, 325, 335, 315, 325, 345, 355],
+      'Filtration Media': [120, 130, 140, 150, 160, 170, 180, 190, 170, 180, 200, 210],
+      'Bolts and Fasteners': [450, 470, 490, 510, 530, 550, 570, 590, 550, 570, 610, 630]
     };
 
     const createUnitData = (unitVariation: number) => {
       const unitData: { [material: string]: MaterialData } = {};
-      
+
       materials.forEach((material) => {
         const pattern = basePatterns[material as keyof typeof basePatterns];
+        if (!pattern) {
+          console.error(`No pattern found for material: ${material}`);
+          return;
+        }
         const monthlyValues = generateMaterialData(pattern, unitVariation);
         const totalDemand = monthlyValues.reduce((sum, val) => sum + val, 0);
         const totalBudget = Math.round(totalDemand * (0.95 + Math.random() * 0.1)); // 95%-105% of demand
