@@ -314,6 +314,9 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
                 return item.unitRequests.length > max.unitRequests.length ? item : max;
               }, items[0]);
 
+              const mostRequestedName = categorySummary?.mostRequested || mostRequestedItem.materialName;
+              const mostRequestedCount = items.find(item => item.materialName === mostRequestedName)?.unitRequests.length || mostRequestedItem.unitRequests.length;
+
               return (
                 <div
                   key={category}
@@ -363,10 +366,10 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
                           <TrendingUp className="h-4 w-4 text-orange-600 dark:text-orange-400" />
                           <span className="text-xs font-medium text-gray-600 dark:text-gray-400 uppercase">Most Requested</span>
                         </div>
-                        <p className="text-xs font-bold text-gray-900 dark:text-white truncate" title={`${mostRequestedItem.materialName} (${mostRequestedItem.unitRequests.length})`}>
-                          {mostRequestedItem.materialName.length > 25
-                            ? mostRequestedItem.materialName.substring(0, 25) + '...'
-                            : mostRequestedItem.materialName} ({mostRequestedItem.unitRequests.length})
+                        <p className="text-xs font-bold text-gray-900 dark:text-white truncate" title={`${mostRequestedName} (${mostRequestedCount})`}>
+                          {mostRequestedName.length > 25
+                            ? mostRequestedName.substring(0, 25) + '...'
+                            : mostRequestedName} ({mostRequestedCount})
                         </p>
                       </div>
                     </div>
