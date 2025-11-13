@@ -894,12 +894,12 @@ const DPKFinalProcurement: React.FC = () => {
       </div>
 
       <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-6">
-        <div className="p-6 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl shadow-lg flex flex-col justify-center">
-          <p className="text-sm text-white/80 uppercase mb-2">Total Annual Budget</p>
-          <p className="text-3xl font-extrabold text-white">
+        <div className="p-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl shadow-lg flex flex-col justify-center min-h-[200px]">
+          <p className="text-sm text-white/80 uppercase mb-3 tracking-wider">Total Annual Budget</p>
+          <p className="text-4xl font-extrabold text-white mb-2">
             {formatBudgetDisplay(annualBudgetMockData.totalBudget)}
           </p>
-          <p className="text-sm text-white/80 mt-2">
+          <p className="text-base text-white/90 mt-2">
             {formatUnits(annualBudgetMockData.totalUnits)}
           </p>
         </div>
