@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronRight, Users, Package, DollarSign, TrendingUp, FileText } from 'lucide-react';
+import { ChevronDown, ChevronRight, Users, Package, DollarSign, FileText } from 'lucide-react';
 import FinalProcurementMonthlyTable from './FinalProcurementMonthlyTable';
 import { materialProcurementData, categorySummaries } from '../../data/finalProcurementMockData';
 
@@ -310,13 +310,6 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
               const categorySummary = categorySummaries.find(c => c.categoryName === category);
               const totalValue = categorySummary?.totalValue || items.reduce((sum, item) => sum + item.materialValue, 0);
 
-              const mostRequestedItem = items.reduce((max, item) => {
-                return item.unitRequests.length > max.unitRequests.length ? item : max;
-              }, items[0]);
-
-              const mostRequestedName = categorySummary?.mostRequested || mostRequestedItem.materialName;
-              const mostRequestedCount = items.find(item => item.materialName === mostRequestedName)?.unitRequests.length || mostRequestedItem.unitRequests.length;
-
               return (
                 <div
                   key={category}
@@ -342,7 +335,7 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 px-4 pb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 px-4 pb-4">
                       <div className="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
                         <div className="flex items-center space-x-2 mb-1">
                           <Package className="h-4 w-4 text-blue-600 dark:text-blue-400" />
@@ -358,18 +351,6 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
                         </div>
                         <p className="text-sm font-bold text-gray-900 dark:text-white">
                           IDR {new Intl.NumberFormat('id-ID').format(totalValue)}
-                        </p>
-                      </div>
-
-                      <div className="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-200 dark:border-gray-600">
-                        <div className="flex items-center space-x-2 mb-1">
-                          <TrendingUp className="h-4 w-4 text-orange-600 dark:text-orange-400" />
-                          <span className="text-xs font-medium text-gray-600 dark:text-gray-400 uppercase">Most Requested</span>
-                        </div>
-                        <p className="text-xs font-bold text-gray-900 dark:text-white truncate" title={`${mostRequestedName} (${mostRequestedCount})`}>
-                          {mostRequestedName.length > 25
-                            ? mostRequestedName.substring(0, 25) + '...'
-                            : mostRequestedName} ({mostRequestedCount})
                         </p>
                       </div>
                     </div>
