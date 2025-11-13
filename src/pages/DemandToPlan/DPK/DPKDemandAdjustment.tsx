@@ -153,25 +153,7 @@ const DPKDemandAdjustment: React.FC = () => {
   const [editingMaterial, setEditingMaterial] = useState<string | null>(null);
   const [customValues, setCustomValues] = useState<{ [key: string]: string }>({});
 
-  const categories = [
-    'All Categories',
-    'Filter',
-    'Ash Handling System',
-    'Boiler and Pressure Vessel Equipment',
-    'Civil Works and Construction Materials',
-    'Consumables',
-    'Electrical Equipment',
-    'Emission Control Systems',
-    'Engineering and Design Materials',
-    'Fuel',
-    'IT and Communication Systems',
-    'Instrumentation and Control System',
-    'Mechanical Equipment',
-    'Renewable Energy Equipment',
-    'Safety and Environmental Equipment',
-    'Spare part and Maintenance',
-    'Water Treatment System'
-  ];
+  const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies', 'Water Treatment System', 'Spare Parts and Maintenance'];
   const materials = MATERIALS;
   const materialFilterOptions = ['All Material', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
   const materialPrices = MATERIAL_PRICES;

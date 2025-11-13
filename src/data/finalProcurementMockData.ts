@@ -54,79 +54,29 @@ export const annualBudget: AnnualBudgetData = {
 
 export const categoryBudgetDistribution: CategoryBudgetData[] = [
   {
-    name: 'Fuel',
-    value: 250000000000,
-    percentage: 29.46
+    name: 'Others',
+    value: 776557012000,
+    percentage: 91.5
   },
   {
-    name: 'Mechanical Equipment',
-    value: 150000000000,
-    percentage: 17.68
-  },
-  {
-    name: 'Spare part and Maintenance',
-    value: 120000000000,
-    percentage: 14.15
-  },
-  {
-    name: 'Electrical Equipment',
-    value: 95000000000,
-    percentage: 11.20
-  },
-  {
-    name: 'Boiler and Pressure Vessel Equipment',
-    value: 70000000000,
-    percentage: 8.25
-  },
-  {
-    name: 'Civil Works and Construction Materials',
-    value: 45000000000,
-    percentage: 5.30
-  },
-  {
-    name: 'IT and Communication Systems',
-    value: 32000000000,
-    percentage: 3.77
-  },
-  {
-    name: 'Instrumentation and Control System',
-    value: 28000000000,
-    percentage: 3.30
-  },
-  {
-    name: 'Water Treatment System',
-    value: 22000000000,
-    percentage: 2.59
-  },
-  {
-    name: 'Emission Control Systems',
-    value: 18000000000,
-    percentage: 2.12
-  },
-  {
-    name: 'Safety and Environmental Equipment',
-    value: 15000000000,
-    percentage: 1.77
-  },
-  {
-    name: 'Ash Handling System',
+    name: 'Ash Handling Systems',
     value: 11800000000,
     percentage: 1.39
   },
   {
-    name: 'Engineering and Design Materials',
-    value: 8500000000,
-    percentage: 1.00
+    name: 'Electrical Components',
+    value: 18800000000,
+    percentage: 2.22
   },
   {
-    name: 'Renewable Energy Equipment',
-    value: 7200000000,
-    percentage: 0.85
+    name: 'Filters',
+    value: 29400000000,
+    percentage: 3.47
   },
   {
-    name: 'Consumables',
-    value: 5000000000,
-    percentage: 0.59
+    name: 'Lubricants & Fluids',
+    value: 11900000000,
+    percentage: 1.4
   }
 ];
 
