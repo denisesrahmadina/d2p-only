@@ -50,7 +50,7 @@ export const retrieveProcurementRequestData: ProcurementRequestCategory[] = [
     categoryName: 'Filters',
     itemsCount: 5,
     totalValue: 22088750000,
-    mostRequested: 'Filter air (4)',
+    mostRequested: 'Filter air (8000)',
     items: [
       {
         itemName: 'Filter air',
