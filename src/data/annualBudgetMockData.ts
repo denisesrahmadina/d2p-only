@@ -19,23 +19,23 @@ export const annualBudgetMockData: AnnualBudgetData = {
 export const categoryBudgetDistribution: CategoryBudgetData[] = [
   {
     name: 'Others',
-    value: 774668262000,
-    percentage: 91.3
+    value: 776557012000,
+    percentage: 91.5
   },
   {
     name: 'Ash Handling Systems',
-    value: 13800000000,
-    percentage: 1.63
+    value: 11800000000,
+    percentage: 1.39
   },
   {
     name: 'Electrical Components',
-    value: 26000000000,
-    percentage: 3.06
+    value: 18800000000,
+    percentage: 2.22
   },
   {
     name: 'Filters',
-    value: 22088750000,
-    percentage: 2.6
+    value: 29400000000,
+    percentage: 3.47
   },
   {
     name: 'Lubricants & Fluids',
