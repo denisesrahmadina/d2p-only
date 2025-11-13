@@ -22,7 +22,7 @@ import { procurementRequests } from '../../data/finalProcurementMockData';
 
 const mockProcurementData: ProcurementRequest[] = procurementRequests as ProcurementRequest[];
 
-const mockProcurementDataOld: ProcurementRequest[] = [
+const UNUSED_OLD_DATA: ProcurementRequest[] = [
   {
     id: '1',
     materialId: 'MTL-073',
@@ -397,7 +397,7 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
                           {items.map((item) => {
                             const isMaterialExpanded = expandedMaterials.has(item.materialId);
                             const isProcurementTableExpanded = expandedProcurementTables.has(item.materialId);
-                            const hasProcurementData = finalProcurementData[item.materialName] !== undefined;
+                            const hasProcurementData = materialProcurementData[item.materialName] !== undefined;
 
                             return (
                               <React.Fragment key={item.id}>
@@ -480,7 +480,7 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
                                     <td colSpan={6} className="px-4 py-4 bg-gray-50 dark:bg-gray-700/20">
                                       <FinalProcurementMonthlyTable
                                         materialName={item.materialName}
-                                        data={finalProcurementData[item.materialName]}
+                                        data={materialProcurementData[item.materialName]}
                                       />
                                     </td>
                                   </tr>

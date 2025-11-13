@@ -84,26 +84,26 @@ export const categorySummaries: CategorySummary[] = [
   {
     categoryName: 'Ash Handling Systems',
     itemsCount: 4,
-    totalValue: 13800000000,
-    mostRequested: 'Ash Conveyors'
+    totalValue: 11800000000,
+    mostRequested: 'Ash Conveyors (4)'
   },
   {
     categoryName: 'Filters',
     itemsCount: 5,
-    totalValue: 22088750000,
-    mostRequested: 'Filter air'
+    totalValue: 29400000000,
+    mostRequested: 'Filter air (6)'
   },
   {
     categoryName: 'Lubricants & Fluids',
     itemsCount: 3,
     totalValue: 11900000000,
-    mostRequested: 'Turbine Oil'
+    mostRequested: 'Turbine Oil (4)'
   },
   {
     categoryName: 'Electrical Components',
     itemsCount: 3,
-    totalValue: 26000000000,
-    mostRequested: 'Circuit Breakers'
+    totalValue: 18800000000,
+    mostRequested: 'Circuit Breakers (4)'
   }
 ];
 
