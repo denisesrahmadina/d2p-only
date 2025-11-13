@@ -18,18 +18,18 @@ export const finalProcurementData: Record<string, MaterialProcurementData> = {
     unitPrice: 2276422,
     totalAmount: 2800000000,
     monthlyData: [
-      { month: 'Jan', netProcurement: 95, unitPrice: 2276422, totalAmount: 216260090 },
-      { month: 'Feb', netProcurement: 98, unitPrice: 2276422, totalAmount: 223109356 },
-      { month: 'Mar', netProcurement: 100, unitPrice: 2276422, totalAmount: 227642200 },
-      { month: 'Apr', netProcurement: 102, unitPrice: 2276422, totalAmount: 232195244 },
-      { month: 'May', netProcurement: 105, unitPrice: 2276422, totalAmount: 239024310 },
-      { month: 'Jun', netProcurement: 103, unitPrice: 2276422, totalAmount: 234471466 },
-      { month: 'Jul', netProcurement: 106, unitPrice: 2276422, totalAmount: 241300532 },
-      { month: 'Aug', netProcurement: 108, unitPrice: 2276422, totalAmount: 245853576 },
-      { month: 'Sep', netProcurement: 100, unitPrice: 2276422, totalAmount: 227642200 },
-      { month: 'Oct', netProcurement: 104, unitPrice: 2276422, totalAmount: 236747688 },
-      { month: 'Nov', netProcurement: 107, unitPrice: 2276422, totalAmount: 243576954 },
-      { month: 'Dec', netProcurement: 102, unitPrice: 2276422, totalAmount: 232195244 }
+      { month: 'Jan', netProcurement: 600, unitPrice: 2500000, totalAmount: 1500000000 },
+      { month: 'Feb', netProcurement: 689, unitPrice: 2500000, totalAmount: 1722500000 },
+      { month: 'Mar', netProcurement: 704, unitPrice: 2500000, totalAmount: 1760000000 },
+      { month: 'Apr', netProcurement: 602, unitPrice: 2500000, totalAmount: 1505000000 },
+      { month: 'May', netProcurement: 632, unitPrice: 2500000, totalAmount: 1580000000 },
+      { month: 'Jun', netProcurement: 647, unitPrice: 2500000, totalAmount: 1617500000 },
+      { month: 'Jul', netProcurement: 659, unitPrice: 2500000, totalAmount: 1647500000 },
+      { month: 'Aug', netProcurement: 698, unitPrice: 2500000, totalAmount: 1745000000 },
+      { month: 'Sep', netProcurement: 672, unitPrice: 2500000, totalAmount: 1680000000 },
+      { month: 'Oct', netProcurement: 699, unitPrice: 2500000, totalAmount: 1747500000 },
+      { month: 'Nov', netProcurement: 632, unitPrice: 2500000, totalAmount: 1580000000 },
+      { month: 'Dec', netProcurement: 766, unitPrice: 2500000, totalAmount: 1915000000 }
     ]
   },
   'Filter Udara Cartridge': {
