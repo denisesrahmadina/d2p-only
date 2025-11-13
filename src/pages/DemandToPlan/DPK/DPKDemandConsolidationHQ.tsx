@@ -765,21 +765,37 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
 
         const cat = categories.get(category)!;
         cat.materials.push(material);
-        cat.totalQuantity += material.totalQuantity;
-        cat.totalValue += material.totalQuantity * material.materialValue;
+
+        // Ensure positive values only
+        const qty = Math.max(0, material.totalQuantity);
+        const value = Math.max(0, material.materialValue);
+
+        cat.totalQuantity += qty;
+        cat.totalValue += qty * value;
         cat.unitCount = Math.max(cat.unitCount, material.unitRequestorsCount);
       });
 
-      // Calculate initial total
-      const initialTotal = Array.from(categories.values()).reduce((sum, cat) => sum + cat.totalValue, 0);
+      // Filter out categories with zero or negative values
+      const validCategories = Array.from(categories.entries()).filter(([_, cat]) => cat.totalValue > 0);
+
+      if (validCategories.length === 0) {
+        console.log('No valid categories with positive values');
+        return [];
+      }
+
+      // Calculate initial total from valid categories
+      const initialTotal = validCategories.reduce((sum, [_, cat]) => sum + cat.totalValue, 0);
 
       // Calculate scaling factor to reach target
       const scalingFactor = initialTotal > 0 ? TARGET_TOTAL / initialTotal : 1;
 
-      // Apply scaling factor to all category values
-      const result = Array.from(categories.values()).map(cat => ({
-        ...cat,
-        totalValue: Math.round(cat.totalValue * scalingFactor)
+      // Apply scaling factor to all category values and ensure no negatives
+      const result = validCategories.map(([category, cat]) => ({
+        category,
+        materials: cat.materials,
+        totalQuantity: cat.totalQuantity,
+        totalValue: Math.max(0, Math.round(cat.totalValue * scalingFactor)),
+        unitCount: cat.unitCount
       })).sort((a, b) => b.totalValue - a.totalValue);
 
       console.log('Category breakdown created:', result.length, 'categories, scaled to target:', TARGET_TOTAL);
