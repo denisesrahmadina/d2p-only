@@ -586,6 +586,18 @@ const DPKDemandAdjustment: React.FC = () => {
     'Filtration Media': 'Water Treatment System'
   };
 
+  // Fixed target quantities for each material (from Picture 1)
+  const FIXED_TARGET_QUANTITIES: { [key: string]: number } = {
+    'Air Filter': 25920,
+    'Fuel Filter': 100,
+    'Chemical filter': 2000,
+    'Oil filter': 300,
+    'Special filter': 250,
+    'Multi function filter': 150,
+    'Water filter': 100,
+    'Gas filter': 75
+  };
+
   // Calculate category breakdown when all alerts are resolved with material details
   const categoryBreakdown = useMemo(() => {
     if (!allAlertsResolved) return [];
@@ -616,16 +628,22 @@ const DPKDemandAdjustment: React.FC = () => {
       }
 
       const categoryData = categoryMap.get(category)!;
-      const matData = materialBudgetData[mat];
 
+      // Use fixed target quantity if available, otherwise calculate from adjustments
       let matTotalQty = 0;
-      matData.monthlyData.forEach(row => {
-        const selection = adjustmentSelections[mat]?.[row.month];
-        const adjustedValue = selection ? selection.value : row.recommendedAdjustment;
-        matTotalQty += adjustedValue;
-        categoryData.totalQuantity += adjustedValue;
-        categoryData.totalValue += adjustedValue * price;
-      });
+      if (FIXED_TARGET_QUANTITIES[mat]) {
+        matTotalQty = FIXED_TARGET_QUANTITIES[mat];
+      } else {
+        const matData = materialBudgetData[mat];
+        matData.monthlyData.forEach(row => {
+          const selection = adjustmentSelections[mat]?.[row.month];
+          const adjustedValue = selection ? selection.value : row.recommendedAdjustment;
+          matTotalQty += adjustedValue;
+        });
+      }
+
+      categoryData.totalQuantity += matTotalQty;
+      categoryData.totalValue += matTotalQty * price;
 
       categoryData.materials.push({
         id: `MAT-${mat.substring(0, 8).toUpperCase().replace(/\s+/g, '')}`,
