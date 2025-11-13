@@ -672,6 +672,10 @@ const DPKDemandAdjustment: React.FC = () => {
     return categoryBreakdown.reduce((sum, cat) => sum + cat.materialsCount, 0);
   }, [categoryBreakdown]);
 
+  const budgetAdjustmentNeeded = useMemo(() => {
+    return grandTotalValue - aggregatedOverview.totalDemandAmt;
+  }, [grandTotalValue, aggregatedOverview]);
+
   const handleExportFinalAdjustment = () => {
     const csvContent = [
       ['Month', 'Consolidated Demand', 'Budget Limit', 'Adjusted Demand', 'Source', 'Variance'].join(','),
@@ -799,7 +803,7 @@ const DPKDemandAdjustment: React.FC = () => {
               </div>
               <p className="text-xs text-blue-600 dark:text-blue-400 uppercase font-semibold mb-2">Total Approved Budget</p>
               <p className="text-3xl font-extrabold text-blue-700 dark:text-blue-300 mb-3 break-words">
-                {formatCurrency(aggregatedOverview.totalBudgetAmt)}
+                {formatCurrency(grandTotalValue)}
               </p>
               <div className="pt-2 border-t border-blue-200 dark:border-blue-800">
                 <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Consolidated Demand Request</p>
@@ -811,26 +815,26 @@ const DPKDemandAdjustment: React.FC = () => {
 
             {/* Amount of Budget Adjusted */}
             <div className={`p-5 rounded-xl border-2 ${
-              aggregatedOverview.adjustmentNeededAmt < 0
+              budgetAdjustmentNeeded < 0
                 ? 'bg-red-50 dark:bg-red-900/20 border-red-400 dark:border-red-600'
                 : 'bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-600'
             }`}>
               <p className={`text-xs uppercase font-semibold mb-2 ${
-                aggregatedOverview.adjustmentNeededAmt < 0
+                budgetAdjustmentNeeded < 0
                   ? 'text-red-600 dark:text-red-400'
                   : 'text-green-600 dark:text-green-400'
               }`}>
                 Budget Adjustment Needed
               </p>
               <p className={`text-3xl font-extrabold mb-2 break-words ${
-                aggregatedOverview.adjustmentNeededAmt < 0
+                budgetAdjustmentNeeded < 0
                   ? 'text-red-700 dark:text-red-300'
                   : 'text-green-700 dark:text-green-300'
               }`}>
-                {formatCurrency(Math.abs(aggregatedOverview.adjustmentNeededAmt))}
+                {formatCurrency(Math.abs(budgetAdjustmentNeeded))}
               </p>
               <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
-                {aggregatedOverview.adjustmentNeededAmt < 0
+                {budgetAdjustmentNeeded < 0
                   ? 'Budget exceeded - reduction required'
                   : 'Within budget - surplus available'
                 }
@@ -839,28 +843,28 @@ const DPKDemandAdjustment: React.FC = () => {
 
             {/* Status Card */}
             <div className={`p-5 rounded-xl border-2 ${
-              aggregatedOverview.adjustmentNeededAmt < 0
+              budgetAdjustmentNeeded < 0
                 ? 'bg-red-50 dark:bg-red-900/20 border-red-400 dark:border-red-600'
                 : 'bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-600'
             }`}>
               <p className="text-xs text-gray-600 dark:text-gray-400 uppercase font-semibold mb-2">Budget Status</p>
               <div className="flex items-center space-x-2 mb-2">
                 <div className={`w-3 h-3 rounded-full flex-shrink-0 ${
-                  aggregatedOverview.adjustmentNeededAmt < 0
+                  budgetAdjustmentNeeded < 0
                     ? 'bg-red-500 animate-pulse'
                     : 'bg-green-500'
                 }`}></div>
                 <p className={`text-2xl font-extrabold break-words ${
-                  aggregatedOverview.adjustmentNeededAmt < 0
+                  budgetAdjustmentNeeded < 0
                     ? 'text-red-700 dark:text-red-300'
                     : 'text-green-700 dark:text-green-300'
                 }`}>
-                  {aggregatedOverview.adjustmentNeededAmt < 0 ? 'Over Budget' : 'Within Budget'}
+                  {budgetAdjustmentNeeded < 0 ? 'Over Budget' : 'Within Budget'}
                 </p>
               </div>
               <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
-                {aggregatedOverview.adjustmentNeededAmt < 0
-                  ? `${Math.abs(((aggregatedOverview.adjustmentNeededAmt / aggregatedOverview.totalBudgetAmt) * 100).toFixed(1))}% over approved budget`
+                {budgetAdjustmentNeeded < 0
+                  ? `${Math.abs(((budgetAdjustmentNeeded / grandTotalValue) * 100).toFixed(1))}% over approved budget`
                   : 'All demands within budget limits'
                 }
               </p>
