@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Data Import</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+        h1 {
+            color: #38bdf8;
+            border-bottom: 2px solid #38bdf8;
+            padding-bottom: 10px;
+        }
+        .category {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .category h2 {
+            margin-top: 0;
+            color: #22d3ee;
+        }
+        .stat {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 10px;
+            margin: 10px 0;
+            padding: 8px;
+            background: #0f172a;
+            border-radius: 4px;
+        }
+        .stat strong {
+            color: #94a3b8;
+        }
+        .stat span {
+            color: #fff;
+            font-weight: 600;
+        }
+        .success {
+            color: #22c55e;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .error {
+            color: #ef4444;
+            font-size: 18px;
+        }
+        .materials {
+            margin-top: 15px;
+            padding: 15px;
+            background: #0f172a;
+            border-radius: 4px;
+        }
+        .material-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #334155;
+        }
+        .material-item:last-child {
+            border-bottom: none;
+        }
+        button {
+            background: #38bdf8;
+            color: #0f172a;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #22d3ee;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Data Import Test - Procurement Requests</h1>
+
+    <div id="status">
+        <p>⏳ Loading data from finalProcurementMockData.ts...</p>
+    </div>
+
+    <div>
+        <button onclick="location.reload()">🔄 Refresh Page</button>
+        <button onclick="clearCacheAndReload()">🧹 Clear Cache & Reload</button>
+    </div>
+
+    <div id="results"></div>
+
+    <script type="module">
+        import { procurementRequests } from './src/data/finalProcurementMockData.ts';
+
+        const statusDiv = document.getElementById('status');
+        const resultsDiv = document.getElementById('results');
+
+        try {
+            console.log('Imported procurement requests:', procurementRequests);
+
+            if (!procurementRequests || procurementRequests.length === 0) {
+                throw new Error('No data imported');
+            }
+
+            statusDiv.innerHTML = `<p class="success">✅ Successfully loaded ${procurementRequests.length} items!</p>`;
+
+            // Group by category
+            const grouped = procurementRequests.reduce((acc, item) => {
+                if (!acc[item.category]) {
+                    acc[item.category] = { items: [], total: 0, count: 0 };
+                }
+                acc[item.category].items.push(item);
+                acc[item.category].total += item.materialValue;
+                acc[item.category].count++;
+                return acc;
+            }, {});
+
+            // Generate HTML
+            let html = '';
+            Object.entries(grouped).forEach(([category, data]) => {
+                html += `
+                    <div class="category">
+                        <h2>${category}</h2>
+                        <div class="stat">
+                            <strong>Items Count:</strong>
+                            <span>${data.count}</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Total Value:</strong>
+                            <span>IDR ${new Intl.NumberFormat('id-ID').format(data.total)}</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Most Requested:</strong>
+                            <span>${data.items.reduce((max, item) =>
+                                item.unitRequests.length > max.unitRequests.length ? item : max
+                            , data.items[0]).materialName} (${data.items.reduce((max, item) =>
+                                item.unitRequests.length > max.unitRequests.length ? item : max
+                            , data.items[0]).unitRequests.length})</span>
+                        </div>
+                        <div class="materials">
+                            <strong>Materials in this category:</strong>
+                            ${data.items.map(item => `
+                                <div class="material-item">
+                                    ${item.materialName}: IDR ${new Intl.NumberFormat('id-ID').format(item.materialValue)}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            resultsDiv.innerHTML = html;
+
+            // Log to console for debugging
+            console.table(Object.entries(grouped).map(([category, data]) => ({
+                Category: category,
+                Items: data.count,
+                'Total Value': new Intl.NumberFormat('id-ID').format(data.total)
+            })));
+
+        } catch (error) {
+            console.error('Error loading data:', error);
+            statusDiv.innerHTML = `<p class="error">❌ Error: ${error.message}</p>`;
+            resultsDiv.innerHTML = `
+                <div class="category">
+                    <h2>Troubleshooting Steps:</h2>
+                    <ol>
+                        <li>Make sure you're running the dev server (npm run dev)</li>
+                        <li>Check that src/data/finalProcurementMockData.ts exists</li>
+                        <li>Try clearing browser cache (Ctrl+Shift+R)</li>
+                        <li>Check browser console for more details</li>
+                    </ol>
+                </div>
+            `;
+        }
+
+        window.clearCacheAndReload = () => {
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    names.forEach(name => caches.delete(name));
+                });
+            }
+            window.location.reload(true);
+        };
+    </script>
+</body>
+</html>

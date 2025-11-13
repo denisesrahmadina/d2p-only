@@ -236,7 +236,10 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
   const [expandedMaterials, setExpandedMaterials] = useState<Set<string>>(new Set());
   const [expandedProcurementTables, setExpandedProcurementTables] = useState<Set<string>>(new Set());
 
-  const retrievedData = mockProcurementData;
+  const retrievedData = procurementRequests as ProcurementRequest[];
+
+  console.log('[DEBUG] Retrieved data count:', retrievedData.length);
+  console.log('[DEBUG] First item:', retrievedData[0]);
 
   const toggleCategory = (category: string) => {
     setExpandedCategories(prev => {
