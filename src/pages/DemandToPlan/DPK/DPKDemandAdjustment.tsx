@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Download, Sliders, CheckCircle2, Sparkles, CreditCard as Edit3, Save, Factory, Filter, Package, Database, Loader2, AlertCircle, Send } from 'lucide-react';
+import { Download, Sliders, CheckCircle2, Sparkles, Edit3, Save, Factory, Filter, Package, Database, Loader2, AlertCircle, Send } from 'lucide-react';
 import plnUnitsData from '../../../data/plnUnits.json';
 import {
   BarChart,
@@ -87,14 +87,14 @@ const MATERIAL_PRICES: { [key: string]: number } = {
   'Sensors': 2500000,
   'Control Panels': 18000000,
   // Filter
-  'Air Filter': 2500000,
-  'Fuel Filter': 15750000,
-  'Chemical filter': 285000,
-  'Oil filter': 1850000,
-  'Special filter': 4250000,
-  'Multi function filter': 12500000,
-  'Water filter': 6500000,
-  'Gas filter': 18500000,
+  'Air Filter': 450000,
+  'Fuel Filter': 520000,
+  'Chemical filter': 680000,
+  'Oil filter': 350000,
+  'Special filter': 780000,
+  'Multi function filter': 920000,
+  'Water filter': 410000,
+  'Gas filter': 550000,
   // Fuel and Combustion
   'Coal': 850000,
   'Diesel Fuel': 15000,
@@ -586,18 +586,6 @@ const DPKDemandAdjustment: React.FC = () => {
     'Filtration Media': 'Water Treatment System'
   };
 
-  // Fixed target quantities for each material (from Picture 1)
-  const FIXED_TARGET_QUANTITIES: { [key: string]: number } = {
-    'Air Filter': 25920,
-    'Fuel Filter': 100,
-    'Chemical filter': 2000,
-    'Oil filter': 300,
-    'Special filter': 250,
-    'Multi function filter': 150,
-    'Water filter': 100,
-    'Gas filter': 75
-  };
-
   // Calculate category breakdown when all alerts are resolved with material details
   const categoryBreakdown = useMemo(() => {
     if (!allAlertsResolved) return [];
@@ -628,22 +616,16 @@ const DPKDemandAdjustment: React.FC = () => {
       }
 
       const categoryData = categoryMap.get(category)!;
+      const matData = materialBudgetData[mat];
 
-      // Use fixed target quantity if available, otherwise calculate from adjustments
       let matTotalQty = 0;
-      if (FIXED_TARGET_QUANTITIES[mat]) {
-        matTotalQty = FIXED_TARGET_QUANTITIES[mat];
-      } else {
-        const matData = materialBudgetData[mat];
-        matData.monthlyData.forEach(row => {
-          const selection = adjustmentSelections[mat]?.[row.month];
-          const adjustedValue = selection ? selection.value : row.recommendedAdjustment;
-          matTotalQty += adjustedValue;
-        });
-      }
-
-      categoryData.totalQuantity += matTotalQty;
-      categoryData.totalValue += matTotalQty * price;
+      matData.monthlyData.forEach(row => {
+        const selection = adjustmentSelections[mat]?.[row.month];
+        const adjustedValue = selection ? selection.value : row.recommendedAdjustment;
+        matTotalQty += adjustedValue;
+        categoryData.totalQuantity += adjustedValue;
+        categoryData.totalValue += adjustedValue * price;
+      });
 
       categoryData.materials.push({
         id: `MAT-${mat.substring(0, 8).toUpperCase().replace(/\s+/g, '')}`,
@@ -665,16 +647,12 @@ const DPKDemandAdjustment: React.FC = () => {
   }, [allAlertsResolved, materials, materialBudgetData, adjustmentSelections, materialCategoryMapping, materialPrices]);
 
   const grandTotalValue = useMemo(() => {
-    return categoryBreakdown.reduce((sum, cat) => sum + cat.totalValue, 0);
-  }, [categoryBreakdown]);
+    return aggregatedOverview.totalBudgetAmt;
+  }, [aggregatedOverview]);
 
   const totalMaterialsCount = useMemo(() => {
     return categoryBreakdown.reduce((sum, cat) => sum + cat.materialsCount, 0);
   }, [categoryBreakdown]);
-
-  const budgetAdjustmentNeeded = useMemo(() => {
-    return grandTotalValue - aggregatedOverview.totalDemandAmt;
-  }, [grandTotalValue, aggregatedOverview]);
 
   const handleExportFinalAdjustment = () => {
     const csvContent = [
@@ -803,7 +781,7 @@ const DPKDemandAdjustment: React.FC = () => {
               </div>
               <p className="text-xs text-blue-600 dark:text-blue-400 uppercase font-semibold mb-2">Total Approved Budget</p>
               <p className="text-3xl font-extrabold text-blue-700 dark:text-blue-300 mb-3 break-words">
-                {formatCurrency(grandTotalValue)}
+                {formatCurrency(aggregatedOverview.totalBudgetAmt)}
               </p>
               <div className="pt-2 border-t border-blue-200 dark:border-blue-800">
                 <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Consolidated Demand Request</p>
@@ -815,26 +793,26 @@ const DPKDemandAdjustment: React.FC = () => {
 
             {/* Amount of Budget Adjusted */}
             <div className={`p-5 rounded-xl border-2 ${
-              budgetAdjustmentNeeded < 0
+              aggregatedOverview.adjustmentNeededAmt < 0
                 ? 'bg-red-50 dark:bg-red-900/20 border-red-400 dark:border-red-600'
                 : 'bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-600'
             }`}>
               <p className={`text-xs uppercase font-semibold mb-2 ${
-                budgetAdjustmentNeeded < 0
+                aggregatedOverview.adjustmentNeededAmt < 0
                   ? 'text-red-600 dark:text-red-400'
                   : 'text-green-600 dark:text-green-400'
               }`}>
                 Budget Adjustment Needed
               </p>
               <p className={`text-3xl font-extrabold mb-2 break-words ${
-                budgetAdjustmentNeeded < 0
+                aggregatedOverview.adjustmentNeededAmt < 0
                   ? 'text-red-700 dark:text-red-300'
                   : 'text-green-700 dark:text-green-300'
               }`}>
-                {formatCurrency(Math.abs(budgetAdjustmentNeeded))}
+                {formatCurrency(Math.abs(aggregatedOverview.adjustmentNeededAmt))}
               </p>
               <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
-                {budgetAdjustmentNeeded < 0
+                {aggregatedOverview.adjustmentNeededAmt < 0
                   ? 'Budget exceeded - reduction required'
                   : 'Within budget - surplus available'
                 }
@@ -843,28 +821,28 @@ const DPKDemandAdjustment: React.FC = () => {
 
             {/* Status Card */}
             <div className={`p-5 rounded-xl border-2 ${
-              budgetAdjustmentNeeded < 0
+              aggregatedOverview.adjustmentNeededAmt < 0
                 ? 'bg-red-50 dark:bg-red-900/20 border-red-400 dark:border-red-600'
                 : 'bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-600'
             }`}>
               <p className="text-xs text-gray-600 dark:text-gray-400 uppercase font-semibold mb-2">Budget Status</p>
               <div className="flex items-center space-x-2 mb-2">
                 <div className={`w-3 h-3 rounded-full flex-shrink-0 ${
-                  budgetAdjustmentNeeded < 0
+                  aggregatedOverview.adjustmentNeededAmt < 0
                     ? 'bg-red-500 animate-pulse'
                     : 'bg-green-500'
                 }`}></div>
                 <p className={`text-2xl font-extrabold break-words ${
-                  budgetAdjustmentNeeded < 0
+                  aggregatedOverview.adjustmentNeededAmt < 0
                     ? 'text-red-700 dark:text-red-300'
                     : 'text-green-700 dark:text-green-300'
                 }`}>
-                  {budgetAdjustmentNeeded < 0 ? 'Over Budget' : 'Within Budget'}
+                  {aggregatedOverview.adjustmentNeededAmt < 0 ? 'Over Budget' : 'Within Budget'}
                 </p>
               </div>
               <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
-                {budgetAdjustmentNeeded < 0
-                  ? `${Math.abs(((budgetAdjustmentNeeded / grandTotalValue) * 100).toFixed(1))}% over approved budget`
+                {aggregatedOverview.adjustmentNeededAmt < 0
+                  ? `${Math.abs(((aggregatedOverview.adjustmentNeededAmt / aggregatedOverview.totalBudgetAmt) * 100).toFixed(1))}% over approved budget`
                   : 'All demands within budget limits'
                 }
               </p>
