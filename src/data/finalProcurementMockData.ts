@@ -59,12 +59,12 @@ export const categoryBudgetDistribution: CategoryBudgetData[] = [
     percentage: 91.5
   },
   {
-    name: 'Ash Handling Systems',
+    name: 'Ash Handling System',
     value: 11800000000,
     percentage: 1.39
   },
   {
-    name: 'Electrical Components',
+    name: 'Electrical Equipment',
     value: 18800000000,
     percentage: 2.22
   },
@@ -74,7 +74,7 @@ export const categoryBudgetDistribution: CategoryBudgetData[] = [
     percentage: 3.47
   },
   {
-    name: 'Lubricants & Fluids',
+    name: 'Consumables',
     value: 11900000000,
     percentage: 1.4
   }
@@ -82,7 +82,7 @@ export const categoryBudgetDistribution: CategoryBudgetData[] = [
 
 export const categorySummaries: CategorySummary[] = [
   {
-    categoryName: 'Ash Handling Systems',
+    categoryName: 'Ash Handling System',
     itemsCount: 4,
     totalValue: 13800000000,
     mostRequested: 'Ash Conveyors'
@@ -94,13 +94,13 @@ export const categorySummaries: CategorySummary[] = [
     mostRequested: 'Filter air'
   },
   {
-    categoryName: 'Lubricants & Fluids',
+    categoryName: 'Consumables',
     itemsCount: 3,
     totalValue: 11900000000,
     mostRequested: 'Turbine Oil'
   },
   {
-    categoryName: 'Electrical Components',
+    categoryName: 'Electrical Equipment',
     itemsCount: 3,
     totalValue: 26000000000,
     mostRequested: 'Circuit Breakers'
@@ -113,7 +113,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     materialId: 'MTL-073',
     materialName: 'Bottom Ash Removal Systems',
     materialValue: 3700000000,
-    category: 'Ash Handling Systems',
+    category: 'Ash Handling System',
     unitRequests: [
       { unit: 'UBP Suralaya', quantity: '2 systems' },
       { unit: 'UBP Paiton', quantity: '2 systems' },
@@ -126,7 +126,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     materialId: 'MTL-074',
     materialName: 'Fly Ash Handling Equipment',
     materialValue: 4200000000,
-    category: 'Ash Handling Systems',
+    category: 'Ash Handling System',
     unitRequests: [
       { unit: 'UBP Suralaya', quantity: '3 sets' },
       { unit: 'UBP Paiton', quantity: '2 sets' },
@@ -139,7 +139,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     materialId: 'MTL-075',
     materialName: 'Ash Conveyors',
     materialValue: 2100000000,
-    category: 'Ash Handling Systems',
+    category: 'Ash Handling System',
     unitRequests: [
       { unit: 'UBP Suralaya', quantity: '8 units' },
       { unit: 'UBP Paiton', quantity: '6 units' },
@@ -153,7 +153,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     materialId: 'MTL-076',
     materialName: 'Ash Silos',
     materialValue: 1800000000,
-    category: 'Ash Handling Systems',
+    category: 'Ash Handling System',
     unitRequests: [
       { unit: 'UBP Suralaya', quantity: '4 units' },
       { unit: 'UBP Paiton', quantity: '3 units' },
@@ -236,7 +236,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     materialId: 'LUB-001',
     materialName: 'Turbine Oil',
     materialValue: 5200000000,
-    category: 'Lubricants & Fluids',
+    category: 'Consumables',
     unitRequests: [
       { unit: 'UBP Suralaya', quantity: '11000 liters' },
       { unit: 'UBP Paiton', quantity: '10000 liters' },
@@ -250,7 +250,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     materialId: 'LUB-002',
     materialName: 'Hydraulic Oil',
     materialValue: 3800000000,
-    category: 'Lubricants & Fluids',
+    category: 'Consumables',
     unitRequests: [
       { unit: 'UBP Suralaya', quantity: '6500 liters' },
       { unit: 'UBP Paiton', quantity: '6000 liters' },
@@ -264,7 +264,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     materialId: 'LUB-003',
     materialName: 'Gear Oil',
     materialValue: 2900000000,
-    category: 'Lubricants & Fluids',
+    category: 'Consumables',
     unitRequests: [
       { unit: 'UBP Suralaya', quantity: '5000 liters' },
       { unit: 'UBP Paiton', quantity: '4500 liters' },
@@ -278,7 +278,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     materialId: 'ELC-001',
     materialName: 'Circuit Breakers',
     materialValue: 6500000000,
-    category: 'Electrical Components',
+    category: 'Electrical Equipment',
     unitRequests: [
       { unit: 'UBP Suralaya', quantity: '45 units' },
       { unit: 'UBP Paiton', quantity: '40 units' },
@@ -292,7 +292,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     materialId: 'ELC-002',
     materialName: 'Transformers',
     materialValue: 8200000000,
-    category: 'Electrical Components',
+    category: 'Electrical Equipment',
     unitRequests: [
       { unit: 'UBP Suralaya', quantity: '10 units' },
       { unit: 'UBP Paiton', quantity: '9 units' },
@@ -306,7 +306,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     materialId: 'ELC-003',
     materialName: 'Power Cables',
     materialValue: 4100000000,
-    category: 'Electrical Components',
+    category: 'Electrical Equipment',
     unitRequests: [
       { unit: 'UBP Suralaya', quantity: '13000 meters' },
       { unit: 'UBP Paiton', quantity: '12000 meters' },

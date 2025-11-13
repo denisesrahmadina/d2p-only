@@ -37,7 +37,25 @@ const DPKDemandNetting: React.FC = () => {
   const [editedData, setEditedData] = useState<{ [key: string]: { inventory?: number; contract?: number; transfer?: number } }>({});
   const [showFinalTable, setShowFinalTable] = useState(false);
 
-  const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies'];
+  const categories = [
+    'All Categories',
+    'Filters',
+    'Ash Handling System',
+    'Boiler and Pressure Vessel Equipment',
+    'Civil Works and Construction Materials',
+    'Consumables',
+    'Electrical Equipment',
+    'Emission Control Systems',
+    'Engineering and Design Materials',
+    'Fuel',
+    'IT and Communication Systems',
+    'Instrumentation and Control System',
+    'Mechanical Equipment',
+    'Renewable Energy Equipment',
+    'Safety and Environmental Equipment',
+    'Spare part and Maintenance',
+    'Water Treatment System'
+  ];
   const materials = ['All Material', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
 
   const processingSteps = [
