@@ -84,7 +84,7 @@ const mockProcurementData: ProcurementRequest[] = [
       { unit: 'UBP Paiton', quantity: '280 units' },
       { unit: 'PLTU Indramayu', quantity: '180 units' }
     ],
-    totalQuantity: '1,230 units'
+    totalQuantity: '8,000 units'
   },
   {
     id: '6',
