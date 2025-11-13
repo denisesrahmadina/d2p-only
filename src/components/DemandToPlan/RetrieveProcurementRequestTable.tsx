@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronRight, Users, Package, DollarSign, TrendingUp, FileText } from 'lucide-react';
 import FinalProcurementMonthlyTable from './FinalProcurementMonthlyTable';
-import { materialProcurementData } from '../../data/finalProcurementMockData';
+import { materialProcurementData, categorySummaries } from '../../data/finalProcurementMockData';
 
 interface UnitRequest {
   unit: string;
@@ -307,7 +307,8 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
               const items = groupedData[category];
               const isExpanded = expandedCategories.has(category);
 
-              const totalValue = items.reduce((sum, item) => sum + item.materialValue, 0);
+              const categorySummary = categorySummaries.find(c => c.categoryName === category);
+              const totalValue = categorySummary?.totalValue || items.reduce((sum, item) => sum + item.materialValue, 0);
 
               const mostRequestedItem = items.reduce((max, item) => {
                 return item.unitRequests.length > max.unitRequests.length ? item : max;
