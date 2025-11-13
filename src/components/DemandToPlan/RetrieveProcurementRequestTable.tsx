@@ -346,7 +346,7 @@ const RetrieveProcurementRequestTable: React.FC<RetrieveProcurementRequestTableP
                           <span className="text-xs font-medium text-gray-600 dark:text-gray-400 uppercase">Total Value</span>
                         </div>
                         <p className="text-sm font-bold text-gray-900 dark:text-white">
-                          IDR {(totalValue / 1000).toFixed(3)}.000.000
+                          IDR {new Intl.NumberFormat('id-ID').format(totalValue)}
                         </p>
                       </div>
 
