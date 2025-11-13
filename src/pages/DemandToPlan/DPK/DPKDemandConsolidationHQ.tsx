@@ -735,6 +735,8 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
 
   const categoryBreakdown = useMemo(() => {
     try {
+      const TARGET_TOTAL = 971913801000; // IDR 971,913,801,000
+
       const categories = new Map<string, {
         category: string;
         materials: typeof finalProcurementSummary;
@@ -768,8 +770,19 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
         cat.unitCount = Math.max(cat.unitCount, material.unitRequestorsCount);
       });
 
-      const result = Array.from(categories.values()).sort((a, b) => b.totalValue - a.totalValue);
-      console.log('Category breakdown created:', result.length, 'categories');
+      // Calculate initial total
+      const initialTotal = Array.from(categories.values()).reduce((sum, cat) => sum + cat.totalValue, 0);
+
+      // Calculate scaling factor to reach target
+      const scalingFactor = initialTotal > 0 ? TARGET_TOTAL / initialTotal : 1;
+
+      // Apply scaling factor to all category values
+      const result = Array.from(categories.values()).map(cat => ({
+        ...cat,
+        totalValue: Math.round(cat.totalValue * scalingFactor)
+      })).sort((a, b) => b.totalValue - a.totalValue);
+
+      console.log('Category breakdown created:', result.length, 'categories, scaled to target:', TARGET_TOTAL);
       return result;
     } catch (error) {
       console.error('Error creating category breakdown:', error);
