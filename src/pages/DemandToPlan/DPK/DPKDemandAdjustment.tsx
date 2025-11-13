@@ -51,42 +51,44 @@ type AdjustmentSelectionsByMaterial = {
   };
 };
 
-// Define materials array outside component to prevent recreation on every render - ALL 5 CATEGORIES
+// Define materials array outside component to prevent recreation on every render - ALL 15 CATEGORIES
 const MATERIALS = [
-  // Mechanical Equipment (6)
-  'Turbine Blades', 'Pump Components', 'Valve Systems', 'Bearing Units', 'Coupling Systems', 'Gear Box Parts',
-  // Water Treatment System (5)
-  'Reverse Osmosis Membranes', 'Ion Exchange Resins', 'Chemical Dosing Pumps', 'Water Quality Sensors', 'Filtration Media',
-  // Spare Parts and Maintenance (6)
-  'Gaskets', 'Seals', 'Bolts and Fasteners', 'Electrical Cables', 'Sensors', 'Control Panels',
   // Filter (8)
   'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas filter',
-  // Fuel and Combustion (5)
-  'Coal', 'Diesel Fuel', 'Natural Gas', 'Fuel Oil', 'Biomass Pellets'
+  // Ash Handling System (4)
+  'Bottom Ash Removal Systems', 'Fly Ash Handling Equipment', 'Ash Conveyors', 'Ash Silos',
+  // Boiler and Pressure Vessel Equipment (4)
+  'Boiler Tubes', 'Pressure Vessels', 'Heat Exchangers', 'Steam Drums',
+  // Civil Works and Construction Materials (4)
+  'Concrete', 'Steel Reinforcement', 'Construction Aggregates', 'Structural Steel',
+  // Consumables (4)
+  'Welding Rods', 'Grinding Discs', 'Cutting Blades', 'Lubricating Grease',
+  // Electrical Equipment (4)
+  'Circuit Breakers', 'Transformers', 'Power Cables', 'Switchgear Components',
+  // Emission Control Systems (4)
+  'ESP Components', 'FGD Equipment', 'SCR Catalysts', 'Emission Monitoring Systems',
+  // Engineering and Design Materials (4)
+  'CAD Software Licenses', 'Technical Documentation', 'Engineering Tools', 'Survey Equipment',
+  // Fuel (5)
+  'Coal', 'Diesel Fuel', 'Natural Gas', 'Fuel Oil', 'Biomass Pellets',
+  // IT and Communication Systems (4)
+  'Servers', 'Network Equipment', 'Communication Devices', 'IT Security Systems',
+  // Instrumentation and Control System (4)
+  'PLCs', 'SCADA Systems', 'Control Valves', 'Measurement Instruments',
+  // Mechanical Equipment (6)
+  'Turbine Blades', 'Pump Components', 'Valve Systems', 'Bearing Units', 'Coupling Systems', 'Gear Box Parts',
+  // Renewable Energy Equipment (4)
+  'Solar Panels', 'Wind Turbine Components', 'Battery Storage Systems', 'Inverters',
+  // Safety and Environmental Equipment (4)
+  'Personal Protective Equipment', 'Fire Protection Systems', 'Emergency Response Equipment', 'Environmental Monitoring Devices',
+  // Spare Parts and Maintenance (6)
+  'Gaskets', 'Seals', 'Bolts and Fasteners', 'Electrical Cables', 'Sensors', 'Control Panels',
+  // Water Treatment System (5)
+  'Reverse Osmosis Membranes', 'Ion Exchange Resins', 'Chemical Dosing Pumps', 'Water Quality Sensors', 'Filtration Media'
 ];
 
 const MATERIAL_PRICES: { [key: string]: number } = {
-  // Mechanical Equipment
-  'Turbine Blades': 16000000,
-  'Pump Components': 8500000,
-  'Valve Systems': 12000000,
-  'Bearing Units': 4500000,
-  'Coupling Systems': 6800000,
-  'Gear Box Parts': 9200000,
-  // Water Treatment System
-  'Reverse Osmosis Membranes': 15000000,
-  'Ion Exchange Resins': 8500000,
-  'Chemical Dosing Pumps': 7200000,
-  'Water Quality Sensors': 3800000,
-  'Filtration Media': 3200000,
-  // Spare Parts and Maintenance
-  'Gaskets': 450000,
-  'Seals': 380000,
-  'Bolts and Fasteners': 85000,
-  'Electrical Cables': 1200000,
-  'Sensors': 2500000,
-  'Control Panels': 18000000,
-  // Filter
+  // Filter (8 materials)
   'Air Filter': 450000,
   'Fuel Filter': 520000,
   'Chemical filter': 680000,
@@ -95,12 +97,87 @@ const MATERIAL_PRICES: { [key: string]: number } = {
   'Multi function filter': 920000,
   'Water filter': 410000,
   'Gas filter': 550000,
-  // Fuel and Combustion
+  // Ash Handling System (4 materials)
+  'Bottom Ash Removal Systems': 35000000,
+  'Fly Ash Handling Equipment': 28000000,
+  'Ash Conveyors': 12000000,
+  'Ash Silos': 18000000,
+  // Boiler and Pressure Vessel Equipment (4 materials)
+  'Boiler Tubes': 8500000,
+  'Pressure Vessels': 45000000,
+  'Heat Exchangers': 32000000,
+  'Steam Drums': 28000000,
+  // Civil Works and Construction Materials (4 materials)
+  'Concrete': 850000,
+  'Steel Reinforcement': 12000000,
+  'Construction Aggregates': 450000,
+  'Structural Steel': 15000000,
+  // Consumables (4 materials)
+  'Welding Rods': 180000,
+  'Grinding Discs': 85000,
+  'Cutting Blades': 120000,
+  'Lubricating Grease': 250000,
+  // Electrical Equipment (4 materials)
+  'Circuit Breakers': 8500000,
+  'Transformers': 55000000,
+  'Power Cables': 3200000,
+  'Switchgear Components': 18000000,
+  // Emission Control Systems (4 materials)
+  'ESP Components': 38000000,
+  'FGD Equipment': 65000000,
+  'SCR Catalysts': 42000000,
+  'Emission Monitoring Systems': 15000000,
+  // Engineering and Design Materials (4 materials)
+  'CAD Software Licenses': 25000000,
+  'Technical Documentation': 8500000,
+  'Engineering Tools': 12000000,
+  'Survey Equipment': 18000000,
+  // Fuel (5 materials)
   'Coal': 850000,
   'Diesel Fuel': 15000,
   'Natural Gas': 8500,
   'Fuel Oil': 12000,
-  'Biomass Pellets': 650000
+  'Biomass Pellets': 650000,
+  // IT and Communication Systems (4 materials)
+  'Servers': 45000000,
+  'Network Equipment': 18000000,
+  'Communication Devices': 8500000,
+  'IT Security Systems': 32000000,
+  // Instrumentation and Control System (4 materials)
+  'PLCs': 28000000,
+  'SCADA Systems': 85000000,
+  'Control Valves': 15000000,
+  'Measurement Instruments': 22000000,
+  // Mechanical Equipment (6 materials)
+  'Turbine Blades': 16000000,
+  'Pump Components': 8500000,
+  'Valve Systems': 12000000,
+  'Bearing Units': 4500000,
+  'Coupling Systems': 6800000,
+  'Gear Box Parts': 9200000,
+  // Renewable Energy Equipment (4 materials)
+  'Solar Panels': 18000000,
+  'Wind Turbine Components': 125000000,
+  'Battery Storage Systems': 95000000,
+  'Inverters': 28000000,
+  // Safety and Environmental Equipment (4 materials)
+  'Personal Protective Equipment': 450000,
+  'Fire Protection Systems': 22000000,
+  'Emergency Response Equipment': 18000000,
+  'Environmental Monitoring Devices': 12000000,
+  // Spare Parts and Maintenance (6 materials)
+  'Gaskets': 450000,
+  'Seals': 380000,
+  'Bolts and Fasteners': 85000,
+  'Electrical Cables': 1200000,
+  'Sensors': 2500000,
+  'Control Panels': 18000000,
+  // Water Treatment System (5 materials)
+  'Reverse Osmosis Membranes': 15000000,
+  'Ion Exchange Resins': 8500000,
+  'Chemical Dosing Pumps': 7200000,
+  'Water Quality Sensors': 3800000,
+  'Filtration Media': 3200000
 };
 
 interface ConsolidatedDemandAlert {
@@ -185,27 +262,7 @@ const DPKDemandAdjustment: React.FC = () => {
 
     // Base monthly patterns for each material (quantities, not values)
     const basePatterns: { [key: string]: number[] } = {
-      // Mechanical Equipment (6 materials) - Target: 31 billion
-      'Turbine Blades': [120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175],
-      'Pump Components': [360, 370, 380, 390, 400, 410, 420, 430, 440, 450, 460, 470],
-      'Valve Systems': [250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350, 360],
-      'Bearing Units': [680, 700, 720, 740, 760, 780, 800, 820, 840, 860, 880, 900],
-      'Coupling Systems': [450, 460, 470, 480, 490, 500, 510, 520, 530, 540, 550, 560],
-      'Gear Box Parts': [330, 340, 350, 360, 370, 380, 390, 400, 410, 420, 430, 440],
-      // Water Treatment System (5 materials) - Target: 28 billion
-      'Reverse Osmosis Membranes': [180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290],
-      'Ion Exchange Resins': [320, 330, 340, 350, 360, 370, 380, 390, 400, 410, 420, 430],
-      'Chemical Dosing Pumps': [380, 390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490],
-      'Water Quality Sensors': [720, 740, 760, 780, 800, 820, 840, 860, 880, 900, 920, 940],
-      'Filtration Media': [850, 870, 890, 910, 930, 950, 970, 990, 1010, 1030, 1050, 1070],
-      // Spare Parts and Maintenance (6 materials) - Target: 21 billion
-      'Gaskets': [4500, 4600, 4700, 4800, 4900, 5000, 5100, 5200, 5300, 5400, 5500, 5600],
-      'Seals': [5300, 5400, 5500, 5600, 5700, 5800, 5900, 6000, 6100, 6200, 6300, 6400],
-      'Bolts and Fasteners': [23000, 23500, 24000, 24500, 25000, 25500, 26000, 26500, 27000, 27500, 28000, 28500],
-      'Electrical Cables': [1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100, 2150, 2200, 2250],
-      'Sensors': [800, 820, 840, 860, 880, 900, 920, 940, 960, 980, 1000, 1020],
-      'Control Panels': [110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165],
-      // Filter (8 materials) - Target: 26 billion
+      // Filter (8 materials)
       'Air Filter': [3200, 3250, 3300, 3350, 3400, 3450, 3500, 3550, 3600, 3650, 3700, 3750],
       'Fuel Filter': [2900, 2950, 3000, 3050, 3100, 3150, 3200, 3250, 3300, 3350, 3400, 3450],
       'Chemical filter': [2150, 2200, 2250, 2300, 2350, 2400, 2450, 2500, 2550, 2600, 2650, 2700],
@@ -214,12 +271,87 @@ const DPKDemandAdjustment: React.FC = () => {
       'Multi function filter': [1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100, 2150],
       'Water filter': [3400, 3450, 3500, 3550, 3600, 3650, 3700, 3750, 3800, 3850, 3900, 3950],
       'Gas filter': [2600, 2650, 2700, 2750, 2800, 2850, 2900, 2950, 3000, 3050, 3100, 3150],
-      // Fuel and Combustion (5 materials) - Target: 44 billion
+      // Ash Handling System (4 materials)
+      'Bottom Ash Removal Systems': [8, 9, 8, 9, 10, 9, 10, 11, 10, 11, 12, 11],
+      'Fly Ash Handling Equipment': [12, 13, 12, 14, 13, 14, 15, 14, 15, 16, 15, 16],
+      'Ash Conveyors': [25, 26, 27, 26, 28, 27, 29, 28, 30, 29, 31, 30],
+      'Ash Silos': [15, 16, 15, 17, 16, 17, 18, 17, 18, 19, 18, 19],
+      // Boiler and Pressure Vessel Equipment (4 materials)
+      'Boiler Tubes': [35, 36, 37, 38, 37, 39, 38, 40, 39, 41, 40, 42],
+      'Pressure Vessels': [6, 7, 6, 7, 8, 7, 8, 9, 8, 9, 10, 9],
+      'Heat Exchangers': [9, 10, 9, 10, 11, 10, 11, 12, 11, 12, 13, 12],
+      'Steam Drums': [10, 11, 10, 11, 12, 11, 12, 13, 12, 13, 14, 13],
+      // Civil Works and Construction Materials (4 materials)
+      'Concrete': [1200, 1250, 1300, 1250, 1350, 1300, 1400, 1350, 1450, 1400, 1500, 1450],
+      'Steel Reinforcement': [80, 85, 82, 87, 84, 89, 86, 91, 88, 93, 90, 95],
+      'Construction Aggregates': [2500, 2600, 2550, 2700, 2650, 2750, 2700, 2800, 2750, 2850, 2800, 2900],
+      'Structural Steel': [65, 68, 66, 70, 68, 72, 70, 74, 72, 76, 74, 78],
+      // Consumables (4 materials)
+      'Welding Rods': [850, 880, 860, 900, 870, 920, 880, 940, 890, 960, 900, 980],
+      'Grinding Discs': [1500, 1550, 1520, 1580, 1540, 1600, 1560, 1620, 1580, 1640, 1600, 1660],
+      'Cutting Blades': [980, 1000, 990, 1020, 1000, 1040, 1010, 1060, 1020, 1080, 1030, 1100],
+      'Lubricating Grease': [650, 670, 660, 680, 670, 690, 680, 700, 690, 710, 700, 720],
+      // Electrical Equipment (4 materials)
+      'Circuit Breakers': [42, 44, 43, 45, 44, 46, 45, 47, 46, 48, 47, 49],
+      'Transformers': [5, 6, 5, 6, 7, 6, 7, 8, 7, 8, 9, 8],
+      'Power Cables': [95, 98, 96, 100, 98, 102, 100, 104, 102, 106, 104, 108],
+      'Switchgear Components': [22, 23, 22, 24, 23, 25, 24, 26, 25, 27, 26, 28],
+      // Emission Control Systems (4 materials)
+      'ESP Components': [7, 8, 7, 8, 9, 8, 9, 10, 9, 10, 11, 10],
+      'FGD Equipment': [4, 5, 4, 5, 6, 5, 6, 7, 6, 7, 8, 7],
+      'SCR Catalysts': [6, 7, 6, 7, 8, 7, 8, 9, 8, 9, 10, 9],
+      'Emission Monitoring Systems': [18, 19, 18, 20, 19, 21, 20, 22, 21, 23, 22, 24],
+      // Engineering and Design Materials (4 materials)
+      'CAD Software Licenses': [12, 13, 12, 13, 14, 13, 14, 15, 14, 15, 16, 15],
+      'Technical Documentation': [35, 36, 37, 36, 38, 37, 39, 38, 40, 39, 41, 40],
+      'Engineering Tools': [28, 29, 28, 30, 29, 31, 30, 32, 31, 33, 32, 34],
+      'Survey Equipment': [16, 17, 16, 17, 18, 17, 18, 19, 18, 19, 20, 19],
+      // Fuel (5 materials)
       'Coal': [5000, 5200, 5400, 5600, 5800, 6000, 6200, 6400, 6600, 6800, 7000, 7200],
       'Diesel Fuel': [280000, 285000, 290000, 295000, 300000, 305000, 310000, 315000, 320000, 325000, 330000, 335000],
       'Natural Gas': [500000, 510000, 520000, 530000, 540000, 550000, 560000, 570000, 580000, 590000, 600000, 610000],
       'Fuel Oil': [330000, 335000, 340000, 345000, 350000, 355000, 360000, 365000, 370000, 375000, 380000, 385000],
-      'Biomass Pellets': [1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100]
+      'Biomass Pellets': [1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100],
+      // IT and Communication Systems (4 materials)
+      'Servers': [8, 9, 8, 9, 10, 9, 10, 11, 10, 11, 12, 11],
+      'Network Equipment': [20, 21, 20, 22, 21, 23, 22, 24, 23, 25, 24, 26],
+      'Communication Devices': [45, 46, 47, 46, 48, 47, 49, 48, 50, 49, 51, 50],
+      'IT Security Systems': [11, 12, 11, 12, 13, 12, 13, 14, 13, 14, 15, 14],
+      // Instrumentation and Control System (4 materials)
+      'PLCs': [14, 15, 14, 15, 16, 15, 16, 17, 16, 17, 18, 17],
+      'SCADA Systems': [4, 5, 4, 5, 6, 5, 6, 7, 6, 7, 8, 7],
+      'Control Valves': [25, 26, 25, 27, 26, 28, 27, 29, 28, 30, 29, 31],
+      'Measurement Instruments': [18, 19, 18, 19, 20, 19, 20, 21, 20, 21, 22, 21],
+      // Mechanical Equipment (6 materials)
+      'Turbine Blades': [120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175],
+      'Pump Components': [360, 370, 380, 390, 400, 410, 420, 430, 440, 450, 460, 470],
+      'Valve Systems': [250, 260, 270, 280, 290, 300, 310, 320, 330, 340, 350, 360],
+      'Bearing Units': [680, 700, 720, 740, 760, 780, 800, 820, 840, 860, 880, 900],
+      'Coupling Systems': [450, 460, 470, 480, 490, 500, 510, 520, 530, 540, 550, 560],
+      'Gear Box Parts': [330, 340, 350, 360, 370, 380, 390, 400, 410, 420, 430, 440],
+      // Renewable Energy Equipment (4 materials)
+      'Solar Panels': [45, 46, 47, 48, 47, 49, 48, 50, 49, 51, 50, 52],
+      'Wind Turbine Components': [3, 4, 3, 4, 5, 4, 5, 6, 5, 6, 7, 6],
+      'Battery Storage Systems': [4, 5, 4, 5, 6, 5, 6, 7, 6, 7, 8, 7],
+      'Inverters': [14, 15, 14, 15, 16, 15, 16, 17, 16, 17, 18, 17],
+      // Safety and Environmental Equipment (4 materials)
+      'Personal Protective Equipment': [1800, 1850, 1900, 1850, 1950, 1900, 2000, 1950, 2050, 2000, 2100, 2050],
+      'Fire Protection Systems': [18, 19, 18, 19, 20, 19, 20, 21, 20, 21, 22, 21],
+      'Emergency Response Equipment': [22, 23, 22, 23, 24, 23, 24, 25, 24, 25, 26, 25],
+      'Environmental Monitoring Devices': [28, 29, 28, 29, 30, 29, 30, 31, 30, 31, 32, 31],
+      // Spare Parts and Maintenance (6 materials)
+      'Gaskets': [4500, 4600, 4700, 4800, 4900, 5000, 5100, 5200, 5300, 5400, 5500, 5600],
+      'Seals': [5300, 5400, 5500, 5600, 5700, 5800, 5900, 6000, 6100, 6200, 6300, 6400],
+      'Bolts and Fasteners': [23000, 23500, 24000, 24500, 25000, 25500, 26000, 26500, 27000, 27500, 28000, 28500],
+      'Electrical Cables': [1700, 1750, 1800, 1850, 1900, 1950, 2000, 2050, 2100, 2150, 2200, 2250],
+      'Sensors': [800, 820, 840, 860, 880, 900, 920, 940, 960, 980, 1000, 1020],
+      'Control Panels': [110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165],
+      // Water Treatment System (5 materials)
+      'Reverse Osmosis Membranes': [180, 190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290],
+      'Ion Exchange Resins': [320, 330, 340, 350, 360, 370, 380, 390, 400, 410, 420, 430],
+      'Chemical Dosing Pumps': [380, 390, 400, 410, 420, 430, 440, 450, 460, 470, 480, 490],
+      'Water Quality Sensors': [720, 740, 760, 780, 800, 820, 840, 860, 880, 900, 920, 940],
+      'Filtration Media': [850, 870, 890, 910, 930, 950, 970, 990, 1010, 1030, 1050, 1070]
     };
 
     const createUnitData = (unitVariation: number) => {
