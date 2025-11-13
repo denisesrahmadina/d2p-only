@@ -113,7 +113,7 @@ export const retrieveProcurementRequestData: ProcurementRequestCategory[] = [
   {
     categoryName: 'Electrical Components',
     itemsCount: 3,
-    totalValue: 18800000000,
+    totalValue: 26000000000,
     mostRequested: 'Circuit Breakers (4)',
     items: [
       {
