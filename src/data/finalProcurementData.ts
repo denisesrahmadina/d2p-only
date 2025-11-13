@@ -14,9 +14,9 @@ interface MaterialProcurementData {
 
 export const finalProcurementData: Record<string, MaterialProcurementData> = {
   'Filter air': {
-    totalQuantity: 1230,
-    unitPrice: 2276422,
-    totalAmount: 2800000000,
+    totalQuantity: 8000,
+    unitPrice: 2500000,
+    totalAmount: 20000000000,
     monthlyData: [
       { month: 'Jan', netProcurement: 600, unitPrice: 2500000, totalAmount: 1500000000 },
       { month: 'Feb', netProcurement: 689, unitPrice: 2500000, totalAmount: 1722500000 },
