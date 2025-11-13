@@ -17,7 +17,7 @@ export const retrieveProcurementRequestData: ProcurementRequestCategory[] = [
   {
     categoryName: 'Ash Handling Systems',
     itemsCount: 4,
-    totalValue: 11800000000,
+    totalValue: 1300000000,
     mostRequested: 'Ash Conveyors (4)',
     items: [
       {
@@ -49,7 +49,7 @@ export const retrieveProcurementRequestData: ProcurementRequestCategory[] = [
   {
     categoryName: 'Filters',
     itemsCount: 5,
-    totalValue: 29400000000,
+    totalValue: 22088750000,
     mostRequested: 'Filter air (6)',
     items: [
       {
@@ -113,7 +113,7 @@ export const retrieveProcurementRequestData: ProcurementRequestCategory[] = [
   {
     categoryName: 'Electrical Components',
     itemsCount: 3,
-    totalValue: 18800000000,
+    totalValue: 26000000000,
     mostRequested: 'Circuit Breakers (4)',
     items: [
       {
