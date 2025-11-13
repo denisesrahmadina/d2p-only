@@ -17,7 +17,7 @@ export const retrieveProcurementRequestData: ProcurementRequestCategory[] = [
   {
     categoryName: 'Ash Handling Systems',
     itemsCount: 4,
-    totalValue: 11800000000,
+    totalValue: 13800000000,
     mostRequested: 'Ash Conveyors (4)',
     items: [
       {
