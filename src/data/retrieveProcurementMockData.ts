@@ -71,7 +71,7 @@ export const mockProcurementData: ProcurementRequest[] = [
     id: '5',
     materialId: 'FLT-001',
     materialName: 'Filter air',
-    materialValue: 2800000000,
+    materialValue: 20000000000,
     category: 'Filters',
     unitRequests: [
       { unit: 'UBP ADP', quantity: '450 units' },
@@ -79,7 +79,7 @@ export const mockProcurementData: ProcurementRequest[] = [
       { unit: 'UBP Paiton', quantity: '280 units' },
       { unit: 'PLTU Indramayu', quantity: '180 units' }
     ],
-    totalQuantity: '1,230 units'
+    totalQuantity: '8,000 units'
   },
   {
     id: '6',
