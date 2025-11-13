@@ -11,8 +11,8 @@ export interface CategoryBudgetData {
 }
 
 export const annualBudgetMockData: AnnualBudgetData = {
-  totalBudget: 49505400000000,
-  totalUnits: 4268600,
+  totalBudget: 848457012000,
+  totalUnits: 3234734,
   currency: 'IDR'
 };
 
