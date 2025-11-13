@@ -230,7 +230,25 @@ const DPKDemandAdjustment: React.FC = () => {
   const [editingMaterial, setEditingMaterial] = useState<string | null>(null);
   const [customValues, setCustomValues] = useState<{ [key: string]: string }>({});
 
-  const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies', 'Water Treatment System', 'Spare Parts and Maintenance'];
+  const categories = [
+    'All Categories',
+    'Filter',
+    'Ash Handling System',
+    'Boiler and Pressure Vessel Equipment',
+    'Civil Works and Construction Materials',
+    'Consumables',
+    'Electrical Equipment',
+    'Emission Control Systems',
+    'Engineering and Design Materials',
+    'Fuel',
+    'IT and Communication Systems',
+    'Instrumentation and Control System',
+    'Mechanical Equipment',
+    'Renewable Energy Equipment',
+    'Safety and Environmental Equipment',
+    'Spare part and Maintenance',
+    'Water Treatment System'
+  ];
   const materials = MATERIALS;
   const materialFilterOptions = ['All Material', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
   const materialPrices = MATERIAL_PRICES;
@@ -685,7 +703,6 @@ const DPKDemandAdjustment: React.FC = () => {
 
   // Category mapping for materials - SAME AS DEMAND CONSOLIDATION
   const materialCategoryMapping: { [key: string]: string } = {
-    'Filter air': 'Filter',
     'Air Filter': 'Filter',
     'Fuel Filter': 'Filter',
     'Chemical filter': 'Filter',
@@ -694,23 +711,67 @@ const DPKDemandAdjustment: React.FC = () => {
     'Multi function filter': 'Filter',
     'Water filter': 'Filter',
     'Gas filter': 'Filter',
-    'Coal': 'Fuel and Combustion',
-    'Diesel Fuel': 'Fuel and Combustion',
-    'Natural Gas': 'Fuel and Combustion',
-    'Fuel Oil': 'Fuel and Combustion',
-    'Biomass Pellets': 'Fuel and Combustion',
+    'Bottom Ash Removal Systems': 'Ash Handling System',
+    'Fly Ash Handling Equipment': 'Ash Handling System',
+    'Ash Conveyors': 'Ash Handling System',
+    'Ash Silos': 'Ash Handling System',
+    'Boiler Tubes': 'Boiler and Pressure Vessel Equipment',
+    'Pressure Vessels': 'Boiler and Pressure Vessel Equipment',
+    'Heat Exchangers': 'Boiler and Pressure Vessel Equipment',
+    'Steam Drums': 'Boiler and Pressure Vessel Equipment',
+    'Concrete': 'Civil Works and Construction Materials',
+    'Steel Reinforcement': 'Civil Works and Construction Materials',
+    'Construction Aggregates': 'Civil Works and Construction Materials',
+    'Structural Steel': 'Civil Works and Construction Materials',
+    'Welding Rods': 'Consumables',
+    'Grinding Discs': 'Consumables',
+    'Cutting Blades': 'Consumables',
+    'Lubricating Grease': 'Consumables',
+    'Circuit Breakers': 'Electrical Equipment',
+    'Transformers': 'Electrical Equipment',
+    'Power Cables': 'Electrical Equipment',
+    'Switchgear Components': 'Electrical Equipment',
+    'ESP Components': 'Emission Control Systems',
+    'FGD Equipment': 'Emission Control Systems',
+    'SCR Catalysts': 'Emission Control Systems',
+    'Emission Monitoring Systems': 'Emission Control Systems',
+    'CAD Software Licenses': 'Engineering and Design Materials',
+    'Technical Documentation': 'Engineering and Design Materials',
+    'Engineering Tools': 'Engineering and Design Materials',
+    'Survey Equipment': 'Engineering and Design Materials',
+    'Coal': 'Fuel',
+    'Diesel Fuel': 'Fuel',
+    'Natural Gas': 'Fuel',
+    'Fuel Oil': 'Fuel',
+    'Biomass Pellets': 'Fuel',
+    'Servers': 'IT and Communication Systems',
+    'Network Equipment': 'IT and Communication Systems',
+    'Communication Devices': 'IT and Communication Systems',
+    'IT Security Systems': 'IT and Communication Systems',
+    'PLCs': 'Instrumentation and Control System',
+    'SCADA Systems': 'Instrumentation and Control System',
+    'Control Valves': 'Instrumentation and Control System',
+    'Measurement Instruments': 'Instrumentation and Control System',
     'Turbine Blades': 'Mechanical Equipment',
     'Pump Components': 'Mechanical Equipment',
     'Valve Systems': 'Mechanical Equipment',
     'Bearing Units': 'Mechanical Equipment',
     'Coupling Systems': 'Mechanical Equipment',
     'Gear Box Parts': 'Mechanical Equipment',
-    'Gaskets': 'Spare Parts and Maintenance',
-    'Seals': 'Spare Parts and Maintenance',
-    'Bolts and Fasteners': 'Spare Parts and Maintenance',
-    'Electrical Cables': 'Spare Parts and Maintenance',
-    'Sensors': 'Spare Parts and Maintenance',
-    'Control Panels': 'Spare Parts and Maintenance',
+    'Solar Panels': 'Renewable Energy Equipment',
+    'Wind Turbine Components': 'Renewable Energy Equipment',
+    'Battery Storage Systems': 'Renewable Energy Equipment',
+    'Inverters': 'Renewable Energy Equipment',
+    'Personal Protective Equipment': 'Safety and Environmental Equipment',
+    'Fire Protection Systems': 'Safety and Environmental Equipment',
+    'Emergency Response Equipment': 'Safety and Environmental Equipment',
+    'Environmental Monitoring Devices': 'Safety and Environmental Equipment',
+    'Gaskets': 'Spare part and Maintenance',
+    'Seals': 'Spare part and Maintenance',
+    'Bolts and Fasteners': 'Spare part and Maintenance',
+    'Electrical Cables': 'Spare part and Maintenance',
+    'Sensors': 'Spare part and Maintenance',
+    'Control Panels': 'Spare part and Maintenance',
     'Reverse Osmosis Membranes': 'Water Treatment System',
     'Ion Exchange Resins': 'Water Treatment System',
     'Chemical Dosing Pumps': 'Water Treatment System',
@@ -779,8 +840,8 @@ const DPKDemandAdjustment: React.FC = () => {
   }, [allAlertsResolved, materials, materialBudgetData, adjustmentSelections, materialCategoryMapping, materialPrices]);
 
   const grandTotalValue = useMemo(() => {
-    return aggregatedOverview.totalBudgetAmt;
-  }, [aggregatedOverview]);
+    return categoryBreakdown.reduce((sum, cat) => sum + cat.totalValue, 0);
+  }, [categoryBreakdown]);
 
   const totalMaterialsCount = useMemo(() => {
     return categoryBreakdown.reduce((sum, cat) => sum + cat.materialsCount, 0);
