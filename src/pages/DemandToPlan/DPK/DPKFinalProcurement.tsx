@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { FileText, Download, CheckCircle2, DollarSign, TrendingUp, Package, Calendar, Factory, Filter } from 'lucide-react';
 import plnUnitsData from '../../../data/plnUnits.json';
-import { retrieveProcurementRequestData, getRetrieveProcurementRequestSummary } from '../../../data/retrieveProcurementRequestMockData';
+import { annualBudgetMockData, categoryBudgetDistribution, formatBudget as formatBudgetDisplay, formatUnits } from '../../../data/annualBudgetMockData';
 import RetrieveProcurementRequestTable from '../../../components/DemandToPlan/RetrieveProcurementRequestTable';
 import {
   BarChart,
@@ -41,16 +41,6 @@ const DPKFinalProcurement: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [chartType, setChartType] = useState<'bar' | 'line'>('bar');
   const [filteredMaterial, setFilteredMaterial] = useState<string | null>(null);
-
-  const procurementSummary = useMemo(() => getRetrieveProcurementRequestSummary(), []);
-
-  const formatBudgetDisplay = (value: number): string => {
-    return `Rp ${value.toLocaleString('id-ID')}`;
-  };
-
-  const formatUnits = (totalItems: number, totalCategories: number): string => {
-    return `${totalItems.toLocaleString('id-ID')} items across ${totalCategories} categories`;
-  };
 
   const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies'];
   const materials = ['All Material', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
@@ -907,10 +897,10 @@ const DPKFinalProcurement: React.FC = () => {
         <div className="p-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl shadow-lg flex flex-col justify-center min-h-[200px]">
           <p className="text-sm text-white/80 uppercase mb-3 tracking-wider">Total Annual Budget</p>
           <p className="text-4xl font-extrabold text-white mb-2">
-            {formatBudgetDisplay(procurementSummary.totalValue)}
+            {formatBudgetDisplay(annualBudgetMockData.totalBudget)}
           </p>
           <p className="text-base text-white/90 mt-2">
-            {formatUnits(procurementSummary.totalItems, procurementSummary.totalCategories)}
+            {formatUnits(annualBudgetMockData.totalUnits)}
           </p>
         </div>
       </div>
