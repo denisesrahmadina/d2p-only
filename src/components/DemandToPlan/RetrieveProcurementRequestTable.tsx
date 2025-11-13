@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronRight, Users, Package, DollarSign, TrendingUp, FileText } from 'lucide-react';
 import FinalProcurementMonthlyTable from './FinalProcurementMonthlyTable';
-import { finalProcurementData } from '../../data/finalProcurementData';
+import { materialProcurementData } from '../../data/finalProcurementMockData';
 
 interface UnitRequest {
   unit: string;
@@ -18,7 +18,11 @@ interface ProcurementRequest {
   totalQuantity: string;
 }
 
-const mockProcurementData: ProcurementRequest[] = [
+import { procurementRequests } from '../../data/finalProcurementMockData';
+
+const mockProcurementData: ProcurementRequest[] = procurementRequests as ProcurementRequest[];
+
+const mockProcurementDataOld: ProcurementRequest[] = [
   {
     id: '1',
     materialId: 'MTL-073',

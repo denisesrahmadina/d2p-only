@@ -1,7 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import { FileText, Download, CheckCircle2, DollarSign, TrendingUp, Package, Calendar, Factory, Filter } from 'lucide-react';
 import plnUnitsData from '../../../data/plnUnits.json';
-import { annualBudgetMockData, categoryBudgetDistribution, formatBudget as formatBudgetDisplay, formatUnits } from '../../../data/annualBudgetMockData';
+import {
+  annualBudget,
+  categoryBudgetDistribution,
+  formatBudget as formatBudgetDisplay,
+  formatUnits,
+  categorySummaries,
+  getProcurementSummary
+} from '../../../data/finalProcurementMockData';
 import RetrieveProcurementRequestTable from '../../../components/DemandToPlan/RetrieveProcurementRequestTable';
 import {
   BarChart,
@@ -897,10 +904,10 @@ const DPKFinalProcurement: React.FC = () => {
         <div className="p-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl shadow-lg flex flex-col justify-center min-h-[200px]">
           <p className="text-sm text-white/80 uppercase mb-3 tracking-wider">Total Annual Budget</p>
           <p className="text-4xl font-extrabold text-white mb-2">
-            {formatBudgetDisplay(annualBudgetMockData.totalBudget)}
+            {formatBudgetDisplay(annualBudget.totalBudget)}
           </p>
           <p className="text-base text-white/90 mt-2">
-            {formatUnits(annualBudgetMockData.totalUnits)}
+            {formatUnits(annualBudget.totalUnits)}
           </p>
         </div>
       </div>
