@@ -49,7 +49,25 @@ const DPKFinalProcurement: React.FC = () => {
   const [chartType, setChartType] = useState<'bar' | 'line'>('bar');
   const [filteredMaterial, setFilteredMaterial] = useState<string | null>(null);
 
-  const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies'];
+  const categories = [
+    'All Categories',
+    'Filter',
+    'Ash Handling System',
+    'Boiler and Pressure Vessel Equipment',
+    'Civil Works and Construction Materials',
+    'Consumables',
+    'Electrical Equipment',
+    'Emission Control Systems',
+    'Engineering and Design Materials',
+    'Fuel',
+    'IT and Communication Systems',
+    'Instrumentation and Control System',
+    'Mechanical Equipment',
+    'Renewable Energy Equipment',
+    'Safety and Environmental Equipment',
+    'Spare part and Maintenance',
+    'Water Treatment System'
+  ];
   const materials = ['All Material', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
   const allMaterialsList = [
     'All Material',
@@ -76,21 +94,21 @@ const DPKFinalProcurement: React.FC = () => {
   const materialProcurementData: MaterialProcurementData = useMemo(() => ({
   'All Material': {
     totalQuantity: 1392,
-    unitPrice: 400000000,
-    totalAmount: 629320000000,
+    unitPrice: 609540000,
+    totalAmount: 848457012000,
     monthlyData: [
-      { month: 'Jan', netProcurement: 110, unitPrice: 400000000, totalAmount: 48800000000 },
-      { month: 'Feb', netProcurement: 104, unitPrice: 400000000, totalAmount: 46480000000 },
-      { month: 'Mar', netProcurement: 121, unitPrice: 400000000, totalAmount: 54200000000 },
-      { month: 'Apr', netProcurement: 115, unitPrice: 400000000, totalAmount: 51950000000 },
-      { month: 'May', netProcurement: 128, unitPrice: 400000000, totalAmount: 57900000000 },
-      { month: 'Jun', netProcurement: 111, unitPrice: 400000000, totalAmount: 50190000000 },
-      { month: 'Jul', netProcurement: 119, unitPrice: 400000000, totalAmount: 54100000000 },
-      { month: 'Aug', netProcurement: 122, unitPrice: 400000000, totalAmount: 55360000000 },
-      { month: 'Sep', netProcurement: 109, unitPrice: 400000000, totalAmount: 49400000000 },
-      { month: 'Oct', netProcurement: 119, unitPrice: 400000000, totalAmount: 54020000000 },
-      { month: 'Nov', netProcurement: 128, unitPrice: 400000000, totalAmount: 58080000000 },
-      { month: 'Dec', netProcurement: 126, unitPrice: 400000000, totalAmount: 57340000000 }
+      { month: 'Jan', netProcurement: 110, unitPrice: 609540000, totalAmount: 67049400000 },
+      { month: 'Feb', netProcurement: 104, unitPrice: 609540000, totalAmount: 63392160000 },
+      { month: 'Mar', netProcurement: 121, unitPrice: 609540000, totalAmount: 73754340000 },
+      { month: 'Apr', netProcurement: 115, unitPrice: 609540000, totalAmount: 70097100000 },
+      { month: 'May', netProcurement: 128, unitPrice: 609540000, totalAmount: 78021120000 },
+      { month: 'Jun', netProcurement: 111, unitPrice: 609540000, totalAmount: 67658940000 },
+      { month: 'Jul', netProcurement: 119, unitPrice: 609540000, totalAmount: 72535260000 },
+      { month: 'Aug', netProcurement: 122, unitPrice: 609540000, totalAmount: 74363880000 },
+      { month: 'Sep', netProcurement: 109, unitPrice: 609540000, totalAmount: 66439860000 },
+      { month: 'Oct', netProcurement: 119, unitPrice: 609540000, totalAmount: 72535260000 },
+      { month: 'Nov', netProcurement: 128, unitPrice: 609540000, totalAmount: 78021120000 },
+      { month: 'Dec', netProcurement: 126, unitPrice: 609540000, totalAmount: 76802040000 }
     ]
   },
   'Air Filter': {
