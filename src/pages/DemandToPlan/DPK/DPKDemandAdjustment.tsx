@@ -665,8 +665,8 @@ const DPKDemandAdjustment: React.FC = () => {
   }, [allAlertsResolved, materials, materialBudgetData, adjustmentSelections, materialCategoryMapping, materialPrices]);
 
   const grandTotalValue = useMemo(() => {
-    return aggregatedOverview.totalBudgetAmt;
-  }, [aggregatedOverview]);
+    return categoryBreakdown.reduce((sum, cat) => sum + cat.totalValue, 0);
+  }, [categoryBreakdown]);
 
   const totalMaterialsCount = useMemo(() => {
     return categoryBreakdown.reduce((sum, cat) => sum + cat.materialsCount, 0);
