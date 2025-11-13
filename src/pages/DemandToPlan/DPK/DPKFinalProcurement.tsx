@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { FileText, Download, CheckCircle2, DollarSign, TrendingUp, Package, Calendar, Factory, Filter } from 'lucide-react';
 import plnUnitsData from '../../../data/plnUnits.json';
+import { annualBudgetMockData, categoryBudgetDistribution, formatBudget as formatBudgetDisplay, formatUnits } from '../../../data/annualBudgetMockData';
 import RetrieveProcurementRequestTable from '../../../components/DemandToPlan/RetrieveProcurementRequestTable';
 import {
   BarChart,
@@ -897,10 +898,10 @@ const DPKFinalProcurement: React.FC = () => {
           <div className="p-6 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl shadow-lg flex flex-col justify-center">
             <p className="text-sm text-white/80 uppercase mb-2">Total Annual Budget</p>
             <p className="text-3xl font-extrabold text-white">
-              {formatCurrency(totalProcurementAmount)}
+              {formatBudgetDisplay(annualBudgetMockData.totalBudget)}
             </p>
             <p className="text-sm text-white/80 mt-2">
-              {allMaterialsSummary.reduce((sum, item) => sum + item.quantity, 0).toLocaleString()} total units
+              {formatUnits(annualBudgetMockData.totalUnits)}
             </p>
           </div>
           <div>
@@ -908,16 +909,16 @@ const DPKFinalProcurement: React.FC = () => {
             <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie
-                  data={pieData}
+                  data={categoryBudgetDistribution}
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                  label={({ name, percentage }) => `${name}: ${percentage}%`}
                   outerRadius={80}
                   fill="#8884d8"
                   dataKey="value"
                 >
-                  {pieData.map((entry, index) => (
+                  {categoryBudgetDistribution.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
