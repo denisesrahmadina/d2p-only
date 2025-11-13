@@ -84,13 +84,13 @@ export const categorySummaries: CategorySummary[] = [
   {
     categoryName: 'Ash Handling System',
     itemsCount: 4,
-    totalValue: 13800000000,
-    mostRequested: 'Ash Conveyors'
+    totalValue: 11800000000,
+    mostRequested: 'Fly Ash Handling Equipment'
   },
   {
     categoryName: 'Filters',
     itemsCount: 5,
-    totalValue: 22088750000,
+    totalValue: 29400000000,
     mostRequested: 'Filter air'
   },
   {
@@ -102,8 +102,80 @@ export const categorySummaries: CategorySummary[] = [
   {
     categoryName: 'Electrical Equipment',
     itemsCount: 3,
-    totalValue: 26000000000,
-    mostRequested: 'Circuit Breakers'
+    totalValue: 18800000000,
+    mostRequested: 'Transformers'
+  },
+  {
+    categoryName: 'Boiler and Pressure Vessel Equipment',
+    itemsCount: 2,
+    totalValue: 13700000000,
+    mostRequested: 'Boiler Tubes'
+  },
+  {
+    categoryName: 'Civil Works and Construction Materials',
+    itemsCount: 2,
+    totalValue: 8300000000,
+    mostRequested: 'Steel Reinforcement Bars'
+  },
+  {
+    categoryName: 'Emission Control Systems',
+    itemsCount: 2,
+    totalValue: 14000000000,
+    mostRequested: 'Flue Gas Desulfurization Equipment'
+  },
+  {
+    categoryName: 'Engineering and Design Materials',
+    itemsCount: 2,
+    totalValue: 5500000000,
+    mostRequested: 'Engineering Tools & Equipment'
+  },
+  {
+    categoryName: 'Fuel',
+    itemsCount: 2,
+    totalValue: 133500000000,
+    mostRequested: 'Coal'
+  },
+  {
+    categoryName: 'IT and Communication Systems',
+    itemsCount: 2,
+    totalValue: 7000000000,
+    mostRequested: 'Servers'
+  },
+  {
+    categoryName: 'Instrumentation and Control System',
+    itemsCount: 2,
+    totalValue: 12700000000,
+    mostRequested: 'DCS Controllers'
+  },
+  {
+    categoryName: 'Mechanical Equipment',
+    itemsCount: 2,
+    totalValue: 10100000000,
+    mostRequested: 'Pumps'
+  },
+  {
+    categoryName: 'Renewable Energy Equipment',
+    itemsCount: 2,
+    totalValue: 23500000000,
+    mostRequested: 'Solar Panels'
+  },
+  {
+    categoryName: 'Safety and Environmental Equipment',
+    itemsCount: 2,
+    totalValue: 7200000000,
+    mostRequested: 'Fire Suppression Systems'
+  },
+  {
+    categoryName: 'Spare part and Maintenance',
+    itemsCount: 2,
+    totalValue: 5300000000,
+    mostRequested: 'Bearings'
+  },
+  {
+    categoryName: 'Water Treatment System',
+    itemsCount: 2,
+    totalValue: 9800000000,
+    mostRequested: 'Water Treatment Chemicals'
   }
 ];
 
@@ -314,6 +386,321 @@ export const procurementRequests: ProcurementRequestItem[] = [
       { unit: 'PLTU Jawa Tengah', quantity: '8500 meters' }
     ],
     totalQuantity: '43500 meters'
+  },
+  {
+    id: '16',
+    materialId: 'BPV-001',
+    materialName: 'Boiler Tubes',
+    materialValue: 8500000000,
+    category: 'Boiler and Pressure Vessel Equipment',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '2500 meters' },
+      { unit: 'UBP Paiton', quantity: '2200 meters' },
+      { unit: 'PLTU Indramayu', quantity: '1800 meters' }
+    ],
+    totalQuantity: '6500 meters'
+  },
+  {
+    id: '17',
+    materialId: 'BPV-002',
+    materialName: 'Pressure Vessel Components',
+    materialValue: 5200000000,
+    category: 'Boiler and Pressure Vessel Equipment',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '45 units' },
+      { unit: 'UBP Paiton', quantity: '38 units' },
+      { unit: 'PLTU Jawa Tengah', quantity: '27 units' }
+    ],
+    totalQuantity: '110 units'
+  },
+  {
+    id: '18',
+    materialId: 'CWC-001',
+    materialName: 'Cement',
+    materialValue: 3800000000,
+    category: 'Civil Works and Construction Materials',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '850 tons' },
+      { unit: 'UBP Paiton', quantity: '720 tons' },
+      { unit: 'PLTU Indramayu', quantity: '630 tons' }
+    ],
+    totalQuantity: '2200 tons'
+  },
+  {
+    id: '19',
+    materialId: 'CWC-002',
+    materialName: 'Steel Reinforcement Bars',
+    materialValue: 4500000000,
+    category: 'Civil Works and Construction Materials',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '650 tons' },
+      { unit: 'UBP Paiton', quantity: '580 tons' },
+      { unit: 'PLTU Jawa Tengah', quantity: '470 tons' }
+    ],
+    totalQuantity: '1700 tons'
+  },
+  {
+    id: '20',
+    materialId: 'ECS-001',
+    materialName: 'Electrostatic Precipitator Parts',
+    materialValue: 6200000000,
+    category: 'Emission Control Systems',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '35 sets' },
+      { unit: 'UBP Paiton', quantity: '28 sets' },
+      { unit: 'PLTU Indramayu', quantity: '22 sets' }
+    ],
+    totalQuantity: '85 sets'
+  },
+  {
+    id: '21',
+    materialId: 'ECS-002',
+    materialName: 'Flue Gas Desulfurization Equipment',
+    materialValue: 7800000000,
+    category: 'Emission Control Systems',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '4 systems' },
+      { unit: 'UBP Paiton', quantity: '3 systems' },
+      { unit: 'PLTU Jawa Tengah', quantity: '2 systems' }
+    ],
+    totalQuantity: '9 systems'
+  },
+  {
+    id: '22',
+    materialId: 'EDM-001',
+    materialName: 'CAD Software Licenses',
+    materialValue: 2100000000,
+    category: 'Engineering and Design Materials',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '45 licenses' },
+      { unit: 'UBP Paiton', quantity: '38 licenses' },
+      { unit: 'PLTU Indramayu', quantity: '32 licenses' }
+    ],
+    totalQuantity: '115 licenses'
+  },
+  {
+    id: '23',
+    materialId: 'EDM-002',
+    materialName: 'Engineering Tools & Equipment',
+    materialValue: 3400000000,
+    category: 'Engineering and Design Materials',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '125 units' },
+      { unit: 'UBP Paiton', quantity: '98 units' },
+      { unit: 'PLTU Jawa Tengah', quantity: '77 units' }
+    ],
+    totalQuantity: '300 units'
+  },
+  {
+    id: '24',
+    materialId: 'FUEL-001',
+    materialName: 'Coal',
+    materialValue: 125000000000,
+    category: 'Fuel',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '850000 tons' },
+      { unit: 'UBP Paiton', quantity: '720000 tons' },
+      { unit: 'PLTU Indramayu', quantity: '680000 tons' },
+      { unit: 'PLTU Jawa Tengah', quantity: '550000 tons' }
+    ],
+    totalQuantity: '2800000 tons'
+  },
+  {
+    id: '25',
+    materialId: 'FUEL-002',
+    materialName: 'Diesel Fuel',
+    materialValue: 8500000000,
+    category: 'Fuel',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '45000 liters' },
+      { unit: 'UBP Paiton', quantity: '38000 liters' },
+      { unit: 'PLTU Indramayu', quantity: '32000 liters' }
+    ],
+    totalQuantity: '115000 liters'
+  },
+  {
+    id: '26',
+    materialId: 'ITC-001',
+    materialName: 'Network Switches',
+    materialValue: 2800000000,
+    category: 'IT and Communication Systems',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '85 units' },
+      { unit: 'UBP Paiton', quantity: '72 units' },
+      { unit: 'PLTU Indramayu', quantity: '58 units' }
+    ],
+    totalQuantity: '215 units'
+  },
+  {
+    id: '27',
+    materialId: 'ITC-002',
+    materialName: 'Servers',
+    materialValue: 4200000000,
+    category: 'IT and Communication Systems',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '12 units' },
+      { unit: 'UBP Paiton', quantity: '10 units' },
+      { unit: 'PLTU Jawa Tengah', quantity: '8 units' }
+    ],
+    totalQuantity: '30 units'
+  },
+  {
+    id: '28',
+    materialId: 'ICS-001',
+    materialName: 'DCS Controllers',
+    materialValue: 9500000000,
+    category: 'Instrumentation and Control System',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '28 units' },
+      { unit: 'UBP Paiton', quantity: '24 units' },
+      { unit: 'PLTU Indramayu', quantity: '18 units' }
+    ],
+    totalQuantity: '70 units'
+  },
+  {
+    id: '29',
+    materialId: 'ICS-002',
+    materialName: 'Pressure Transmitters',
+    materialValue: 3200000000,
+    category: 'Instrumentation and Control System',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '350 units' },
+      { unit: 'UBP Paiton', quantity: '280 units' },
+      { unit: 'PLTU Jawa Tengah', quantity: '220 units' }
+    ],
+    totalQuantity: '850 units'
+  },
+  {
+    id: '30',
+    materialId: 'MEQ-001',
+    materialName: 'Pumps',
+    materialValue: 5800000000,
+    category: 'Mechanical Equipment',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '65 units' },
+      { unit: 'UBP Paiton', quantity: '52 units' },
+      { unit: 'PLTU Indramayu', quantity: '43 units' }
+    ],
+    totalQuantity: '160 units'
+  },
+  {
+    id: '31',
+    materialId: 'MEQ-002',
+    materialName: 'Valves',
+    materialValue: 4300000000,
+    category: 'Mechanical Equipment',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '520 units' },
+      { unit: 'UBP Paiton', quantity: '450 units' },
+      { unit: 'PLTU Jawa Tengah', quantity: '380 units' }
+    ],
+    totalQuantity: '1350 units'
+  },
+  {
+    id: '32',
+    materialId: 'REE-001',
+    materialName: 'Solar Panels',
+    materialValue: 15000000000,
+    category: 'Renewable Energy Equipment',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '850 units' },
+      { unit: 'UBP Paiton', quantity: '720 units' },
+      { unit: 'PLTU Indramayu', quantity: '630 units' }
+    ],
+    totalQuantity: '2200 units'
+  },
+  {
+    id: '33',
+    materialId: 'REE-002',
+    materialName: 'Wind Turbine Components',
+    materialValue: 8500000000,
+    category: 'Renewable Energy Equipment',
+    unitRequests: [
+      { unit: 'UBP Paiton', quantity: '12 sets' },
+      { unit: 'PLTU Jawa Tengah', quantity: '8 sets' }
+    ],
+    totalQuantity: '20 sets'
+  },
+  {
+    id: '34',
+    materialId: 'SEE-001',
+    materialName: 'Personal Protective Equipment',
+    materialValue: 2400000000,
+    category: 'Safety and Environmental Equipment',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '2500 sets' },
+      { unit: 'UBP Paiton', quantity: '2100 sets' },
+      { unit: 'PLTU Indramayu', quantity: '1800 sets' },
+      { unit: 'PLTU Jawa Tengah', quantity: '1600 sets' }
+    ],
+    totalQuantity: '8000 sets'
+  },
+  {
+    id: '35',
+    materialId: 'SEE-002',
+    materialName: 'Fire Suppression Systems',
+    materialValue: 4800000000,
+    category: 'Safety and Environmental Equipment',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '18 systems' },
+      { unit: 'UBP Paiton', quantity: '15 systems' },
+      { unit: 'PLTU Indramayu', quantity: '12 systems' }
+    ],
+    totalQuantity: '45 systems'
+  },
+  {
+    id: '36',
+    materialId: 'SPM-001',
+    materialName: 'Bearings',
+    materialValue: 3500000000,
+    category: 'Spare part and Maintenance',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '850 units' },
+      { unit: 'UBP Paiton', quantity: '720 units' },
+      { unit: 'PLTU Indramayu', quantity: '580 units' },
+      { unit: 'PLTU Jawa Tengah', quantity: '450 units' }
+    ],
+    totalQuantity: '2600 units'
+  },
+  {
+    id: '37',
+    materialId: 'SPM-002',
+    materialName: 'Seals and Gaskets',
+    materialValue: 1800000000,
+    category: 'Spare part and Maintenance',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '4500 units' },
+      { unit: 'UBP Paiton', quantity: '3800 units' },
+      { unit: 'PLTU Jawa Tengah', quantity: '2700 units' }
+    ],
+    totalQuantity: '11000 units'
+  },
+  {
+    id: '38',
+    materialId: 'WTS-001',
+    materialName: 'Water Treatment Chemicals',
+    materialValue: 5600000000,
+    category: 'Water Treatment System',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '12000 kg' },
+      { unit: 'UBP Paiton', quantity: '10500 kg' },
+      { unit: 'PLTU Indramayu', quantity: '9200 kg' },
+      { unit: 'PLTU Jawa Tengah', quantity: '7800 kg' }
+    ],
+    totalQuantity: '39500 kg'
+  },
+  {
+    id: '39',
+    materialId: 'WTS-002',
+    materialName: 'Reverse Osmosis Membranes',
+    materialValue: 4200000000,
+    category: 'Water Treatment System',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '85 units' },
+      { unit: 'UBP Paiton', quantity: '72 units' },
+      { unit: 'PLTU Indramayu', quantity: '58 units' }
+    ],
+    totalQuantity: '215 units'
   }
 ];
 
