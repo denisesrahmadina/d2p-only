@@ -84,7 +84,7 @@ const DPKDemandNetting: React.FC = () => {
        { month: 'Jan', adjustedDemand: 2200, inventoryFulfillment: 1100, contractFulfillment: 300, stockTransfer: 20, netProcurement: 780, unitPrice: 2500000, totalAmount: 1950000000 },
        { month: 'Feb', adjustedDemand: 2200, inventoryFulfillment: 1100, contractFulfillment: 300, stockTransfer: 20, netProcurement: 780, unitPrice: 2500000, totalAmount: 1950000000 },
        { month: 'Mar', adjustedDemand: 2100, inventoryFulfillment: 1100, contractFulfillment: 300, stockTransfer: 20, netProcurement: 680, unitPrice: 2500000, totalAmount: 1700000000 },
-       { month: 'Apr', adjustedDemand: 2200, inventoryFulfillment: 1100, contractFulfillment: 300, stockTransfer: 20, netProcurement: 680, unitPrice: 2500000, totalAmount: 1700000000 },
+       { month: 'Apr', adjustedDemand: 2100, inventoryFulfillment: 1100, contractFulfillment: 300, stockTransfer: 20, netProcurement: 680, unitPrice: 2500000, totalAmount: 1700000000 },
        { month: 'May', adjustedDemand: 2200, inventoryFulfillment: 1200, contractFulfillment: 300, stockTransfer: 20, netProcurement: 680, unitPrice: 2500000, totalAmount: 1700000000 },
        { month: 'Jun', adjustedDemand: 2200, inventoryFulfillment: 1200, contractFulfillment: 300, stockTransfer: 20, netProcurement: 680, unitPrice: 2500000, totalAmount: 1700000000 },
        { month: 'Jul', adjustedDemand: 2100, inventoryFulfillment: 1200, contractFulfillment: 400, stockTransfer: 20, netProcurement: 480, unitPrice: 2500000, totalAmount: 1200000000 },
