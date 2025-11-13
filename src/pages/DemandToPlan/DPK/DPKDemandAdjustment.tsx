@@ -577,7 +577,7 @@ const DPKDemandAdjustment: React.FC = () => {
     });
   }, [adjustmentSelections, currentMaterialData, currentMaterialKey, selectedMaterial, materialBudgetData, materials]);
 
-  // Automatically load budget data and initialize selections when component mounts or filters change
+  // Initialize selections when component mounts or filters change
   useEffect(() => {
     // Initialize selections for all materials
     const all: AdjustmentSelectionsByMaterial = {};
@@ -592,7 +592,7 @@ const DPKDemandAdjustment: React.FC = () => {
       });
     });
     setAdjustmentSelections(all);
-    setHasBudgetData(true);
+    // Note: hasBudgetData is only set to true when user clicks "Retrieve Budget" button
   }, [selectedUnit, materialBudgetData, materials]);
 
   const handleSourceChange = (month: string, source: AdjustmentSource, material?: string) => {
