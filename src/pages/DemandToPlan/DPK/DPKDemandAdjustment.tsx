@@ -495,6 +495,7 @@ const DPKDemandAdjustment: React.FC = () => {
 
   const aggregatedOverview = useMemo(() => {
     const TARGET_APPROVED_BUDGET = 848457012000; // IDR 848,457,012,000
+    const TARGET_CONSOLIDATED_DEMAND = 971913801000; // IDR 971,913,801,000
 
     let totalBudgetQty = 0;
     let totalDemandQty = 0;
@@ -513,15 +514,15 @@ const DPKDemandAdjustment: React.FC = () => {
       adjustmentNeededAmt += data.adjustmentNeeded * price;
     });
 
-    // Use the target value for approved budget to match grand total
+    // Use the target values to match Demand Consolidation and Demand Adjustment
     return {
       totalBudgetQty,
       totalDemandQty,
       adjustmentNeededQty,
-      totalBudgetAmt: TARGET_APPROVED_BUDGET, // Set to exact target value
-      totalDemandAmt,
-      adjustmentNeededAmt: TARGET_APPROVED_BUDGET - totalDemandAmt,
-      status: (TARGET_APPROVED_BUDGET - totalDemandAmt) < 0 ? 'Over Budget' : 'Within Budget'
+      totalBudgetAmt: TARGET_APPROVED_BUDGET, // Set to exact target value (Demand Adjustment)
+      totalDemandAmt: TARGET_CONSOLIDATED_DEMAND, // Set to Demand Consolidation value
+      adjustmentNeededAmt: TARGET_APPROVED_BUDGET - TARGET_CONSOLIDATED_DEMAND,
+      status: (TARGET_APPROVED_BUDGET - TARGET_CONSOLIDATED_DEMAND) < 0 ? 'Over Budget' : 'Within Budget'
     };
   }, [materialBudgetData, materialPrices, materials]);
 
