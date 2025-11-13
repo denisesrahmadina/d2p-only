@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Download, Sliders, CheckCircle2, Sparkles, Edit3, Save, Factory, Filter, Package, Database, Loader2, AlertCircle, Send } from 'lucide-react';
+import { Download, Sliders, CheckCircle2, Sparkles, CreditCard as Edit3, Save, Factory, Filter, Package, Database, Loader2, AlertCircle, Send } from 'lucide-react';
 import plnUnitsData from '../../../data/plnUnits.json';
 import {
   BarChart,
