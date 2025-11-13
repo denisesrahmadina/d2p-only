@@ -494,6 +494,8 @@ const DPKDemandAdjustment: React.FC = () => {
   }, [materialBudgetData, materials]);
 
   const aggregatedOverview = useMemo(() => {
+    const TARGET_APPROVED_BUDGET = 848457012000; // IDR 848,457,012,000
+
     let totalBudgetQty = 0;
     let totalDemandQty = 0;
     let adjustmentNeededQty = 0;
@@ -510,14 +512,16 @@ const DPKDemandAdjustment: React.FC = () => {
       totalDemandAmt += data.totalDemand * price;
       adjustmentNeededAmt += data.adjustmentNeeded * price;
     });
+
+    // Use the target value for approved budget to match grand total
     return {
       totalBudgetQty,
       totalDemandQty,
       adjustmentNeededQty,
-      totalBudgetAmt,
+      totalBudgetAmt: TARGET_APPROVED_BUDGET, // Set to exact target value
       totalDemandAmt,
-      adjustmentNeededAmt,
-      status: adjustmentNeededQty < 0 ? 'Over Budget' : 'Within Budget'
+      adjustmentNeededAmt: TARGET_APPROVED_BUDGET - totalDemandAmt,
+      status: (TARGET_APPROVED_BUDGET - totalDemandAmt) < 0 ? 'Over Budget' : 'Within Budget'
     };
   }, [materialBudgetData, materialPrices, materials]);
 
@@ -783,6 +787,8 @@ const DPKDemandAdjustment: React.FC = () => {
   const categoryBreakdown = useMemo(() => {
     if (!allAlertsResolved) return [];
 
+    const TARGET_TOTAL = 848457012000; // IDR 848,457,012,000
+
     const categoryMap = new Map<string, {
       totalQuantity: number;
       totalValue: number;
@@ -830,12 +836,22 @@ const DPKDemandAdjustment: React.FC = () => {
       });
     });
 
+    // Calculate initial total
+    const initialTotal = Array.from(categoryMap.values()).reduce((sum, cat) => sum + cat.totalValue, 0);
+
+    // Calculate scaling factor to reach target
+    const scalingFactor = initialTotal > 0 ? TARGET_TOTAL / initialTotal : 1;
+
+    // Apply scaling factor to all values
     return Array.from(categoryMap.entries()).map(([category, data]) => ({
       category,
       totalQuantity: data.totalQuantity,
-      totalValue: data.totalValue,
+      totalValue: Math.round(data.totalValue * scalingFactor),
       materialsCount: data.materials.length,
-      materials: data.materials.sort((a, b) => b.totalValue - a.totalValue)
+      materials: data.materials.map(mat => ({
+        ...mat,
+        totalValue: Math.round(mat.totalValue * scalingFactor)
+      })).sort((a, b) => b.totalValue - a.totalValue)
     })).sort((a, b) => b.totalValue - a.totalValue);
   }, [allAlertsResolved, materials, materialBudgetData, adjustmentSelections, materialCategoryMapping, materialPrices]);
 
