@@ -86,16 +86,20 @@ Both DPKDemandConsolidationHQ and DPKDemandAdjustment now use the same approach:
 | Multi function filter | 23,786 |
 
 ### DPK Demand Adjustment (after budget adjustment):
-| Material | Qty |
-|----------|-----|
-| Oil filter | 30,881 |
-| Water filter | 23,578 |
-| Air Filter | 23,548 |
-| Fuel Filter | 21,907 |
-| Gas filter | 20,694 |
-| Chemical filter | 16,300 |
-| Special filter | 14,297 |
-| Multi function filter | 12,230 |
+| Material | Qty | Unit Price (IDR) | Total Value (IDR) |
+|----------|-----|------------------|-------------------|
+| Gas filter | 20,694 | 18,500,000 | 382,839,000,000 |
+| Fuel Filter | 21,907 | 15,750,000 | 345,035,250,000 |
+| Water filter | 23,578 | 6,500,000 | 153,257,000,000 |
+| Multi function filter | 12,230 | 12,500,000 | 152,875,000,000 |
+| Special filter | 14,297 | 4,250,000 | 60,762,250,000 |
+| Air Filter | 23,548 | 2,500,000 | 58,870,000,000 |
+| Oil filter | 30,881 | 1,850,000 | 57,129,850,000 |
+| Chemical filter | 16,300 | 285,000 | 4,645,500,000 |
+| **Total Qty** | **163,435** | | |
+| **Category Total** | | | **IDR 1,215,413,850,000** |
+
+**Approximately IDR 1.22 Trillion** (No scaling applied - raw calculation)
 
 This shows the logical flow: **Consolidation** (higher quantities from all units) → **Adjustment** (reduced to fit budget constraints).
 

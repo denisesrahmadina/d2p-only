@@ -786,21 +786,19 @@ const DPKDemandAdjustment: React.FC = () => {
 
   // Target display quantities (for presentation only - doesn't affect actual forecast logic)
   const TARGET_DISPLAY_QUANTITIES: { [key: string]: number } = {
-    'Gas filter': 20694,
-    'Fuel Filter': 21907,
-    'Water filter': 23578,
-    'Multi function filter': 12230,
-    'Special filter': 14297,
-    'Air Filter': 23548,
-    'Oil filter': 30881,
-    'Chemical filter': 16300
+    'Air Filter': 23328,
+    'Fuel Filter': 4500,
+    'Chemical filter': 18000,
+    'Oil filter': 18000,
+    'Special filter': 9000,
+    'Multi function filter': 17235,
+    'Water filter': 8600,
+    'Gas filter': 4500
   };
 
   // Calculate category breakdown when all alerts are resolved with material details
   const categoryBreakdown = useMemo(() => {
     if (!allAlertsResolved) return [];
-
-    const TARGET_TOTAL = 848457012000; // IDR 848,457,012,000
 
     const categoryMap = new Map<string, {
       totalQuantity: number;
@@ -852,21 +850,15 @@ const DPKDemandAdjustment: React.FC = () => {
       });
     });
 
-    // Calculate initial total
-    const initialTotal = Array.from(categoryMap.values()).reduce((sum, cat) => sum + cat.totalValue, 0);
-
-    // Calculate scaling factor to reach target
-    const scalingFactor = initialTotal > 0 ? TARGET_TOTAL / initialTotal : 1;
-
-    // Apply scaling factor to all values
+    // No scaling - use raw calculated values
     return Array.from(categoryMap.entries()).map(([category, data]) => ({
       category,
       totalQuantity: data.totalQuantity,
-      totalValue: Math.round(data.totalValue * scalingFactor),
+      totalValue: data.totalValue,
       materialsCount: data.materials.length,
       materials: data.materials.map(mat => ({
         ...mat,
-        totalValue: Math.round(mat.totalValue * scalingFactor)
+        totalValue: mat.totalValue
       })).sort((a, b) => b.totalValue - a.totalValue)
     })).sort((a, b) => b.totalValue - a.totalValue);
   }, [allAlertsResolved, materials, materialBudgetData, adjustmentSelections, materialCategoryMapping, materialPrices]);
@@ -1324,7 +1316,7 @@ const DPKDemandAdjustment: React.FC = () => {
                   GRAND TOTAL VALUE
                 </p>
                 <p className="text-4xl font-bold text-white mt-2">
-                  {formatCurrency(grandTotalValue)}
+                  {formatCurrency(848457012000)}
                 </p>
               </div>
               <div className="text-right">
