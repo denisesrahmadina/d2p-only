@@ -90,8 +90,8 @@ export const categorySummaries: CategorySummary[] = [
   {
     categoryName: 'Filters',
     itemsCount: 5,
-    totalValue: 29400000000,
-    mostRequested: 'Filter air'
+    totalValue: 20956750000,
+    mostRequested: 'Air Filter'
   },
   {
     categoryName: 'Consumables',
@@ -236,7 +236,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
   {
     id: '5',
     materialId: 'FLT-001',
-    materialName: 'Filter air',
+    materialName: 'Air Filter',
     materialValue: 20000000000,
     category: 'Filters',
     unitRequests: [
@@ -250,58 +250,58 @@ export const procurementRequests: ProcurementRequestItem[] = [
   {
     id: '6',
     materialId: 'FLT-002',
-    materialName: 'Filter Udara Cartridge',
-    materialValue: 3500000000,
+    materialName: 'fuel filter',
+    materialValue: 393750000,
     category: 'Filters',
     unitRequests: [
-      { unit: 'UBP Suralaya', quantity: '320 pcs' },
-      { unit: 'UBP Paiton', quantity: '280 pcs' },
-      { unit: 'PLTU Indramayu', quantity: '260 pcs' },
-      { unit: 'PLTU Jawa Tengah', quantity: '200 pcs' }
+      { unit: 'UBP Suralaya', quantity: '7 pcs' },
+      { unit: 'UBP Paiton', quantity: '6 pcs' },
+      { unit: 'PLTU Indramayu', quantity: '6 pcs' },
+      { unit: 'PLTU Jawa Tengah', quantity: '6 pcs' }
     ],
-    totalQuantity: '1060 pcs'
+    totalQuantity: '25 pcs'
   },
   {
     id: '7',
     materialId: 'FLT-003',
-    materialName: 'Oil Filter',
-    materialValue: 1900000000,
+    materialName: 'chemical filter',
+    materialValue: 85500000,
     category: 'Filters',
     unitRequests: [
-      { unit: 'UBP Suralaya', quantity: '400 pcs' },
-      { unit: 'UBP Paiton', quantity: '350 pcs' },
-      { unit: 'PLTU Indramayu', quantity: '320 pcs' },
-      { unit: 'PLTU Jawa Tengah', quantity: '250 pcs' }
+      { unit: 'UBP Suralaya', quantity: '80 pcs' },
+      { unit: 'UBP Paiton', quantity: '75 pcs' },
+      { unit: 'PLTU Indramayu', quantity: '75 pcs' },
+      { unit: 'PLTU Jawa Tengah', quantity: '70 pcs' }
     ],
-    totalQuantity: '1320 pcs'
+    totalQuantity: '300 pcs'
   },
   {
     id: '8',
     materialId: 'FLT-004',
-    materialName: 'Filter Gas',
-    materialValue: 2400000000,
+    materialName: 'oil filter',
+    materialValue: 222000000,
     category: 'Filters',
     unitRequests: [
-      { unit: 'UBP Suralaya', quantity: '250 pcs' },
-      { unit: 'UBP Paiton', quantity: '220 pcs' },
-      { unit: 'PLTU Indramayu', quantity: '180 pcs' },
-      { unit: 'PLTU Jawa Tengah', quantity: '140 pcs' }
+      { unit: 'UBP Suralaya', quantity: '30 pcs' },
+      { unit: 'UBP Paiton', quantity: '30 pcs' },
+      { unit: 'PLTU Indramayu', quantity: '30 pcs' },
+      { unit: 'PLTU Jawa Tengah', quantity: '30 pcs' }
     ],
-    totalQuantity: '790 pcs'
+    totalQuantity: '120 pcs'
   },
   {
     id: '9',
     materialId: 'FLT-005',
-    materialName: 'Filter Udara Kassa',
-    materialValue: 1600000000,
+    materialName: 'special filter',
+    materialValue: 255500000,
     category: 'Filters',
     unitRequests: [
-      { unit: 'UBP Suralaya', quantity: '380 pcs' },
-      { unit: 'UBP Paiton', quantity: '340 pcs' },
-      { unit: 'PLTU Indramayu', quantity: '310 pcs' },
-      { unit: 'PLTU Jawa Tengah', quantity: '260 pcs' }
+      { unit: 'UBP Suralaya', quantity: '15 pcs' },
+      { unit: 'UBP Paiton', quantity: '15 pcs' },
+      { unit: 'PLTU Indramayu', quantity: '15 pcs' },
+      { unit: 'PLTU Jawa Tengah', quantity: '15 pcs' }
     ],
-    totalQuantity: '1290 pcs'
+    totalQuantity: '60 pcs'
   },
   {
     id: '10',
@@ -705,7 +705,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
 ];
 
 export const materialProcurementData: Record<string, MaterialProcurementData> = {
-  'Filter air': {
+  'Air Filter': {
     totalQuantity: 8000,
     unitPrice: 2500000,
     totalAmount: 20000000000,
@@ -724,80 +724,80 @@ export const materialProcurementData: Record<string, MaterialProcurementData> = 
       { month: 'Dec', netProcurement: 766, unitPrice: 2500000, totalAmount: 1915000000 }
     ]
   },
-  'Filter Udara Cartridge': {
-    totalQuantity: 1060,
-    unitPrice: 3301887,
-    totalAmount: 3500000000,
+  'fuel filter': {
+    totalQuantity: 25,
+    unitPrice: 15750000,
+    totalAmount: 393750000,
     monthlyData: [
-      { month: 'Jan', netProcurement: 82, unitPrice: 3301887, totalAmount: 270754734 },
-      { month: 'Feb', netProcurement: 85, unitPrice: 3301887, totalAmount: 280660395 },
-      { month: 'Mar', netProcurement: 87, unitPrice: 3301887, totalAmount: 287264169 },
-      { month: 'Apr', netProcurement: 90, unitPrice: 3301887, totalAmount: 297169830 },
-      { month: 'May', netProcurement: 92, unitPrice: 3301887, totalAmount: 303773604 },
-      { month: 'Jun', netProcurement: 88, unitPrice: 3301887, totalAmount: 290566056 },
-      { month: 'Jul', netProcurement: 91, unitPrice: 3301887, totalAmount: 300471717 },
-      { month: 'Aug', netProcurement: 93, unitPrice: 3301887, totalAmount: 307075491 },
-      { month: 'Sep', netProcurement: 86, unitPrice: 3301887, totalAmount: 283962282 },
-      { month: 'Oct', netProcurement: 89, unitPrice: 3301887, totalAmount: 293867943 },
-      { month: 'Nov', netProcurement: 94, unitPrice: 3301887, totalAmount: 310377378 },
-      { month: 'Dec', netProcurement: 83, unitPrice: 3301887, totalAmount: 274056621 }
+      { month: 'Jan', netProcurement: 2, unitPrice: 15750000, totalAmount: 31500000 },
+      { month: 'Feb', netProcurement: 2, unitPrice: 15750000, totalAmount: 31500000 },
+      { month: 'Mar', netProcurement: 2, unitPrice: 15750000, totalAmount: 31500000 },
+      { month: 'Apr', netProcurement: 2, unitPrice: 15750000, totalAmount: 31500000 },
+      { month: 'May', netProcurement: 2, unitPrice: 15750000, totalAmount: 31500000 },
+      { month: 'Jun', netProcurement: 2, unitPrice: 15750000, totalAmount: 31500000 },
+      { month: 'Jul', netProcurement: 2, unitPrice: 15750000, totalAmount: 31500000 },
+      { month: 'Aug', netProcurement: 2, unitPrice: 15750000, totalAmount: 31500000 },
+      { month: 'Sep', netProcurement: 2, unitPrice: 15750000, totalAmount: 31500000 },
+      { month: 'Oct', netProcurement: 2, unitPrice: 15750000, totalAmount: 31500000 },
+      { month: 'Nov', netProcurement: 2, unitPrice: 15750000, totalAmount: 31500000 },
+      { month: 'Dec', netProcurement: 3, unitPrice: 15750000, totalAmount: 47250000 }
     ]
   },
-  'Oil Filter': {
-    totalQuantity: 1320,
-    unitPrice: 1439393,
-    totalAmount: 1900000000,
+  'chemical filter': {
+    totalQuantity: 300,
+    unitPrice: 285000,
+    totalAmount: 85500000,
     monthlyData: [
-      { month: 'Jan', netProcurement: 105, unitPrice: 1439393, totalAmount: 151136265 },
-      { month: 'Feb', netProcurement: 108, unitPrice: 1439393, totalAmount: 155454444 },
-      { month: 'Mar', netProcurement: 110, unitPrice: 1439393, totalAmount: 158333230 },
-      { month: 'Apr', netProcurement: 112, unitPrice: 1439393, totalAmount: 161212016 },
-      { month: 'May', netProcurement: 115, unitPrice: 1439393, totalAmount: 165530195 },
-      { month: 'Jun', netProcurement: 110, unitPrice: 1439393, totalAmount: 158333230 },
-      { month: 'Jul', netProcurement: 113, unitPrice: 1439393, totalAmount: 162651409 },
-      { month: 'Aug', netProcurement: 116, unitPrice: 1439393, totalAmount: 166969588 },
-      { month: 'Sep', netProcurement: 107, unitPrice: 1439393, totalAmount: 154015051 },
-      { month: 'Oct', netProcurement: 111, unitPrice: 1439393, totalAmount: 159772623 },
-      { month: 'Nov', netProcurement: 114, unitPrice: 1439393, totalAmount: 164090802 },
-      { month: 'Dec', netProcurement: 109, unitPrice: 1439393, totalAmount: 156893837 }
+      { month: 'Jan', netProcurement: 25, unitPrice: 285000, totalAmount: 7125000 },
+      { month: 'Feb', netProcurement: 25, unitPrice: 285000, totalAmount: 7125000 },
+      { month: 'Mar', netProcurement: 25, unitPrice: 285000, totalAmount: 7125000 },
+      { month: 'Apr', netProcurement: 25, unitPrice: 285000, totalAmount: 7125000 },
+      { month: 'May', netProcurement: 25, unitPrice: 285000, totalAmount: 7125000 },
+      { month: 'Jun', netProcurement: 25, unitPrice: 285000, totalAmount: 7125000 },
+      { month: 'Jul', netProcurement: 25, unitPrice: 285000, totalAmount: 7125000 },
+      { month: 'Aug', netProcurement: 25, unitPrice: 285000, totalAmount: 7125000 },
+      { month: 'Sep', netProcurement: 25, unitPrice: 285000, totalAmount: 7125000 },
+      { month: 'Oct', netProcurement: 25, unitPrice: 285000, totalAmount: 7125000 },
+      { month: 'Nov', netProcurement: 25, unitPrice: 285000, totalAmount: 7125000 },
+      { month: 'Dec', netProcurement: 25, unitPrice: 285000, totalAmount: 7125000 }
     ]
   },
-  'Filter Gas': {
-    totalQuantity: 790,
-    unitPrice: 3037974,
-    totalAmount: 2400000000,
+  'oil filter': {
+    totalQuantity: 120,
+    unitPrice: 1850000,
+    totalAmount: 222000000,
     monthlyData: [
-      { month: 'Jan', netProcurement: 62, unitPrice: 3037974, totalAmount: 188354388 },
-      { month: 'Feb', netProcurement: 64, unitPrice: 3037974, totalAmount: 194430336 },
-      { month: 'Mar', netProcurement: 66, unitPrice: 3037974, totalAmount: 200506284 },
-      { month: 'Apr', netProcurement: 67, unitPrice: 3037974, totalAmount: 203544258 },
-      { month: 'May', netProcurement: 69, unitPrice: 3037974, totalAmount: 209620206 },
-      { month: 'Jun', netProcurement: 65, unitPrice: 3037974, totalAmount: 197468310 },
-      { month: 'Jul', netProcurement: 68, unitPrice: 3037974, totalAmount: 206582232 },
-      { month: 'Aug', netProcurement: 70, unitPrice: 3037974, totalAmount: 212658180 },
-      { month: 'Sep', netProcurement: 64, unitPrice: 3037974, totalAmount: 194430336 },
-      { month: 'Oct', netProcurement: 66, unitPrice: 3037974, totalAmount: 200506284 },
-      { month: 'Nov', netProcurement: 68, unitPrice: 3037974, totalAmount: 206582232 },
-      { month: 'Dec', netProcurement: 61, unitPrice: 3037974, totalAmount: 185316414 }
+      { month: 'Jan', netProcurement: 10, unitPrice: 1850000, totalAmount: 18500000 },
+      { month: 'Feb', netProcurement: 10, unitPrice: 1850000, totalAmount: 18500000 },
+      { month: 'Mar', netProcurement: 10, unitPrice: 1850000, totalAmount: 18500000 },
+      { month: 'Apr', netProcurement: 10, unitPrice: 1850000, totalAmount: 18500000 },
+      { month: 'May', netProcurement: 10, unitPrice: 1850000, totalAmount: 18500000 },
+      { month: 'Jun', netProcurement: 10, unitPrice: 1850000, totalAmount: 18500000 },
+      { month: 'Jul', netProcurement: 10, unitPrice: 1850000, totalAmount: 18500000 },
+      { month: 'Aug', netProcurement: 10, unitPrice: 1850000, totalAmount: 18500000 },
+      { month: 'Sep', netProcurement: 10, unitPrice: 1850000, totalAmount: 18500000 },
+      { month: 'Oct', netProcurement: 10, unitPrice: 1850000, totalAmount: 18500000 },
+      { month: 'Nov', netProcurement: 10, unitPrice: 1850000, totalAmount: 18500000 },
+      { month: 'Dec', netProcurement: 10, unitPrice: 1850000, totalAmount: 18500000 }
     ]
   },
-  'Filter Udara Kassa': {
-    totalQuantity: 1290,
-    unitPrice: 1240310,
-    totalAmount: 1600000000,
+  'special filter': {
+    totalQuantity: 60,
+    unitPrice: 4258333,
+    totalAmount: 255500000,
     monthlyData: [
-      { month: 'Jan', netProcurement: 103, unitPrice: 1240310, totalAmount: 127751930 },
-      { month: 'Feb', netProcurement: 106, unitPrice: 1240310, totalAmount: 131472860 },
-      { month: 'Mar', netProcurement: 108, unitPrice: 1240310, totalAmount: 133953480 },
-      { month: 'Apr', netProcurement: 110, unitPrice: 1240310, totalAmount: 136434100 },
-      { month: 'May', netProcurement: 112, unitPrice: 1240310, totalAmount: 138914720 },
-      { month: 'Jun', netProcurement: 107, unitPrice: 1240310, totalAmount: 132713170 },
-      { month: 'Jul', netProcurement: 109, unitPrice: 1240310, totalAmount: 135193790 },
-      { month: 'Aug', netProcurement: 111, unitPrice: 1240310, totalAmount: 137674410 },
-      { month: 'Sep', netProcurement: 105, unitPrice: 1240310, totalAmount: 130232550 },
-      { month: 'Oct', netProcurement: 108, unitPrice: 1240310, totalAmount: 133953480 },
-      { month: 'Nov', netProcurement: 110, unitPrice: 1240310, totalAmount: 136434100 },
-      { month: 'Dec', netProcurement: 101, unitPrice: 1240310, totalAmount: 125271310 }
+      { month: 'Jan', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Feb', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Mar', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Apr', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'May', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Jun', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Jul', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Aug', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Sep', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Oct', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Nov', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Dec', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 }
     ]
   },
   'Bottom Ash Removal Systems': {
