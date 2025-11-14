@@ -47,42 +47,42 @@ export const retrieveProcurementRequestData: ProcurementRequestCategory[] = [
     ]
   },
   {
-    categoryName: 'Filters',
-    itemsCount: 5,
-    totalValue: 22088750000,
-    mostRequested: 'Filter air (6)',
-    items: [
-      {
-        itemName: 'Filter air',
-        quantity: 8000,
-        unitPrice: 2500000,
-        totalValue: 20000000000
-      },
-      {
-        itemName: 'Filter Udara Cartridge',
-        quantity: 1060,
-        unitPrice: 3301887,
-        totalValue: 3500000000
-      },
-      {
-        itemName: 'Oil Filter',
-        quantity: 1320,
-        unitPrice: 1439393,
-        totalValue: 1900000000
-      },
-      {
-        itemName: 'Filter Gas',
-        quantity: 790,
-        unitPrice: 3037974,
-        totalValue: 2400000000
-      },
-      {
-        itemName: 'Filter Udara Kassa',
-        quantity: 1290,
-        unitPrice: 1240310,
-        totalValue: 1600000000
-      }
-    ]
+  categoryName: 'Filters',
+  itemsCount: 5,
+  totalValue: 22088750000,
+  mostRequested: 'Filter air (6)',
+  items: [
+    {
+      itemName: 'Air Filter',
+      quantity: 8000,
+      unitPrice: 2500000,
+      totalValue: 20000000000
+    },
+    {
+      itemName: 'Fuel Filter',
+      quantity: 25,
+      unitPrice: 15750000,
+      totalValue: 393750000
+    },
+    {
+      itemName: 'Chemical Filter',
+      quantity: 300,
+      unitPrice: 285000,
+      totalValue: 85500000
+    },
+    {
+      itemName: 'Oil Filter',
+      quantity: 120,
+      unitPrice: 1850000,
+      totalValue: 222000000
+    },
+    {
+      itemName: 'Special Filter',
+      quantity: 60,
+      unitPrice: 4250000,
+      totalValue: 255000000
+    }
+  ]
   },
   {
     categoryName: 'Lubricants & Fluids',

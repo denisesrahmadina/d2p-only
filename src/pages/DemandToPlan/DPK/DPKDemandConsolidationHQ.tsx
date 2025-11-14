@@ -297,14 +297,14 @@ const materialCategories: { [key: string]: string } = {
 
 const materialPrices: { [key: string]: number } = {
   // Filter (8 materials)
-  'Air Filter': 450000,
-  'Fuel Filter': 520000,
-  'Chemical filter': 680000,
-  'Oil filter': 350000,
-  'Special filter': 780000,
-  'Multi function filter': 920000,
-  'Water filter': 410000,
-  'Gas filter': 550000,
+  'Air Filter': 2500000,
+  'Fuel Filter': 15750000,
+  'Chemical filter': 285000,
+  'Oil filter': 1850000,
+  'Special filter': 4250000,
+  'Multi function filter': 12500000,
+  'Water filter': 6500000,
+  'Gas filter': 18500000,
   // Ash Handling System (4 materials)
   'Bottom Ash Removal Systems': 35000000,
   'Fly Ash Handling Equipment': 28000000,

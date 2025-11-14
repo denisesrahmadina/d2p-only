@@ -85,7 +85,7 @@ const UnitDemandConsolidation: React.FC<UnitDemandConsolidationProps> = ({ unitN
   const materials = ['Filter air', 'Filter Udara Cartridge', 'Oil Filter', 'Filter Gas', 'Filter Udara Kassa'];
 
   const materialPrices: { [key: string]: number } = {
-    'Filter air': 450000,
+    'Filter air': 2500000,
     'Filter Udara Cartridge': 650000,
     'Oil Filter': 350000,
     'Filter Gas': 550000,
