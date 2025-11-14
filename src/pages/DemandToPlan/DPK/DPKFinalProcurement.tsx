@@ -174,163 +174,163 @@ const DPKFinalProcurement: React.FC = () => {
     ]
   },
   'Fuel Filter': {
-    totalQuantity: 284,
-    unitPrice: 700000000,
-    totalAmount: 198800000000,
+    totalQuantity: 25,
+    unitPrice: 15750000,
+    totalAmount: 393750000,
     monthlyData: [
       {
         month: 'Jan',
-        netProcurement: 19,
-        unitPrice: 700000000,
-        totalAmount: 13300000000
+        netProcurement: 2,
+        unitPrice: 15750000,
+        totalAmount: 31500000
       },
       {
         month: 'Feb',
-        netProcurement: 20,
-        unitPrice: 700000000,
-        totalAmount: 14000000000
+        netProcurement: 2,
+        unitPrice: 15750000,
+        totalAmount: 31500000
       },
       {
         month: 'Mar',
-        netProcurement: 21,
-        unitPrice: 700000000,
-        totalAmount: 14700000000
+        netProcurement: 2,
+        unitPrice: 15750000,
+        totalAmount: 31500000
       },
       {
         month: 'Apr',
-        netProcurement: 22,
-        unitPrice: 700000000,
-        totalAmount: 15400000000
+        netProcurement: 2,
+        unitPrice: 15750000,
+        totalAmount: 31500000
       },
       {
         month: 'May',
-        netProcurement: 23,
-        unitPrice: 700000000,
-        totalAmount: 16100000000
+        netProcurement: 2,
+        unitPrice: 15750000,
+        totalAmount: 31500000
       },
       {
         month: 'Jun',
-        netProcurement: 24,
-        unitPrice: 700000000,
-        totalAmount: 16800000000
+        netProcurement: 2,
+        unitPrice: 15750000,
+        totalAmount: 31500000
       },
       {
         month: 'Jul',
-        netProcurement: 25,
-        unitPrice: 700000000,
-        totalAmount: 17500000000
+        netProcurement: 2,
+        unitPrice: 15750000,
+        totalAmount: 31500000
       },
       {
         month: 'Aug',
-        netProcurement: 26,
-        unitPrice: 700000000,
-        totalAmount: 18200000000
+        netProcurement: 2,
+        unitPrice: 15750000,
+        totalAmount: 31500000
       },
       {
         month: 'Sep',
-        netProcurement: 24,
-        unitPrice: 700000000,
-        totalAmount: 16800000000
+        netProcurement: 2,
+        unitPrice: 15750000,
+        totalAmount: 31500000
       },
       {
         month: 'Oct',
-        netProcurement: 25,
-        unitPrice: 700000000,
-        totalAmount: 17500000000
+        netProcurement: 2,
+        unitPrice: 15750000,
+        totalAmount: 31500000
       },
       {
         month: 'Nov',
-        netProcurement: 27,
-        unitPrice: 700000000,
-        totalAmount: 18900000000
+        netProcurement: 2,
+        unitPrice: 15750000,
+        totalAmount: 31500000
       },
       {
         month: 'Dec',
-        netProcurement: 28,
-        unitPrice: 700000000,
-        totalAmount: 19600000000
+        netProcurement: 3,
+        unitPrice: 15750000,
+        totalAmount: 47250000
       },
-      
+
     ]
   },
   'Oil filter': {
-    totalQuantity: 464,
-    unitPrice: 50000000,
-    totalAmount: 23200000000,
+    totalQuantity: 120,
+    unitPrice: 1850000,
+    totalAmount: 222000000,
     monthlyData: [
       {
         month: 'Jan',
-        netProcurement: 34,
-        unitPrice: 50000000,
-        totalAmount: 1700000000
+        netProcurement: 10,
+        unitPrice: 1850000,
+        totalAmount: 18500000
       },
       {
         month: 'Feb',
-        netProcurement: 35,
-        unitPrice: 50000000,
-        totalAmount: 1750000000
+        netProcurement: 10,
+        unitPrice: 1850000,
+        totalAmount: 18500000
       },
       {
         month: 'Mar',
-        netProcurement: 36,
-        unitPrice: 50000000,
-        totalAmount: 1800000000
+        netProcurement: 10,
+        unitPrice: 1850000,
+        totalAmount: 18500000
       },
       {
         month: 'Apr',
-        netProcurement: 37,
-        unitPrice: 50000000,
-        totalAmount: 1850000000
+        netProcurement: 10,
+        unitPrice: 1850000,
+        totalAmount: 18500000
       },
       {
         month: 'May',
-        netProcurement: 38,
-        unitPrice: 50000000,
-        totalAmount: 1900000000
+        netProcurement: 10,
+        unitPrice: 1850000,
+        totalAmount: 18500000
       },
       {
         month: 'Jun',
-        netProcurement: 39,
-        unitPrice: 50000000,
-        totalAmount: 1950000000
+        netProcurement: 10,
+        unitPrice: 1850000,
+        totalAmount: 18500000
       },
       {
         month: 'Jul',
-        netProcurement: 40,
-        unitPrice: 50000000,
-        totalAmount: 2000000000
+        netProcurement: 10,
+        unitPrice: 1850000,
+        totalAmount: 18500000
       },
       {
         month: 'Aug',
-        netProcurement: 41,
-        unitPrice: 50000000,
-        totalAmount: 2050000000
+        netProcurement: 10,
+        unitPrice: 1850000,
+        totalAmount: 18500000
       },
       {
         month: 'Sep',
-        netProcurement: 39,
-        unitPrice: 50000000,
-        totalAmount: 1950000000
+        netProcurement: 10,
+        unitPrice: 1850000,
+        totalAmount: 18500000
       },
       {
         month: 'Oct',
-        netProcurement: 40,
-        unitPrice: 50000000,
-        totalAmount: 2000000000
+        netProcurement: 10,
+        unitPrice: 1850000,
+        totalAmount: 18500000
       },
       {
         month: 'Nov',
-        netProcurement: 42,
-        unitPrice: 50000000,
-        totalAmount: 2100000000
+        netProcurement: 10,
+        unitPrice: 1850000,
+        totalAmount: 18500000
       },
       {
         month: 'Dec',
-        netProcurement: 43,
-        unitPrice: 50000000,
-        totalAmount: 2150000000
+        netProcurement: 10,
+        unitPrice: 1850000,
+        totalAmount: 18500000
       },
-      
+
     ]
   },
   'Gas Filter': {
@@ -414,102 +414,102 @@ const DPKFinalProcurement: React.FC = () => {
     ]
   },
   'Chemical filter': {
-    totalQuantity: 320,
-    unitPrice: 100000000,
-    totalAmount: 32000000000,
+    totalQuantity: 300,
+    unitPrice: 285000,
+    totalAmount: 85500000,
     monthlyData: [
       {
         month: 'Jan',
-        netProcurement: 22,
-        unitPrice: 100000000,
-        totalAmount: 2200000000
+        netProcurement: 25,
+        unitPrice: 285000,
+        totalAmount: 7125000
       },
       {
         month: 'Feb',
-        netProcurement: 23,
-        unitPrice: 100000000,
-        totalAmount: 2300000000
+        netProcurement: 25,
+        unitPrice: 285000,
+        totalAmount: 7125000
       },
       {
         month: 'Mar',
-        netProcurement: 24,
-        unitPrice: 100000000,
-        totalAmount: 2400000000
+        netProcurement: 25,
+        unitPrice: 285000,
+        totalAmount: 7125000
       },
       {
         month: 'Apr',
         netProcurement: 25,
-        unitPrice: 100000000,
-        totalAmount: 2500000000
+        unitPrice: 285000,
+        totalAmount: 7125000
       },
       {
         month: 'May',
-        netProcurement: 26,
-        unitPrice: 100000000,
-        totalAmount: 2600000000
+        netProcurement: 25,
+        unitPrice: 285000,
+        totalAmount: 7125000
       },
       {
         month: 'Jun',
-        netProcurement: 27,
-        unitPrice: 100000000,
-        totalAmount: 2700000000
+        netProcurement: 25,
+        unitPrice: 285000,
+        totalAmount: 7125000
       },
       {
         month: 'Jul',
-        netProcurement: 28,
-        unitPrice: 100000000,
-        totalAmount: 2800000000
+        netProcurement: 25,
+        unitPrice: 285000,
+        totalAmount: 7125000
       },
       {
         month: 'Aug',
-        netProcurement: 29,
-        unitPrice: 100000000,
-        totalAmount: 2900000000
+        netProcurement: 25,
+        unitPrice: 285000,
+        totalAmount: 7125000
       },
       {
         month: 'Sep',
-        netProcurement: 27,
-        unitPrice: 100000000,
-        totalAmount: 2700000000
+        netProcurement: 25,
+        unitPrice: 285000,
+        totalAmount: 7125000
       },
       {
         month: 'Oct',
-        netProcurement: 28,
-        unitPrice: 100000000,
-        totalAmount: 2800000000
+        netProcurement: 25,
+        unitPrice: 285000,
+        totalAmount: 7125000
       },
       {
         month: 'Nov',
-        netProcurement: 30,
-        unitPrice: 100000000,
-        totalAmount: 3000000000
+        netProcurement: 25,
+        unitPrice: 285000,
+        totalAmount: 7125000
       },
       {
         month: 'Dec',
-        netProcurement: 31,
-        unitPrice: 100000000,
-        totalAmount: 3100000000
+        netProcurement: 25,
+        unitPrice: 285000,
+        totalAmount: 7125000
       },
 
     ]
   },
   'Special filter': {
-    totalQuantity: 156,
-    unitPrice: 450000000,
-    totalAmount: 70200000000,
+    totalQuantity: 60,
+    unitPrice: 4258333,
+    totalAmount: 255500000,
     monthlyData: [
-      { month: 'Jan', netProcurement: 12, unitPrice: 450000000, totalAmount: 5400000000 },
-      { month: 'Feb', netProcurement: 11, unitPrice: 450000000, totalAmount: 4950000000 },
-      { month: 'Mar', netProcurement: 14, unitPrice: 450000000, totalAmount: 6300000000 },
-      { month: 'Apr', netProcurement: 13, unitPrice: 450000000, totalAmount: 5850000000 },
-      { month: 'May', netProcurement: 15, unitPrice: 450000000, totalAmount: 6750000000 },
-      { month: 'Jun', netProcurement: 12, unitPrice: 450000000, totalAmount: 5400000000 },
-      { month: 'Jul', netProcurement: 13, unitPrice: 450000000, totalAmount: 5850000000 },
-      { month: 'Aug', netProcurement: 14, unitPrice: 450000000, totalAmount: 6300000000 },
-      { month: 'Sep', netProcurement: 11, unitPrice: 450000000, totalAmount: 4950000000 },
-      { month: 'Oct', netProcurement: 13, unitPrice: 450000000, totalAmount: 5850000000 },
-      { month: 'Nov', netProcurement: 14, unitPrice: 450000000, totalAmount: 6300000000 },
-      { month: 'Dec', netProcurement: 14, unitPrice: 450000000, totalAmount: 6300000000 }
+      { month: 'Jan', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Feb', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Mar', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Apr', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'May', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Jun', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Jul', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Aug', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Sep', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Oct', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Nov', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 },
+      { month: 'Dec', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 }
     ]
   },
   'Multi function filter': {
