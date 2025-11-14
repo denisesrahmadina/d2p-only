@@ -833,8 +833,6 @@ const DPKDemandAdjustment: React.FC = () => {
         const selection = adjustmentSelections[mat]?.[row.month];
         const adjustedValue = selection ? selection.value : row.recommendedAdjustment;
         matTotalQty += adjustedValue;
-        categoryData.totalQuantity += adjustedValue;
-        categoryData.totalValue += adjustedValue * price;
       });
 
       // Apply target display quantity if available, otherwise use calculated value
@@ -850,17 +848,19 @@ const DPKDemandAdjustment: React.FC = () => {
       });
     });
 
-    // No scaling - use raw calculated values
-    return Array.from(categoryMap.entries()).map(([category, data]) => ({
-      category,
-      totalQuantity: data.totalQuantity,
-      totalValue: data.totalValue,
-      materialsCount: data.materials.length,
-      materials: data.materials.map(mat => ({
-        ...mat,
-        totalValue: mat.totalValue
-      })).sort((a, b) => b.totalValue - a.totalValue)
-    })).sort((a, b) => b.totalValue - a.totalValue);
+    // Recalculate category totals based on display quantities (from materials array)
+    return Array.from(categoryMap.entries()).map(([category, data]) => {
+      const categoryTotalQty = data.materials.reduce((sum, mat) => sum + mat.totalQuantity, 0);
+      const categoryTotalValue = data.materials.reduce((sum, mat) => sum + mat.totalValue, 0);
+      
+      return {
+        category,
+        totalQuantity: categoryTotalQty,
+        totalValue: categoryTotalValue,
+        materialsCount: data.materials.length,
+        materials: data.materials.sort((a, b) => b.totalValue - a.totalValue)
+      };
+    }).sort((a, b) => b.totalValue - a.totalValue);
   }, [allAlertsResolved, materials, materialBudgetData, adjustmentSelections, materialCategoryMapping, materialPrices]);
 
   const grandTotalValue = useMemo(() => {
