@@ -89,8 +89,8 @@ export const categorySummaries: CategorySummary[] = [
   },
   {
     categoryName: 'Filters',
-    itemsCount: 5,
-    totalValue: 20956750000,
+    itemsCount: 8,
+    totalValue: 22088750000,
     mostRequested: 'Air Filter'
   },
   {
@@ -305,6 +305,48 @@ export const procurementRequests: ProcurementRequestItem[] = [
   },
   {
     id: '10',
+    materialId: 'FLT-006',
+    materialName: 'Water filter',
+    materialValue: 468000000,
+    category: 'Filters',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '18 pcs' },
+      { unit: 'UBP Paiton', quantity: '18 pcs' },
+      { unit: 'PLTU Indramayu', quantity: '18 pcs' },
+      { unit: 'PLTU Jawa Tengah', quantity: '18 pcs' }
+    ],
+    totalQuantity: '72 pcs'
+  },
+  {
+    id: '11',
+    materialId: 'FLT-007',
+    materialName: 'Gas filter',
+    materialValue: 388500000,
+    category: 'Filters',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '5 pcs' },
+      { unit: 'UBP Paiton', quantity: '5 pcs' },
+      { unit: 'PLTU Indramayu', quantity: '6 pcs' },
+      { unit: 'PLTU Jawa Tengah', quantity: '5 pcs' }
+    ],
+    totalQuantity: '21 pcs'
+  },
+  {
+    id: '12',
+    materialId: 'FLT-008',
+    materialName: 'Multi function filter',
+    materialValue: 275000000,
+    category: 'Filters',
+    unitRequests: [
+      { unit: 'UBP Suralaya', quantity: '5 pcs' },
+      { unit: 'UBP Paiton', quantity: '6 pcs' },
+      { unit: 'PLTU Indramayu', quantity: '5 pcs' },
+      { unit: 'PLTU Jawa Tengah', quantity: '6 pcs' }
+    ],
+    totalQuantity: '22 pcs'
+  },
+  {
+    id: '13',
     materialId: 'LUB-001',
     materialName: 'Turbine Oil',
     materialValue: 5200000000,
@@ -318,7 +360,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '37000 liters'
   },
   {
-    id: '11',
+    id: '14',
     materialId: 'LUB-002',
     materialName: 'Hydraulic Oil',
     materialValue: 3800000000,
@@ -332,7 +374,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '21500 liters'
   },
   {
-    id: '12',
+    id: '15',
     materialId: 'LUB-003',
     materialName: 'Gear Oil',
     materialValue: 2900000000,
@@ -346,7 +388,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '16000 liters'
   },
   {
-    id: '13',
+    id: '16',
     materialId: 'ELC-001',
     materialName: 'Circuit Breakers',
     materialValue: 6500000000,
@@ -360,7 +402,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '140 units'
   },
   {
-    id: '14',
+    id: '17',
     materialId: 'ELC-002',
     materialName: 'Transformers',
     materialValue: 8200000000,
@@ -374,7 +416,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '30 units'
   },
   {
-    id: '15',
+    id: '18',
     materialId: 'ELC-003',
     materialName: 'Power Cables',
     materialValue: 4100000000,
@@ -388,7 +430,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '43500 meters'
   },
   {
-    id: '16',
+    id: '19',
     materialId: 'BPV-001',
     materialName: 'Boiler Tubes',
     materialValue: 8500000000,
@@ -401,7 +443,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '6500 meters'
   },
   {
-    id: '17',
+    id: '20',
     materialId: 'BPV-002',
     materialName: 'Pressure Vessel Components',
     materialValue: 5200000000,
@@ -414,7 +456,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '110 units'
   },
   {
-    id: '18',
+    id: '21',
     materialId: 'CWC-001',
     materialName: 'Cement',
     materialValue: 3800000000,
@@ -427,7 +469,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '2200 tons'
   },
   {
-    id: '19',
+    id: '22',
     materialId: 'CWC-002',
     materialName: 'Steel Reinforcement Bars',
     materialValue: 4500000000,
@@ -440,7 +482,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '1700 tons'
   },
   {
-    id: '20',
+    id: '23',
     materialId: 'ECS-001',
     materialName: 'Electrostatic Precipitator Parts',
     materialValue: 6200000000,
@@ -453,7 +495,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '85 sets'
   },
   {
-    id: '21',
+    id: '24',
     materialId: 'ECS-002',
     materialName: 'Flue Gas Desulfurization Equipment',
     materialValue: 7800000000,
@@ -466,7 +508,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '9 systems'
   },
   {
-    id: '22',
+    id: '25',
     materialId: 'EDM-001',
     materialName: 'CAD Software Licenses',
     materialValue: 2100000000,
@@ -479,7 +521,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '115 licenses'
   },
   {
-    id: '23',
+    id: '26',
     materialId: 'EDM-002',
     materialName: 'Engineering Tools & Equipment',
     materialValue: 3400000000,
@@ -492,7 +534,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '300 units'
   },
   {
-    id: '24',
+    id: '27',
     materialId: 'FUEL-001',
     materialName: 'Coal',
     materialValue: 125000000000,
@@ -506,7 +548,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '2800000 tons'
   },
   {
-    id: '25',
+    id: '28',
     materialId: 'FUEL-002',
     materialName: 'Diesel Fuel',
     materialValue: 8500000000,
@@ -519,7 +561,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '115000 liters'
   },
   {
-    id: '26',
+    id: '29',
     materialId: 'ITC-001',
     materialName: 'Network Switches',
     materialValue: 2800000000,
@@ -532,7 +574,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '215 units'
   },
   {
-    id: '27',
+    id: '30',
     materialId: 'ITC-002',
     materialName: 'Servers',
     materialValue: 4200000000,
@@ -545,7 +587,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '30 units'
   },
   {
-    id: '28',
+    id: '31',
     materialId: 'ICS-001',
     materialName: 'DCS Controllers',
     materialValue: 9500000000,
@@ -558,7 +600,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '70 units'
   },
   {
-    id: '29',
+    id: '32',
     materialId: 'ICS-002',
     materialName: 'Pressure Transmitters',
     materialValue: 3200000000,
@@ -571,7 +613,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '850 units'
   },
   {
-    id: '30',
+    id: '33',
     materialId: 'MEQ-001',
     materialName: 'Pumps',
     materialValue: 5800000000,
@@ -584,7 +626,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '160 units'
   },
   {
-    id: '31',
+    id: '34',
     materialId: 'MEQ-002',
     materialName: 'Valves',
     materialValue: 4300000000,
@@ -597,7 +639,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '1350 units'
   },
   {
-    id: '32',
+    id: '35',
     materialId: 'REE-001',
     materialName: 'Solar Panels',
     materialValue: 15000000000,
@@ -610,7 +652,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '2200 units'
   },
   {
-    id: '33',
+    id: '36',
     materialId: 'REE-002',
     materialName: 'Wind Turbine Components',
     materialValue: 8500000000,
@@ -622,7 +664,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '20 sets'
   },
   {
-    id: '34',
+    id: '37',
     materialId: 'SEE-001',
     materialName: 'Personal Protective Equipment',
     materialValue: 2400000000,
@@ -636,7 +678,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '8000 sets'
   },
   {
-    id: '35',
+    id: '38',
     materialId: 'SEE-002',
     materialName: 'Fire Suppression Systems',
     materialValue: 4800000000,
@@ -649,7 +691,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '45 systems'
   },
   {
-    id: '36',
+    id: '39',
     materialId: 'SPM-001',
     materialName: 'Bearings',
     materialValue: 3500000000,
@@ -663,7 +705,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '2600 units'
   },
   {
-    id: '37',
+    id: '40',
     materialId: 'SPM-002',
     materialName: 'Seals and Gaskets',
     materialValue: 1800000000,
@@ -676,7 +718,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '11000 units'
   },
   {
-    id: '38',
+    id: '41',
     materialId: 'WTS-001',
     materialName: 'Water Treatment Chemicals',
     materialValue: 5600000000,
@@ -690,7 +732,7 @@ export const procurementRequests: ProcurementRequestItem[] = [
     totalQuantity: '39500 kg'
   },
   {
-    id: '39',
+    id: '42',
     materialId: 'WTS-002',
     materialName: 'Reverse Osmosis Membranes',
     materialValue: 4200000000,
