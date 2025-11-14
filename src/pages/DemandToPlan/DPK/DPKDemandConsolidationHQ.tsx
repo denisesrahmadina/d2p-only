@@ -552,6 +552,18 @@ interface DPKDemandConsolidationHQProps {
   onSuccess?: () => void;
 }
 
+// Target display quantities (for presentation only - doesn't affect actual forecast logic)
+const TARGET_DISPLAY_QUANTITIES: { [key: string]: number } = {
+  'Air Filter': 25920,
+  'Fuel Filter': 81,
+  'Chemical filter': 972,
+  'Oil filter': 389,
+  'Special filter': 194,
+  'Multi function filter': 113,
+  'Water filter': 162,
+  'Gas filter': 65
+};
+
 const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onSuccess }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Filter');
   const [selectedUnit, setSelectedUnit] = useState<string>('');
@@ -725,11 +737,17 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
     });
 
     return Array.from(materialSummary.values())
-      .map(item => ({
-        ...item,
-        unitRequestorsCount: item.unitRequestors.size,
-        unitRequestorsList: Array.from(item.unitRequestors).join(', ')
-      }))
+      .map(item => {
+        // Apply target display quantity if available for this material
+        const displayQuantity = TARGET_DISPLAY_QUANTITIES[item.materialName] || item.totalQuantity;
+        
+        return {
+          ...item,
+          totalQuantity: displayQuantity,
+          unitRequestorsCount: item.unitRequestors.size,
+          unitRequestorsList: Array.from(item.unitRequestors).join(', ')
+        };
+      })
       .sort((a, b) => b.totalQuantity - a.totalQuantity);
   }, [forecastData]);
 
@@ -1080,7 +1098,7 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
 
           <div className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {deviationAlerts.map((alert, index) => (
+              {deviationAlerts.map((alert) => (
                 <div
                   key={`${alert.unitName}-${alert.materialName}`}
                   onClick={() => {
