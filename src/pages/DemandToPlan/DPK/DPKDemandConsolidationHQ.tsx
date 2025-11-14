@@ -1406,7 +1406,7 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
 
           <div className="lg:col-span-1">
             <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-              Select Material
+              Select SKUs
             </label>
             <select
               value={selectedMaterial}
