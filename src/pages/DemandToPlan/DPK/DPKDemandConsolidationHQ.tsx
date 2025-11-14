@@ -585,7 +585,7 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
     if (categoryMaterials.length === 0) {
       return ['No filter material'];
     }
-    return ['All Material', ...categoryMaterials];
+    return ['All SKUs', ...categoryMaterials];
   }, [selectedCategory]);
 
   const filteredData = useMemo(() => {
@@ -604,7 +604,7 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
       filtered = filtered.filter(item => item.unitId === selectedUnit);
     }
 
-    if (selectedMaterial && selectedMaterial !== 'All Material' && selectedMaterial !== 'No filter material') {
+    if (selectedMaterial && selectedMaterial !== 'All SKUs' && selectedMaterial !== 'No filter material') {
       filtered = filtered.filter(item => item.material === selectedMaterial);
     }
 
@@ -1118,7 +1118,7 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
                     </div>
 
                     <div className="flex items-start space-x-2">
-                      <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 flex-shrink-0">Material:</span>
+                      <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 flex-shrink-0">SKU:</span>
                       <span className="text-xs font-medium text-gray-900 dark:text-white">
                         {alert.materialName}
                       </span>
@@ -1381,7 +1381,7 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
               value={selectedCategory}
               onChange={(e) => {
                 setSelectedCategory(e.target.value);
-                setSelectedMaterial('All Material');
+                setSelectedMaterial('All SKUs');
               }}
               className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-accenture-purple focus:border-transparent"
             >

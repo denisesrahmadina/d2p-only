@@ -56,7 +56,7 @@ const DPKDemandNetting: React.FC = () => {
     'Spare part and Maintenance',
     'Water Treatment System'
   ];
-  const materials = ['All Material', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
+  const materials = ['All SKUs', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
 
   const processingSteps = [
     'Analyzing adjusted demand forecasts...',
@@ -67,7 +67,7 @@ const DPKDemandNetting: React.FC = () => {
   ];
 
   const materialNettingData: MaterialNettingData = useMemo(() => ({
-   'All Material': {
+   'All SKUs': {
      adjustedTotal: 88156,
      inventoryTotal: 28880,
      contractTotal: 14080,
@@ -458,7 +458,7 @@ const DPKDemandNetting: React.FC = () => {
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
               <Package className="h-5 w-5" />
-              <span>Material Selection</span>
+              <span>SKU Selection</span>
             </h3>
           </div>
           <select
@@ -987,7 +987,7 @@ const DPKDemandNetting: React.FC = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                 <div className="bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-200 dark:border-green-800">
-                  <p className="text-xs text-gray-600 dark:text-gray-400 uppercase mb-1">Material</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 uppercase mb-1">SKU</p>
                   <p className="text-lg font-bold text-gray-900 dark:text-white">{selectedMaterial}</p>
                 </div>
                 <div className="bg-white dark:bg-gray-900 rounded-lg p-4 border border-green-200 dark:border-green-800">

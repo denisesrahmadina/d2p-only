@@ -55,7 +55,7 @@ const DPKDemandConsolidation: React.FC<DPKDemandConsolidationProps> = ({ onSucce
   const [isDragging, setIsDragging] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [chartType, setChartType] = useState<'line' | 'bar'>('line');
-  const [selectedMaterial, setSelectedMaterial] = useState<string>('All Material');
+  const [selectedMaterial, setSelectedMaterial] = useState<string>('All SKUs');
   const [showFinalTable, setShowFinalTable] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isSendingToBudget, setIsSendingToBudget] = useState(false);
@@ -82,7 +82,7 @@ const DPKDemandConsolidation: React.FC<DPKDemandConsolidationProps> = ({ onSucce
   const [customValues, setCustomValues] = useState<{ [key: string]: string }>({});
 
   const categories = ['All Categories', 'Filters', 'Fuel & Combustion', 'Lubricants & Fluids', 'Mechanical Parts', 'Electrical Components', 'Safety & Environment', 'Maintenance Supplies'];
-  const materials = ['All Material', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
+  const materials = ['All SKUs', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
 
   const materialPrices: { [key: string]: number } = {
     'Coal': 850000,
@@ -526,7 +526,7 @@ const DPKDemandConsolidation: React.FC<DPKDemandConsolidationProps> = ({ onSucce
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
               <Package className="h-5 w-5" />
-              <span>Material Selection</span>
+              <span>SKU Selection</span>
             </h3>
           </div>
           <select
@@ -967,7 +967,7 @@ const DPKDemandConsolidation: React.FC<DPKDemandConsolidationProps> = ({ onSucce
                       Final Demand Table
                     </h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Material: <span className="font-semibold">{selectedMaterial}</span> • Ready for E-Budget Submission
+                      SKU: <span className="font-semibold">{selectedMaterial}</span> • Ready for E-Budget Submission
                     </p>
                   </div>
                 </div>
@@ -1108,7 +1108,7 @@ const DPKDemandConsolidation: React.FC<DPKDemandConsolidationProps> = ({ onSucce
                 <div className="flex items-center justify-center space-x-2 text-sm">
                   <Package className="h-4 w-4 text-green-600 dark:text-green-400" />
                   <span className="font-semibold text-green-800 dark:text-green-200">
-                    Material: {selectedMaterial}
+                    SKU: {selectedMaterial}
                   </span>
                 </div>
                 <div className="flex items-center justify-center space-x-2 text-sm mt-2">

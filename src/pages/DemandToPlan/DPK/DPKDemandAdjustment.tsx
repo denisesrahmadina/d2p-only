@@ -215,7 +215,7 @@ const DPKDemandAdjustment: React.FC = () => {
   const navigate = useNavigate();
   const [selectedUnit, setSelectedUnit] = useState<string>('UBP ADP');
   // Material selection now acts as a filter for adjustments and final table
-  const [selectedMaterial, setSelectedMaterial] = useState<string>('All Material'); // now used only inside AI section filter
+  const [selectedMaterial, setSelectedMaterial] = useState<string>('All SKUs'); // now used only inside AI section filter
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [hasBudgetData, setHasBudgetData] = useState(false);
   const [showFinalTable, setShowFinalTable] = useState(false);
@@ -250,7 +250,7 @@ const DPKDemandAdjustment: React.FC = () => {
     'Water Treatment System'
   ];
   const materials = MATERIALS;
-  const materialFilterOptions = ['All Material', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
+  const materialFilterOptions = ['All SKUs', 'Air Filter', 'Fuel Filter', 'Chemical filter', 'Oil filter', 'Special filter', 'Multi function filter', 'Water filter', 'Gas Filter'];
   const materialPrices = MATERIAL_PRICES;
 
   const formatCurrency = (value: number) => {
@@ -460,7 +460,7 @@ const DPKDemandAdjustment: React.FC = () => {
   // Get the display name for the current unit
   const currentUnitName = plnUnitsData.find(u => u.id === selectedUnit)?.name || selectedUnit;
 
-  const currentMaterialKey = selectedMaterial === 'All Material' ? materials[0] : selectedMaterial;
+  const currentMaterialKey = selectedMaterial === 'All SKUs' ? materials[0] : selectedMaterial;
   const currentMaterialData = useMemo(() => {
     const data = materialBudgetData[currentMaterialKey];
     if (!data) {
@@ -528,7 +528,7 @@ const DPKDemandAdjustment: React.FC = () => {
 
   const finalAdjustedData = useMemo(() => {
     // Single material view
-    if (selectedMaterial !== 'All Material') {
+    if (selectedMaterial !== 'All SKUs') {
       const matKey = currentMaterialKey;
       if (!adjustmentSelections[matKey]) return [] as Array<{
         month: string; consolidatedDemand: number; budgetLimit: number; adjustedDemand: number; source: string; variance: number;
@@ -683,7 +683,7 @@ const DPKDemandAdjustment: React.FC = () => {
   };
 
   const handleSaveAdjustments = () => {
-    if (selectedUnit && selectedMaterial && selectedMaterial !== 'All Material') {
+    if (selectedUnit && selectedMaterial && selectedMaterial !== 'All SKUs') {
       const alertKey = `${selectedUnit}-${selectedCategory}-${selectedMaterial}`;
       setResolvedAlerts(prev => new Set([...prev, alertKey]));
 
@@ -1126,7 +1126,7 @@ const DPKDemandAdjustment: React.FC = () => {
                     </div>
 
                     <div className="flex items-start space-x-2">
-                      <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 flex-shrink-0">Material:</span>
+                      <span className="text-xs font-semibold text-gray-600 dark:text-gray-400 flex-shrink-0">SKU:</span>
                       <span className="text-xs font-medium text-gray-900 dark:text-white">
                         {alert.material}
                       </span>
@@ -1479,7 +1479,7 @@ const DPKDemandAdjustment: React.FC = () => {
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center space-x-2">
                   <Package className="h-5 w-5" />
-                  <span>Material Selection</span>
+                  <span>SKU Selection</span>
                 </h3>
               </div>
               <select
@@ -1520,7 +1520,7 @@ const DPKDemandAdjustment: React.FC = () => {
             </div>
 
             <div className="overflow-x-auto">
-              {selectedMaterial === 'All Material' ? (
+              {selectedMaterial === 'All SKUs' ? (
                 <table className="w-full">
                   <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <tr>
@@ -1749,7 +1749,7 @@ const DPKDemandAdjustment: React.FC = () => {
             </div>
 
             {/* Save Adjustments Button */}
-            {selectedMaterial !== 'All Material' && (
+            {selectedMaterial !== 'All SKUs' && (
               <div className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 rounded-b-xl">
                 <div className="flex items-center justify-between">
                   <div className="text-sm text-gray-600 dark:text-gray-400">
@@ -1782,7 +1782,7 @@ const DPKDemandAdjustment: React.FC = () => {
                       Final Adjusted Demand
                     </h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Material: <span className="font-semibold">{selectedMaterial}</span> • Ready for Approval
+                      SKU: <span className="font-semibold">{selectedMaterial}</span> • Ready for Approval
                     </p>
                   </div>
                 </div>
@@ -1796,7 +1796,7 @@ const DPKDemandAdjustment: React.FC = () => {
               </div>
 
               <div className="overflow-x-auto bg-white dark:bg-gray-900 rounded-xl border-2 border-blue-300 dark:border-blue-700 shadow-lg">
-                {selectedMaterial === 'All Material' ? (
+                {selectedMaterial === 'All SKUs' ? (
                   <table className="w-full">
                     <thead className="bg-blue-100 dark:bg-blue-900/40 border-b-2 border-blue-300 dark:border-blue-700">
                       <tr>
