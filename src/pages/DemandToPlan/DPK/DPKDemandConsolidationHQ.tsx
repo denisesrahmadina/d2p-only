@@ -554,14 +554,14 @@ interface DPKDemandConsolidationHQProps {
 
 // Target display quantities (for presentation only - doesn't affect actual forecast logic)
 const TARGET_DISPLAY_QUANTITIES: { [key: string]: number } = {
-  'Air Filter': 25920,
-  'Fuel Filter': 81,
-  'Chemical filter': 972,
-  'Oil filter': 389,
-  'Special filter': 194,
-  'Multi function filter': 113,
-  'Water filter': 162,
-  'Gas filter': 65
+  'Air Filter': 43809,
+  'Fuel Filter': 39799,
+  'Chemical filter': 30361,
+  'Oil filter': 55221,
+  'Special filter': 27417,
+  'Multi function filter': 23625,
+  'Water filter': 46414,
+  'Gas filter': 36196
 };
 
 const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onSuccess }) => {
@@ -753,8 +753,6 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
 
   const categoryBreakdown = useMemo(() => {
     try {
-      const TARGET_TOTAL = 971913801000; // IDR 971,913,801,000
-
       const categories = new Map<string, {
         category: string;
         materials: typeof finalProcurementSummary;
@@ -801,22 +799,16 @@ const DPKDemandConsolidationHQ: React.FC<DPKDemandConsolidationHQProps> = ({ onS
         return [];
       }
 
-      // Calculate initial total from valid categories
-      const initialTotal = validCategories.reduce((sum, [_, cat]) => sum + cat.totalValue, 0);
-
-      // Calculate scaling factor to reach target
-      const scalingFactor = initialTotal > 0 ? TARGET_TOTAL / initialTotal : 1;
-
-      // Apply scaling factor to all category values and ensure no negatives
+      // No scaling - use raw calculated values
       const result = validCategories.map(([category, cat]) => ({
         category,
         materials: cat.materials,
         totalQuantity: cat.totalQuantity,
-        totalValue: Math.max(0, Math.round(cat.totalValue * scalingFactor)),
+        totalValue: cat.totalValue,
         unitCount: cat.unitCount
       })).sort((a, b) => b.totalValue - a.totalValue);
 
-      console.log('Category breakdown created:', result.length, 'categories, scaled to target:', TARGET_TOTAL);
+      console.log('Category breakdown created:', result.length, 'categories');
       return result;
     } catch (error) {
       console.error('Error creating category breakdown:', error);

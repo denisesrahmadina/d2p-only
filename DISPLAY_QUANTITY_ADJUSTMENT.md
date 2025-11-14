@@ -16,14 +16,14 @@ A new constant `TARGET_DISPLAY_QUANTITIES` was added with the desired target qua
 
 ```typescript
 const TARGET_DISPLAY_QUANTITIES: { [key: string]: number } = {
-  'Air Filter': 43775,
-  'Fuel Filter': 39807,
-  'Chemical filter': 30517,
-  'Oil filter': 55041,
-  'Special filter': 27263,
-  'Multi function filter': 23786,
-  'Water filter': 46321,
-  'Gas filter': 36143
+  'Air Filter': 43809,
+  'Fuel Filter': 39799,
+  'Chemical filter': 30361,
+  'Oil filter': 55221,
+  'Special filter': 27417,
+  'Multi function filter': 23625,
+  'Water filter': 46414,
+  'Gas filter': 36196
 };
 ```
 
@@ -69,18 +69,21 @@ The `finalProcurementSummary` calculation was updated to apply target quantities
 
 Based on the provided attachment, the following total quantities are now displayed:
 
-| Material | Target Qty | Status |
-|----------|-----------|--------|
-| Oil filter | 55,041 | ✅ Matches |
-| Water filter | 46,321 | ✅ Matches |
-| Air Filter | 43,775 | ✅ Matches |
-| Fuel Filter | 39,807 | ✅ Matches |
-| Gas filter | 36,143 | ✅ Matches |
-| Chemical filter | 30,517 | ✅ Matches |
-| Special filter | 27,263 | ✅ Matches |
-| Multi function filter | 23,786 | ✅ Matches |
+### DPK Demand Consolidation HQ (from HQ perspective):
+| Material | Qty | Unit Price (IDR) | Total Value (IDR) |
+|----------|-----|------------------|-------------------|
+| Oil filter | 55,221 | 1,850,000 | 102,158,850,000 |
+| Water filter | 46,414 | 6,500,000 | 301,691,000,000 |
+| Air Filter | 43,809 | 2,500,000 | 109,522,500,000 |
+| Fuel Filter | 39,799 | 15,750,000 | 626,834,250,000 |
+| Gas filter | 36,196 | 18,500,000 | 669,626,000,000 |
+| Chemical filter | 30,361 | 285,000 | 8,652,885,000 |
+| Special filter | 27,417 | 4,250,000 | 116,522,250,000 |
+| Multi function filter | 23,625 | 12,500,000 | 295,312,500,000 |
+| **Total Qty** | **302,842** | | |
+| **Category Total** | | | **IDR 2,230,320,235,000** |
 
-**Category Total**: IDR 658,789,723,343 (calculated from target quantities × unit prices)
+**Approximately IDR 2.23 Trillion** (No scaling applied - raw calculation)
 
 ## Future Enhancements
 
