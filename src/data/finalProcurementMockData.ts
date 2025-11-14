@@ -842,6 +842,63 @@ export const materialProcurementData: Record<string, MaterialProcurementData> = 
       { month: 'Dec', netProcurement: 5, unitPrice: 4258333, totalAmount: 21291665 }
     ]
   },
+  'Water filter': {
+    totalQuantity: 72,
+    unitPrice: 6500000,
+    totalAmount: 468000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 6, unitPrice: 6500000, totalAmount: 39000000 },
+      { month: 'Feb', netProcurement: 6, unitPrice: 6500000, totalAmount: 39000000 },
+      { month: 'Mar', netProcurement: 6, unitPrice: 6500000, totalAmount: 39000000 },
+      { month: 'Apr', netProcurement: 6, unitPrice: 6500000, totalAmount: 39000000 },
+      { month: 'May', netProcurement: 6, unitPrice: 6500000, totalAmount: 39000000 },
+      { month: 'Jun', netProcurement: 6, unitPrice: 6500000, totalAmount: 39000000 },
+      { month: 'Jul', netProcurement: 6, unitPrice: 6500000, totalAmount: 39000000 },
+      { month: 'Aug', netProcurement: 6, unitPrice: 6500000, totalAmount: 39000000 },
+      { month: 'Sep', netProcurement: 6, unitPrice: 6500000, totalAmount: 39000000 },
+      { month: 'Oct', netProcurement: 6, unitPrice: 6500000, totalAmount: 39000000 },
+      { month: 'Nov', netProcurement: 6, unitPrice: 6500000, totalAmount: 39000000 },
+      { month: 'Dec', netProcurement: 6, unitPrice: 6500000, totalAmount: 39000000 }
+    ]
+  },
+  'Gas filter': {
+    totalQuantity: 21,
+    unitPrice: 18500000,
+    totalAmount: 388500000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 2, unitPrice: 18500000, totalAmount: 37000000 },
+      { month: 'Feb', netProcurement: 2, unitPrice: 18500000, totalAmount: 37000000 },
+      { month: 'Mar', netProcurement: 2, unitPrice: 18500000, totalAmount: 37000000 },
+      { month: 'Apr', netProcurement: 2, unitPrice: 18500000, totalAmount: 37000000 },
+      { month: 'May', netProcurement: 2, unitPrice: 18500000, totalAmount: 37000000 },
+      { month: 'Jun', netProcurement: 2, unitPrice: 18500000, totalAmount: 37000000 },
+      { month: 'Jul', netProcurement: 2, unitPrice: 18500000, totalAmount: 37000000 },
+      { month: 'Aug', netProcurement: 1, unitPrice: 18500000, totalAmount: 18500000 },
+      { month: 'Sep', netProcurement: 2, unitPrice: 18500000, totalAmount: 37000000 },
+      { month: 'Oct', netProcurement: 1, unitPrice: 18500000, totalAmount: 18500000 },
+      { month: 'Nov', netProcurement: 2, unitPrice: 18500000, totalAmount: 37000000 },
+      { month: 'Dec', netProcurement: 1, unitPrice: 18500000, totalAmount: 18500000 }
+    ]
+  },
+  'Multi function filter': {
+    totalQuantity: 22,
+    unitPrice: 12500000,
+    totalAmount: 275000000,
+    monthlyData: [
+      { month: 'Jan', netProcurement: 2, unitPrice: 12500000, totalAmount: 25000000 },
+      { month: 'Feb', netProcurement: 2, unitPrice: 12500000, totalAmount: 25000000 },
+      { month: 'Mar', netProcurement: 2, unitPrice: 12500000, totalAmount: 25000000 },
+      { month: 'Apr', netProcurement: 2, unitPrice: 12500000, totalAmount: 25000000 },
+      { month: 'May', netProcurement: 2, unitPrice: 12500000, totalAmount: 25000000 },
+      { month: 'Jun', netProcurement: 2, unitPrice: 12500000, totalAmount: 25000000 },
+      { month: 'Jul', netProcurement: 2, unitPrice: 12500000, totalAmount: 25000000 },
+      { month: 'Aug', netProcurement: 2, unitPrice: 12500000, totalAmount: 25000000 },
+      { month: 'Sep', netProcurement: 2, unitPrice: 12500000, totalAmount: 25000000 },
+      { month: 'Oct', netProcurement: 1, unitPrice: 12500000, totalAmount: 12500000 },
+      { month: 'Nov', netProcurement: 2, unitPrice: 12500000, totalAmount: 25000000 },
+      { month: 'Dec', netProcurement: 1, unitPrice: 12500000, totalAmount: 12500000 }
+    ]
+  },
   'Bottom Ash Removal Systems': {
     totalQuantity: 5,
     unitPrice: 740000000,
