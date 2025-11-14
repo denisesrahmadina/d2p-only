@@ -89,7 +89,7 @@ const MATERIALS = [
 
 const MATERIAL_PRICES: { [key: string]: number } = {
   // Filter (8 materials)
-  'Air Filter': 450000,
+  'Air Filter': 2500000,
   'Fuel Filter': 520000,
   'Chemical filter': 680000,
   'Oil filter': 350000,
