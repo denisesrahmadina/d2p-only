@@ -786,7 +786,7 @@ const DPKDemandAdjustment: React.FC = () => {
 
   // Target display quantities (for presentation only - doesn't affect actual forecast logic)
   const TARGET_DISPLAY_QUANTITIES: { [key: string]: number } = {
-    'Air Filter': 23328,
+    'Air Filter': 25920,
     'Fuel Filter': 4500,
     'Chemical filter': 18000,
     'Oil filter': 18000,
